@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <form class="form-horizontal" onsubmit="return false" id="form">
+        <input type='hidden' id='id' name='id' />
+            <fieldset>
+    {addDivs}
+
+                <div class="form-actions">
+                    <div class="row" align="center">
+                        <div class="col-md-12">
+                            <button id="backBtn" class="btn btn-primary">返回</button>
+                            <button id="saveBtn" class="btn btn-primary">
+                                <i class="fa fa-save"></i> 保存
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../js/jq.js"></script>
+<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<!-- 全局配置-->
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/tools/config.js"></script>
+
+<!-- 框架-->
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/tools/frames.js"></script>
+<!-- 本页面js, 其他页面忽引用此js -->
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/{descEN}/add{beanName}.js"></script>

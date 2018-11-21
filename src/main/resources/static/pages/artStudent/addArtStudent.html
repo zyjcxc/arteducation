@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width,initial-scale=1.0,user-scalable=no">
+	<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+		<fieldset>
+			<input type="hidden" id="id" name="id">
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>学生姓名</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='学生姓名' type='text' name='name' id='name'>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">专业项目</label>
+				<div class="col-md-10" style="width: 200px">
+					<select class="form-control input-sm" name="classificationId" id="classificationId">
+
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">活动</label>
+				<div class="col-md-10" style="width: 200px">
+					<select class="form-control input-sm" name="activityId" id="activityId">
+
+					</select>
+				</div>
+			</div>
+			<!--<div class='form-group'>-->
+				<!--<label class='col-md-2 control-label'>头像</label>-->
+				<!--<div class='col-md-10' id="imgs">-->
+					<!--<input type='hidden' name='headImgUrl' id='headImgUrl'>-->
+				<!--</div>-->
+			<!--</div>-->
+
+			<!--<div class='form-group'>-->
+				<!--<label class='col-md-2 control-label'>上传头像</label>-->
+				<!--<div class='col-md-10'>-->
+					<!--<td>-->
+						<!--<div id="container">-->
+							<!--<a id="pickfiles" href="javascript:void(0);" class="btn btn-primary">选择图片</a>-->
+							<!--<a id="pickfiles2" href="javascript:void(0);" class="btn btn-primary">缩略图上传</a>-->
+							<!--<div id="filelist"></div>-->
+						<!--</div>-->
+					<!--</td>-->
+					<!--<th></th>-->
+
+					<!--<td>-->
+						<!--<input readonly="readonly" style="display: none;"/>-->
+						<!--<div id="preview" style="width: 200px; height: 200px;"></div>-->
+					<!--</td>-->
+				<!--</div>-->
+			<!--</div>-->
+
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>国籍</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='请输入国籍' type='text' name='country' id='country'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>民族</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='请输入民族' type='text' name='nation' id='nation'>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">性别</label>
+				<div class="col-md-10" style="width: 100px">
+					<select class="form-control input-sm" name="sex" id="sex">
+						<option value="m">男</option>
+						<option value="g">女</option>
+					</select>
+				</div>
+			</div>
+
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>身份证号</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='身份证号' type='text' name='cardNo' id='cardNo'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>级别</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='级别' type='text' name='level' id='level'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>出生日期</label>
+				<div class='col-md-10'>
+					<!--<input class='form-control' placeholder='出生日期' type='text' name='born' id='born'>-->
+					<input type="text" class="form-control" placeholder="出生日期" name="born" id="born">
+				</div>
+
+			</div>
+
+			<input type='hidden' name='state' id='state'>
+			<!--<input type='hidden' name='password' id='password'>-->
+
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+						<button id="backBtn" class="btn btn-primary">返回</button>
+						<button id="saveBtn" class="btn btn-primary">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+<input type='hidden' id='token' />
+<input type='hidden' id='type' />
+</body>
+</html>
+<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../js/jq.js"></script>
+<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/tools/config.js"></script>
+<!--七牛-->
+<script type="text/javascript" src="../../js/qiniu/qiniuutil.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/qiniu/plupload.full.min.js"></script>
+<script type="text/javascript" src="../../js/qiniu/qiniu.js" charset="utf-8"></script>
+
+
+<!-- 框架-->
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/tools/frames.js"></script>
+<!-- 本页面js, 其他页面忽引用此js -->
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/artStudent/addArtStudent.js"></script>

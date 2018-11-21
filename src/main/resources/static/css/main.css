@@ -1,0 +1,1117 @@
+* {padding:0;margin:0}
+body{background: #f3f3f3;line-height: initial;}
+table {border-collapse:collapse;border-spacing:0;}
+fieldset,img {border:0;}
+ol,ul {list-style:none;}
+a:link { text-decoration: none;}
+a{color:#000;text-decoration:none; }
+
+/*================*/
+.clickEvent {pointer-events: none;}
+.ML2{margin-left: 0.2rem !important;}
+.ML3{margin-left: 0.3rem !important;}
+.ML5{margin-left: 0.5rem !important;}
+.ML8{margin-left: 0.8rem !important;}
+.ML10{margin-left: 1rem !important;}
+.MB5{margin-bottom: 0.5rem !important;}
+.MB8{margin-bottom: 0.8rem !important;}
+.MB10{margin-bottom: 1rem !important;}
+.MB22{margin-bottom: 2.16rem !important;}
+.MT2{margin-top: 0.2rem !important;}
+.MT5{margin-top: 0.5rem !important;}
+.MT16{margin-top: 1.6rem !important;}
+
+.fo15{font-size: 0.3rem;}
+.fo24{font-size: 0.48rem;}
+.fo26{font-size: 0.52rem;}
+.fo28{font-size: 0.56rem;}
+.fo30{font-size: 0.6rem;}
+.fo34{font-size: 0.68rem;}
+.fo36{font-size: 0.72rem;}
+.fo45{font-size: 0.90rem;}
+.fo48{font-size: 0.96rem;}
+
+.he2{height: 2rem;}
+.W100{width: 100%}
+.W30{width: 30%}
+.txal_c{text-align: center;}
+
+.col_fff{color: #ffffff;}
+.col_blue{color: #00B7EE;}
+.col_red{color: #ff3e3e;}
+.col_yellow{color: #FFF83E;}
+.col_ccc{color: #787878;}
+.bgcol_ccc{background: #787878;}
+.bgcol_d7{background: #D7D7D7 !important;}
+.bgcol_f3{background: #f3f3f3;}
+.bgcol_f{background: #ffffff;}
+.bgcol_red{background: #ff3e3e !important;}
+.bgcol_blue{background: #00B7EE !important;}
+.delete_line{text-decoration:line-through}
+.point_blue{
+	width: 0.4rem;
+	height: 0.4rem;
+	border-radius: 0.3rem;
+	background: #00B7EE;
+	flex: 0.4rem 0 0;
+}
+.bg_blue1{
+	background: #00B7EE;
+	height: 2rem;
+	width: 14.4rem;
+	border-radius: 0.2rem 0.2rem 0 0 ;
+	margin:0.4rem auto 0;
+	padding: 0 0.4rem;
+	color: #fff;
+}
+.bg_blue2{
+	background: #00B7EE;
+	height: 2rem;
+	width: 14.4rem;
+	border-radius: 0 0 0.2rem 0.2rem;
+	margin:0 auto;
+	color: #fff;
+}
+.border_line{border: 1px solid #cccccc;}
+.break_word{word-wrap:break-word;word-break:break-all;}
+.fixed_bottom{position: fixed;bottom: 0;}
+.flex{
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.flex1{
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+}
+.flex2{
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.overflow{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.center_tt{
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+	align-items: center;
+}
+.blue_bottom_bt{
+	width: 100%;
+	height: 2rem;
+	background: #00B7EE;
+	text-align: center;
+	line-height: 2rem;
+	color: #fff;
+	position: fixed;
+	bottom: 0;
+}
+.blue_bt{
+	width: 14.4rem;
+	height: 2rem;
+	background: #00B7EE;
+	border-radius: 0.3rem;
+	margin: auto;
+	text-align: center;
+	line-height: 2rem;
+	color: #fff;
+}
+.red_bt{
+	width: 14.4rem;
+	height: 2rem;
+	background: #FF3E3E;
+	border-radius: 0.3rem;
+	margin:0.4rem auto 0;
+	text-align: center;
+	line-height: 2rem;
+	color: #fff;
+}
+.common_bg{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+	height:auto;
+	z-index:-1;
+}
+.common_dis_wrap{
+	width: 14.4rem;
+	border-radius: 0.2rem;
+	background: #fff;
+	margin: 0.2rem auto;
+	padding: 0.2rem;
+}
+.common_dis_title{
+	width: 100%;
+	min-height: 2rem;
+}
+.common_dis_titlec{
+	line-height: 2rem;
+	word-wrap:break-word;
+ }
+.common_dis_content{
+	margin: 0.2rem 0.4rem;
+	word-wrap:break-word;
+}
+.common_dis_content img{
+	width: 100%;
+}
+/*列表begin*/
+.item_list{
+	width: 14.4rem;
+	background: #fff;
+	margin:0 auto;
+}
+::-webkit-scrollbar{width:0px}
+.item_list li{
+	height: 1.9rem;
+	margin: 0 0.52rem;
+	padding: 0 0.2rem;
+}
+.item_list li:not(:last-child){
+	border-bottom: 1px solid #ccc;
+}
+
+.item_list2{
+	width: 14.4rem;
+	margin:0 auto;
+}
+.item_list2 li{
+	min-height: 2rem;
+	margin: 0.4rem 0 0;
+	padding: 0 0.4rem;
+	background: #fff;
+	border-radius: 0.2rem;
+}
+.item_list2 li label{
+	flex-grow:1;
+	white-space: nowrap;
+}
+.item_list2 li input,.item_list2 li textarea,.textarea{
+	display: block;
+	flex-grow: 2;
+	margin-bottom: 0 !important;
+	min-height: 2rem !important;
+	border: none;
+	text-align: right;
+	width: auto;
+	padding: 0;
+	font:initial;
+	font-size: 0.72rem;
+}
+/*.item_list2 li textarea{text-align: left;}*/
+
+.item_list3{
+	width: 14.4rem;
+	margin: 0rem auto 0.8rem;
+}
+.item_list3 li{
+	min-height: 2rem;
+	padding: 0 0.4rem;
+	background: #fff;
+	border-radius: 0.2rem;
+	margin-bottom: 1px;
+}
+.item_list3 li input,.item_list3 li textarea{
+	display: block;
+	flex-grow: 2;
+	margin-bottom: 0 !important;
+	min-height: 2rem !important;
+	border: none;
+	text-align: right;
+	width: auto;
+	padding: 0;
+	font:initial;
+	font-size: 0.72rem;
+}
+.item_list3_last{
+	margin-bottom: 0;
+}
+
+.item_list4{
+	width: 14.4rem;
+	margin:0.2rem auto;
+}
+.item_list4 li{
+	background: #fff;
+	border-radius: 0.2rem;
+}
+.item_list4 li div{
+	height: 1.6rem;
+	padding: 0 0.4rem;
+}
+.item_list4 li div:first-child{
+	height: 2.4rem;
+	border-radius: 0.2rem 0.2rem 0 0;
+	color: #fff;
+	padding: 0 0.4rem 0 0;
+}
+.item_list4 li div:last-child{
+	border-top: 1px solid #ccc;
+	border-radius:0 0 0.2rem 0.2rem ;
+}
+.item_list5{
+	width: 100%;
+	margin: 0rem auto;
+}
+.item_list5 li{
+	min-height: 1.8rem;
+	padding: 0 0.4rem;
+	background: #fff;
+	margin-bottom: 1px;
+}
+
+.item_list6{
+	width: 14.4rem;
+	margin:0 auto;
+}
+.item_list6 li{
+	min-height: 2rem;
+	margin: 1px 0 0;
+	padding: 0 0.4rem;
+	background: #fff;
+	border-radius: 0.2rem;
+}
+.item_list6 li label{
+	flex-grow:1;
+	white-space: nowrap;
+}
+.item_list6 li input,.item_list6 li textarea,.textarea{
+	display: block;
+	flex-grow: 2;
+	margin-bottom: 0 !important;
+	min-height: 2rem !important;
+	border: none;
+	text-align: right;
+	width: auto;
+	padding: 0;
+	font:initial;
+	font-size: 0.72rem;
+}
+/*列表end*/
+/*底部导航*/
+.bottom_bt_group{
+	height: 2.16rem;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	background: #fff;
+	border-top: 1px solid #ccc;
+	color: #757575;
+}
+.bottom_bt_item{
+	text-align: center;
+	width: 33.3%;
+}
+.bottom_bt_group .active{
+	color: #00B7EE;
+}
+/*首页*/
+.index_top_address{
+	height: 1.4rem;
+	width: 100%;
+	background: #fff;
+	margin-bottom: 1px;
+}
+.index_top_address .swiper-container  {
+	height: 1.4rem;
+	line-height: 1.4rem;
+	width: 100%;
+	overflow: hidden;
+}
+.index_top_bt_group{
+	height: 3.6rem;
+	width: 100%;
+	background: #fff;
+}
+.index_top_bt_img{
+	width: 2rem;
+	height: 2rem;
+}
+.index_swiper_slide_img{
+	display: block;
+	height: 5.6rem;
+	width: 100%;
+}
+.index_top_bt_group2{
+	height: 2.4rem;
+	width: 100%;
+	background: #fff;
+	margin-bottom: 0.4rem;
+}
+.index_top_bt_group2 .index_top_bt_group2_item:first-child{
+	border-right: 1px solid #ccc;
+}
+.index_top_bt_group2_item{
+	width: 50%;
+}
+.index_top2_bt_img{
+	width: 1.44rem;
+	height: 1.44rem;
+}
+.index_swiper2{
+	height: 6rem;
+	background: #fff;
+	width: 100%;
+	margin-bottom: 0.4rem;
+	padding:0 0.8rem;
+}
+.index_item_title{
+	height: 2.12rem;
+}
+
+.swiper-slide2{
+	width: 60% !important;
+}
+.index_swiper_slide2_img{
+	display: block;
+	height: 3.6rem;
+	width: 100%;
+}
+.index_swiper_slide2_txt{
+	position: absolute;
+	bottom: 0;
+	background: rgba(0,0,0,0.5);
+	height: 1rem;
+	line-height: 1rem;
+	padding: 0 0.2rem;
+	width: 100%;
+	color: #fff;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.index_question,.index_news{
+	padding:0 0.8rem;
+	background: #fff;
+	width: 100%;
+	margin-bottom: 0.4rem;
+}
+.index_question_item{
+	padding-bottom: 1rem;
+}
+.index_question_item_a,.index_question_item_q{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.index_news_list{
+	margin-top: -0.4rem;
+}
+.index_news_item{
+	padding-left: 0.5rem;
+	height: 3.8rem;
+}
+/*.index_news_item:not(:last-child){
+	border-bottom: 1px solid #ccc;
+}*/
+.index_news_item{
+	border-bottom: 1px solid #ccc;
+}
+.index_news_txt{
+	height: 3rem;
+	display: flex;
+	display: -webkit-flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	align-content:space-between;
+	margin-right: 0.8rem;
+}
+.index_news_txt2{
+	height: 2.5rem;
+	display: flex;
+	display: -webkit-flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	align-content:space-between;
+	margin-right: 0.8rem;
+}
+.index_news_name{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	width: 100%;
+}
+.index_news_img{
+	width: 4rem;
+	height: 2.6rem;
+	flex:5rem 0 0 ;
+}
+/*服务内容*/
+.service_content img{
+	width: 100%;
+}
+/*参保指南*/
+.insurance_guide{
+	padding-bottom: 2rem;
+}
+.insurance_guide img{
+	width: 100%;
+}
+.insurance_guide_bts{
+	height: 2rem;
+	line-height: 2rem;
+	position: fixed;
+	bottom: 0;
+	background: #fff;
+	width: 100%;
+}
+.insurance_guide_bt{
+	width: 50%;
+	text-align: center;
+}
+
+
+
+
+
+/*登录*/
+.login_bg{
+	background: url(../img/login_bg.png) no-repeat;
+	background-size: cover;
+}
+.login_bt{
+	width: 50%;
+	height: 1rem;
+	line-height: 1rem;
+	background: #00B7EE;
+	border-radius: 0.3rem;
+	margin: auto;
+	color: #fff;
+	text-align: center;
+	font-size: 0.54rem;
+}
+.login_bt2{
+	width: 12rem;
+}
+::-webkit-input-placeholder {
+	color:#c7c7c7;
+}
+.login_title{
+	margin: 4.4rem auto 1rem;
+}
+.login_content{
+	width: 11rem;
+	height: 10rem;
+	background: #fff;
+	border-radius: 0.3rem;
+	margin: auto;
+	padding: 1rem;
+	box-sizing: content-box;
+}
+.login_list{
+	width: 100%;
+	height: 2rem;
+	border-bottom: 1px solid #ccc;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+}
+.login_list label{
+	display: inline-block;
+	height: 2rem;
+	line-height: 2rem;
+	flex-grow:0;
+	margin: 0 0.5rem;
+}
+.login_list input{
+	height: 100%;
+	border: none;
+	display: inline-block;
+	flex-grow:2;
+	margin-bottom: 0;
+}
+.forget_pass{
+	text-align: right;
+	color: #878787;
+	margin-top: 0.4rem;
+}
+.login_bt_m{
+	margin: 1.1rem auto 0.8rem;
+}
+.new_register{
+	color: #00B7EE;
+	width: 100%;
+	text-align: center;
+}
+/*注册*/
+.title{
+	font-size: 0.68rem;
+	text-align: center;
+	margin-top: 2rem;
+	color: #333333;
+}
+
+.register_list{
+	width: 75%;
+	height: 1rem;
+	background: #fff;
+	/*margin: 0.4rem auto 0;*/
+	margin: 0.4rem auto;
+	border-radius: 0.3rem;
+	display: flex;
+	/*display: -webkit-flex;*/
+	/*justify-content: space-between;*/
+	font-size: 0.45rem;
+}
+.register_list label{
+	margin-left: 0.2rem;
+	line-height:1rem;
+	flex:0.7;
+	color: #787878;
+}
+.detailcss .register_list label{
+	margin-left: 0.2rem;
+	line-height:1rem;
+	flex:1;
+	color: #787878;
+}
+.detailcss .register_list text{
+	margin-right: 0.20rem;
+	line-height:1rem;
+}
+.register_list input{
+	display: inline-block;
+	flex:2;
+	border: none;
+	border-radius: 0.3rem;
+	height: 1rem;
+	line-height:1rem;
+	padding: 0;
+	font-size: 0.45rem;
+}
+.register_agreement{
+	text-align: center;
+	margin: 1rem auto 0.4rem;
+}
+.get_code{
+	width: 3.4rem;
+	background: #00B7EE;
+	color: #fff;
+	text-align: center;
+	border-radius: 0 0.3rem 0.3rem 0;
+	flex: 3.4rem 0 0 ;
+}
+.register_list input[type="number"] {
+	width: 3rem;
+}
+.forget_register_bt{
+	margin-top: 0.5rem;
+}
+/*我的*/
+.me_top{
+	width: 100%;
+	height: 7.2rem;
+	background: url(../img/me_top_bg.jpg) no-repeat;
+	background-size: cover;
+}
+.me_photo{
+	display: block;
+	margin: 0.66rem auto 0.2rem;
+	width: 2.8rem;
+	height: 2.8rem;
+	border-radius: 2rem;
+}
+.me_name{
+	text-align: center;
+	color: #fff;
+}
+.me_top_tip>div{
+	width: 50%;
+	text-align: center;
+}
+.me_top_tip_num{
+	color: #fff;
+	margin: 0.3rem auto 0.15rem;
+}
+.me_list{
+	margin: 0.4rem auto;
+}
+.me_list .icon{
+	font-size: 1rem;
+	margin: auto 0.4rem;
+}
+.me_kefu{
+	margin: 0.4rem auto 2.56rem;
+}
+/*待支付订单*/
+.order_list{
+	width: 100%;
+	background: #fff;
+	margin: 0.4rem auto;
+}
+.order_list li{
+	height: 1.8rem;
+	width: 13.4rem;
+	margin: auto;
+}
+.waiting_pay_order_bts{
+	width: 100%;
+	text-align: center;
+	height: 2rem;
+	line-height: 2rem;
+}
+.waiting_pay_order_bts:first-child{
+	border-radius: 0 0 0 0.2rem;
+}
+/*待续费*/
+
+/*缴社保相关*/
+.insurance_relevant_bt{
+	margin: 8.6rem auto 0;
+}
+.insurance_relevant_bt .icon{
+	font-size: 1rem;
+	margin-right: 0.3rem;
+}
+/*个人资料*/
+.dis_address_list{
+	padding: 0.2rem 0.4rem !important;
+}
+.dis_address{
+	flex: 2.8rem 0 0 ;
+}
+.address_list .icon{
+	margin: 0.5rem 0 0 0.2rem;
+}
+/*个体工商户*/
+.company_photo{
+	height: 6rem;
+	align-items: flex-start;
+	padding: 0.8rem 0.4rem 0 !important;
+	text-align: center;
+}
+.company_photo_img{
+	width: 8.22rem;
+	height: 4.24rem;
+	border: 1px dashed #00B7EE;
+	border-radius: 0.2rem;
+}
+.company_photo .icon{
+	font-size: 2rem;
+}
+/*常见问题*/
+.question_content{
+	width: 14.4rem;
+	border-radius: 0.3rem;
+	background: #fff;
+	margin: 0.4rem auto 0;
+	padding: 0.4rem;
+}
+.question_title{
+	min-height: 2rem;
+	border-bottom: 1px solid #ccc;
+	display: flex;
+	display: -webkit-flex;
+	align-items: flex-start;
+}
+.question_answer{
+	display: flex;
+	display: -webkit-flex;
+	align-items: flex-start;
+	margin-top: 0.4rem;
+}
+.question_content .icon{
+	font-size: 1rem;
+	margin-right: 0.5rem;
+}
+/*关于我们*/
+.us_logo{
+	width: 6rem;
+	height: 6rem;
+	border-radius: 3rem;
+	display: block;
+	margin:2rem auto 0.2rem;
+}
+.version_number{
+	margin-bottom: 2rem;
+}
+/*参保人*/
+.join_insurance_content .mui-table-view-cell{
+	position: relative;
+	line-height: 2rem;
+}
+.join_insurance_content .mui-table-view-cell:after{
+	background-color:inherit ;
+}
+.join_insurance_content .mui-btn-yellow{
+	background-color: #FF3E3E;
+}
+.join_insurance_content .mui-btn-grey{
+	background-color: #D7D7D7;
+	color: #565656 !important;
+}
+/*新增参保人*/
+.add_join_insurance_top{
+	width: 100%;
+	height: 1.6rem;
+	background: #FF3E3E;
+	line-height: 1.6rem;
+	padding-left: 0.6rem;
+}
+.item_list_li_2{
+	height: 3rem;
+}
+.item_list_li_2_wrap{
+	width: 3.8rem;
+	height: 2rem;
+	border: 1px dashed #00B7EE;
+	border-radius: 0.2rem;
+}
+
+/*缴保费*/
+.pay_insurance_date_tip{
+	background: #FF3E3E;
+	border-radius: 0 0 0.2rem 0.2rem;
+	color: #fff;
+	text-align: center;
+	height: 1.2rem;
+	line-height: 1.2rem;
+	width: 100%;
+	display: none;
+}
+.icon1{
+	font-size: 1.8rem;
+}
+.pay_insurance_content .icon1{
+	margin-left: -0.4rem;
+}
+.pay_insurance_content li:last-child{
+	padding: 0.4rem;
+	margin-bottom: 2rem;
+}
+.pay_insurance_content li:last-child .flex{
+	align-items: flex-start;
+}
+.pay_insurance_content li:last-child .point_blue{
+	margin: 0.2rem 0.1rem 0 0;
+}
+.pay_insurance_package{
+	min-height: 2rem;
+	margin: 0.4rem 0 0;
+	padding: 0.4rem 0.4rem;
+	background: #fff;
+	border-radius: 0.2rem;
+	display: none;
+}
+.pay_insurance_package_list{
+	display: inline-block;
+	width: 49%;
+	margin-top: 0.56rem;
+}
+.pay_insurance_package_list_img{
+	position: absolute;
+	width: 1.5rem;
+	bottom: 0;
+	right: 0;
+}
+.pay_insurance_package_list_tip{
+	text-align: center;
+	position: absolute;
+	width: 1.6rem;
+	bottom: 0.3rem;
+	right: -0.2rem;
+	transform: rotate(45deg);
+}
+.pay_insurance_package_list_item{
+	position: relative;
+	border: 1px solid #000;
+	border-radius: 0.2rem;
+	width: 5.6rem;
+	height: 1.6rem;
+	line-height: 1.6rem;
+	text-align: center;
+	margin: auto;
+}
+.pay_insurance_package_list_price{
+	width: 100%;
+	text-align: center;
+	margin-top:0.3rem ;
+}
+
+/*缴社保订单*/
+.pay_insurance_order_first{
+	padding-right: 0 !important;
+	height: 7.2rem;
+}
+.pay_insurance_order_first1{
+	background: url(../img/shebao.png) no-repeat !important;
+	background-size: 100% 100% !important;
+}
+.pay_insurance_order_first2{
+	background: url(../img/gongjijin.png) no-repeat !important;
+	background-size: 100% 100% !important;
+}
+.pay_insurance_order_tip{
+	padding-left: 0.5rem;
+	height: 1.6rem;
+	line-height: 1.6rem;
+}
+.sure_order_list{
+	border-radius: 0 0 0.2rem 0.2rem;
+}
+/*计算保费*/
+.calculate_insurance_alert_bt{
+	display: block;
+	width: 10rem !important;
+	height: 1.6rem !important;
+	border-radius: 2rem !important;
+	text-align: center;
+	line-height: 1.6rem;
+	padding: 0 !important;
+	color: #fff !important;
+}
+.calculate_insurance_alert_bts{
+	width: 2rem;
+	height: 2rem;
+	border-radius: 2rem;
+	color: #fff;
+}
+.calculate_insurance_alert_input{
+	display: block;
+	width: 5.2rem !important;
+	height: 1.6rem !important;
+	border-radius: 2rem !important;
+	text-align: center;
+	line-height: 1.6rem;
+	padding: 0 !important;
+	margin-bottom: 0 !important;
+}
+/*保费明细*/
+
+/*社保查询*/
+.check_insurance_list{
+	width: 14.4rem;
+	margin:0 auto;
+}
+.check_insurance_list li{
+	min-height: 3.6rem;
+	padding: 0 0.4rem;
+	background: #fff;
+	border-radius: 0.2rem;
+	margin-bottom: 2px;
+}
+.check_insurance_list .icon{
+	font-size: 2rem;
+	margin:0 0.7rem 0 0.3rem;
+}
+.check_insurance_list_dis{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+.check_insurance_list_last_item{
+	border-radius: 0.2rem 0.2rem 0 0 !important;
+	margin-bottom: 0 !important;
+}
+.check_insurance_list_last_next{
+	border-radius: 0 0 0.2rem 0.2rem ;
+	background: #fff;
+	width: 14.4rem;
+	height: 2.44rem;
+	padding: 0 0.7rem;
+}
+.check_insurance_list_last_next span{
+	width: 3rem;
+	height: 1rem;
+	line-height: 1rem;
+	border-radius: 1.5rem;
+	border: 1px solid #000;
+	text-align: center;
+	margin: 0.3rem 0;
+}
+/*我的订单*/
+.me_order_list{
+	border-radius: 0 0 0.2rem 0.2rem;
+}
+.me_order_alert_input_wrap{
+	border-bottom: 1px solid #ccc;
+	display: block;
+	width: 8.22rem !important;
+	height: 1.46rem !important;
+}
+.me_order_alert_input{
+	height: 100% !important;
+	padding: 0 !important;
+	margin-bottom: 0 !important;
+	border:none !important;
+}
+.me_order_alert_bt{
+	display: block;
+	width: 5rem !important;
+	height: 1.6rem !important;
+	border-radius: 2rem !important;
+	text-align: center;
+	line-height: 1.6rem;
+	padding: 0 !important;
+	color: #fff !important;
+}
+.me_order_close_alert{
+	position: absolute;
+	bottom: -2rem;
+	left: 56%;
+	font-size: 1.5rem;
+}
+/*官方联系方式*/
+.city_phone_list .icon{
+	font-size: 2rem;
+	margin-left: -0.5rem;
+}
+/*.city_phone_list_conmont{
+	padding: 0 1.2rem 0 1.8rem !important;
+}*/
+/*社保资讯*/
+.more_info_top{
+	height: 1.6rem;
+	width: 100%;
+	background: #fff;
+	position: fixed;
+	top: 0;
+	border-bottom: 1px solid #ccc;
+}
+.more_info_top .active{
+	color: #00B7EE;
+}
+.more_info_title{
+	width: 20%;
+	text-align: center;
+}
+.more_info_top li:not(:last-child){
+	border-right: 1px solid #ccc;
+}
+.more_info_list{
+	padding: 0 0.8rem;
+}
+.mescroll-empty .empty-icon{
+	margin-top: 30%;
+}
+.error_bg{
+	background: url(../img/error.png) no-repeat;
+	background-size: cover;
+}
+
+/*人力资源*/
+.human_resources_top{
+	height: 2rem;
+	line-height: 2rem;
+	width: 100%;
+	padding: 0 0.6rem;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+	align-items: center;
+	background: #fff;
+	margin-bottom: 0.4rem;
+	/*position: fixed;
+	top:0;*/
+}
+.human_resources_item{
+	min-height: 1.8rem;
+}
+.human_resources_item>div{
+	min-height: 0.8rem;
+	line-height: 0.8rem;
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	font-size: 0.38rem;
+}
+.human_resources_item2>div{
+	justify-content: flex-end;
+}
+/*人力资源职位详情*/
+.human_resources_dis{
+	height: 4rem;
+	background: #fff;
+	padding:0 0.6rem;
+}
+.human_resources_dis_company_name{
+	width: 100%;
+	height: 2rem;
+	line-height: 2rem;
+	background: #fff;
+	padding:0 0.6rem;
+	margin: 1px auto;
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.human_resources_dis_position_introduce{
+	background: #fff;
+}
+.human_resources_dis_position_require{
+	background: #fff;
+	margin-bottom: 2.16rem;
+}
+.human_resources_dis_position_title{
+	height: 1.5rem;
+	line-height: 1.5rem;
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	padding:0  0.6rem;
+}
+.human_resources_dis_position_dis{
+	padding:0 1.02rem;
+}
+/*人力资源职位公司简介*/
+.human_resources_company_name,.human_resources_company_title{
+	width: 100%;
+	height: 2rem;
+	line-height: 2rem;
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+}
+.red_vertical_line{
+	width: 0.12rem;
+	height: 0.6rem;
+	background: #FF3E3E;
+	display: inline-block;
+	margin-right: 0.2rem;
+}
+/*我的简历*/
+.my_resume_upload_img{
+	width: 3rem;
+	height: 4rem;
+	border: 1px dashed #00B7EE;
+	border-radius: 0.2rem;
+	text-align: center;
+	margin: auto;
+}
+.my_resume_upload_img .icon{
+	display: block;
+	margin-top: 1rem;
+}
+.my_resume_dis{
+	position: relative;
+}
+.my_resume_dis_rest_num{
+	position: absolute;
+	bottom: 0.2rem;
+	right: 0.2rem;
+}
+/*投递记录*/
+.go_to_send_resume_bt{
+	border: 1px solid #00B7EE;
+	color: #00B7EE;
+	height: 1.6rem;
+	line-height: 1.6rem;
+	width: 6rem;
+	text-align: center;
+	border-radius: 0.2rem;
+	margin: 0.5rem auto 0;
+
+}

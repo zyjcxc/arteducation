@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <form class="form-horizontal" onsubmit="return false" id="form">
+			<input type='hidden' id='id' name='id' />
+            <fieldset>
+    			<div class='form-group'>
+				<label class='col-md-2 control-label'>专业项目名称</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='专业项目名称' type='text' name='name' id='name' data-bv-notempty="true" data-bv-notempty-message="课程分类名称 不能为空">
+				</div>
+			</div>
+
+
+				<!--<div class='form-group'>-->
+					<!--<label class='col-md-2 control-label'>课程封面</label>-->
+					<!--<div class='col-md-10' id="imgs">-->
+						<!--<input type='hidden' name='icon' id='icon'>-->
+					<!--</div>-->
+				<!--</div>-->
+
+				<!--<div class='form-group'>-->
+					<!--<label class='col-md-2 control-label'>上传</label>-->
+					<!--<div class='col-md-10'>-->
+						<!--<td>-->
+							<!--<div id="container">-->
+								<!--<a id="pickfiles" href="javascript:void(0);" class="btn btn-primary">选择图片</a>-->
+								<!--<a id="pickfiles2" href="javascript:void(0);" class="btn btn-primary">缩略图上传</a>-->
+								<!--<div id="filelist"></div>-->
+							<!--</div>-->
+						<!--</td>-->
+						<!--<th></th>-->
+
+						<!--<td>-->
+							<!--<input readonly="readonly" style="display: none;"/>-->
+							<!--<div id="preview" style="width: 200px; height: 200px;"></div>-->
+						<!--</td>-->
+					<!--</div>-->
+				<!--</div>-->
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+						<button id="backBtn" class="btn btn-primary">返回</button>
+						<button id="saveBtn" class="btn btn-primary">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+
+            </fieldset>
+        </form>
+    </div>
+	<input type='hidden' id='token' />
+	<input type='hidden' id='type' />
+</body>
+</html>
+
+<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../js/jq.js"></script>
+<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/tools/config.js"></script>
+<!--七牛-->
+<script type="text/javascript" src="../../js/qiniu/qiniuutil.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../js/qiniu/plupload.full.min.js"></script>
+<script type="text/javascript" src="../../js/qiniu/qiniu.js" charset="utf-8"></script>
+<!-- 框架-->
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/tools/frames.js"></script>
+<!-- 本页面js, 其他页面忽引用此js -->
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/classification/addLiveCourseClassification.js"></script>
+

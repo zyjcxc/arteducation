@@ -1,0 +1,26 @@
+package {servicePkName};
+
+import {beanPackageName}.{beanName};
+import java.util.List;
+import java.util.Map;
+
+/**
+ * {descCH} 模块业务接口
+ * @author mengqa
+ * @date {date}
+ **/
+public interface {interfaceName} {
+
+    {beanName} getById(Long id);
+
+    int save({beanName} {beanParamName});
+
+    int update({beanName} {beanParamName});
+
+    List<{beanName}> list(Map<String, Object> params, Integer offset, Integer limit);
+
+    int count(Map<String, Object> params);
+
+    int delete(Long id);
+}
+

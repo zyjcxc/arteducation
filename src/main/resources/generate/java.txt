@@ -1,0 +1,17 @@
+package {beanPackageName};
+
+{import}
+import com.edu.admin.server.model.BaseEntity;
+import lombok.Data;
+
+/**
+ * {descCH} 模块数据模型
+ * @author mengqa
+ * @date {date}
+ */
+@Data
+public class {beanName} extends BaseEntity<Long> {
+
+{filelds}
+
+}

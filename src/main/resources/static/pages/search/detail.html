@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>查询详情</title>
+	<link rel="stylesheet" href="../../css/mescroll.min.css">
+	<link rel="stylesheet" type="text/css" href="../../css/mui.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/main.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/mui.picker.min.css" />
+	<script>
+        baseUrl = "http://www.qgtcs.cn";
+
+	</script>
+	<script type="text/javascript">
+        // 控制rem值
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 10.80 + 'px';
+	</script>
+</head>
+<body>
+<div id="mescroll" class="mescroll">
+	<div style="margin-top:2rem">
+	</div>
+	<div class="fo30">
+		<form class="detailcss">
+			<div class="register_list">
+				<label>姓名：</label>
+				<text type="text" name="name" id="name"/>
+			</div>
+			<div class="register_list">
+				<label>性别：</label>
+				<text type="text" name="sex" id="sex"/>
+			</div>
+			<div class="register_list">
+				<label>身份证：</label>
+				<text type="text" name="cardNo" id="cardNo"/>
+			</div>
+			<div class="register_list">
+				<label >出生日期：</label>
+				<text type="text" name="born" id="born"/>
+			</div>
+			<div class="register_list">
+				<label>项目：</label>
+				<text type="text" name="classificationName" id="classificationName"/>
+			</div>
+			<div class="register_list">
+				<label >级别：</label>
+				<text type="text" name="level" id="level"/>
+			</div>
+			<div class="register_list">
+				<label >国籍：</label>
+				<text type="text" name="country" id="country"/>
+			</div>
+			<div class="register_list">
+				<label >民族：</label>
+				<text type="text" name="nation" id="nation"/>
+			</div>
+
+
+		</form>
+		<div id="backBtn" onclick="back()" class="login_bt fo36 forget_register_bt">返回</div>
+	</div>
+
+	<div style="margin-top:2rem">
+	</div>
+
+	<!--<ul id="studentList" class="item_list5">-->
+		<!--&lt;!&ndash;<li class="flex">&ndash;&gt;-->
+			<!--&lt;!&ndash;<div class="human_resources_item">&ndash;&gt;-->
+				<!--&lt;!&ndash;<div class="fo34 col_blue">12345</div>&ndash;&gt;-->
+				<!--&lt;!&ndash;<div>asf</div>&ndash;&gt;-->
+			<!--&lt;!&ndash;</div>&ndash;&gt;-->
+		<!--&lt;!&ndash;</li>&ndash;&gt;-->
+		<!--&lt;!&ndash;<li class="flex">&ndash;&gt;-->
+			<!--&lt;!&ndash;<div class="human_resources_item">&ndash;&gt;-->
+				<!--&lt;!&ndash;<div class="fo34 col_blue">12345</div>&ndash;&gt;-->
+				<!--&lt;!&ndash;<div>asf</div>&ndash;&gt;-->
+			<!--&lt;!&ndash;</div>&ndash;&gt;-->
+			<!--&lt;!&ndash;&lt;!&ndash;<div class="human_resources_item2">&ndash;&gt;&ndash;&gt;-->
+			<!--&lt;!&ndash;&lt;!&ndash;<div class="fo34 col_blue">12345</div>&ndash;&gt;&ndash;&gt;-->
+			<!--&lt;!&ndash;&lt;!&ndash;<div>asf</div>&ndash;&gt;&ndash;&gt;-->
+			<!--&lt;!&ndash;&lt;!&ndash;</div>&ndash;&gt;&ndash;&gt;-->
+		<!--&lt;!&ndash;</li>&ndash;&gt;-->
+	<!--</ul>-->
+</div>
+
+</body>
+<script src="../../js/libs/jquery-2.1.1.min.js"></script>
+<script src="../../js/mui.picker.min.js"></script>
+<script src="../../js/mescroll.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../js/common.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function(){
+        getInfo();
+    });
+
+    function back() {
+        window.location.href = baseUrl + "/pages/search/index.html";
+    }
+
+    function getInfo() {
+
+		var studentId = getUrlParamDecode("studentId");
+        var url = baseUrl + "/search/artStudents/" + studentId;
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "json",
+            success: function (obj) {
+				console.log(obj);
+				$("#name").text(obj.name);
+				$("#country").text(obj.country);
+				$("#nation").text(obj.nation);
+				$("#born").text(obj.born);
+				$("#cardNo").text(obj.cardNo);
+				$("#level").text(obj.level);
+				$("#classificationName").text(obj.classificationName);
+				var sex = obj.sex;
+				if (sex == 'm') {
+				    $("#sex").text('男');
+				} else{
+                    $("#sex").text('女');
+				}
+
+
+            }
+
+        });
+    }
+
+
+</script>
+
+
+</html>
