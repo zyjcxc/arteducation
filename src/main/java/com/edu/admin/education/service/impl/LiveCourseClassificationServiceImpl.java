@@ -2,11 +2,15 @@ package com.edu.admin.education.service.impl;
 
 import com.edu.admin.education.dao.LiveCourseClassificationDao;
 import com.edu.admin.education.enums.PublicState;
+import com.edu.admin.education.enums.ResultEnum;
+import com.edu.admin.education.exception.HumanResourceException;
+import com.edu.admin.education.model.ArtActivity;
 import com.edu.admin.education.model.LiveCourseClassification;
 import com.edu.admin.education.service.ILiveCourseClassificationService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.HashMap;
@@ -33,6 +37,10 @@ public class LiveCourseClassificationServiceImpl implements ILiveCourseClassific
 
     @Override
     public int save(LiveCourseClassification liveCourseClassification) {
+        LiveCourseClassification oldData = getByName(liveCourseClassification.getName());
+        if (oldData != null) {
+            throw new HumanResourceException(ResultEnum.REPEAT_RECORD);
+        }
         return liveCourseClassificationDao.insertSelective(liveCourseClassification);
     }
 
@@ -78,6 +86,18 @@ public class LiveCourseClassificationServiceImpl implements ILiveCourseClassific
     public List<LiveCourseClassification> findAll() {
         Example example = getQueryExample(new HashMap<>(1));
         return liveCourseClassificationDao.selectByExample(example);
+    }
+
+    @Override
+    public LiveCourseClassification getByName(String name) {
+        Example example = new Example(ArtActivity.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("name", name);
+        List<LiveCourseClassification> list = liveCourseClassificationDao.selectByExample(example);
+        if (CollectionUtils.isEmpty(list)) {
+            return null;
+        }
+        return list.get(0);
     }
 
     /**

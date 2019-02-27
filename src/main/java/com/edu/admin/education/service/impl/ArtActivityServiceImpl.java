@@ -1,12 +1,16 @@
 package com.edu.admin.education.service.impl;
 
 import com.edu.admin.education.dao.ArtAcitivtyDao;
+import com.edu.admin.education.enums.ResultEnum;
+import com.edu.admin.education.exception.HumanResourceException;
 import com.edu.admin.education.model.ArtActivity;
 import com.edu.admin.education.service.IArtActivityService;
 import com.edu.admin.server.utils.BeanUtil;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.HashMap;
@@ -21,6 +25,7 @@ import java.util.Map;
  * @date 2018-11-21
  **/
 @Service
+@Transactional
 public class ArtActivityServiceImpl implements IArtActivityService {
 
     @Autowired
@@ -32,8 +37,24 @@ public class ArtActivityServiceImpl implements IArtActivityService {
     }
 
     @Override
-    public int save(ArtActivity artAcitivty) {
-        return artAcitivtyDao.insertSelective(artAcitivty);
+    public int save(ArtActivity artActivity) {
+        ArtActivity oldData = getByActivityName(artActivity.getName());
+        if (oldData != null) {
+            throw new HumanResourceException(ResultEnum.REPEAT_RECORD);
+        }
+        return artAcitivtyDao.insertSelective(artActivity);
+    }
+
+    @Override
+    public ArtActivity getByActivityName(String artActivityName) {
+        Example example = new Example(ArtActivity.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("name", artActivityName);
+        List<ArtActivity> list = artAcitivtyDao.selectByExample(example);
+        if (CollectionUtils.isEmpty(list)) {
+            return null;
+        }
+        return list.get(0);
     }
 
     @Override

@@ -25,5 +25,8 @@ public interface ILiveCourseClassificationService {
     int delete(Long id);
 
     List<LiveCourseClassification> findAll();
+
+    LiveCourseClassification getByName(String name);
+
 }
 

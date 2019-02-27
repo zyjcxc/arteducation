@@ -81,7 +81,6 @@ function getQiniuVideoToken() {
         async: false,
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-            debugger
             if ($("#token").length > 0) {
                 $("#token").val(data);
             }

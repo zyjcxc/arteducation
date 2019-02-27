@@ -2,17 +2,27 @@ package com.edu.admin.education.service.impl;
 
 import com.edu.admin.education.dao.ArtStudentDao;
 import com.edu.admin.education.enums.PublicState;
+import com.edu.admin.education.enums.ResultEnum;
+import com.edu.admin.education.exception.HumanResourceException;
+import com.edu.admin.education.model.ArtActivity;
 import com.edu.admin.education.model.ArtStudent;
+import com.edu.admin.education.model.ArtStudentImportInfoDto;
 import com.edu.admin.education.model.LiveCourseClassification;
+import com.edu.admin.education.service.IArtActivityService;
 import com.edu.admin.education.service.IArtStudentService;
 import com.edu.admin.education.service.ILiveCourseClassificationService;
+import com.edu.admin.education.utils.DateUtil;
 import com.edu.admin.education.utils.PinyinTool;
 import com.github.pagehelper.PageHelper;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
+import tk.mybatis.mapper.entity.Example;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +42,9 @@ public class ArtStudentServiceImpl implements IArtStudentService{
     @Autowired
     private ILiveCourseClassificationService liveCourseClassificationService;
 
+    @Autowired
+    private IArtActivityService artActivityService;
+
     @Override
     public ArtStudent getById(Long id) {
         ArtStudent obj = artStudentDao.selectByPrimaryKey(id);
@@ -47,6 +60,11 @@ public class ArtStudentServiceImpl implements IArtStudentService{
 
     @Override
     public void save(ArtStudent artStudent) {
+        // 查询学生是否重复录入
+        ArtStudent oldData = getByActivityAndCarNo(artStudent.getActivityId(), artStudent.getCardNo(), artStudent.getClassificationId());
+        if (oldData != null) {
+            throw new HumanResourceException(ResultEnum.REPEAT_STUDENT_RECORD);
+        }
         // 新增时默认为正常状态
         artStudent.setState(String.valueOf(PublicState.NORMAL.getCode()));
         PinyinTool tool = new PinyinTool();
@@ -60,9 +78,105 @@ public class ArtStudentServiceImpl implements IArtStudentService{
         artStudentDao.insertSelective(artStudent);
     }
 
+    private ArtStudent getByActivityAndCarNo(Integer activityId, String cardNo, Integer classificationId) {
+        Example example = new Example(ArtStudent.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("cardNo", cardNo);
+        criteria.andEqualTo("activityId", activityId);
+        criteria.andEqualTo("classificationId", classificationId);
+        List<ArtStudent> list = artStudentDao.selectByExample(example);
+        if (CollectionUtils.isEmpty(list)) {
+            return null;
+        }
+        return list.get(0);
+    }
+
     @Override
     public void update(ArtStudent artStudent) {
         artStudentDao.updateByPrimaryKeySelective(artStudent);
+    }
+
+    @Override
+    public void saveDatas(List<ArtStudentImportInfoDto> dtoList) {
+        for (ArtStudentImportInfoDto dto : dtoList) {
+            ArtStudent artStudent = new ArtStudent();
+            artStudent.setName(dto.getName());
+            artStudent.setNamePy(dto.getNamePy());
+            artStudent.setState(String.valueOf(PublicState.NORMAL.getCode()));
+            if (dto.getBorn() != null) {
+                artStudent.setBorn(DateUtil.parseDate(dto.getBorn(), "yyyy.MM.dd"));
+            }
+            artStudent.setCardNo(dto.getCardNo());
+            artStudent.setCountry(dto.getCountry());
+            artStudent.setLevel(getChineseLevel(dto.getLevel()));
+            artStudent.setNation(dto.getNation());
+            artStudent.setSex("女".equals(dto.getSex()) ? "g" : "m");
+            artStudent.setCreatetime(new Date());
+
+            // 查询活动是否存在
+            if (StringUtils.isEmpty(dto.getActivityName())) {
+                throw new HumanResourceException(ResultEnum.NO_ACTIVITY_RECORD);
+            }
+            ArtActivity activity = artActivityService.getByActivityName(dto.getActivityName());
+            if (activity == null) {
+                // 活动不存在，新建活动
+                activity = new ArtActivity();
+                activity.setName(dto.getActivityName());
+                activity.setCreatetime(new Date());
+                activity.setUpdatetime(new Date());
+                activity.setState("1");
+                artActivityService.save(activity);
+            }
+            artStudent.setActivityId(activity.getId().intValue());
+            if (StringUtils.isEmpty(dto.getProjectName())) {
+                throw new HumanResourceException(ResultEnum.NO_TYPE_RECORD);
+            }
+            // 查询项目是否存在
+            LiveCourseClassification project = liveCourseClassificationService.getByName(dto.getProjectName());
+            if (project == null) {
+                // 不存在，新建专业
+                project = new LiveCourseClassification();
+                project.setName(dto.getProjectName());
+                project.setCreatetime(new Date());
+                project.setState("1");
+                liveCourseClassificationService.save(project);
+            }
+            artStudent.setClassificationId(project.getId().intValue());
+
+            // 查询学生是否重复导入
+            ArtStudent oldStudent = getByActivityAndCarNo(artStudent.getActivityId(), artStudent.getCardNo(), artStudent.getClassificationId());
+            if (oldStudent != null) {
+                continue;
+            }
+
+            artStudentDao.insertSelective(artStudent);
+        }
+    }
+
+    private String getChineseLevel(String level) {
+        switch (level) {
+            case "1":
+                return "一级";
+            case "2":
+                return "二级";
+            case "3":
+                return "三级";
+            case "4":
+                return "四级";
+            case "5":
+                return "五级";
+            case "6":
+                return "六级";
+            case "7":
+                return "七级";
+            case "8":
+                return "八级";
+            case "9":
+                return "九级";
+            case "10":
+                return "十级";
+        }
+        return level;
     }
 
     @Override

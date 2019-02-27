@@ -52,6 +52,11 @@
 	                   			<td align="right">
 									<button id="searchBt" class="layui-btn layui-btn-small"><i class="layui-icon">&#xe615;</i>搜索</button>
 									<button id="export" class="layui-btn layui-btn-small"><i class="layui-icon">&#xe62d;</i>导出</button>
+									<div class="layui-btn layui-btn-small" style="position:relative;display: inline-block;overflow:  hidden;padding: 0;">
+										<button id="import"  class="layui-btn layui-btn-small"><i class="layui-icon">&#xe62d;</i>导入</button>
+										<input style="opacity: 0;position: absolute;z-index: 100;right:0;top:0;width: 63px;height: 30px;
+    cursor: pointer;" class="file" type="file" id="fafafa" name="fileupload" onchange="importData();"/>
+									</div>
 									<button id="restBt" class="layui-btn layui-btn-small"><i class="layui-icon">&#x1002;</i>刷新</button>
 	                   			</td>
 	                   		</tr> 

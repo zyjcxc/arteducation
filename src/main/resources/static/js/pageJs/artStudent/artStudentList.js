@@ -34,6 +34,7 @@ art_student_list = (function ($, w) {
             $btn: {
                 search: $("#searchBt"),
                 export: $("#export"),
+                import: $("#import"),
                 rest: $("#restBt")
             }
         };
@@ -190,6 +191,15 @@ art_student_list = (function ($, w) {
         window.open(link);
     }
 
+    function importList() {
+        alert(2);
+        var _self = this
+        var file_obj = document.getElementById('fafafa').files[0];
+
+
+
+    }
+
     function getLink() {
         var _self = this;
         var init = WEB_CONFIG._action.EXPORT_ART_STUDENT_ACTION + "?";
@@ -220,6 +230,9 @@ art_student_list = (function ($, w) {
         $$.onJq(_self.getPageBtn().rest, "click", function () {
             w.location.reload();
         });
+        $$.onJq(_self.getPageBtn().import, "click", function () {
+            importList.call(_self);
+        });
     }
 
     return new _$();
@@ -249,4 +262,29 @@ function updateState(id, state, operator) {
         layer.close(1);
     });
 
+}
+
+function importData() {
+    var file_obj = document.getElementById('fafafa').files[0];
+    var fd = new FormData();
+    fd.append('excelFile', file_obj);
+    $.ajax({
+        url:'/api/upload/uploadExcel',
+        type:'POST',
+        data:fd,
+        processData:false,  //tell jQuery not to process the data
+        contentType: false,  //tell jQuery not to set contentType
+        //这儿的三个参数其实就是XMLHttpRequest里面带的信息。
+        success:function (arg,a1,a2) {
+            // console.log(arg);
+            // console.log(a1);
+            if (a1 == "success") {
+                layer.msg("导入成功", {shift: -1, time: 1000}, function() {
+                    window.location.reload();
+                });
+
+            }
+        }
+
+    })
 }

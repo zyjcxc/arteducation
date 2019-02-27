@@ -14,6 +14,7 @@ import com.edu.admin.server.page.table.PageTableResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -36,8 +37,33 @@ public class ArtStudentController {
     @PostMapping
     @ApiOperation(value = "保存")
     public ArtStudent save(@RequestBody ArtStudent artStudent) {
+        validParams(artStudent);
         artStudentService.save(artStudent);
         return artStudent;
+    }
+
+    private void validParams(@RequestBody ArtStudent artStudent) {
+        if (StringUtils.isEmpty(artStudent.getCardNo())) {
+            throw new HumanResourceException(ResultEnum.PARAMS_ERROR_CARD_NO);
+        }
+        if (artStudent.getBorn() == null) {
+            throw new HumanResourceException(ResultEnum.PARAMS_ERROR_BORN);
+        }
+        if (artStudent.getActivityId() == null) {
+            throw new HumanResourceException(ResultEnum.PARAMS_ERROR_ACTIVITY);
+        }
+        if (artStudent.getClassificationId() == null) {
+            throw new HumanResourceException(ResultEnum.PARAMS_ERROR_PROJECT);
+        }
+        if (StringUtils.isEmpty(artStudent.getName())) {
+            throw new HumanResourceException(ResultEnum.PARAMS_ERROR_NAME);
+        }
+        if (StringUtils.isEmpty(artStudent.getNation())) {
+            throw new HumanResourceException(ResultEnum.PARAMS_ERROR_P);
+        }
+        if (StringUtils.isEmpty(artStudent.getCountry())) {
+            throw new HumanResourceException(ResultEnum.PARAMS_ERROR_N);
+        }
     }
 
     @GetMapping("/{id}")
@@ -49,6 +75,7 @@ public class ArtStudentController {
     @PutMapping
     @ApiOperation(value = "修改")
     public ArtStudent update(@RequestBody ArtStudent artStudent) {
+        validParams(artStudent);
         artStudentService.update(artStudent);
 
         return artStudent;
@@ -109,7 +136,10 @@ public class ArtStudentController {
             objs[3] = source.getSex();
             objs[4] = source.getCountry();
             objs[5] = source.getNation();
-            String bornDate = df.format(source.getBorn());
+            String bornDate = "";
+            if (source.getBorn() != null) {
+                bornDate = df.format(source.getBorn());
+            }
             objs[6] = bornDate;
             objs[7] = source.getClassificationName();
             objs[8] = source.getLevel();

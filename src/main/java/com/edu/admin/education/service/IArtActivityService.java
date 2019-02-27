@@ -26,5 +26,6 @@ public interface IArtActivityService {
 
     List<ArtActivity> findAll();
 
+    ArtActivity getByActivityName(String activityName);
 }
 

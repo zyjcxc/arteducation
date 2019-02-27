@@ -281,6 +281,12 @@ pubAccount_add = (function ($, w) {
                 $$.goTo({
                     url: WEB_CONFIG._page.ART_STUDENT_ADD_PAGE
                 });
+            },
+            error: function (res) {
+                var message = res.responseJSON.message;
+                layer.msg(message, {shift: -1, time: 1000}, function() {
+                    _self.getPageBtn().save.attr("disabled", false);
+                });
             }
         });
     }
