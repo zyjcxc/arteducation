@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 /**
- * 活动 模块控制器s
+ * 活动 模块控制器a
  * @author mengqa
  * @date 2018-11-21
  */
