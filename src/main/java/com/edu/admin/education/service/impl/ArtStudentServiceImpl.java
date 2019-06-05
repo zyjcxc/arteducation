@@ -61,7 +61,7 @@ public class ArtStudentServiceImpl implements IArtStudentService{
     @Override
     public void save(ArtStudent artStudent) {
         // 查询学生是否重复录入
-        ArtStudent oldData = getByActivityAndCarNo(artStudent.getActivityId(), artStudent.getCardNo(), artStudent.getClassificationId());
+        ArtStudent oldData = getByActivityAndCarNo(artStudent.getActivityId(), artStudent.getCardNo(), artStudent.getClassificationId(), artStudent.getLevel());
         if (oldData != null) {
             throw new HumanResourceException(ResultEnum.REPEAT_STUDENT_RECORD);
         }
@@ -78,12 +78,13 @@ public class ArtStudentServiceImpl implements IArtStudentService{
         artStudentDao.insertSelective(artStudent);
     }
 
-    private ArtStudent getByActivityAndCarNo(Integer activityId, String cardNo, Integer classificationId) {
+    private ArtStudent getByActivityAndCarNo(Integer activityId, String cardNo, Integer classificationId, String level) {
         Example example = new Example(ArtStudent.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("cardNo", cardNo);
         criteria.andEqualTo("activityId", activityId);
         criteria.andEqualTo("classificationId", classificationId);
+        criteria.andEqualTo("level", level);
         List<ArtStudent> list = artStudentDao.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
             return null;
@@ -144,7 +145,7 @@ public class ArtStudentServiceImpl implements IArtStudentService{
             artStudent.setClassificationId(project.getId().intValue());
 
             // 查询学生是否重复导入
-            ArtStudent oldStudent = getByActivityAndCarNo(artStudent.getActivityId(), artStudent.getCardNo(), artStudent.getClassificationId());
+            ArtStudent oldStudent = getByActivityAndCarNo(artStudent.getActivityId(), artStudent.getCardNo(), artStudent.getClassificationId(), artStudent.getLevel());
             if (oldStudent != null) {
                 continue;
             }
