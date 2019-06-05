@@ -8,6 +8,7 @@ import com.edu.admin.server.page.table.PageTableHandler.ListHandler;
 import com.edu.admin.server.page.table.PageTableRequest;
 import com.edu.admin.server.page.table.PageTableResponse;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,9 @@ public class ArtActivityController extends BaseController {
     @ApiOperation(value = "保存")
     public ArtActivity save(@RequestBody @Valid ArtActivity artAcitivty, BindingResult bindingResult) {
         validFormInfo(bindingResult);
-
+        if (StringUtils.isEmpty(artAcitivty.getState())) {
+            artAcitivty.setState("1");
+        }
         artActivityServiceImpl.save(artAcitivty);
 
         return artAcitivty;
