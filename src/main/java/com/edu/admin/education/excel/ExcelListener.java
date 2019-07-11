@@ -39,6 +39,7 @@ public class ExcelListener extends AnalysisEventListener {
         for (Object data : datas) {
             dtoList.add((ArtStudentImportInfoDto) data);
         }
+        datas.clear();
         artStudentService.saveDatas(dtoList);
     }
 
