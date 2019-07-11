@@ -32,7 +32,7 @@ public class UploadExcelController {
     private ExcelListener excelListener;
 
     @PostMapping(value = "/uploadExcel")
-    public String upload(@RequestParam(value = "excelFile", required = false) MultipartFile file) {
+    public String upload(@RequestParam(value = "excelFile", required = false) MultipartFile file) throws IOException {
         InputStream inputStream;
         try {
             inputStream = file.getInputStream();
@@ -42,6 +42,7 @@ public class UploadExcelController {
             e.printStackTrace();
             throw new HumanResourceException(ResultEnum.IMPORT_ERROR);
         }
+        inputStream.close();
         return "abc";
     }
 }
