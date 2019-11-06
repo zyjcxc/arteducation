@@ -43,6 +43,8 @@ public enum ResultEnum {
 
     REPEAT_STUDENT_RECORD(17, "该学生已经存在该活动中，不能重复录入"),
 
+    NO_FIND_DATA(500, "未找到数据"),
+
 
     ;
 

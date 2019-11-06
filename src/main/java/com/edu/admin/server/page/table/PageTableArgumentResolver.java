@@ -2,6 +2,8 @@ package com.edu.admin.server.page.table;
 
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -22,6 +24,8 @@ import java.util.Map;
  */
 public class PageTableArgumentResolver implements HandlerMethodArgumentResolver {
 
+	protected static final Logger logger = LoggerFactory.getLogger(PageTableArgumentResolver.class);
+
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
 		Class<?> cla = parameter.getParameterType();
@@ -36,6 +40,9 @@ public class PageTableArgumentResolver implements HandlerMethodArgumentResolver 
 
 		PageTableRequest tableRequest = new PageTableRequest();
 		Map<String, String[]> param = request.getParameterMap();
+
+		StringBuilder kv = new StringBuilder();
+
 		if (param.containsKey("start")) {
 			tableRequest.setOffset(Integer.parseInt(request.getParameter("start")));
 		}
@@ -53,7 +60,22 @@ public class PageTableArgumentResolver implements HandlerMethodArgumentResolver 
 			} else {
 				map.put(k, Arrays.asList(v));
 			}
+			if (k.contains("columns")) {
+				return;
+			}
+			if (v.length == 1) {
+				kv.append(k).append("=").append(v[0]).append(", ");
+			} else {
+				kv.append(k).append("=").append("[");
+				for (String s : v) {
+					kv.append(s).append(",");
+				}
+				kv.append("]").append(", ");
+			}
 		});
+
+		logger.info("=== resolveArgument param === {}" , kv.toString());
+
 		String requestURI = request.getRequestURI();
 		boolean isNameHandler = true;
 		if (requestURI.contains("/roles")) {

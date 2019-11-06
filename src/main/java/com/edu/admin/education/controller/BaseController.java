@@ -3,15 +3,13 @@ package com.edu.admin.education.controller;
 
 import com.edu.admin.education.enums.ResultEnum;
 import com.edu.admin.education.exception.HumanResourceException;
+import com.edu.admin.server.page.table.PageTableRequest;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * 公共控制器
@@ -56,5 +54,26 @@ public abstract class BaseController<T> {
 //            throw new HumanResourceException(ResultEnum.PARAM_ERROR.getCode(),
 //                    "表单参数" + bindingResult.getFieldError().getDefaultMessage());
 //        }
+    }
+
+    protected Map<String,Integer> getPageOffsetAndLimit(PageTableRequest request) {
+        Map<String, Integer> page = new HashMap<>();
+        Integer offset = 0;
+        Integer limit = 20;
+        if (request.getOffset() == null && request.getParams().containsKey("offset")) {
+            String offsetStr = (String) request.getParams().get("offset");
+            offset = Integer.parseInt(offsetStr);
+        } else if (request.getOffset() != null) {
+            offset = request.getOffset();
+        }
+        if (request.getLimit() == null && request.getParams().containsKey("limit")) {
+            String limitStr = (String) request.getParams().get("limit");
+            limit = Integer.parseInt(limitStr);
+        } else if (request.getLimit() != null) {
+            limit = request.getLimit();
+        }
+        page.put("offset", offset);
+        page.put("limit", limit);
+        return page;
     }
 }
