@@ -2,12 +2,12 @@ package com.edu.admin.education.service.impl;
 
 import com.edu.admin.education.command.ArtNewsSaveCommand;
 import com.edu.admin.education.command.ArtNewsUpdateCommand;
+import com.edu.admin.education.convert.ArtNewsConverter;
 import com.edu.admin.education.dao.ArtNewsDao;
 import com.edu.admin.education.dto.ArtNewsDto;
 import com.edu.admin.education.enums.ResultEnum;
 import com.edu.admin.education.exception.HumanResourceException;
 import com.edu.admin.education.model.ArtNews;
-import com.edu.admin.education.model.ArtNewsConverter;
 import com.edu.admin.education.service.IArtNewsService;
 import com.edu.admin.server.utils.BeanUtil;
 import com.edu.admin.server.utils.UserUtil;

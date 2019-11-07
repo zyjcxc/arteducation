@@ -1,7 +1,8 @@
-package com.edu.admin.education.model;
+package com.edu.admin.education.convert;
 
 import com.edu.admin.education.command.ArtNewsCommand;
 import com.edu.admin.education.dto.ArtNewsDto;
+import com.edu.admin.education.model.ArtNews;
 
 import java.util.ArrayList;
 import java.util.List;

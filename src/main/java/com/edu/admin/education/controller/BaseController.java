@@ -59,7 +59,7 @@ public abstract class BaseController<T> {
     protected Map<String,Integer> getPageOffsetAndLimit(PageTableRequest request) {
         Map<String, Integer> page = new HashMap<>();
         Integer offset = 0;
-        Integer limit = 20;
+        Integer limit = 10;
         if (request.getOffset() == null && request.getParams().containsKey("offset")) {
             String offsetStr = (String) request.getParams().get("offset");
             offset = Integer.parseInt(offsetStr);

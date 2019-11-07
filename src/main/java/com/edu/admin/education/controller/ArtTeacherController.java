@@ -1,9 +1,9 @@
 package com.edu.admin.education.controller;
 
-import com.edu.admin.education.command.ArtNewsSaveCommand;
-import com.edu.admin.education.command.ArtNewsUpdateCommand;
-import com.edu.admin.education.dto.ArtNewsDto;
-import com.edu.admin.education.service.IArtNewsService;
+import com.edu.admin.education.command.ArtTeacherSaveCommand;
+import com.edu.admin.education.command.ArtTeacherUpdateCommand;
+import com.edu.admin.education.dto.ArtTeacherDto;
+import com.edu.admin.education.service.IArtTeacherService;
 import com.edu.admin.server.page.table.PageTableHandler;
 import com.edu.admin.server.page.table.PageTableHandler.CountHandler;
 import com.edu.admin.server.page.table.PageTableHandler.ListHandler;
@@ -21,72 +21,71 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 新闻中心 模块控制器s
+ * 老师 模块控制器s
  * @author mengqa
  * @date 2019-11-05
  */
 @RestController
-@RequestMapping("/artNews")
-@Api(tags = "art-新闻中心、公告相关接口")
-public class ArtNewsController extends BaseController {
+@RequestMapping("/artTeacher")
+@Api(tags = "art-老师相关接口")
+public class ArtTeacherController extends BaseController {
 
-    protected static final Logger logger = LoggerFactory.getLogger(ArtNewsController.class);
+    protected static final Logger logger = LoggerFactory.getLogger(ArtTeacherController.class);
 
     @Autowired
-    private IArtNewsService artNewsServiceImpl;
+    private IArtTeacherService artTeacherServiceImpl;
 
     @PostMapping
-    @ApiOperation(value = "新增新闻或公告", notes = "新闻type=1，公告type=2")
+    @ApiOperation(value = "新增老师", notes = "师资团队管理")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "请求成功", response = ArtNewsDto.class),
+            @ApiResponse(code = 200, message = "请求成功", response = ArtTeacherDto.class),
             @ApiResponse(code = 500, message = "参数异常")})
-//    @ApiImplicitParam(name = "age", value = "年龄", required = true, paramType = "form", dataType="int")
-    public ArtNewsDto save(@RequestBody @Valid ArtNewsSaveCommand command, BindingResult bindingResult) {
+    public ArtTeacherDto save(@RequestBody @Valid ArtTeacherSaveCommand command, BindingResult bindingResult) {
         logger.info("=== command ==> {} ", command);
         validFormInfo(bindingResult);
-        return artNewsServiceImpl.save(command);
+        return artTeacherServiceImpl.save(command);
     }
 
     @GetMapping("/{id}")
     @ApiOperation(value = "根据id获取数据")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "请求成功", response = ArtNewsDto.class),
+            @ApiResponse(code = 200, message = "请求成功", response = ArtTeacherDto.class),
             @ApiResponse(code = 500, message = "参数异常")})
-    public ArtNewsDto get(@PathVariable Long id) {
+    public ArtTeacherDto get(@PathVariable Long id) {
         logger.info("=== get id ==> {} ", id);
-        return artNewsServiceImpl.getById(id);
+        return artTeacherServiceImpl.getById(id);
     }
 
     @PutMapping
-    @ApiOperation(value = "修改新闻或公告", notes = "新闻type=1，公告type=2")
+    @ApiOperation(value = "修改老师", notes = "师资团队管理")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "请求成功", response = ArtNewsDto.class),
+            @ApiResponse(code = 200, message = "请求成功", response = ArtTeacherDto.class),
             @ApiResponse(code = 500, message = "参数异常")})
-    public ArtNewsDto update(@RequestBody @Valid ArtNewsUpdateCommand command, BindingResult bindingResult) {
+    public ArtTeacherDto update(@RequestBody @Valid ArtTeacherUpdateCommand command, BindingResult bindingResult) {
         logger.info("=== command ==> {} ", command);
         validFormInfo(bindingResult);
-        return artNewsServiceImpl.update(command);
+        return artTeacherServiceImpl.update(command);
     }
 
     @GetMapping
     @ApiOperation(value = "列表")
-    @ApiImplicitParam(name = "type", value = "类型 type=1 新闻 type=2 公告", required = true, paramType = "query", dataType="int")
+    @ApiImplicitParam(name = "name", value = "老师姓名", paramType = "query", dataType="string")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "请求成功", response = ArtNewsDto.class),
+            @ApiResponse(code = 200, message = "请求成功", response = ArtTeacherDto.class),
             @ApiResponse(code = 500, message = "参数异常")})
     public PageTableResponse list(PageTableRequest request) {
         return new PageTableHandler(new CountHandler() {
 
             @Override
             public int count(PageTableRequest request) {
-                return artNewsServiceImpl.count(request.getParams());
+                return artTeacherServiceImpl.count(request.getParams());
             }
         }, new ListHandler() {
 
             @Override
-            public List<ArtNewsDto> list(PageTableRequest request) {
+            public List<ArtTeacherDto> list(PageTableRequest request) {
                 Map<String, Integer> page = getPageOffsetAndLimit(request);
-                return artNewsServiceImpl.list(request.getParams(), page.get("offset"), page.get("limit"));
+                return artTeacherServiceImpl.list(request.getParams(), page.get("offset"), page.get("limit"));
             }
         }).handle(request);
     }
@@ -94,16 +93,16 @@ public class ArtNewsController extends BaseController {
     @GetMapping("/findAll")
     @ApiOperation(value = "全部列表")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "请求成功", response = ArtNewsDto.class),
+            @ApiResponse(code = 200, message = "请求成功", response = ArtTeacherDto.class),
             @ApiResponse(code = 500, message = "参数异常")})
-    public List<ArtNewsDto> findAll(PageTableRequest request) {
-        return artNewsServiceImpl.findAll();
+    public List<ArtTeacherDto> findAll(PageTableRequest request) {
+        return artTeacherServiceImpl.findAll();
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "删除")
     public void delete(@PathVariable Long id) {
-        artNewsServiceImpl.delete(id);
+        artTeacherServiceImpl.delete(id);
     }
 
 }
