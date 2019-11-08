@@ -1,0 +1,18 @@
+@charset "UTF-8";
+/*css*/
+@keyframes nav-animate{
+    0%{border-color: #840e35;}
+    100%{background-color: #c40f4a;}
+}
+@-webkit-keyframes nav-animate{
+    0%{border-color: #840e35;}
+    100%{background-color: #c40f4a;}
+}
+@-moz-keyframes nav-animate{
+    0%{border-color: #840e35;}
+    100%{background-color: #c40f4a;}
+}
+@-ms-keyframes nav-animate{
+    0%{border-color: #840e35;}
+    100%{background-color: #c40f4a;}
+}
