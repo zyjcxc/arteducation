@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="全国特长生认证委员会">
     <meta name="keywords" content="全国特长生认证委员会">
-    <script src="utils/jquery-3.3.1.min.js"></script>
-    <script src="utils/bootstrap.js"></script>
-    <script src="utils/aos.js"></script>
-    <script src="utils/swiper-3.4.2.jquery.min.js"></script>
-
+    
+	
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/aos.css">
     <link rel="stylesheet" href="css/aos-animation.css">
-    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/swiper-3.4.2.min.css">
     <link rel="stylesheet" href="css/style.css">
-
+	<script src="utils/jquery-3.3.1.min.js"></script>
+    <script src="utils/bootstrap.js"></script>
+    <script src="utils/aos.js"></script>
+    <script src="utils/swiper-3.4.2.jquery.min.js"></script>
 
 </head>
 
@@ -73,7 +73,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="#">首页</a></li>
-                    <li><a href="#">新闻中心</a></li>
+                    <li><a href="pages/news.html">新闻中心</a></li>
                     <li><a href="#">师资团队</a></li>
                     <li><a href="#">使用教材</a></li>
                     <li><a href="#">文件下载</a></li>
@@ -153,17 +153,17 @@
 
     <!------------ 注释：搜索 start ----------->
 
-    <div class="list-search visible-sm-block">
+    <div class="list-search visible-xs-block visible-sm-block">
         <div class="item area">
             <div class="search-icon area"><span class="title">考区查询</span></div>
-            <form action="" class="group inline" style="padding:7px 20px;">
+            <form action="" class="group">
                 <input type="text" class="cx_left kaoqusmall" placeholder="请输入考区名称(北京)">
                 <img class="cx" data-ele='kaoqusmall' onclick='targetexam(this);' src="images/sreach_icon1.png">
             </form>
         </div>
         <div class="item field">
             <div class="search-icon field"><span class="title">考场查询</span></div>
-            <form action="" class="group inline" style="padding:7px 20px;">
+            <form action="" class="group">
                 <input type="text" class="cx_left" name="litsearchanme" id="litsearchanme" placeholder="请输入所在考区">
                 <input type="text" class="cx_left" name="litsearchcard" id="litsearchcard" placeholder="请输入考区名称">
                 <img id="kc1" class="cx" src="images/sreach_icon2.png" onclick="littlesearch();">
@@ -171,16 +171,17 @@
         </div>
         <div class="item score">
             <div class="search-icon score"><span class="title">成绩查询</span></div>
-            <form action="" class="group inline" style="padding:7px 20px;">
-                <input type="text" class="cx_left" id="uname1" placeholder="请输入姓名">
-                <input type="text" class="cx_left" id="examnum1" placeholder="请输入准考证号">
+            <form action="" class="group">
+                <input type="text" class="cx_left" placeholder="请输入姓名">
+                <input type="text" class="cx_left" placeholder="请输入准考证号">
+                <img id="kc1" class="cx" src="images/sreach_icon2.png" onclick="littlesearch();">
             </form>
         </div>
         <div class="item express">
             <div class="search-icon video"><span class="title">视频证书查询</span></div>
-            <form action="" class="group inline" style="padding:7px 20px;">
-                <input type="text" name='szuser' class="cx_left" id="uname1" placeholder="请输入姓名">
-                <input type="text" name='szexamnum' class="cx_left" id="examnum1" placeholder="请输入证书号">
+            <form action="" class="group">
+                <input type="text" name='szuser' class="cx_left" placeholder="请输入姓名">
+                <input type="text" name='szexamnum' class="cx_left" placeholder="请输入证书号">
                 <img id="cj1" class="cx" src="images/sreach_icon4.png" onclick="searchZ('szuser', 'szexamnum');">
             </form>
         </div>
@@ -194,9 +195,9 @@
                     <div class="search-icon area">
                         <span>考区查询</span>
                     </div>
-                    <input type="text" style="height:30px; margin-top:12px" class="form kaoqubig" name="areaname" id="areaname" placeholder="请输入考区名称(北京)">
+                    <input type="text" class="form kaoqubig" name="areaname" id="areaname" placeholder="请输入考区名称(北京)">
                     <div class="group">
-                        <input type="button" data-ele='kaoqubig' style="height:35px;margin-left:80px;margin-top:0px;" class="btn lg area" value="查 询" onclick="targetexam(this);">
+                        <input type="button" data-ele='kaoqubig' class="btn lg area" value="查 询" onclick="targetexam(this);">
                     </div>
                 </form>
             </div>
@@ -214,7 +215,7 @@
                     <input type="text" name="username" id="searchname" class="kq form" placeholder="请输入姓名">
                     <input type="text" name="examcard"  id="searchcard" class="form" placeholder="请输入准考证号">
                     <div class="group">
-                        <input id="kc" type="button" style="height:35px;margin-left:80px;margin-top:-8px;" onclick="bigsearch();" class="btn lg field" value="查 询">
+                        <input id="kc" type="button" onclick="bigsearch();" class="btn lg field" value="查 询">
                     </div>
                 </form>
             </div>
@@ -225,13 +226,13 @@
             <p>成绩查询</p>
             <div class="query-check">
                 <form>
-                    <div class="search-icon score" style="height:95px; background-position:center 15px;">
+                    <div class="search-icon score">
                         <span>成绩查询</span>
                     </div>
-                    <input type="text" name="useranme" style="height:30px; margin-top:12px" id="username" class="kq form" placeholder="请输入姓名">
-                    <input type="text" name="examnum" style="height:30px; margin-top:12px"  id="examnum" class="form" placeholder="请输入准考证号">
+                    <input type="text" name="useranme" id="username" class="kq form" placeholder="请输入姓名">
+                    <input type="text" name="examnum" id="examnum" class="form" placeholder="请输入准考证号">
                     <div class="group">
-                        <input id="cj" type="button" style="height:35px;margin-left:85px;margin-top:-8px;padding:0;" class="btn lg score" value="查 询" onclick="checkres();">
+                        <input id="cj" type="button" class="btn lg score" value="查 询" onclick="checkres();">
                     </div>
                 </form>
 
@@ -243,13 +244,13 @@
             <p>视频考级证书查询</p>
             <div class="query-check">
                 <form>
-                    <div class="search-icon video" style="height:95px; background-position:center 15px;">
+                    <div class="search-icon video">
                         <span>视频考级证书查询</span>
                     </div>
-                    <input type="text" name="useranme" style="height:30px; margin-top:12px" id="stuname" class="kq form" placeholder="请输入姓名">
-                    <input type="text" name="examnum" style="height:30px; margin-top:12px"  id="certificatenumber" class="form" placeholder="请输入证书号">
+                    <input type="text" name="useranme" class="kq form" placeholder="请输入姓名">
+                    <input type="text" name="examnum" class="form" placeholder="请输入证书号">
                     <div class="group">
-                        <input id="cj" type="button" style="height:35px;margin-left:85px;margin-top:-8px;padding:0;" class="btn lg score" value="查 询" onclick="checkvideo();">
+                        <input id="cj" type="button" class="btn lg score" value="查 询" onclick="checkvideo();">
                     </div>
                 </form>
 
@@ -260,7 +261,7 @@
             <div class="search-icon express"></div>
             <p>视频考级</p>
             <div class="query-check">
-                <div class="search-icon express"></div>
+                <img src="images/query-tap-4.png" alt="" />
             </div>
         </div>
 
@@ -343,7 +344,7 @@
                         <li>
                             <a href="/Examiner/winter?id=24">
                                 <div class="thumb">
-                                    <img src="images/5bbdad89e1bb1.jpg">
+                                    <img src="images/33.png">
                                 </div>
                                 <span title='2018年暑假中央音乐学院校外音乐水平考级成功举办'>2018年暑假中央音乐学院校外音乐水平考级成功举办</span>
                             </a>
@@ -409,7 +410,8 @@
         pagination : '.swiper-pagination',
         paginationClickable :true,
         loop : true,
-        autoplay : 5000000000000,/*todo*/
+        autoplay : 5000,
+        touchRatio : 1,
     });
 </script>
 <script src="js/index.js"></script>
