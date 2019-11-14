@@ -54,8 +54,8 @@
                 </a>
                 <img class="web-top-dorpdown" src="images/wechat-qr.png">
             </div>
-            <a class="btn" href="javascript:void(0)">登陆</a>
-            <a class="btn" href="javascript:void(0)">注册</a>
+            <!--<a class="btn" href="javascript:void(0)">登陆</a>
+            <a class="btn" href="javascript:void(0)">注册</a>-->
         </div>
     </div>
     <!------------ 注释：头部 end ----------->
@@ -75,12 +75,12 @@
                     <li><a href="./index.html">首页</a></li>
                     <li><a href="./pages/news.html">新闻中心</a></li>
                     <li><a href="./pages/teacher.html">师资团队</a></li>
-                    <li><a href="#">使用教材</a></li>
-                    <li><a href="#">文件下载</a></li>
-                    <li><a href="#">活动视频</a></li>
-                    <li><a href="#">授权书</a></li>
-                    <li><a href="#">关于我们</a></li>
-                    <li><a href="#">证书展示</a></li>
+                    <li><a href="./pages/books.html">使用教材</a></li>
+                    <li><a href="./pages/downloads.html">文件下载</a></li>
+                    <li><a href="./pages/videos.html">活动视频</a></li>
+                    <li><a href="./pages/books.html">授权书</a></li>
+                    <li><a href="./pages/aboutus.html">关于我们</a></li>
+                    <li><a href="./pages/credentials.html">证书展示</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -100,8 +100,8 @@
                                 <h3>中央音乐学院</h3>
                                 <h2>考级委员会</h2>
                                 <div class="group enter">
-                                    <a class="btn" href="#">演奏演唱专业考级报名</a>
-                                    <a class="btn pull-right" href="#">音乐基础知识考试报名</a>
+                                    <a class="btn" href="./pages/videos.html">全国特长生视频</a>
+                                    <a class="btn pull-right" href="./pages/credentials.html">高级荣誉证书</a>
                                 </div>
                             </div>
                         </div>
@@ -120,8 +120,8 @@
                                     <li class="t">公正</li>
                                 </ul>
                                 <div class="group enter">
-                                    <a class="btn" href="#">演奏演唱专业考级报名</a>
-                                    <a class="btn pull-right" href="#">音乐基础知识考试报名</a>
+                                    <a class="btn" href="./pages/videos.html">全国特长生视频</a>
+                                    <a class="btn pull-right" href="./pages/credentials.html">高级荣誉证书</a>
                                 </div>
                             </div>
                         </div>
@@ -135,8 +135,8 @@
                                 <h3>中 央 音 乐 学 院</h3>
                                 <h2>考 级 委 员 会</h2>
                                 <div class="group enter">
-                                    <a class="btn" href="#">演奏演唱专业考级报名</a>
-                                    <a class="btn pull-right" href="#">音乐基础知识考试报名</a>
+                                    <a class="btn" href="./pages/videos.html">全国特长生视频</a>
+                                    <a class="btn pull-right" href="./pages/credentials.html">高级荣誉证书</a>
                                 </div>
                             </div>
                         </div>
@@ -166,7 +166,7 @@
             <form action="" class="group">
                 <input type="text" class="cx_left" name="litsearchanme" id="litsearchanme" placeholder="请输入所在考区">
                 <input type="text" class="cx_left" name="litsearchcard" id="litsearchcard" placeholder="请输入考区名称">
-                <img id="kc1" class="cx" src="images/sreach_icon2.png" onclick="littlesearch();">
+                <img id="kc1" class="cx" src="images/sreach_icon2.png" onclick="targetexam();">
             </form>
         </div>
         <div class="item score">
@@ -174,7 +174,7 @@
             <form action="" class="group">
                 <input type="text" class="cx_left" placeholder="请输入姓名">
                 <input type="text" class="cx_left" placeholder="请输入准考证号">
-                <img id="kc1" class="cx" src="images/sreach_icon2.png" onclick="littlesearch();">
+                <img id="kc1" class="cx" src="images/sreach_icon2.png" onclick="targetexam();">
             </form>
         </div>
         <div class="item express">
@@ -182,7 +182,7 @@
             <form action="" class="group">
                 <input type="text" name='szuser' class="cx_left" placeholder="请输入姓名">
                 <input type="text" name='szexamnum' class="cx_left" placeholder="请输入证书号">
-                <img id="cj1" class="cx" src="images/sreach_icon4.png" onclick="searchZ('szuser', 'szexamnum');">
+                <img id="cj1" class="cx" src="images/sreach_icon4.png" onclick="targetexam('szuser', 'szexamnum');">
             </form>
         </div>
     </div>
@@ -215,7 +215,7 @@
                     <input type="text" name="username" id="searchname" class="kq form" placeholder="请输入姓名">
                     <input type="text" name="examcard"  id="searchcard" class="form" placeholder="请输入准考证号">
                     <div class="group">
-                        <input id="kc" type="button" onclick="bigsearch();" class="btn lg field" value="查 询">
+                        <input id="kc" type="button" onclick="targetexam();" class="btn lg field" value="查 询">
                     </div>
                 </form>
             </div>
@@ -232,7 +232,7 @@
                     <input type="text" name="useranme" id="username" class="kq form" placeholder="请输入姓名">
                     <input type="text" name="examnum" id="examnum" class="form" placeholder="请输入准考证号">
                     <div class="group">
-                        <input id="cj" type="button" class="btn lg score" value="查 询" onclick="checkres();">
+                        <input id="cj" type="button" class="btn lg score" value="查 询" onclick="targetexam();">
                     </div>
                 </form>
 
@@ -250,7 +250,7 @@
                     <input type="text" name="useranme" class="kq form" placeholder="请输入姓名">
                     <input type="text" name="examnum" class="form" placeholder="请输入证书号">
                     <div class="group">
-                        <input id="cj" type="button" class="btn lg score" value="查 询" onclick="checkvideo();">
+                        <input id="cj" type="button" class="btn lg score" value="查 询" onclick="targetexam();">
                     </div>
                 </form>
 
@@ -276,8 +276,8 @@
         <div class="left">
             <div class="record">
                 <div class="title">
-                    <h2>考级公告</h2>
-                    <p><a href='#' style="">查看全部&gt;&gt;</a></p>
+                    <h2>公告</h2>
+                    <p><a href='./pages/news.html'>查看全部&gt;&gt;</a></p>
                 </div>
                 <div class="index-gg">
                     <div class="gg-left">
@@ -286,13 +286,13 @@
                     <div class="gg-right">
                         <ul class="list">
                             <li>
-                                <a href="#"> 【2019-07-10】2019年暑假演奏演唱专业考级、音基考试...</a>
+                                <a href="./pages/detail/base_detail.html"> 【2019-07-10】首个海外音乐学府民乐专业双学位第三年来华招生</a>
                             </li>
                             <li>
-                                <a href="#"> 【2019-06-20】2019年暑假音基考试报名通知（北京地区...</a>
+                                <a href="./pages/detail/base_detail.html"> 【2019-06-20】首个海外音乐学府民乐专业双学位第三年来华招生</a>
                             </li>
                             <li>
-                                <a href="#"> 【2019-06-10】2019年暑假演奏演唱专业考级补报通知（...</a>
+                                <a href="./pages/detail/base_detail.html"> 【2019-06-10】首个海外音乐学府民乐专业双学位第三年来华招生</a>
                             </li>
                         </ul>
                     </div>
@@ -302,21 +302,18 @@
             </div>
             <div class="papers">
                 <div class="title">
-                    <h2>考级资讯</h2>
-                    <p><a href="#">查看全部&gt;&gt;</a></p>
+                    <h2>资讯</h2>
+                    <p><a href="./pages/news.html">查看全部&gt;&gt;</a></p>
                 </div>
                 <ul class="list">
                     <li>
-                        <div class="thumb">
-                            <a href="#">
-                                <span>
-                                        <p>01</p>
-                                        <p class="bom">25</p>
-                                </span>
-                            </a>
+                        <div class="thumb date-sign">
+                       		<p>11</p>
+                       		<span class="xspan"></span>
+                       		<p class="down">08</p>
                         </div>
                         <div class="content">
-                            <h6><img src="images/sticky.png" alt="置顶"><a href="#"> 《新编少儿声乐（业余）考级曲集》配套伴奏</a></h6>
+                            <h6><img src="images/sticky.png" alt="置顶"><a href="./pages/detail/base_detail.html"> 《新编少儿声乐（业余）考级曲集》配套伴奏</a></h6>
                             <div class="info"><p>为方便考生参加少儿声乐考级，考级委员会配合新出版的曲目完成了1-9级大部分的歌曲伴奏，还有少量曲目正在加紧录制中。考虑到适用于不同声音条件的考生演唱，有些曲目录制了不同调的版本，请在声乐老师的指导下</p>
                             </div>
                         </div>
@@ -329,24 +326,24 @@
         <div class="right">
             <div class="special">
                 <div class="title">
-                    <h2>考级专题</h2>
+                    <h2>活动花絮</h2>
                 </div>
                 <div class="right-zt-thumb">
-                    <a href="#" target="_blank"><img src="images/zt-20-04.jpg"></a>
+                    <a href="./pages/videos.html" target="_blank"><img src="http://www.yxtcs.net/upimg/20151020165127101.jpg"></a>
                 </div>
             </div>
             <div class="adv">
                 <div class="title">
-                    <h2>考级花絮</h2>
+                    <h2>教师风采</h2>
                 </div>
                 <div class="lists">
                     <ul>
                         <li>
-                            <a href="#">
+                            <a href="./pages/teacher.html">
                                 <div class="thumb">
-                                    <img src="images/33.png">
+                                    <img src="http://www.yxtcs.net/upimg/20140915165741068.jpg">
                                 </div>
-                                <span title='2018年暑假中央音乐学院校外音乐水平考级成功举办'>2018年暑假中央音乐学院校外音乐水平考级成功举办</span>
+                                <span title='2018年暑假中央音乐学院校外音乐水平考级成功举办'>优秀辅导教师Willion</span>
                             </a>
                         </li>
                     </ul>
@@ -413,6 +410,12 @@
         autoplay : 5000,
         touchRatio : 1,
     });
+    
+    function targetexam(){
+    	 var url = "pages/detail/search_detail.html?name=莉莉&age=18";//此处拼接内容
+         window.location.href = url;
+    }
+    
 </script>
 <script src="js/index.js"></script>
 
