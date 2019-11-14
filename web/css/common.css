@@ -12,11 +12,11 @@ a { color: #505050; text-decoration: none;}
 a:hover { color: #d72324; }
 a:active { color: #d72324; }
 textarea{
-    overflow:auto;
-    resize:none;
+	overflow:auto;
+	resize:none;
 }
 .cl{
-    clear: both;
+	clear: both;
 }
 @media (min-width:767px) {
 	body{min-width: 1320px;overflow:auto;}
@@ -52,7 +52,7 @@ textarea{
 .head {position:relative;}
 @media (min-width:767px) {
 	.container > .navbar-header,.container-fluid > .navbar-header,.container > .navbar-collapse,.container-fluid > .navbar-collapse {margin:0 auto;max-width: 1320px;}
-    .navbar-nav > li > a {line-height:30px;}
+	.navbar-nav > li > a {line-height:30px;}
 }
 
 /*外网*/
@@ -128,3 +128,8 @@ textarea{
 .search-detail .section .infor h3{text-align: center;}
 .search-detail .section .infor ul{padding:10px;background: none;}
 .search-detail .section .list-group-item{background: rgba(255, 255, 255,0.7);;}
+
+/*模态框*/
+.modal-header{padding:5px 10px;background:#840e35;color:#fff;border-top-left-radius: 5px;border-top-right-radius: 5px;}
+.modal-header h4{font-size:16px;}
+.modal-header .close{color: #fff;background: none;opacity: 0.35;}
