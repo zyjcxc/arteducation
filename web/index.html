@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>全国特长生认证委员会</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />-->
     <meta name="description" content="全国特长生认证委员会">
     <meta name="keywords" content="全国特长生认证委员会">
     
@@ -62,7 +63,7 @@
     <!------------ 注释：头部 end ----------->
 
     <!------------ 注释：导航 start ----------->
-    <nav class="navbar navbar-default">
+    <!--<nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -83,11 +84,11 @@
                     <li><a href="./pages/aboutus.html">关于我们</a></li>
                     <li><a href="./pages/credentials.html">证书展示</a></li>
                 </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+            </div>
+        </div>
+    </nav>-->
     <!------------ 注释：导航 end ----------->
-
+	<div class="header-page"></div>
 
     <!------------ 注释：头部大屏滚动 start ----------->
     <div class="head">
@@ -528,7 +529,7 @@
     	 var url = "pages/detail/search_detail.html?name=莉莉&age=18";//此处拼接内容
          window.location.href = url;
     }
-    
+    $('.header-page').load('./pages/common/navbar.html');
 </script>
 <script src="js/index.js"></script>
 
