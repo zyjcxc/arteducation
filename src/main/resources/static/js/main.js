@@ -9,6 +9,32 @@ function initMenu(){
 	    		 location.href='/login.html';
 	    		 return;
 	    	 }
+             data.push({
+                 child: [{
+                     child: [],
+                     createTime: "2019-11-18 13:45:42",
+                     css: "",
+                     href: "pages/test/qiniu.html",
+                     id: 65,
+                     name: "七牛测试",
+                     parentId: 37,
+                     permission: "",
+                     sort: 0,
+                     type: 1,
+                     updateTime: "2019-11-18 13:45:42"
+				 }],
+                 createTime: "2019-11-18 09:12:35",
+                 css: "fa-pencil-square-o",
+                 href: "",
+                 id: 6,
+                 name: "官网管理",
+                 parentId: 0,
+                 permission: "sys:user:password",
+                 sort: 22,
+                 type: 1,
+                 updateTime: "2019-11-18 09:12:35",
+			 });
+	    	 console.log(data)
 	    	 var menu = $("#menu");
 	    	 $.each(data, function(i,item){
 	             var a = $("<a href='javascript:;'></a>");
