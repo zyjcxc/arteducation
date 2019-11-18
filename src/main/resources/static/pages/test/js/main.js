@@ -15,34 +15,23 @@ $(function() {
     dragdrop: true,
     chunk_size: '4mb',
     multi_selection: !(moxie.core.utils.Env.OS.toLowerCase() === "ios"),
-    //uptoken_url: '/qiniu/token',
+    //uptoken: '6OFd5tb414JOyT3SVJyjROXHFluIbsWspFjI-QBl:dhY1HJrdpBGsiThUSJ8SIVkvWVc=:eyJzY29wZSI6InlkcHRlc3QiLCJkZWFkbGluZSI6MTU3NDA2NTU5OX0=',
     uptoken_func: function(){
-        $.ajax({
-            type : 'get',
-            url : '/qiniu/token',
-            success : function(data) {
-                console.log('custom uptoken_func:' + data);
-                return data;
-            },
-            error:function (err) {
-                console.log('custom uptoken_func err');
-                return '';
-            }
-        })
-        // var ajax = new XMLHttpRequest();
-        // ajax.open('GET', '/qiniu/token', false);
-        // ajax.setRequestHeader("If-Modified-Since", "0");
-        // ajax.send();
-        // if (ajax.status === 200) {
-        //     var res = JSON.parse(ajax.responseText);
-        //     console.log('custom uptoken_func:' + res.uptoken);
-        //     return res.uptoken;
-        // } else {
-        //     console.log('custom uptoken_func err');
-        //     return '';
-        // }
+        var ajax = new XMLHttpRequest();
+        ajax.open('GET', '/qiniu/token', false);
+        ajax.setRequestHeader("If-Modified-Since", "0");
+        ajax.send();
+        if (ajax.status === 200) {
+          console.log(ajax)
+            var res = ajax.responseText;
+            console.log('custom uptoken_func:' + res);
+            return res;
+        } else {
+            console.log('custom uptoken_func err');
+            return '';
+        }
     },
-    domain: '/qiniu/domain',
+    domain: 'http://static.qgtcs.cn/',
     get_new_uptoken: false,
       //downtoken_url: '/qiniu/domain',
     // unique_names: true,
