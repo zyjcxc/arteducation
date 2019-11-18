@@ -9,24 +9,18 @@ function initMenu(){
 	    		 location.href='/login.html';
 	    		 return;
 	    	 }
+	    	 /*todo 假数据*/
              data.push({
-                 child: [{
-                     child: [],
-                     createTime: "2019-11-18 13:45:42",
-                     css: "",
-                     href: "pages/test/qiniu.html",
-                     id: 65,
-                     name: "七牛测试",
-                     parentId: 37,
-                     permission: "",
-                     sort: 0,
-                     type: 1,
-                     updateTime: "2019-11-18 13:45:42"
-				 }],
+                 child: [
+                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/test/qiniu.html",id: 71,name: "七牛测试",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
+				 },
+                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/textbook/addArtTextbookType.html",id: 72,name: "教材分类",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
+                     }
+				 ],
                  createTime: "2019-11-18 09:12:35",
                  css: "fa-pencil-square-o",
                  href: "",
-                 id: 6,
+                 id: 7,
                  name: "官网管理",
                  parentId: 0,
                  permission: "sys:user:password",
