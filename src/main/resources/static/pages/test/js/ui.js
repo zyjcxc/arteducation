@@ -8,11 +8,6 @@ function FileProgress(file, targetID) {
   this.height = 0;
   this.fileProgressWrapper = $('#' + this.fileProgressID);
   if (!this.fileProgressWrapper.length) {
-    // <div class="progress">
-    //   <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-    //     <span class="sr-only">20% Complete</span>
-    //   </div>
-    // </div>
 
     this.fileProgressWrapper = $('<tr></tr>');
     var Wrappeer = this.fileProgressWrapper;
@@ -20,6 +15,9 @@ function FileProgress(file, targetID) {
 
     var progressText = $("<td/>");
     progressText.addClass('progressName').text(file.name);
+
+    var progressDel = $("<td/>");
+      progressDel.addClass('progressDel').text('×');
 
 
     var fileSize = plupload.formatSize(file.size).toUpperCase();
@@ -58,9 +56,11 @@ function FileProgress(file, targetID) {
     Wrappeer.append(progressText);
     Wrappeer.append(progressSize);
     Wrappeer.append(progressBarTd);
+    Wrappeer.append(progressDel);
 
     $('#' + targetID).append(Wrappeer);
-  } else {
+  }
+  else {
     this.reset();
   }
 
@@ -82,7 +82,7 @@ FileProgress.prototype.reset = function() {
     'aria-valuenow', 0).width('0%').find('span').text('');
   this.appear();
 };
-
+/*查看文件大小；视频分块上传*/
 FileProgress.prototype.setChunkProgess = function(chunk_size) {
   var chunk_amount = Math.ceil(this.file.size / chunk_size);
   if (chunk_amount === 1) {
@@ -196,17 +196,22 @@ FileProgress.prototype.setProgress = function(percentage, speed, chunk_size) {
 };
 
 FileProgress.prototype.setComplete = function(up, info) {
+
+  var del = this.fileProgressWrapper.find('.progressDel');
+
   var td = this.fileProgressWrapper.find('td:eq(2)'),
     tdProgress = td.find('.progress');
 
   var res = $.parseJSON(info);
   var url;
+
   if (res.url) {
     url = res.url;
     str = "<div><strong>链接地址:</strong><a href=" + res.url +
       " target='_blank' > " + res.url + "</a></div>" +
       "<div class=hash><strong>Hash:</strong>" + res.hash + "</div>";
-  } else {
+  }
+  else {
     var domain = up.getOption('domain');
     url = domain + encodeURI(res.key);
     var link = domain + res.key;
@@ -214,6 +219,8 @@ FileProgress.prototype.setComplete = function(up, info) {
       link + "</a></div>" +
       "<div class=hash><strong>Hash:</strong>" + res.hash + "</div>";
   }
+
+  this.fileProgressWrapper.attr('data',JSON.stringify({name:this.file.name,url:url}));
 
   tdProgress.html(str).removeClass().next().next('.status').hide();
   td.find('.progressCancel').hide();
@@ -275,7 +282,12 @@ FileProgress.prototype.setComplete = function(up, info) {
       Wrapper.addClass('default');
     });
   }
+
+  del.on('click',function (e) {
+     e.target.parentNode.remove();
+  })
 };
+
 FileProgress.prototype.setError = function() {
   this.fileProgressWrapper.find('td:eq(2)').attr('class', 'text-warning');
   this.fileProgressWrapper.find('td:eq(2) .progress').css('width', 0).hide();

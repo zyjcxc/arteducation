@@ -21,12 +21,8 @@ $(function() {
         ajax.setRequestHeader("If-Modified-Since", "0");
         ajax.send();
         if (ajax.status === 200) {
-          console.log(ajax)
-            var res = ajax.responseText;
-            console.log('custom uptoken_func:' + res);
-            return res;
+            return ajax.responseText;
         } else {
-            console.log('custom uptoken_func err');
             return '';
         }
     },
@@ -71,7 +67,6 @@ $(function() {
       },
       'FileUploaded': function(up, file, info) {
         var progress = new FileProgress(file, 'fsUploadProgress');
-        console.log("response:", info.response);
         progress.setComplete(up, info.response);
       },
       'Error': function(up, err, errTip) {
@@ -90,6 +85,13 @@ $(function() {
     console.log('hello man,a file is uploaded');
   });
 
-
-
+  $("#getQiniu").click(function () {
+      var list = [];
+      var p = $("#fsUploadProgress")[0];
+      for(var i = 1;i<p.childNodes.length;i++){
+        var item = p.childNodes[i];
+        list.push(JSON.parse(item.attributes[2].value))
+      }
+      console.log(list)
+  })
 });
