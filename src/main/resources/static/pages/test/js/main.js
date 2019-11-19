@@ -15,7 +15,6 @@ $(function() {
     dragdrop: true,
     chunk_size: '4mb',
     multi_selection: !(moxie.core.utils.Env.OS.toLowerCase() === "ios"),
-    //uptoken: '6OFd5tb414JOyT3SVJyjROXHFluIbsWspFjI-QBl:dhY1HJrdpBGsiThUSJ8SIVkvWVc=:eyJzY29wZSI6InlkcHRlc3QiLCJkZWFkbGluZSI6MTU3NDA2NTU5OX0=',
     uptoken_func: function(){
         var ajax = new XMLHttpRequest();
         ajax.open('GET', '/qiniu/token', false);
@@ -33,17 +32,8 @@ $(function() {
     },
     domain: 'http://static.qgtcs.cn/',
     get_new_uptoken: false,
-      //downtoken_url: '/qiniu/domain',
-    // unique_names: true,
+    unique_names: true,
     // save_key: true,
-    // x_vars: {
-    //     'id': '1234',
-    //     'time': function(up, file) {
-    //         var time = (new Date()).getTime();
-    //         // do something with 'time'
-    //         return time;
-    //     },
-    // },
     auto_start: true,
     log_level: 5,
     init: {
@@ -90,12 +80,6 @@ $(function() {
           progress.setError();
           progress.setStatus(errTip);
         }
-        // ,
-        // 'Key': function(up, file) {
-        //     var key = "";
-        //     // do something with key
-        //     return key
-        // }
     }
   });
   //uploader.init();
