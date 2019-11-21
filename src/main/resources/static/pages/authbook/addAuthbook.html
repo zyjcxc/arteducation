@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <form class="form-horizontal" onsubmit="return false" id="form">
+        <input type='hidden' id='id' name='id' />
+        <fieldset>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>授权书名称</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='授权书名称' type='text' name='title' id='title' data-bv-notempty="true" data-bv-notempty-message="授权书名称不能为空">
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>简介</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='简介' type='text' name='content' id='content' data-bv-notempty="true" data-bv-notempty-message="简介不能为空">
+                </div>
+            </div>
+
+
+            <div class="form-actions">
+                <div class="row" align="center">
+                    <div class="col-md-12">
+                        <button id="backBtn" class="btn btn-primary">返回</button>
+                        <button id="saveBtn" class="btn btn-primary">
+                            <i class="fa fa-save"></i> 保存
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+        </fieldset>
+    </form>
+</div>
+<input type='hidden' id='token' />
+<input type='hidden' id='type' />
+</body>
+</html>
+
+<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../js/jq.js"></script>
+<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/tools/config.js"></script>
+
+<!-- 框架-->
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/tools/frames.js"></script>
+<!-- 本页面js, 其他页面忽引用此js -->
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/news/addArtNews.js"></script>
+
