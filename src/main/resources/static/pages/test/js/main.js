@@ -84,14 +84,4 @@ $(function() {
   uploader.bind('FileUploaded', function() {
     console.log('hello man,a file is uploaded');
   });
-
-  $("#getQiniu").click(function () {
-      var list = [];
-      var p = $("#fsUploadProgress")[0];
-      for(var i = 1;i<p.childNodes.length;i++){
-        var item = p.childNodes[i];
-        list.push(JSON.parse(item.attributes[2].value))
-      }
-      console.log(list)
-  })
 });

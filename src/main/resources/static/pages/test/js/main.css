@@ -167,9 +167,6 @@ td .imgWrapper {
     position: relative;
 }
 td .imgWrapper .linkWrapper {
-    position: absolute;
-    left: 15px;
-    top: 0;
     width:100px;
     height: 100px;
     cursor: pointer;

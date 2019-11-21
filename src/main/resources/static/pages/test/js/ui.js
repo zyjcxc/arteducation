@@ -354,3 +354,14 @@ FileProgress.prototype.appear = function() {
   this.fileProgressWrapper.show();
 
 };
+
+
+function GetDocList () {
+    var list = [];
+    var p = $("#fsUploadProgress")[0];
+    for(var i = 1;i<p.childNodes.length;i++){
+        var item = p.childNodes[i];
+        list.push(JSON.parse(item.attributes.data.value))
+    }
+    return list;
+}
