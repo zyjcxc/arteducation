@@ -106,6 +106,8 @@ WEB_CONFIG = {
         ART_TEXT_BOOK_ACTION : "/artTextbook",
         //教材分类
         ART_TEXT_BOOK_TYPE_ACTION : "/artTextbookType",
+        //老师相关
+        ART_TEACHER_ACTION : "/artTeacher"
 
     },
     _page : {
@@ -217,7 +219,7 @@ WEB_CONFIG = {
             return $$.makeWithUrl(WEB_CONFIG._page.VERSION_ACTION_ADD_PAGE, keyValues);
         },
         VERSION_ACTION_LIST_PAGE : "/pages/version/liveAndroidVersionInfoList.html",
-        // 教材修改页
+        // 教材相关修改页
         ART_TEXT_BOOK_UPDATE_PAGE : "/pages/textbook/addArtTextbook.html",
         ART_TEXT_BOOK_PAGE_WITH_PARAMS : function(keyValues) {
             return $$.makeWithUrl(WEB_CONFIG._page.ART_TEXT_BOOK_UPDATE_PAGE, keyValues);
@@ -226,7 +228,12 @@ WEB_CONFIG = {
         ART_TEXT_BOOK_TYPE_UPDATE_PAGE : "/pages/textbook/addArtTextbookType.html",
         ART_TEXT_BOOK_TYPE_PAGE_WITH_PARAMS : function(keyValues) {
             return $$.makeWithUrl(WEB_CONFIG._page.ART_TEXT_BOOK_TYPE_UPDATE_PAGE, keyValues);
-        }
+        },
+        // 老师相关修改页
+        ART_TEACHER_UPDATE_PAGE : "/pages/teacher/addArtTeacher.html",
+        ART_TEACHER_UPDATE_PAGE_WITH_PARAMS : function(keyValues) {
+            return $$.makeWithUrl(WEB_CONFIG._page.ART_TEACHER_UPDATE_PAGE, keyValues);
+        },
     },
     _qnConfig : {
         DOMAIN : getDomain()

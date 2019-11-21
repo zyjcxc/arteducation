@@ -16,6 +16,8 @@ function initMenu(){
 				 },{child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/textbook/artTextbookType.html",id: 72,name: "教材分类",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
                      },
                      {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/textbook/artTextbook.html",id: 73,name: "教材相关",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
+                     },
+                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/teacher/artTeacher.html",id: 74,name: "老师相关",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
                      }
 				 ],
                  createTime: "2019-11-18 09:12:35",
