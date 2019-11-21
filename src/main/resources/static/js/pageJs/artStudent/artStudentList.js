@@ -139,7 +139,7 @@ art_student_list = (function ($, w) {
                         d.activityId  = page.$dom.activityId.val();
                     }
                 },
-                "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",
+                "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-6 hidden-xs'i><'col-sm-6 col-xs-12' p v>>",
                 "columns": [
 				{"data" : "id", "defaultContent" : "", "orderable" : false},
 				{"data" : "name", "defaultContent" : ""},
