@@ -79,7 +79,7 @@ classification_list = (function ($, w) {
                     "url": "/js/plugin/datatables/Chinese.lang"
                 },
                 "ajax": {
-                    "url": WEB_CONFIG._action.ART_TEXT_BOOK_TYPE_ACTION,
+                    "url": WEB_CONFIG._action.ART_TEXT_BOOK_ACTION,
                     "type": "get",
                     "data": function (d) {
                         d.id = page.$dom.id.val();
@@ -89,15 +89,21 @@ classification_list = (function ($, w) {
                 "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",
                 "columns": [
 				{"data" : "id", "defaultContent" : ""},
-				{"data" : "name", "defaultContent" : ""},
+				{"data" : "title", "defaultContent" : ""},
+				{"data" : "version", "defaultContent" : ""},
+				{"data" : "author", "defaultContent" : ""},
+				{"data" : "content", "defaultContent" : ""},
+				{"data" : "textbookTypeId", "defaultContent" : ""},
+				{"data" : "createUserId", "defaultContent" : ""},
 				{"data" : "createtime", "defaultContent" : ""},
+				{"data" : "updatetime", "defaultContent" : ""},
                     {
                         "data": "",
                         "defaultContent": "",
                         "render": function (data, type, row) {
                             var id = row['id'];
                             // 编辑地址
-                            var edit = buttonEdit(WEB_CONFIG._page.ART_TEXT_BOOK_TYPE_PAGE_WITH_PARAMS({
+                            var edit = buttonEdit(WEB_CONFIG._page.ART_TEXT_BOOK_PAGE_WITH_PARAMS({
                                 id : id,
                                 returnUrl :  _self.get$Scope().cur_page
                             }), "", pers);
@@ -121,7 +127,7 @@ classification_list = (function ($, w) {
         var _self = this;
         $$.onJq(_self.getPageBtn().add, "click", function () {
             $$.goTo.call(_self, {
-                url : WEB_CONFIG._page.ART_TEXT_BOOK_TYPE_PAGE_WITH_PARAMS({
+                url : WEB_CONFIG._page.ART_TEXT_BOOK_PAGE_WITH_PARAMS({
                         returnUrl :  _self.get$Scope().cur_page
                 })
             });
@@ -151,7 +157,7 @@ function updateState(id, state, operator) {
     }, function() {
         $.ajax({
             type : 'DELETE',
-            url : WEB_CONFIG._action.ART_TEXT_BOOK_TYPE_ACTION + '/' + id ,
+            url : WEB_CONFIG._action.ART_TEXT_BOOK_ACTION + '/' + id ,
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(obj),
             success : function() {

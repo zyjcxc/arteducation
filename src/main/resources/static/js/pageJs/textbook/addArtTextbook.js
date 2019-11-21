@@ -20,8 +20,12 @@ classification_add = (function ($, w) {
                 id : id
             },
             $dom: {
-					id : $("#id"),
-					name : $("#name")
+                id : $("#id"),
+                title : $("#title"),
+                version : $("#version"),
+                author : $("#author"),
+                content : $("#content"),
+                textbookTypeId : $("#textbookTypeId")
             },
             $btn: {
                 back: $("#backBtn"),
@@ -104,7 +108,7 @@ classification_add = (function ($, w) {
 
         $.ajax({
             type : 'post',
-            url : WEB_CONFIG._action.ART_TEXT_BOOK_TYPE_ACTION,
+            url : WEB_CONFIG._action.ART_TEXT_BOOK_ACTION,
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify($PAGE_FORM.serializeObject()),
             success : function(data) {
@@ -126,7 +130,7 @@ classification_add = (function ($, w) {
         _self.getPageBtn().save.attr("disabled", true);
         $.ajax({
             type : 'put',
-            url : WEB_CONFIG._action.ART_TEXT_BOOK_TYPE_ACTION,
+            url : WEB_CONFIG._action.ART_TEXT_BOOK_ACTION,
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify($PAGE_FORM.serializeObject()),
             async: false,
@@ -156,11 +160,15 @@ classification_add = (function ($, w) {
         var _self = this;
         $.ajax({
             type : 'get',
-            url : WEB_CONFIG._action.ART_TEXT_BOOK_TYPE_ACTION + '/' + _self.get$Scope().id,
+            url : WEB_CONFIG._action.ART_TEXT_BOOK_ACTION + '/' + _self.get$Scope().id,
             async : false,
             success : function(data) {
                 _self.getPageDom().id.val(data.id);
-                _self.getPageDom().name.val(data.name);
+                _self.getPageDom().title.val(data.title);
+                _self.getPageDom().version.val(data.version);
+                _self.getPageDom().author.val(data.author);
+                _self.getPageDom().content.val(data.content);
+                _self.getPageDom().textbookTypeId.val(data.textbookTypeId);
             }
         });
     }

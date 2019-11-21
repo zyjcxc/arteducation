@@ -102,6 +102,8 @@ WEB_CONFIG = {
         // 版本管理
         VERSION_ACTION : "/liveAndroidVersionInfos",
         VERSION_CHECK_ONLY_ACTION : "/liveAndroidVersionInfos/checkOnlyOne",
+        //教材相关
+        ART_TEXT_BOOK_ACTION : "/artTextbook",
         //教材分类
         ART_TEXT_BOOK_TYPE_ACTION : "/artTextbookType",
 
@@ -215,10 +217,15 @@ WEB_CONFIG = {
             return $$.makeWithUrl(WEB_CONFIG._page.VERSION_ACTION_ADD_PAGE, keyValues);
         },
         VERSION_ACTION_LIST_PAGE : "/pages/version/liveAndroidVersionInfoList.html",
-        // 课程分类修改页
-        ART_TEXT_BOOK_UPDATE_PAGE : "/pages/textbook/addArtTextbookType.html",
-        ART_TEXT_BOOK__PAGE_WITH_PARAMS : function(keyValues) {
+        // 教材修改页
+        ART_TEXT_BOOK_UPDATE_PAGE : "/pages/textbook/addArtTextbook.html",
+        ART_TEXT_BOOK_PAGE_WITH_PARAMS : function(keyValues) {
             return $$.makeWithUrl(WEB_CONFIG._page.ART_TEXT_BOOK_UPDATE_PAGE, keyValues);
+        },
+        // 教材分类修改页
+        ART_TEXT_BOOK_TYPE_UPDATE_PAGE : "/pages/textbook/addArtTextbookType.html",
+        ART_TEXT_BOOK_TYPE_PAGE_WITH_PARAMS : function(keyValues) {
+            return $$.makeWithUrl(WEB_CONFIG._page.ART_TEXT_BOOK_TYPE_UPDATE_PAGE, keyValues);
         }
     },
     _qnConfig : {
