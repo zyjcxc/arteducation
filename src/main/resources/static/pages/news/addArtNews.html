@@ -76,7 +76,9 @@
 <script type="text/javascript" src="../../js/umeditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
     //实例化编辑器
-    var um = UM.getEditor('myEditor');
+    var um = UM.getEditor('myEditor', {
+        textarea: 'content'
+    });
 </script>
 <!-- 本页面js, 其他页面忽引用此js -->
 <script type="text/javascript" charset="utf-8" src="../../js/pageJs/news/addArtNews.js"></script>

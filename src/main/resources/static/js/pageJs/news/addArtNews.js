@@ -98,11 +98,6 @@ classification_add = (function ($, w) {
 
     }
 
-    function getContent() {
-        var arr = [];
-        arr.push(UM.getEditor('myEditor').getContent());
-        return (arr.join("\n"));
-    }
     function hasContent() {
         var arr = [];
         arr.push(UM.getEditor('myEditor').hasContents());
@@ -124,7 +119,6 @@ classification_add = (function ($, w) {
             return;
         }
         var params = $PAGE_FORM.serializeObject();
-        params.content = getContent();
 
         $.ajax({
             type : 'post',
@@ -153,10 +147,7 @@ classification_add = (function ($, w) {
         }
 
         var params = $PAGE_FORM.serializeObject();
-        params.content = getContent();
-        delete params.editorValue;
 
-        _self.getPageBtn().save.attr("disabled", true);
         $.ajax({
             type : 'put',
             url : WEB_CONFIG._action.ART_NEWS_ACTION,
