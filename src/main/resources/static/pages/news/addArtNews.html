@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../js/umeditor/css/umeditor.css">
 </head>
 <body>
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -29,15 +30,10 @@
             <div class='form-group'>
                 <label class='col-md-2 control-label'>内容</label>
                 <div class='col-md-10'>
-                    <input class='form-control' placeholder='内容' type='text' name='content' id='content' data-bv-notempty="true" data-bv-notempty-message="内容不能为空">
+                    <div id="myEditor" style="width:100%;height:240px;"></div>
                 </div>
             </div>
-            <div class='form-group'>
-                <label class='col-md-2 control-label'>来源</label>
-                <div class='col-md-10'>
-                    <input class='form-control' placeholder='来源' type='text' name='source' id='source' data-bv-notempty="true" data-bv-notempty-message="来源不能为空">
-                </div>
-            </div>
+
             <div class='form-group'>
                 <label class='col-md-2 control-label'>来源</label>
                 <div class='col-md-10'>
@@ -62,8 +58,6 @@
         </fieldset>
     </form>
 </div>
-<input type='hidden' id='token' />
-<input type='hidden' id='type' />
 </body>
 </html>
 
@@ -73,9 +67,17 @@
 <script type="text/javascript" src="../../js/common.js"></script>
 <script type="text/javascript" src="../../layui/layui.js"></script>
 <script type="text/javascript" charset="utf-8" src="../../js/pageJs/tools/config.js"></script>
-
 <!-- 框架-->
 <script type="text/javascript" charset="utf-8" src="../../js/pageJs/tools/frames.js"></script>
+
+<!-- 富文本编辑器-->
+<script type="text/javascript" charset="utf-8" src="../../js/umeditor/script/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/umeditor/script/editor_api.js"></script>
+<script type="text/javascript" src="../../js/umeditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    //实例化编辑器
+    var um = UM.getEditor('myEditor');
+</script>
 <!-- 本页面js, 其他页面忽引用此js -->
 <script type="text/javascript" charset="utf-8" src="../../js/pageJs/news/addArtNews.js"></script>
 

@@ -244,7 +244,7 @@ WEB_CONFIG = {
             return $$.makeWithUrl(WEB_CONFIG._page.ART_AUTHBOOK_UPDATE_PAGE, keyValues);
         },
         // 新闻中心修改页
-        ART_News_UPDATE_PAGE : "/pages/news/addNews.html",
+        ART_News_UPDATE_PAGE : "/pages/news/addArtNews.html",
         ART_News_UPDATE_PAGE_WITH_PARAMS : function(keyValues) {
             return $$.makeWithUrl(WEB_CONFIG._page.ART_News_UPDATE_PAGE, keyValues);
         },

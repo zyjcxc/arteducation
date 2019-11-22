@@ -24,7 +24,6 @@ classification_add = (function ($, w) {
                 type : $("#type"),
                 title : $("#title"),
                 author : $("#author"),
-                content : $("#content"),
                 source : $("#source")
             },
             $btn: {
@@ -99,18 +98,39 @@ classification_add = (function ($, w) {
 
     }
 
+    function getContent() {
+        var arr = [];
+        arr.push(UM.getEditor('myEditor').getContent());
+        return (arr.join("\n"));
+    }
+    function hasContent() {
+        var arr = [];
+        arr.push(UM.getEditor('myEditor').hasContents());
+        UM.getEditor('myEditor').focus();
+        return (arr.join("\n"));
+    }
+    function setContent(isAppendTo) {
+        UM.getEditor('myEditor').setContent(isAppendTo);
+    }
+
     function save() {
         var _self = this;
         var b = checkFormBefore.call(_self);
         if (!b) {
             return;
         }
+        if(hasContent() === 'false'){
+            layer.msg("请填写内容！", {shift: -1, time: 3000});
+            return;
+        }
+        var params = $PAGE_FORM.serializeObject();
+        params.content = getContent();
 
         $.ajax({
             type : 'post',
             url : WEB_CONFIG._action.ART_NEWS_ACTION,
             contentType: "application/json; charset=utf-8",
-            data : JSON.stringify($PAGE_FORM.serializeObject()),
+            data : JSON.stringify(params),
             success : function(data) {
                 layer.msg("添加成功", {shift: -1, time: 1000}, function() {
                     $$.goTo({
@@ -127,12 +147,21 @@ classification_add = (function ($, w) {
         if (!b) {
             return;
         }
+        if(hasContent() === 'false'){
+            layer.msg("请填写内容！", {shift: -1, time: 3000});
+            return;
+        }
+
+        var params = $PAGE_FORM.serializeObject();
+        params.content = getContent();
+        delete params.editorValue;
+
         _self.getPageBtn().save.attr("disabled", true);
         $.ajax({
             type : 'put',
             url : WEB_CONFIG._action.ART_NEWS_ACTION,
             contentType: "application/json; charset=utf-8",
-            data : JSON.stringify($PAGE_FORM.serializeObject()),
+            data : JSON.stringify(params),
             async: false,
             success : function(data) {
                 layer.msg("修改成功", {shift: -1, time: 1000}, function() {
@@ -164,14 +193,17 @@ classification_add = (function ($, w) {
             async : false,
             success : function(data) {
                 _self.getPageDom().id.val(data.id);
-                _self.getPageDom().name.val(data.name);
+                _self.getPageDom().type.val(data.type);
+                _self.getPageDom().title.val(data.title);
+                _self.getPageDom().author.val(data.author);
+                _self.getPageDom().source.val(data.source);
+                setContent(data.content);
+
             }
         });
     }
 
-
-
-
     return new _$();
 
 })(jQuery, window);
+
