@@ -1,5 +1,7 @@
 @charset "utf-8";
-
+@import url("bootstrap.css");
+@import url("animate.css");
+@import url("common.css");
 /*滚动屏幕*/
 .head p {color:#fff;line-height:28px;}
 .swiper-slide img {width:100%;height:auto;}

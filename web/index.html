@@ -4,92 +4,25 @@
     <meta charset="utf-8">
     <title>全国特长生认证委员会</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />-->
     <meta name="description" content="全国特长生认证委员会">
     <meta name="keywords" content="全国特长生认证委员会">
     
-	
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/aos-animation.css">
     <link rel="stylesheet" href="css/swiper-3.4.2.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/style.css">
 	<script src="utils/jquery-3.3.1.min.js"></script>
     <script src="utils/bootstrap.js"></script>
-    <script src="utils/aos.js"></script>
     <script src="utils/swiper-3.4.2.jquery.min.js"></script>
-
+	
 </head>
 
 <body>
 
 <div class="page">
-    <!------------ 注释：头部 start ----------->
-    <div class="web-top">
-        <div class="logo">
-            <a href="#"><img src="images/logo.png"></a>
-        </div>
-        <div class="web-top-operation visible-md-block visible-lg-block">
-            <div class="box">
-                <a class="btn">
-                    <i><img src="images/app.png"></i><p>视频考级APP</p>
-                </a>
-                <img class="web-top-dorpdown" src="images/22424242.png">
-            </div>
-            <div class="box">
-                <a class="btn" href="javascript:void(0)">
-                    <i><img src="images/app.png"></i>关注
-                </a>
-                <img class="web-top-dorpdown" src="images/wechat-qr.png">
-            </div>
-            <div class="box">
-                <a class="btn" href="javascript:void(0)">
-                    <i><img src="images/app.png"></i>手机站
-                </a>
-                <img class="web-top-dorpdown" src="images/wechat-qr.png">
-            </div>
-            <div class="box">
-                <a class="btn" href="javascript:void(0)">
-                    <i><img src="images/app.png"></i>手机站
-                </a>
-                <img class="web-top-dorpdown" src="images/wechat-qr.png">
-            </div>
-            <!--<a class="btn" href="javascript:void(0)">登陆</a>
-            <a class="btn" href="javascript:void(0)">注册</a>-->
-        </div>
-    </div>
-    <!------------ 注释：头部 end ----------->
 
-    <!------------ 注释：导航 start ----------->
-    <!--<nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="./index.html">首页</a></li>
-                    <li><a href="./pages/news.html">新闻中心</a></li>
-                    <li><a href="./pages/teacher.html">师资团队</a></li>
-                    <li><a href="./pages/books.html">使用教材</a></li>
-                    <li><a href="./pages/downloads.html">文件下载</a></li>
-                    <li><a href="./pages/videos.html">活动视频</a></li>
-                    <li><a href="./pages/books.html">授权书</a></li>
-                    <li><a href="./pages/aboutus.html">关于我们</a></li>
-                    <li><a href="./pages/credentials.html">证书展示</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>-->
-    <!------------ 注释：导航 end ----------->
-	<div class="header-page"></div>
-
+    <!------------ 注释：顶部 start ----------->
+	<div id="header-page"></div>
+	<!------------ 注释：顶部 end ----------->
+	
     <!------------ 注释：头部大屏滚动 start ----------->
     <div class="head">
         <div class="swiper-container" id="swiper_head">
@@ -481,17 +414,11 @@
             </li>
         </ul>
     </div>
-    <div class="footer">
-        <div class="about">
-            <a href="">网站地图</a>|                <a href="">隐私版权</a>|                <a href="#">联系我们 ：123456  8888888</a>            </div>
-        <div class="us">© Copyright www.999.999.cn All Rights Reserved 京公网安备123456454214号　　京ICP备456452457号</div>
-        <div class="num">访问统计:4524536758</div>
-    </div>
-
-</div>
-
-<div class="suggest">
-    <span>本网站建议使用WIN8及以上系统，使用IE10以上，谷歌, 火狐，搜狗，极速360等浏览器。</span>
+	
+		
+	<!------------ 注释：底部 start ----------->
+	<div id="footer-page"></div>
+	<!------------ 注释：底部 start ----------->
 </div>
 
 <script>
@@ -529,10 +456,14 @@
     	 var url = "pages/detail/search_detail.html?name=莉莉&age=18";//此处拼接内容
          window.location.href = url;
     }
-    $('.header-page').load('./pages/common/navbar.html');
+   
 </script>
 <script src="js/index.js"></script>
-
+<!--公共页面-->
+<script>
+		 $('#header-page').load('./pages/common/navbar.html');
+		 $('#footer-page').load('./pages/common/footer.html');
+</script>
 </body>
 
 </html>
