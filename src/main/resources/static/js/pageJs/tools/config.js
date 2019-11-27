@@ -102,6 +102,16 @@ WEB_CONFIG = {
         // 版本管理
         VERSION_ACTION : "/liveAndroidVersionInfos",
         VERSION_CHECK_ONLY_ACTION : "/liveAndroidVersionInfos/checkOnlyOne",
+        //教材相关
+        ART_TEXT_BOOK_ACTION : "/artTextbook",
+        //教材分类
+        ART_TEXT_BOOK_TYPE_ACTION : "/artTextbookType",
+        //老师相关
+        ART_TEACHER_ACTION : "/artTeacher",
+        //授权书相关接口
+        ART_AUTHBOOK_ACTION : "/artAuthbook",
+        //新闻中心相关接口
+        ART_NEWS_ACTION : "/artNews"
 
     },
     _page : {
@@ -212,7 +222,32 @@ WEB_CONFIG = {
         VERSION_ACTION_ADD_PAGE_WITH_PARAMS : function(keyValues) {
             return $$.makeWithUrl(WEB_CONFIG._page.VERSION_ACTION_ADD_PAGE, keyValues);
         },
-        VERSION_ACTION_LIST_PAGE : "/pages/version/liveAndroidVersionInfoList.html"
+        VERSION_ACTION_LIST_PAGE : "/pages/version/liveAndroidVersionInfoList.html",
+        // 教材相关修改页
+        ART_TEXT_BOOK_UPDATE_PAGE : "/pages/textbook/addArtTextbook.html",
+        ART_TEXT_BOOK_PAGE_WITH_PARAMS : function(keyValues) {
+            return $$.makeWithUrl(WEB_CONFIG._page.ART_TEXT_BOOK_UPDATE_PAGE, keyValues);
+        },
+        // 教材分类修改页
+        ART_TEXT_BOOK_TYPE_UPDATE_PAGE : "/pages/textbook/addArtTextbookType.html",
+        ART_TEXT_BOOK_TYPE_PAGE_WITH_PARAMS : function(keyValues) {
+            return $$.makeWithUrl(WEB_CONFIG._page.ART_TEXT_BOOK_TYPE_UPDATE_PAGE, keyValues);
+        },
+        // 老师相关修改页
+        ART_TEACHER_UPDATE_PAGE : "/pages/teacher/addArtTeacher.html",
+        ART_TEACHER_UPDATE_PAGE_WITH_PARAMS : function(keyValues) {
+            return $$.makeWithUrl(WEB_CONFIG._page.ART_TEACHER_UPDATE_PAGE, keyValues);
+        },
+        // 授权书相关修改页
+        ART_AUTHBOOK_UPDATE_PAGE : "/pages/authbook/addAuthbook.html",
+        ART_AUTHBOOK_UPDATE_PAGE_WITH_PARAMS : function(keyValues) {
+            return $$.makeWithUrl(WEB_CONFIG._page.ART_AUTHBOOK_UPDATE_PAGE, keyValues);
+        },
+        // 新闻中心修改页
+        ART_News_UPDATE_PAGE : "/pages/news/addArtNews.html",
+        ART_News_UPDATE_PAGE_WITH_PARAMS : function(keyValues) {
+            return $$.makeWithUrl(WEB_CONFIG._page.ART_News_UPDATE_PAGE, keyValues);
+        },
     },
     _qnConfig : {
         DOMAIN : getDomain()

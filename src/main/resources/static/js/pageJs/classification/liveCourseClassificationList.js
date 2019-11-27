@@ -93,7 +93,7 @@ classification_list = (function ($, w) {
                         d.name = page.$dom.name.val();
                     }
                 },
-                "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",
+                "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-6 hidden-xs'i><'col-sm-6 col-xs-12' p v>>",
                 "columns": [
 				{"data" : "id", "defaultContent" : ""},
 				{"data" : "name", "defaultContent" : ""},

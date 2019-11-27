@@ -48,6 +48,7 @@ public class ArtNewsServiceImpl implements IArtNewsService {
             throw new HumanResourceException(ResultEnum.NO_FIND_DATA);
         }
         oldData = ArtNewsConverter.convertToArtNews(command);
+        oldData.setId(command.getId());
         artNewsDao.updateByPrimaryKeySelective(oldData);
         return ArtNewsConverter.convertToArtNewsDto(oldData);
     }
