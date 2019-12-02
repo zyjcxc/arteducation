@@ -75,7 +75,16 @@ public class ArtStudentServiceImpl implements IArtStudentService{
             badHanyuPinyinOutputFormatCombination.printStackTrace();
             artStudent.setNamePy("");
         }
-        artStudentDao.insertSelective(artStudent);
+        if (artStudent.getBookType() == null || artStudent.getBookType() == 0) {
+            // 插入两条数据
+            artStudent.setBookType(1);
+            artStudentDao.insertSelective(artStudent);
+            artStudent.setBookType(2);
+            artStudentDao.insertSelective(artStudent);
+        } else {
+            // 插入一条数据
+            artStudentDao.insertSelective(artStudent);
+        }
     }
 
     private ArtStudent getByActivityAndCarNo(Integer activityId, String cardNo, Integer classificationId, String level) {
@@ -155,7 +164,16 @@ public class ArtStudentServiceImpl implements IArtStudentService{
             }
             artStudent.setBookNo(dto.getBookNo());
 
-            artStudentDao.insertSelective(artStudent);
+            if (dto.getBookType() == null || dto.getBookType() == 0) {
+                artStudent.setBookType(1);
+                artStudentDao.insertSelective(artStudent);
+                artStudent.setBookType(2);
+                artStudentDao.insertSelective(artStudent);
+            } else {
+                artStudent.setBookType(dto.getBookType());
+                artStudentDao.insertSelective(artStudent);
+            }
+
         }
     }
 
@@ -167,6 +185,7 @@ public class ArtStudentServiceImpl implements IArtStudentService{
         criteria.andEqualTo("name", params.get("name"));
         criteria.andEqualTo("classificationId", params.get("classificationId"));
         criteria.andEqualTo("level", params.get("level"));
+        criteria.andEqualTo("bookType", params.get("bookType"));
         List<ArtStudent> list = artStudentDao.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
             return null;

@@ -15,7 +15,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ExcelTitles({"序号", "ID" ,"姓名", "性别", "国籍", "民族", "出生日期", "专业项目", "级别", "身份证号", "证书编号"})
+@ExcelTitles({"序号", "ID" ,"姓名", "性别", "国籍", "民族", "出生日期", "专业项目", "级别", "身份证号", "证书编号", "证书类型"})
 public class ArtStudent extends BaseModel {
 
     private Integer classificationId;
@@ -34,6 +34,8 @@ public class ArtStudent extends BaseModel {
     private Integer activityId;
 
     private String bookNo;
+
+    private Integer bookType;
 
     private Date createtime;
 

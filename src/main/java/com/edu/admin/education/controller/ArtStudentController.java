@@ -148,6 +148,7 @@ public class ArtStudentController {
             objs[8] = source.getLevel();
             objs[9] = source.getCardNo();
             objs[10] = source.getBookNo();
+            objs[11] = source.getBookType();
             dataList.add(objs);
         }
         return dataList;
