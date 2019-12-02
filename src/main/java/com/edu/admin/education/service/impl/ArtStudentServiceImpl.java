@@ -150,6 +150,11 @@ public class ArtStudentServiceImpl implements IArtStudentService{
                 continue;
             }
 
+            if (StringUtils.isEmpty(dto.getBookNo())) {
+                throw new HumanResourceException(ResultEnum.NO_BOOK_NO_RECORD);
+            }
+            artStudent.setBookNo(dto.getBookNo());
+
             artStudentDao.insertSelective(artStudent);
         }
     }

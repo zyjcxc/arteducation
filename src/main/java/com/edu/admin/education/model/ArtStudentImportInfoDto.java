@@ -41,5 +41,8 @@ public class ArtStudentImportInfoDto extends BaseRowModel {
     @ExcelProperty(index = 11,value = "活动名称")
     private String activityName;
 
+    @ExcelProperty(index = 12,value = "证书编号")
+    private String bookNo;
+
 
 }
