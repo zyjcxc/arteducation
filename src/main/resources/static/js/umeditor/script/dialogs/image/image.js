@@ -141,10 +141,10 @@
         uploadTpl: '<div class="edui-image-upload%%">' +
             '<span class="edui-image-icon"></span>' +
             '<form class="edui-image-form" method="post" enctype="multipart/form-data" target="up">' +
-            '<input style=\"filter: alpha(opacity=0);\" class="edui-image-file" type="file" hidefocus name="upfile" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp"/>' +
+            '<input style=\"filter: alpha(opacity=0);\" class="edui-image-file" type="file" hidefocus name="upfile" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp"/><input name="token" type="hidden" value="6OFd5tb414JOyT3SVJyjROXHFluIbsWspFjI-QBl:CHvSsDBdtDUPtJnYBFONLju3z2E=:eyJzY29wZSI6InlkcHRlc3QiLCJkZWFkbGluZSI6MTU3NDg1MTA0OX0=">' +
             '</form>' +
 
-            '</div>',
+            '</div>',// 注意这里token先写死。
         init: function (editor, $w) {
             var me = this;
 
@@ -168,17 +168,14 @@
         },
         render: function (sel, t) {
             var me = this;
-
             $(sel, me.dialog).append($(me.uploadTpl.replace(/%%/g, t)));
-
             return me;
+
         },
         config: function (sel) {
+
             var me = this,
                 url=me.editor.options.imageUrl;
-
-            url=url + (url.indexOf("?") == -1 ? "?" : "&") + "editorid="+me.editor.id;//初始form提交地址;
-
             $("form", $(sel, me.dialog)).attr("action", url);
 
             return me;

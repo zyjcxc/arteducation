@@ -68,6 +68,10 @@ $(function() {
       'FileUploaded': function(up, file, info) {
         var progress = new FileProgress(file, 'fsUploadProgress');
         progress.setComplete(up, info.response);
+        /*
+        * 插入到百度编辑器上 todo
+        * */
+          UM.getEditor('myEditorQiniu').execCommand('insertHtml', '<img src="'+ up.getOption('domain') + encodeURI($.parseJSON(info.response).key) +'">');
       },
       'Error': function(up, err, errTip) {
           $('table').show();

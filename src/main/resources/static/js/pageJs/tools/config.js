@@ -248,6 +248,11 @@ WEB_CONFIG = {
         ART_News_UPDATE_PAGE_WITH_PARAMS : function(keyValues) {
             return $$.makeWithUrl(WEB_CONFIG._page.ART_News_UPDATE_PAGE, keyValues);
         },
+        // 关于我们修改页
+        ABOUT_US_UPDATE_PAGE : "/pages/aboutUs/addAboutUs.html",
+        ABOUT_US_UPDATE_PAGE_WITH_PARAMS : function(keyValues) {
+            return $$.makeWithUrl(WEB_CONFIG._page.ABOUT_US_UPDATE_PAGE, keyValues);
+        },
     },
     _qnConfig : {
         DOMAIN : getDomain()
