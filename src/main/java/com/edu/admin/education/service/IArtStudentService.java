@@ -22,4 +22,6 @@ public interface IArtStudentService {
 
     void saveDatas(List<ArtStudentImportInfoDto> dtoList);
 
+    ArtStudent getByCondition(Map<String, Object> params);
+
 }

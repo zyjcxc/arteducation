@@ -159,6 +159,25 @@ public class ArtStudentServiceImpl implements IArtStudentService{
         }
     }
 
+    @Override
+    public ArtStudent getByCondition(Map<String, Object> params) {
+        Example example = new Example(ArtStudent.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("cardNo", params.get("cardNo"));
+        criteria.andEqualTo("name", params.get("name"));
+        criteria.andEqualTo("classificationId", params.get("classificationId"));
+        criteria.andEqualTo("level", params.get("level"));
+        List<ArtStudent> list = artStudentDao.selectByExample(example);
+        if (CollectionUtils.isEmpty(list)) {
+            return null;
+        }
+        ArtStudent artStudent = list.get(0);
+        LiveCourseClassification byId = liveCourseClassificationService.getById(artStudent.getClassificationId()
+                .longValue());
+        artStudent.setClassificationName(byId.getName());
+        return artStudent;
+    }
+
     private String getChineseLevel(String level) {
         switch (level) {
             case "1":
