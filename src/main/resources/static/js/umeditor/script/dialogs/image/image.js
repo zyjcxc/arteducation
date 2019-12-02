@@ -197,7 +197,7 @@
                 var me = this;
                 try{
                     var json = eval('('+r+')');
-                    Base.callback(me.editor, me.dialog, json.url, json.state);
+                    Base.callback(me.editor, me.dialog, json.hash, 'SUCCESS');
                 }catch (e){
                     var lang = me.editor.getLang('image');
                     Base.callback(me.editor, me.dialog, '', (lang && lang.uploadError) || 'Error!');
@@ -214,7 +214,11 @@
                         return;
                     }
 
-                    $('<iframe name="up"  style="display: none"></iframe>').insertBefore(me.dialog).on('load', function(){
+                    $('<iframe name="up" id="iframeId" style="display: none"></iframe>').insertBefore(me.dialog).on('load', function(){
+
+                        console.log(this)
+
+
                         var r = this.contentWindow.document.body.innerHTML;
                         if(r == '')return;
                         me.uploadComplete(r);

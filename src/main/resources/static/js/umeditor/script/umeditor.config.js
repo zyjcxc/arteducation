@@ -138,7 +138,7 @@
 
         //图片上传配置区
         ,imageUrl:"http://upload-z2.qiniup.com"             //图片上传提交地址
-        ,imagePath:URL + "php/"                     //图片修正地址，引用了fixedImagePath,如有特殊需求，可自行配置
+        ,imagePath:"http://static.qgtcs.cn/"                     //图片修正地址，引用了fixedImagePath,如有特殊需求，可自行配置
         ,imageFieldName:"file"                   //图片数据的key,若此处修改，需要在后台对应文件修改对应参数
 
         //todo 这里被手动更改了，去掉了表情，视频等功能
