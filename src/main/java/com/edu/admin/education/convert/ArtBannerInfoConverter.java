@@ -31,6 +31,10 @@ public class ArtBannerInfoConverter {
         artBannerInfo.setUrl(artBannerInfoCommand.getUrl());
         artBannerInfo.setState(artBannerInfoCommand.getState());
 
+        artBannerInfo.setTitle(artBannerInfoCommand.getTitle());
+        artBannerInfo.setRecommend(artBannerInfoCommand.getRecommend());
+
+
         return artBannerInfo;
     }
 
@@ -51,6 +55,10 @@ public class ArtBannerInfoConverter {
         artBannerInfoDto.setState(artBannerInfo.getState());
         artBannerInfoDto.setCreatetime(artBannerInfo.getCreatetime());
         artBannerInfoDto.setUpdatetime(artBannerInfo.getUpdatetime());
+
+        artBannerInfoDto.setTitle(artBannerInfo.getTitle());
+        artBannerInfoDto.setRecommend(artBannerInfo.getRecommend());
+
         artBannerInfoDto.setId(artBannerInfo.getId());
         return artBannerInfoDto;
     }

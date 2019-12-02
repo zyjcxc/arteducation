@@ -81,6 +81,19 @@ public class ArtBannerInfoServiceImpl implements IArtBannerInfoService {
         return ArtBannerInfoConverter.convertToListArtBannerInfoDto(ArtBannerInfo);
     }
 
+    @Override
+    public List<ArtBannerInfoDto> findAllBySite(Map<String, Object> params) {
+
+        params.put("recommend", 1);
+        params.put("orderBy", "sort asc");
+
+        Example example = getQueryExample(params);
+
+        List<ArtBannerInfo> list = artBannerInfoDao.selectByExample(example);
+
+        return ArtBannerInfoConverter.convertToListArtBannerInfoDto(list);
+    }
+
     /**
      * 单表QBC查询
      * @param params 查询参数
@@ -101,9 +114,20 @@ public class ArtBannerInfoServiceImpl implements IArtBannerInfoService {
         }
 
         criteria.andEqualTo("state", 1);
-        /*if (params.containsKey("name")) {
-            criteria.andEqualTo("name", params.get("name"));
-        }*/
+
+        if (params.containsKey("site")) {
+            criteria.andEqualTo("site", params.get("site"));
+        }
+
+        if (params.containsKey("recommend")) {
+            criteria.andEqualTo("recommend", params.get("recommend"));
+        }
+
+        if (params.get("orderBy") != null) {
+            String orderBy = (String) params.get("orderBy");
+            example.setOrderByClause(orderBy.replace("order by", ""));
+        }
+
 
         return example;
     }

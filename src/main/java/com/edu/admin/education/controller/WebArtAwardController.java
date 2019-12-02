@@ -26,7 +26,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/web/artAward")
-@Api(tags = "art-证书相关接口")
+@Api(tags = "art-web-证书相关接口")
 public class WebArtAwardController extends BaseController {
 
     protected static final Logger logger = LoggerFactory.getLogger(WebArtAwardController.class);

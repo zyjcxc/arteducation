@@ -26,7 +26,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/web/artBannerInfo")
-@Api(tags = "art-Banner相关接口")
+@Api(tags = "art-web-Banner相关接口")
 public class WebArtBannerInfoController extends BaseController {
 
     protected static final Logger logger = LoggerFactory.getLogger(WebArtBannerInfoController.class);
@@ -46,7 +46,7 @@ public class WebArtBannerInfoController extends BaseController {
 
     @GetMapping
     @ApiOperation(value = "列表")
-    @ApiImplicitParam(name = "site", value = "位置 1.顶部 2.中部", paramType = "query", dataType="int")
+    @ApiImplicitParam(name = "site", value = "位置 1.首页顶部 2.其他页面顶部 3.首页底部", paramType = "query", dataType="int")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "请求成功", response = ArtBannerInfoDto.class),
             @ApiResponse(code = 500, message = "参数异常")})
@@ -74,6 +74,16 @@ public class WebArtBannerInfoController extends BaseController {
             @ApiResponse(code = 500, message = "参数异常")})
     public List<ArtBannerInfoDto> findAll(PageTableRequest request) {
         return artBannerInfoServiceImpl.findAll();
+    }
+
+    @GetMapping("/findAllBySite")
+    @ApiOperation(value = "根据位置查询全部列表")
+    @ApiImplicitParam(name = "site", value = "位置", paramType = "query", dataType="int")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "请求成功", response = ArtBannerInfoDto.class),
+            @ApiResponse(code = 500, message = "参数异常")})
+    public List<ArtBannerInfoDto> findAllBySite(PageTableRequest request) {
+        return artBannerInfoServiceImpl.findAllBySite(request.getParams());
     }
 
 }
