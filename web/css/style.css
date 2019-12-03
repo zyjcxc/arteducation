@@ -140,12 +140,12 @@
 .column .right .right-zt-thumb{
 	padding:0 15px 5px;
 }
-.column .right .right-zt-thumb a{display:block;margin-top:20px;}
+.column .right .right-zt-thumb a{display:block;padding: 0;margin: 10px 0 0;text-align: center;}
 .column .papers .list li {margin:15px 0;padding:0 0;clear:both;background:#EFEFEF;overflow: hidden;}
 .column .list li:before,.column .list li:after {content:" ";display:table;}
 .column .list li:after {clear:both;}
 .column .list li:last-child {padding-bottom:0;}
-.column .index-gg {background:url(../images/li-bg.png) repeat;background-size:100%;padding:10px;/* height:160px; */background:#EFEFEF;}
+.column .index-gg {padding:10px;background:#EFEFEF;}
 .column .list .content .rightinfo {font-size:12px;padding-top:25px;color:#666666;}
 .column .list .content {overflow:hidden;padding:0 0;float: left;}
 .column .list .content img{width:auto;display: inline;}
@@ -194,7 +194,6 @@
 	.column .list li:before,.column .list li:after {content:" ";display:table;}
 	.column .list li:after {clear:both;}
 	.column .list li:last-child {padding-bottom:0;}
-	.column .index-gg {background:url(../images/li-bg.png) repeat;background-size:100%;padding:10px;background:#EFEFEF;}
 	.column .list .content .rightinfo {font-size:12px;padding-top:25px;color:#666666;}
 	.column .list .thumb {float:left;}
 	.column .list .thumb img {width:100%;height:100%;}
@@ -211,7 +210,7 @@
 	.column .gg-right {float:left;width: 400px;}
 	.column .right .adv .lists li span {width:180px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
 	.column .right-zt-thumb {width:100%;overflow:hidden;}
-	.column .right-zt-thumb img {width:100%;height:inherit;}
+	.column .right-zt-thumb img {height:inherit;width: 118px;height: 80px;}
 }
 /*考级动态*/
 .news .item-list li { position: relative; padding: 23px 0; border-bottom: 1px dashed #dddddd; min-height: 1px; text-underline: none;}
@@ -278,12 +277,12 @@
 .credentials .item-list {overflow: hidden;width: 100%;margin:10px 0;;}
 .credentials .item-list li{width: 46%;float: left;text-align: center;margin-bottom:10px;cursor: pointer;background: #fff;padding: 5%;margin: 2%;border-radius:10px;}
 .credentials .item-list li:hover {
-    box-shadow: 0px 10px 18px 10px rgba(0, 0, 0, 0.07);
-    transition: 0.5s all;
-    -webkit-transition: 0.2s all;
-    -moz-transition: 0.2s all;
-    -o-transition: 0.2s all;
-    -ms-transition: 0.2s all;
+	box-shadow: 0px 10px 18px 10px rgba(0, 0, 0, 0.07);
+	transition: 0.5s all;
+	-webkit-transition: 0.2s all;
+	-moz-transition: 0.2s all;
+	-o-transition: 0.2s all;
+	-ms-transition: 0.2s all;
 }
 .credentials .item-list img{width: 100%;}
 .credentials .item-list p{margin-top: 10px;width: 100%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size:14px;}

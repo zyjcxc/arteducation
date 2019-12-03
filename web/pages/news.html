@@ -54,16 +54,41 @@
 
 </div>
 
-<!--通用：包括config，公共头底页面，面包屑及目录 http://10.30.50.152:9808/login.html;jsessionid=7D883DFFF39B573DF66BC7AFE4804758-->
+<!--通用：包括config，公共头底页面，面包屑及目录 -->
 <script type="text/javascript" src="../js/common.js"></script>
 <script type="text/javascript">
 	  $.ajax({
             type : 'get',
-            url : 'http://10.30.50.152:9808/web/artTextbookType/findAll',
+            url : 'http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',
             contentType: "application/json; charset=utf-8",
-            data : {},
-            success : function(data) {
-              console.log(data);
+            data : {
+                page_number:1,
+                page_size:10,
+                type:1,
+                token:'99f2925e56a14ae7a2413e95d6c5b23c'
+            },
+            success : function(res) {
+              console.log(res.data.list);
+              var data = res.data.list;
+              var str1 = '';
+                $.each(data, function(i, item) {
+                    str1 +=
+                        '<li>' +
+                            '<a href="'+ item.bannerLink +'" target="_blank">' +
+                                '<div class="item-date">' +
+                                    '<p>11</p>' +
+                                    '<span class="xspan"></span>' +
+                                    '<p class="down">08</p>' +
+                                '</div>' +
+                                '<div class="item-content">' +
+                                    '<h3> '+ item.bannerTypeName +'</h3>' +
+                                    '<p>'+ item.bannerName +'</p>' +
+                                '</div>' +
+                            '</a>' +
+                        '</li>';
+
+                    $(".item-list").html(str1);
+                })
             },
             error : function (d) {
               console.log(d)
