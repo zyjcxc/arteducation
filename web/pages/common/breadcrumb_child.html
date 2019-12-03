@@ -1,0 +1,64 @@
+ <!------------ 注释：头部大屏滚动 start ----------->
+    <div class="detail-top">
+    	<div class="contain">
+    		<div class="nav-label visible-md-block visible-lg-block visible-sm-block">
+	            <span id="nav-label"></span>
+	        </div>
+	        <ul id="breadcrumb" class="breadcrumb">
+	            
+	        </ul>
+    	</div>
+        
+    </div>
+    <!------------ 注释：头部大屏滚动 end ----------->
+    
+   <script>
+   	
+   	var config = JSON.parse(window.localStorage.getItem('config'));
+   	var path = {
+   			href:window.location.href,
+			pathname:window.location.pathname.split('/pages/')[1],
+			search:window.location.search.split('?')[1]
+   	}
+   	var searchUrl = path.search ? ('?'+ path.search) : '' ;
+   	
+    var params = null;
+	function findPath(array){
+    	for (var i = 0; i < array.length; i++) {
+    		var item = array[i]
+    		if(item.isParent){
+    			for (var i = 0; i < item.children.length; i++){
+	    				if(item.children[i].url == (path.pathname + searchUrl)){
+		                	return item
+			                break;
+	            	}
+    			}
+    		}else if(item.url == (path.pathname + searchUrl)){
+                	return item
+	                break;
+	            }
+	    };
+    }
+
+    function initCrumb(){
+	    params = findPath(config.pages);
+	    if(params){
+	    	$("#nav-label").html(params.title);
+		    var li = '<li>首页</li><li>' + params.title + '</li>';
+		    if(params.isParent){
+		    	for (var i = 0; i < params.children.length; i++) {
+		    		var item = params.children[i];
+		    		if(item.url.split("?")[1] == path.search){
+		    			li = li + '<li>' + item.title + '</li>';
+		    			break;
+		    		}
+		            
+		    	};
+		    }
+		    $("#breadcrumb").html(li);
+	    }
+	    
+    }
+    initCrumb();
+   </script> 	
+    

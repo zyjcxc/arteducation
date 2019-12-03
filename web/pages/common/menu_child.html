@@ -1,0 +1,66 @@
+<!------------ 注释：头部 start ----------->
+		<div class="sidebar visible-md-block visible-lg-block visible-sm-block">
+		    <ul id="menu_sidebar">
+		    	
+		   	</ul>
+		</div>
+		<ul id="menu_sidebar_xs" class="nav nav-tabs visible-xs-block">
+		  	<li role="presentation" class="active"><a href="#">活动视频</a></li>
+		</ul>
+    
+   <script>
+   	var config = JSON.parse(window.localStorage.getItem('config'));
+   	var path = {
+   			href:window.location.href,
+			pathname:window.location.pathname.split('/pages/')[1],
+			search:window.location.search.split('?')[1]
+   	};
+   	var searchUrl = path.search ? ('?'+ path.search) : '' ;
+    var params = null;
+    
+    function findPath(array){
+    	for (var i = 0; i < array.length; i++) {
+    		var item = array[i]
+    		if(item.isParent){
+    			for (var i = 0; i < item.children.length; i++){
+    				if(item.children[i].url == (path.pathname + searchUrl)){
+                	return item
+	                break;
+	            }
+    			}
+    		}else if(item.url == (path.pathname + searchUrl)){
+                	return item
+	                break;
+	            }
+	    };
+    }
+
+    function initMenu(){
+    	params = findPath(config.pages);
+    	
+    	
+	    var li = '';
+	    var li_xs = '';
+	    if(params){
+	    	if(params.isParent){
+		    	for (var i = 0; i < params.children.length; i++) {
+		    		var item = params.children[i];
+		    		var className = item.url.split("?")[1] == path.search ?'active':'';
+		            li = li + '<li class="' + className + '"><a href="../pages/' + item.url + '">' + item.title + '</a></li>';
+		            li_xs = li_xs + 
+			    	'<li role="presentation"><a href="../pages/' + item.url + '">' + item.title + '</a></li>';
+		    	};
+		    }else{
+		    	li = 
+		    	'<li class="active"><a href="../pages/' + params.url + '">' + params.title + '</a></li>';
+		    	li_xs = 
+		    	'<li role="presentation"><a href="../pages/' + params.url + '">' + params.title + '</a></li>'
+		    }
+		    $("#menu_sidebar").html(li);
+		    $("#menu_sidebar_xs").html(li_xs);
+	    }
+	    
+    }
+    initMenu();
+   </script> 	
+    
