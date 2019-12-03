@@ -47,6 +47,54 @@
 
 <!--通用：包括config，公共头底页面，面包屑及目录-->
 <script type="text/javascript" src="../js/common.js"></script>
+<script>
+	
+	document.cookie = "JSESSIONID = B8660A26C67C318CB86C2F8E04D9B1C2";
+	
+	function callback(callback){
+	  console.log(callback)
+	}
+	function gets(){
+	  var script=document.createElement('script');
+	  script.setAttribute('type','text/javascript');
+	  script.setAttribute('src','http://sy.aerozhonghuan.com/test/qdfaw/api/qingqi/operate/hcbAuthInfoList?callback=callback');
+	  document.body.appendChild(script);
+	}
+	window.onload=function(){
+//	  gets();
+	}
+	
+	</script>
+
+<script type="text/javascript">
+	
+	
+//	$.getJSON("http://sy.aerozhonghuan.com/test/qdfaw/api/qingqi/operate/hcbAuthInfoList?jsoncallback=?", function(data) {
+//  
+//	    console.log(data)
+//	});
+//	
+</script>
+
+
+<script type="text/javascript">
+	  $.ajax({
+            type : 'get',
+            url : 'http://10.30.50.152:9808/web/artTextbookType/findAll',
+            contentType: "application/json; charset=utf-8",
+            header:{
+            	Cookie: "JSESSIONID=763DCC23AAE6A42932CDCBF7FE7049CB"
+            },
+            data : {},
+            success : function(data) {
+//              console.log(data);
+            },
+            error : function (d) {
+//              console.log(d)
+            }
+        });
+</script>
+
 
 </body>
 </html>
