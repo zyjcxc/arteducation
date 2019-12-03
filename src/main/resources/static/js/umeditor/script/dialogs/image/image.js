@@ -153,8 +153,8 @@
             showCount: 0,
             uploadTpl: '<div class="edui-image-upload%%">' +
             '<span class="edui-image-icon"></span>' +
-            '<form class="edui-image-form" method="post" enctype="multipart/form-data" target="up">' +
-            '<input style=\"filter: alpha(opacity=0);\" class="edui-image-file" type="file" hidefocus name="file" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp"/><input name="token" type="hidden" value="'+token+'">' +
+            '<form class="edui-image-form" method="post" enctype="multipart/form-data" target="iframeId">' +
+            '<input style=\"filter: alpha(opacity=0);\" id="edui-image-file" class="edui-image-file" type="file" hidefocus name="file" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp"/><input name="token" type="hidden" value="'+token+'">' +
             '</form>' +
 
             '</div>',
@@ -196,7 +196,7 @@
             uploadComplete: function(r){
                 var me = this;
                 try{
-                    var json = eval('('+r+')');
+                    var json = r ;
                     Base.callback(me.editor, me.dialog, json.hash, 'SUCCESS');
                 }catch (e){
                     var lang = me.editor.getLang('image');
@@ -213,21 +213,23 @@
                     if ( !this.parentNode ) {
                         return;
                     }
-
-                    $('<iframe name="up" id="iframeId" style="display: none"></iframe>').insertBefore(me.dialog).on('load', function(){
-
-                        console.log(this)
-
-
-                        var r = this.contentWindow.document.body.innerHTML;
-                        if(r == '')return;
-                        me.uploadComplete(r);
-                        $(this).unbind('load');
-                        $(this).remove();
+                    var formData = new FormData($(me.dialog).find('form')[0]);
+                    $.ajax({
+                        url:me.editor.options.imageUrl,//后台的接口地址
+                        type:"post",//post请求方式
+                        data:formData,//参数
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        success:function (data) {
+                            me.uploadComplete(data);
+                        },error:function () {
+                            alert("上传接口失败~");
+                        }
 
                     });
-                    console.log("submit")
-                    $(this).parent()[0].submit();
+
+
                     Upload.updateInput( input );
                     me.toggleMask("Loading....");
                     callback && callback();
