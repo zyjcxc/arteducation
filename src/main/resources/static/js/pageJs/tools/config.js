@@ -111,8 +111,9 @@ WEB_CONFIG = {
         //授权书相关接口
         ART_AUTHBOOK_ACTION : "/artAuthbook",
         //新闻中心相关接口
-        ART_NEWS_ACTION : "/artNews"
-
+        ART_NEWS_ACTION : "/artNews",
+        //首页banner
+        MAIN_BANNER_ACTION : "/artBannerInfo",
     },
     _page : {
         // 特殊长生列表
@@ -252,6 +253,11 @@ WEB_CONFIG = {
         ABOUT_US_UPDATE_PAGE : "/pages/aboutUs/addAboutUs.html",
         ABOUT_US_UPDATE_PAGE_WITH_PARAMS : function(keyValues) {
             return $$.makeWithUrl(WEB_CONFIG._page.ABOUT_US_UPDATE_PAGE, keyValues);
+        },
+        // banner修改页
+        MAIN_BANNER_UPDATE_PAGE : "/pages/home/addMainBanner.html",
+        MAIN_BANNER_PAGE_WITH_PARAMS : function(keyValues) {
+            return $$.makeWithUrl(WEB_CONFIG._page.MAIN_BANNER_UPDATE_PAGE, keyValues);
         },
     },
     _qnConfig : {

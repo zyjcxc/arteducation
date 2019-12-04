@@ -62,7 +62,7 @@
             'adapter/fullscreen.js',
             'adapter/dialog.js',
             'adapter/popup.js',
-            'adapter/imagescale.js',
+            // 'adapter/imagescale.js',  //有bug不用
             'adapter/autofloat.js',
             'adapter/source.js',
             'adapter/combobox.js'

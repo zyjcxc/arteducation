@@ -100,12 +100,12 @@ classification_add = (function ($, w) {
 
     function hasContent() {
         var arr = [];
-        arr.push(UM.getEditor('myEditor').hasContents());
-        UM.getEditor('myEditor').focus();
+        arr.push(UM.getEditor('addArtNewsEditor').hasContents());
+        UM.getEditor('addArtNewsEditor').focus();
         return (arr.join("\n"));
     }
     function setContent(isAppendTo) {
-        UM.getEditor('myEditor').setContent(isAppendTo);
+        UM.getEditor('addArtNewsEditor').setContent(isAppendTo);
     }
 
     function save() {

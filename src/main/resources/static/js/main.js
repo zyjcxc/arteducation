@@ -24,6 +24,8 @@ function initMenu(){
                      {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/news/artNews.html",id: 76,name: "新闻中心",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
                      },
                      {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/aboutUs/aboutUs.html",id: 77,name: "关于我们",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
+                     },
+                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/home/mainBanner.html",id: 78,name: "banner相关",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
                      }
 				 ],
                  createTime: "2019-11-18 09:12:35",
