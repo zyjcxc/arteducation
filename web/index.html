@@ -79,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            <div class="swiper-pagination"></div>
+            <div class="swiper-pagination swiper-pagination-banner"></div>
         </div>
     </div>
     <!------------ 注释：头部大屏滚动 end ----------->
@@ -240,32 +240,28 @@
                     <h2>特长生学生代表</h2>
                 </div>
                 <div class="right-zt-thumb row">
-
-                    <a class="col-xs-4" href="./pages/videos.html" target="_blank"><img src="http://demo.cssmoban.com/cssthemes6/cpts_1866_cvr/images/ab1.jpg"></a>
-                    <a class="col-xs-4" href="./pages/videos.html" target="_blank"><img src="http://demo.cssmoban.com/cssthemes6/cpts_1866_cvr/images/ab1.jpg"></a>
-                    <a class="col-xs-4" href="./pages/videos.html" target="_blank"><img src="http://demo.cssmoban.com/cssthemes6/cpts_1866_cvr/images/ab1.jpg"></a>
-                    <a class="col-xs-4" href="./pages/videos.html" target="_blank"><img src="http://demo.cssmoban.com/cssthemes6/cpts_1866_cvr/images/ab1.jpg"></a>
-                    <a class="col-xs-4" href="./pages/videos.html" target="_blank"><img src="http://demo.cssmoban.com/cssthemes6/cpts_1866_cvr/images/ab1.jpg"></a>
-                    <a class="col-xs-4" href="./pages/videos.html" target="_blank"><img src="http://demo.cssmoban.com/cssthemes6/cpts_1866_cvr/images/ab1.jpg"></a>
-                    <a class="col-xs-4" href="./pages/videos.html" target="_blank"><img src="http://demo.cssmoban.com/cssthemes6/cpts_1866_cvr/images/ab1.jpg"></a>
                     <a class="col-xs-4" href="./pages/videos.html" target="_blank"><img src="http://demo.cssmoban.com/cssthemes6/cpts_1866_cvr/images/ab1.jpg"></a>
                 </div>
             </div>
             <div class="adv">
                 <div class="title">
-                    <h2>桃李满天下</h2>
+                    <h2>优秀院校展示</h2>
                 </div>
                 <div class="lists">
-                    <ul>
-                        <li>
-                            <a href="./pages/teacher.html">
-                                <div class="thumb">
-                                    <img src="http://www.yxtcs.net/upimg/20140915165741068.jpg">
-                                </div>
-                                <span title='2018年暑假中央音乐学院校外音乐水平考级成功举办'>优秀辅导教师Willion</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <div id="schoolSwiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <a href="./pages/teacher.html">
+                                    <div class="thumb">
+                                        <img src="http://www.yxtcs.net/upimg/20140915165741068.jpg">
+                                    </div>
+                                    <span title='2018年暑假中央音乐学院校外音乐水平考级成功举办'>优秀辅导教师Willion</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination swiper-pagination-school"></div>
+                    </div>
+
                 </div>
             </div>
 
@@ -307,7 +303,7 @@
                 </div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
-                <div class="swiper-pagination"></div>
+                <div class="swiper-pagination swiper-pagination-history"></div>
             </div>
         </div>
         <div class="contactus">
@@ -379,7 +375,7 @@
      * 滚动
      * */
     var mySwiper = new Swiper('#swiper_head', {
-        pagination : '.swiper-pagination',
+        pagination : '.swiper-pagination-banner',
         paginationClickable :true,
         loop : true,
         autoplay : 5000,
@@ -441,6 +437,30 @@
                 $(".right-zt-thumb").html(str1);
             })
         });
+    /*学校展示*/
+    $.EXTEND.GET('http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',{page_number:1,page_size:10,type:1})
+        .then(function (res) {
+            var str1 = '';
+            $.each(res.data.list, function(i, item) {
+                if(i>=9) return false;
+                str1 +=
+                    '<div class="swiper-slide">' +
+                        '<div class="thumb">' +
+                            '<img src="'+ item.imgPath +'">' +
+                        '</div>' +
+                    '</div>';
+
+                $("#schoolSwiper").find(".swiper-wrapper").html(str1);
+                var schoolSwiper = new Swiper('#schoolSwiper', {
+                    pagination : '.swiper-pagination-school',
+                    paginationClickable :true,
+                    paginationType : 'fraction',
+                    loop : true,
+                    effect : 'fade',
+                    autoplay: 3000,//可选选项，自动滑动
+                })
+            })
+        });
     /*联系我们*/
     $('#submit').click(function () {
         var param = $('#fm').serializeObject(true);
@@ -472,7 +492,7 @@
                 speed: 1600,
                 autoplay : 3000,
                 mousewheelControl : true,
-                pagination: '.swiper-pagination',
+                pagination: '.swiper-pagination-history',
                 paginationBulletRender: function (swiper, index, className) {
                     var year = document.querySelectorAll('.timeline .swiper-slide')[index].getAttribute('data-year');
                     return '<span class="' + className + '">' + year + '</span>';

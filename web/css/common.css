@@ -134,3 +134,8 @@ textarea{
 .modal-header h4{font-size:16px;}
 .modal-header .close{color: #fff;background: none;opacity: 0.35;}
 .modal-body img{width:100%;}
+
+.swiper-pagination-bullet-active {
+	opacity: 1;
+	background: #d72324;
+}

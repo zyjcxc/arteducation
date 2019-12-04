@@ -167,18 +167,24 @@
 .column .right-zt-thumb {width:100%;overflow:hidden;}
 .column .right-zt-thumb img {width:100%;height:inherit;}
 .column .right img{
-	width: 100%;
+	width: 12rem;
+	height: 8rem;
+	max-width: 100%;
 }
-.column .right  .lists li{text-align:center;}
-.column .right  .lists li img {
+.column .right  .lists{position: relative}
+.column .right  .lists .swiper-slide a{display: block}
+.column .right  .lists .swiper-slide{text-align:center;}
+.column .right  .lists .swiper-slide img {
 	padding: .25rem;
 	background-color: #fff;
 	border: 1px solid #dee2e6;
 	height: 235px;
-	box-shadow: 8px 7px 3px 6px #9e9e9e;
 	border-radius: 0;
 	width: 88%;
-	margin-bottom: 20px;
+}
+.column .right  .lists .swiper-pagination-school{
+	font-weight: bold;
+	color:#fff;
 }
 @media (min-width:767px) {
 	.column {width:1320px;margin:0 auto;background: #fff;overflow: hidden;}
@@ -208,9 +214,9 @@
 	.column .index-gg:after {clear:both;}
 	.column .gg-left {float:left;width:186px;height:124px;margin-right:20px;}
 	.column .gg-right {float:left;width: 400px;}
-	.column .right .adv .lists li span {width:180px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
+	.column .right .adv .lists .swiper-slide span {width:180px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display: block}
 	.column .right-zt-thumb {width:100%;overflow:hidden;}
-	.column .right-zt-thumb img {height:inherit;width: 118px;height: 80px;}
+	.column .right-zt-thumb img {height:inherit;width: 120px;height: 80px;}
 }
 /*考级动态*/
 .news .item-list li { position: relative; padding: 23px 0; border-bottom: 1px dashed #dddddd; min-height: 1px; text-underline: none;}
