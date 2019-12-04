@@ -4,7 +4,9 @@
  * ajax 的 get 方法 --- $.EXTEND.GET（接口地址，参数）
  */
 (function (){
-    var baseUrl = 'http://cc.aerohuanyou.com:8081/api/qingqi/';
+	var baseUrl = 'http://10.30.50.152:9808/web/';
+    
+    
     $.fn.serializeObject = function(noEmpty)
     {
         var o = {};
@@ -27,17 +29,18 @@
                 }
             }
         });
-        return o;
+        return JSON.stringify(o);
     };
     jQuery.extend({
         EXTEND:{
             GET:function (url,params) {
                 var deferred = $.Deferred();
                 var data = params?params:{};
-                data.token = '349961b9a1da47c4a9e99b8ae9c650cb';
+                data.token = 'bea32763ad3d4c629f45634ba4959e91';
+                var action = /^(http|https):\/\//.test(url) ? url : (baseUrl + url);
                 $.ajax({
-                    type : 'get',
-                    url : baseUrl + url,
+                    type : 'GET',
+                    url : action,
                     contentType: "application/json; charset=utf-8",
                     data : data,
                     success : function(res) {
@@ -52,10 +55,11 @@
             POST:function (url,params) {
                 var deferred = $.Deferred();
                 var data = params?params:{};
-                data.token = '349961b9a1da47c4a9e99b8ae9c650cb';
+                console.log(params);
+                var action = /^(http|https):\/\//.test(url) ? url : (baseUrl + url);
                 $.ajax({
-                    type : 'post',
-                    url : baseUrl + url,
+                    type : 'POST',
+                    url : action,
                     contentType: "application/json; charset=utf-8",
                     data : data,
                     success : function(res) {

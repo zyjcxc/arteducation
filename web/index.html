@@ -219,17 +219,7 @@
                         <img src="images/6.jpg">
                     </div>
                     <div class="gg-right">
-                        <ul class="list">
-                            <li>
-                                <a href="./pages/detail/base_detail.html"> 【2019-07-10】首个海外音乐学府民乐专业双学位第三年来华招生</a>
-                            </li>
-                            <li>
-                                <a href="./pages/detail/base_detail.html"> 【2019-06-20】首个海外音乐学府民乐专业双学位第三年来华招生</a>
-                            </li>
-                            <li>
-                                <a href="./pages/detail/base_detail.html"> 【2019-06-10】首个海外音乐学府民乐专业双学位第三年来华招生</a>
-                            </li>
-                        </ul>
+                        <ul class="list" id='new_2'></ul>
                     </div>
                     <div class="cl"></div>
                 </div>
@@ -237,47 +227,10 @@
             </div>
             <div class="papers">
                 <div class="title">
-                    <h2>资讯</h2>
+                    <h2>新闻</h2>
                     <p><a href="./pages/news.html">查看全部&gt;&gt;</a></p>
                 </div>
-                <ul class="list">
-                    <li>
-                        <div class="thumb date-sign">
-                       		<p>11</p>
-                       		<span class="xspan"></span>
-                       		<p class="down">08</p>
-                        </div>
-                        <div class="content">
-                            <h6><img src="images/sticky.png" alt="置顶"><a href="./pages/detail/base_detail.html"> 《新编少儿声乐（业余）考级曲集》配套伴奏</a></h6>
-                            <div class="info"><p>为方便考生参加少儿声乐考级，考级委员会配合新出版的曲目完成了1-9级大部分的歌曲伴奏，还有少量曲目正在加紧录制中。考虑到适用于不同声音条件的考生演唱，有些曲目录制了不同调的版本，请在声乐老师的指导下</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="thumb date-sign">
-                            <p>11</p>
-                            <span class="xspan"></span>
-                            <p class="down">08</p>
-                        </div>
-                        <div class="content">
-                            <h6><img src="images/sticky.png" alt="置顶"><a href="./pages/detail/base_detail.html"> 《新编少儿声乐（业余）考级曲集》配套伴奏</a></h6>
-                            <div class="info"><p>为方便考生参加少儿声乐考级，考级委员会配合新出版的曲目完成了1-9级大部分的歌曲伴奏，还有少量曲目正在加紧录制中。考虑到适用于不同声音条件的考生演唱，有些曲目录制了不同调的版本，请在声乐老师的指导下</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="thumb date-sign">
-                            <p>11</p>
-                            <span class="xspan"></span>
-                            <p class="down">08</p>
-                        </div>
-                        <div class="content">
-                            <h6><img src="images/sticky.png" alt="置顶"><a href="./pages/detail/base_detail.html"> 《新编少儿声乐（业余）考级曲集》配套伴奏</a></h6>
-                            <div class="info"><p>为方便考生参加少儿声乐考级，考级委员会配合新出版的曲目完成了1-9级大部分的歌曲伴奏，还有少量曲目正在加紧录制中。考虑到适用于不同声音条件的考生演唱，有些曲目录制了不同调的版本，请在声乐老师的指导下</p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                <ul class="list" id="new_1"></ul>
             </div>
 
         </div>
@@ -359,7 +312,7 @@
         </div>
         <div class="contactus">
             <h3>联系我们</h3>
-            <form id="fm">
+            <form id="fm"  onsubmit="return false">
                 <div class="row text-center contact-wls-detail">
                     <div class="col-md-6 form-group contact-forms">
                         <input type="text" name="name" class="form-control" placeholder="您的姓名" required="">
@@ -436,8 +389,46 @@
     	 var url = "pages/detail/search_detail.html?name=莉莉&age=18";//此处拼接内容
          window.location.href = url;
     }
+    /*新闻*/
+    $.EXTEND.GET('artNews',{type:1})
+        .then(function (res) {
+            var str1 = '';
+            $.each(res.data, function(i, item) {
+                if(i>=9) return false;
+                var m = new Date(item.updatetime).getMonth();
+                var d = new Date(item.updatetime).getDate();
+                str1 +=
+                    '<li>' +
+                        '<div class="thumb date-sign">' +
+                       		'<p>'+ m +'</p>' +
+                       		'<span class="xspan"></span>' +
+                       		'<p class="down">'+ d +'</p>' +
+                        '</div>' +
+                        '<div class="content">' +
+                            '<h6><img src="images/sticky.png" alt="置顶"><a href="./pages/detail/base_detail.html/'+ item.id +'"  target="_blank"> '+ item.title +'</a></h6>' +
+                            '<div class="info"><p>'+ item.content +'</p>' +
+                            '</div>' +
+                        '</div>' +
+                    '</li>';
+
+                $("#new_1").html(str1);
+            })
+        });
+    /*公告*/
+    $.EXTEND.GET('artNews',{type:2})
+        .then(function (res) {
+            var str1 = '';
+            $.each(res.data, function(i, item) {
+                if(i>=9) return false;
+                str1 +=
+                    '<li><a href="./pages/detail/base_detail.html/'+ item.id +'" target="_blank"> 【'+ item.updatetime +'】'+ item.title +'</a></li>';
+
+                $("#new_2").html(str1);
+            })
+        });
+
     /*学生信息展示*/
-    $.EXTEND.GET('operate/BannerInfo/QueryBannerInfo',{page_number:1,page_size:10,type:1,token:'349961b9a1da47c4a9e99b8ae9c650cb'})
+    $.EXTEND.GET('http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',{page_number:1,page_size:10,type:1})
         .then(function (res) {
             var str1 = '';
             $.each(res.data.list, function(i, item) {
@@ -452,16 +443,15 @@
         });
     /*联系我们*/
     $('#submit').click(function () {
-
-        var param = $('#fm').serializeObject(true);console.log(param);
-        $.EXTEND.POST('operate/emergency/add/urgentCall',param)
+        var param = $('#fm').serializeObject(true);
+        $.EXTEND.POST('artTextbookType',param)
             .then(function (res) {
                console.log(res)
             });
     });
 
     /*历史展示*/
-    $.EXTEND.GET('operate/BannerInfo/QueryBannerInfo',{page_number:1,page_size:10,type:1,token:'99f2925e56a14ae7a2413e95d6c5b23c'})
+    $.EXTEND.GET('http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',{page_number:1,page_size:10,type:1})
         .then(function (res) {
             var str1 = '';
             $.each(res.data.list, function(i, item) {
