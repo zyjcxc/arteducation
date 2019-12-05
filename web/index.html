@@ -27,7 +27,7 @@
     <div class="head">
         <div class="swiper-container" id="swiper_head">
             <div class="swiper-wrapper">
-                <div class="swiper-slide swiper-slide-1">
+                <div class="swiper-slide swiper-slide-1" style="background-image:url('images/banner-5.jpg')">
                     <div class="centent">
                         <div class="wrap">
                             <div class="banner-box banner-box1 pull-right">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide swiper-slide-2">
+                <div class="swiper-slide swiper-slide-2" style="background-image:url('images/banner-7.jpg')">
                     <div class="centent">
                         <!--<img src="" alt="滚动背景图">-->
                         <div class="wrap">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide swiper-slide-3">
+                <div class="swiper-slide swiper-slide-3" style="background-image:url('images/banner-3.jpg')">
                     <div class="centent">
                         <div class="wrap">
                             <div class="banner-box center">
@@ -212,7 +212,7 @@
             <div class="record">
                 <div class="title">
                     <h2>公告</h2>
-                    <p><a href='./pages/news.html'>查看全部&gt;&gt;</a></p>
+                    <p><a href='./pages/news.html?news_2'>查看全部&gt;&gt;</a></p>
                 </div>
                 <div class="index-gg">
                     <div class="gg-left">
@@ -228,7 +228,7 @@
             <div class="papers">
                 <div class="title">
                     <h2>新闻</h2>
-                    <p><a href="./pages/news.html">查看全部&gt;&gt;</a></p>
+                    <p><a href="./pages/news.html?news_1">查看全部&gt;&gt;</a></p>
                 </div>
                 <ul class="list" id="new_1"></ul>
             </div>
@@ -371,20 +371,27 @@
 </div>
 <script type="text/javascript" src="js/extend.js"></script>
 <script>
-    /*
-     * 滚动
-     * */
-    var mySwiper = new Swiper('#swiper_head', {
-        pagination : '.swiper-pagination-banner',
-        paginationClickable :true,
-        loop : true,
-        autoplay : 5000,
-        touchRatio : 1,
-    });
+
     function targetexam(){
     	 var url = "pages/detail/search_detail.html?name=莉莉&age=18";//此处拼接内容
          window.location.href = url;
     }
+    /*banner展示*/
+    $.EXTEND.GET('http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',{page_number:1,page_size:10,type:1})
+        .then(function (res) {
+            $.each(res.data.list, function(i, item) {
+                if(i>=3) return false;
+                $("#swiper_head").find(".swiper-slide-"+(i+1)).css("background-image","url('"+item.imgPath+"')");
+
+                var mySwiper = new Swiper('#swiper_head', {
+                    pagination : '.swiper-pagination-banner',
+                    paginationClickable :true,
+                    loop : true,
+                    autoplay : 5000,
+                    touchRatio : 1
+                });
+            })
+        });
     /*新闻*/
     $.EXTEND.GET('artNews',{type:1})
         .then(function (res) {

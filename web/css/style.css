@@ -25,10 +25,10 @@
 .swiper-slide .centent .wrap .enter .btn {color:#fff;font-size:12px;padding: 5px 10px;border:2px solid #fff;border-radius:0;background-color:rgba(0,0,0,0.1);}
 .swiper-slide .centent .wrap .enter .btn:hover {background-color:#840e35;}
 .swiper-pagination {--swiper-theme-color:#ff6600;--swiper-pagination-color:#00ff33;/* 两种都可以 */}
-.swiper-slide.swiper-slide-1 .centent {background:url('../images/banner-5.jpg') center;background-size:cover;}
-.swiper-slide.swiper-slide-2 .centent {background:url('../images/banner-7.jpg') center;background-size:cover;}
+.swiper-slide.swiper-slide-1 .centent {background-position: center ;background-size:cover;}
+.swiper-slide.swiper-slide-2 .centent {background-position: center;background-size:cover;}
 .swiper-slide.swiper-slide-2 .centent .wrap {left:50%;width:320px;margin-left:-160px;height:100%;background-color:transparent;}
-.swiper-slide.swiper-slide-3 .centent {background:url('../images/banner-3.jpg') center;background-size:cover;}
+.swiper-slide.swiper-slide-3 .centent {background-position: center;background-size:cover;}
 @media (min-width:767px) {
 	.head p {line-height:28px;}
 	.swiper-slide .centent {height:440px;}

@@ -11,24 +11,24 @@
 				code:'teacher',
 				url:'teacher.html',
 				title:'师资团队',
-				isParent:false,
+				isParent:false
 			},{
 				code:'credentials',
 				url:'credentials.html',
 				title:'证书展示',
-				isParent:false,
+				isParent:false
 			},
 			{
 				code:'downloads',
 				url:'downloads.html',
 				title:'文件下载',
-				isParent:false,
+				isParent:false
 			},
 			{
 				code:'videos',
 				url:'videos.html',
 				title:'活动视频',
-				isParent:false,
+				isParent:false
 			},
 			{
 				code:'news',
@@ -51,7 +51,7 @@
 				]
 			}
 		],
-		script:['utils/bootstrap.js']
+		script:['utils/bootstrap.js','utils/jquery.pagination.min.js']
 	}
 	
 	window.localStorage.setItem('config', JSON.stringify(config));

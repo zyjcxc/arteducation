@@ -26,22 +26,15 @@
 		<div id="menu_list"></div>
 		<!------------ 注释：插入 menu end ----------->
 		<div class="content">
-			 <h2 class="visible-md-block visible-lg-block visible-sm-block">资讯</h2>
+			 <h2 class="visible-md-block visible-lg-block visible-sm-block">新闻中心</h2>
 			 <ul class="item-list">
-			 	<li>
-                    <a href="../pages/detail/base_detail.html">
-                        <div class="item-date">
-                       		<p>11</p>
-                       		<span class="xspan"></span>
-                       		<p class="down">08</p>
-                        </div>
-                        <div class="item-content">
-                            <h3> 2020年寒假中央音乐学院校外音乐水平考级简章</h3>
-                            <p class="visible-md-block visible-lg-block"> 2020年寒假中央音乐学院校外音乐水平考级简章</p>
-                        </div>
-                    </a>
-                </li>
+
 			 </ul>
+            <div class="box">
+                <div id="pagination3" class="page fl">
+                    <div class="ui-pagination-container"></div>
+                </div>
+            </div>
 		</div>
 		
 	</div>
@@ -56,44 +49,54 @@
 
 <!--通用：包括config，公共头底页面，面包屑及目录 -->
 <script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript" src="../js/extend.js"></script>
 <script type="text/javascript">
-	  $.ajax({
-            type : 'get',
-            url : 'http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',
-            contentType: "application/json; charset=utf-8",
-            data : {
-                page_number:1,
-                page_size:10,
-                type:1,
-                token:'99f2925e56a14ae7a2413e95d6c5b23c'
-            },
-            success : function(res) {
-              console.log(res.data.list);
-              var data = res.data.list;
-              var str1 = '';
-                $.each(data, function(i, item) {
+    var type = window.location.search.split("_")[1];
+    function getList(num) {
+        /*新闻*/
+        $.EXTEND.GET('http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',{page_number:num,page_size:10,type:type})
+            .then(function (res) {
+                var str1 = '';
+                $.each(res.data.list, function(i, item) {
                     str1 +=
                         '<li>' +
-                            '<a href="'+ item.bannerLink +'" target="_blank">' +
-                                '<div class="item-date">' +
-                                    '<p>11</p>' +
-                                    '<span class="xspan"></span>' +
-                                    '<p class="down">08</p>' +
-                                '</div>' +
-                                '<div class="item-content">' +
-                                    '<h3> '+ item.bannerTypeName +'</h3>' +
-                                    '<p>'+ item.bannerName +'</p>' +
-                                '</div>' +
-                            '</a>' +
+                        '<a href="'+ item.bannerLink +'" target="_blank">' +
+                        '<div class="item-date">' +
+                        '<p>11</p>' +
+                        '<span class="xspan"></span>' +
+                        '<p class="down">08</p>' +
+                        '</div>' +
+                        '<div class="item-content">' +
+                        '<h3> '+ item.bannerTypeName +'</h3>' +
+                        '<p>'+ item.bannerName +'</p>' +
+                        '</div>' +
+                        '</a>' +
                         '</li>';
-
-                    $(".item-list").html(str1);
-                })
-            },
-            error : function (d) {
-              console.log(d)
+                });
+                $(".item-list").html(str1);
+            });
+    }
+    function page(total) {
+        $("#pagination3").pagination({
+            currentPage: 1,
+            totalPage: total,
+            isShow: true,
+            homePageText: "首页",
+            endPageText: "尾页",
+            prevPageText: "上一页",
+            nextPageText: "下一页",
+            callback: function(current) {
+                $("#current3").text(current);
+                getList(current)
             }
         });
+    }
+
+    function init() {
+        getList(1);
+        page(15);
+    }
+    init()
 </script>
 
 </body>
