@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+    <form class="form-horizontal" onsubmit="return false" id="form">
+        <fieldset>
+            <div class="container">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade active in" id="demo" aria-labelledby="demo-tab">
+                        <div style="margin-top: 10px;" class="row">
+                            <div class="col-md-12">
+                                <div id="container">
+                                    <a class="btn btn-default btn-sm" id="pickfiles" >
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                        <span>选择文件</span>
+                                    </a>
+                                    <div id="html5_1dpu968ekutc1jeob811anbnpp4_container" class="moxie-shim moxie-shim-html5"><input id="html5_1dpu968ekutc1jeob811anbnpp4" type="file" style="visibility: hidden" accept=""></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <table class="table table-hover text-left" style="display:none">
+                                    <thead>
+                                    <tr>
+                                        <th class="col-md-4">文件名</th>
+                                        <th class="col-md-2">大小</th>
+                                        <th class="col-md-5">详情</th>
+                                        <th class="col-md-1">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="fsUploadProgress">
+                                    </tbody>
+                                </table>
+                                <div style="display:none;margin:5px 0;" id="qiniuSuccess">
+                                    <div class="alert-success">
+                                        文件处理完毕
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<script type="text/javascript" src="../../libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../qiniu_api.js"></script>
+
+
+</body>
+</html>

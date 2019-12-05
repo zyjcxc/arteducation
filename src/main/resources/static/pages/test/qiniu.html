@@ -48,15 +48,32 @@
 			</div>
 		</fieldset>
 	</form>
+	
+	<button type="button" id="open">弹出窗</button>
+	
 </div>
 
 <script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="../../js/qiniu/qiniu_api.js"></script>
+
+<script type="text/javascript" src="../../layui/layui.js"></script>
 <script>
 	function docList() {
 		var list = GetDocList();
 	    console.log(list)
     }
+    var layer;
+    layui.use('layer', function(){
+        layer = layui.layer;
+    });
+    $("#open").click(function () {
+        layer.open({
+            type:2,
+            area:['600px','400px'],
+            maxmim:true,
+            content:'../../js/qiniu/iframe.html'
+        });
+    })
 </script>
 
 

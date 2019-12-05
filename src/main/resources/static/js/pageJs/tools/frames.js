@@ -251,6 +251,56 @@ $$.extend($$, {
         });
         $('.layui-layer-content img').css('width', '100%');
     },
+    /*
+    *
+    * 打开七牛公共iframe (多张)
+    * */
+    showQiniuMul :function () {
+        var deferred = $.Deferred();
+        layer.open({
+            type:2,
+            title:"上传图片",
+            area:['90%',  $(top.document).height()-440+"px"],
+            btn: ['确定', '关闭'],
+            content:'/js/qiniu/iframes/iframe.html',
+            yes: function(index, layero){ //或者使用btn1
+                var content = layero.find("iframe")[0].contentWindow.GetDocList();
+                layer.close(index);
+                deferred.resolve(content);
+            },
+            cancel:function (index) {
+                deferred.reject(index);
+            }
+        })
+        return deferred;
+    },
+    /*
+     *
+     * 打开七牛 single (单张)
+     * */
+    showQiniuSgl :function () {
+        var deferred = $.Deferred();
+        layer.open({
+            type:2,
+            title:"上传图片",
+            area:['90%',  $(top.document).height()-440+"px"],
+            btn: ['确定', '关闭'],
+            content:'/js/qiniu/iframes/single.html',
+            yes: function(index, layero){ //或者使用btn1
+                var content = layero.find("iframe")[0].contentWindow.GetDocList();
+                if(content.length > 1) {
+                    layer.msg('请上传单张图片');
+                }else{
+                    layer.close(index);
+                    deferred.resolve(content);
+                }
+            },
+            cancel:function (index) {
+                deferred.reject(index);
+            }
+        })
+        return deferred;
+    },
     /**
      * 开窗
      */
