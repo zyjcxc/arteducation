@@ -8,6 +8,11 @@
 	var config = {
 		pages:[
 			{
+				code:'books',
+				url:'books.html',
+				title:'使用教材',
+				isParent:false
+			},{
 				code:'teacher',
 				url:'teacher.html',
 				title:'师资团队',
@@ -56,33 +61,26 @@
 	
 	window.localStorage.setItem('config', JSON.stringify(config));
 	var baseURL = '../';
-	
-	$.ajax({
-	  url: 'http://sy.aerozhonghuan.com/test/qdfaw/api/qingqi/operate/role/list',
-	  type: 'get',
-	  data: { token: '32fb874a1b994fdda902171f16ec1329'},
-	  dataType: 'json',
-	  success: function (res) {
-	  	var data = [
-			{
-				url:'books.html?books_1',
-				title:'新闻'
-			},
-			{
-				url:'books.html?books_2',
-				title:'公告'
-			}
-		];
-	    config.pages.push({
-				url:data[0].url ,
-				title:'新闻中心',
-				isParent:true,
-				children:data});
-	    
-	  }
-	})
-	
-    
+
+	/*获取目录*/
+    $.EXTEND.GET('http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',{page_number:1,page_size:10,type:1})
+        .then(function (res) {
+            var data = [
+                {
+                    url:'books.html?books_1',
+                    title:'新闻'
+                },
+                {
+                    url:'books.html?books_2',
+                    title:'公告'
+                }
+            ];
+            config.pages.push({
+                url:data[0].url ,
+                title:'新闻中心',
+                isParent:true,
+                children:data});
+        });
     function initScript(){
     	for (var i=0,pi;pi = config.script[i++];) {
         	document.write('<script type="text/javascript" src="'+ baseURL + pi +'"></script>');

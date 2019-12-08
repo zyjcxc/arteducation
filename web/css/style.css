@@ -243,7 +243,7 @@
 .teacher .province_box ul li{width:50px; line-height:28px; float:left; text-align:center;}
 .teacher .province_list li{width: 60px; cursor: pointer;}
 .teacher .personing_box{ margin-bottom:141px;}
-.teacher .personing{padding: 10px 0; border-bottom:1px solid #dddddd; margin-top:1px;border-bottom:1px solid #dddddd; margin-bottom:1px;}
+.teacher .personing{overflow:hidden;padding: 10px 0; border-bottom:1px solid #dddddd; margin-top:1px;border-bottom:1px solid #dddddd; margin-bottom:1px;}
 .teacher .apply{float:left;width: 80px;height: 55px;margin-right:20px;background-color:#eeeeee;text-align: center;}
 .teacher .person_cor{color:#999999;}
 .teacher .apply h4{line-height:26px;margin-top:15px; font-size:16px;}
@@ -290,11 +290,11 @@
 	-o-transition: 0.2s all;
 	-ms-transition: 0.2s all;
 }
-.credentials .item-list img{width: 100%;}
+.credentials .item-list img{height: 180px;width: auto;max-width: 100%;}
 .credentials .item-list p{margin-top: 10px;width: 100%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size:14px;}
 @media (min-width:767px) {
 	.credentials .item-list li{width: 25.33%;margin: 20px 4%;padding: 20px;}
-	.credentials .item-list img{width: 100%;}
+	.credentials .item-list img{height: 254px;}
 }
 
 /*教材详情*/

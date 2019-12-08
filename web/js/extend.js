@@ -36,7 +36,7 @@
             GET:function (url,params) {
                 var deferred = $.Deferred();
                 var data = params?params:{};
-                data.token = '3954ca29e87346049fbbf351d359dbab';
+                data.token = '401fec7d807d4d519394d121942b0951';
                 var action = /^(http|https):\/\//.test(url) ? url : (baseUrl + url);
                 $.ajax({
                     type : 'GET',

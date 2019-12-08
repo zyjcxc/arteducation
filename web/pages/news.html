@@ -30,10 +30,8 @@
 			 <ul class="item-list">
 
 			 </ul>
-            <div class="box">
-                <div id="pagination3" class="page fl">
-                    <div class="ui-pagination-container"></div>
-                </div>
+            <div id="pagination" class="page fl">
+                <div class="ui-pagination-container"></div>
             </div>
 		</div>
 		
@@ -46,10 +44,10 @@
 
 
 </div>
-
+<!--ajax封装-->
+<script type="text/javascript" src="../js/extend.js"></script>
 <!--通用：包括config，公共头底页面，面包屑及目录 -->
 <script type="text/javascript" src="../js/common.js"></script>
-<script type="text/javascript" src="../js/extend.js"></script>
 <script type="text/javascript">
     var type = window.location.search.split("_")[1];
     function getList(num) {
@@ -77,7 +75,7 @@
             });
     }
     function page(total) {
-        $("#pagination3").pagination({
+        $("#pagination").pagination({
             currentPage: 1,
             totalPage: total,
             isShow: true,
@@ -98,7 +96,12 @@
     }
     init()
 </script>
-
+<!--<li>
+			 		<a href="../pages/detail/book_detail.html">
+			 			<img src="../images/book.jpg" alt="" />
+                    	<p>电子琴（业余）考级教程</p>
+			 		</a>
+                </li>-->
 </body>
 
 </html>

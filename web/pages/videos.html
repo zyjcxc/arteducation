@@ -31,9 +31,11 @@
 		<div class="content">
 			 <h2 class="visible-md-block visible-lg-block visible-sm-block">活动视频</h2>
 			 <ul class="item-list">
-			 	<li><a href="../pages/detail/base_detail.html">全国特长生认证委员会非遗剪纸艺术认证教材编委会成立</a><span>[2019-11-22]</span></li>
 
 			 </ul>
+			<div id="pagination" class="page fl">
+				<div class="ui-pagination-container"></div>
+			</div>
 		</div>
 		
 	</div>
@@ -45,9 +47,48 @@
 
 </div>
 
+<!--ajax封装-->
+<script type="text/javascript" src="../js/extend.js"></script>
 <!--通用：包括config，公共头底页面，面包屑及目录-->
 <script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript">
+    function getList(num) {
+		/*新闻*/
+        $.EXTEND.GET('http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',{page_number:num,page_size:10,type:1})
+            .then(function (res) {
+                var str1 = '';
+                $.each(res.data.list, function(i, item) {
+                    str1 +=
+						'<li>' +
+							'<a href="'+ item.bannerLink +'" target="_blank">'+ item.bannerName +'</a>' +
+							'<span>['+ item.bannerIndex +']</span>' +
+						'</li>';
+                });
+                $(".item-list").html(str1);
+            });
+    }
+    function page(total) {
+        $("#pagination").pagination({
+            currentPage: 1,
+            totalPage: total,
+            isShow: true,
+            homePageText: "首页",
+            endPageText: "尾页",
+            prevPageText: "上一页",
+            nextPageText: "下一页",
+            callback: function(current) {
+                $("#current3").text(current);
+                getList(current)
+            }
+        });
+    }
 
+    function init() {
+        getList(1);
+        page(15);
+    }
+    init()
+</script>
 
 
 </body>

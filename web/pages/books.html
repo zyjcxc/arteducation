@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="全国特长生认证委员会">
     <meta name="keywords" content="全国特长生认证委员会">
-    <script type="text/javascript" src="../utils/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="../css/style.css">
+	<script type="text/javascript" src="../utils/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="../css/style.css">
 
 
 </head>
@@ -18,31 +18,14 @@
    <!------------ 注释：顶部 start ----------->
 	<div id="header-page"></div>
 	<!------------ 注释：顶部 end ----------->
+	<!------------ 注释：面包屑 start ----------->
+	<div id="breadcrumb-page"></div>
 
-    <!------------ 注释：头部大屏滚动 start ----------->
-    <div class="detail-top">
-    	<div class="contain">
-    		<div class="nav-label  visible-md-block visible-lg-block">
-	            <span>使用教材</span>
-	        </div>
-	        <ul class="breadcrumb">
-	            <li>首页</li>
-	            <li>使用教材</li>
-	        </ul>
-    	</div>
-        
-    </div>
-    <!------------ 注释：头部大屏滚动 end ----------->
 
 	<div class="contain books">
-		<div class="sidebar visible-md-block visible-lg-block visible-sm-block">
-		    <ul>
-		    	<li class="active"><a href="#">演奏演唱</a></li>
-		   	</ul>
-		</div>
-		<ul class="nav nav-tabs visible-xs-block">
-		  	<li role="presentation" class="active"><a href="#">演奏演唱</a></li>
-		</ul>
+		<!------------ 注释：插入 menu start ----------->
+		<div id="menu_list"></div>
+		<!------------ 注释：插入 menu end ----------->
 		<div class="content">
 			 <h2 class="visible-md-block visible-lg-block visible-sm-block">使用教材</h2>
 			 <ul class="item-list">
@@ -52,18 +35,20 @@
                     	<p>电子琴（业余）考级教程</p>
 			 		</a>
                 </li>
-              
+
 			 </ul>
 		</div>
-		
+
 	</div>
-  
+
     <!------------ 注释：底部 start ----------->
 	<div id="footer-page"></div>
 	<!------------ 注释：底部 start ----------->
-	
+
 </div>
 
+<!--ajax封装-->
+<script type="text/javascript" src="../js/extend.js"></script>
 <!--通用：包括config，公共头底页面，面包屑及目录-->
 <script type="text/javascript" src="../js/common.js"></script>
 
