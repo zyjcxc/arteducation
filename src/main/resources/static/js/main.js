@@ -9,38 +9,6 @@ function initMenu(){
 	    		 location.href='/login.html';
 	    		 return;
 	    	 }
-	    	 /*todo 假数据*/
-             data.push({
-                 child: [
-                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/test/qiniu.html",id: 71,name: "七牛测试",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
-				 },{child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/textbook/artTextbookType.html",id: 72,name: "教材分类",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
-                     },
-                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/textbook/artTextbook.html",id: 73,name: "教材相关",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
-                     },
-                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/teacher/artTeacher.html",id: 74,name: "老师相关",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
-                     },
-                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/authbook/authbook.html",id: 75,name: "授权书相关",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
-                     },
-                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/news/artNews.html",id: 76,name: "新闻中心",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
-                     },
-                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/aboutUs/aboutUs.html",id: 77,name: "关于我们",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
-                     },
-                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/aboutUs/connectUs.html",id: 78,name: "联系我们",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
-                     },
-                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/home/mainBanner.html",id: 79,name: "banner相关",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
-                     }
-				 ],
-                 createTime: "2019-11-18 09:12:35",
-                 css: "fa-pencil-square-o",
-                 href: "",
-                 id: 7,
-                 name: "官网管理",
-                 parentId: 0,
-                 permission: "sys:user:password",
-                 sort: 22,
-                 type: 1,
-                 updateTime: "2019-11-18 09:12:35",
-			 });
 	    	 var menu = $("#menu");
 	    	 $.each(data, function(i,item){
 	             var a = $("<a href='javascript:;'></a>");

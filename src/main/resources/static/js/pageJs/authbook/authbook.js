@@ -90,7 +90,6 @@ classification_list = (function ($, w) {
                 "columns": [
 				{"data" : "id", "defaultContent" : ""},
 				{"data" : "title", "defaultContent" : ""},
-				{"data" : "content", "defaultContent" : ""},
 				{"data" : "createUserId", "defaultContent" : ""},
 				{"data" : "createtime", "defaultContent" : ""},
 				{"data" : "updatetime", "defaultContent" : ""},
