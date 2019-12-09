@@ -15,7 +15,7 @@ public class ArtHomeSchool extends BaseModel  {
 
     private String name;
 
-    private String picUrl;
+    private String picurl;
 
     /**
 	* 联系人 必填
