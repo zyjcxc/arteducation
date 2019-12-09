@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 
 @Table(name = "art_textbook")
@@ -48,5 +49,8 @@ public class ArtTextbook extends BaseModel {
     private Date createtime;
 
     private Date updatetime;
+
+    @Transient
+    private String textBookName;
 
 }

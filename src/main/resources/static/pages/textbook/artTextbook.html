@@ -20,8 +20,18 @@
 									<div class="form-group">
 										id：
 										<input id="id" type="text" class="form-control" placeholder="id">
-										教材分类名称：
-										<input id="name" type="text" class="form-control" placeholder="教材分类名称">
+										教材名称：
+										<input id="title" type="text" class="form-control" placeholder="教材名称">
+										版本：
+										<input id="version" type="text" class="form-control" placeholder="版本">
+										作者：
+										<input id="author" type="text" class="form-control" placeholder="作者">
+										教材分类 :
+										<div class="layui-input-inline" style="width: 100px">
+											<select class="form-control input-sm" name="textbookTypeId" id="textbookTypeId">
+												<option value="">全部</option>
+											</select>
+										</div>
 									</div>
 								</form>
 							</td>
@@ -49,7 +59,7 @@
 							<th>教材版本</th>
 							<th>作者</th>
 							<th>简介</th>
-							<th>教材分类id</th>
+							<th>教材分类</th>
 							<th>创建用户</th>
 							<th>创建时间</th>
 							<th>更新时间</th>

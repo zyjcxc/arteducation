@@ -103,10 +103,6 @@ public class ArtAuthbookServiceImpl implements IArtAuthbookService {
         }
 
         criteria.andEqualTo("state", 1);
-        /*if (params.containsKey("name")) {
-            criteria.andEqualTo("name", params.get("name"));
-        }*/
-
         return example;
     }
 

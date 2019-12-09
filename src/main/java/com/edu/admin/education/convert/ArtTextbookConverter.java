@@ -54,6 +54,8 @@ public class ArtTextbookConverter {
         artTextbookDto.setCreatetime(artTextbook.getCreatetime());
         artTextbookDto.setUpdatetime(artTextbook.getUpdatetime());
         artTextbookDto.setId(artTextbook.getId());
+        artTextbookDto.setTextBookName(artTextbook.getTextBookName());
+
         return artTextbookDto;
     }
 

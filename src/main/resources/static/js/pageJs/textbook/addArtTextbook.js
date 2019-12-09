@@ -64,6 +64,8 @@ classification_add = (function ($, w) {
      */
     function createPageDOM() {
         var _self = this;
+        initClassInfo.call(_self);
+
         if (_self.editFlag) {
             initPageData.call(_self);
         }
@@ -168,11 +170,37 @@ classification_add = (function ($, w) {
                 _self.getPageDom().version.val(data.version);
                 _self.getPageDom().author.val(data.author);
                 _self.getPageDom().content.val(data.content);
-                _self.getPageDom().textbookTypeId.val(data.textbookTypeId);
+                _self.get$Scope().textbookTypeId = data.textbookTypeId;
             }
         });
     }
 
+    /**
+     * 初始化分类信息
+     */
+    function initClassInfo() {
+        var _self = this;
+        $.ajax({
+            type : 'get',
+            url : WEB_CONFIG._action.ART_TEXT_BOOK_TYPE_ALL_ACTION,
+            contentType: "application/json; charset=utf-8",
+            success : function(data) {
+                var $selectDom = _self.getPageDom().textbookTypeId;
+                var selectId = _self.get$Scope().textbookTypeId;
+                if (data && data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var $item = '';
+                        if (selectId && selectId === data[i].id) {
+                            $item = $("<option value='" + data[i].id + "' selected>" + data[i].name + "</option>");
+                        } else {
+                            $item = $("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
+                        }
+                        $selectDom.append($item);
+                    }
+                }
+            }
+        });
+    }
 
 
 

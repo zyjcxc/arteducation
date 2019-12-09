@@ -4,10 +4,12 @@ import com.edu.admin.education.command.ArtTextbookSaveCommand;
 import com.edu.admin.education.command.ArtTextbookUpdateCommand;
 import com.edu.admin.education.convert.ArtTextbookConverter;
 import com.edu.admin.education.dao.ArtTextbookDao;
+import com.edu.admin.education.dao.ArtTextbookTypeDao;
 import com.edu.admin.education.dto.ArtTextbookDto;
 import com.edu.admin.education.enums.ResultEnum;
 import com.edu.admin.education.exception.HumanResourceException;
 import com.edu.admin.education.model.ArtTextbook;
+import com.edu.admin.education.model.ArtTextbookType;
 import com.edu.admin.education.service.IArtTextbookService;
 import com.edu.admin.server.utils.BeanUtil;
 import com.edu.admin.server.utils.UserUtil;
@@ -26,6 +28,9 @@ public class ArtTextbookServiceImpl implements IArtTextbookService {
 
     @Autowired
     private ArtTextbookDao artTextbookDao;
+
+    @Autowired
+    private ArtTextbookTypeDao artTextbookTypeDao;
 
     @Override
     public ArtTextbookDto getById(Long id) {
@@ -60,6 +65,13 @@ public class ArtTextbookServiceImpl implements IArtTextbookService {
         Example example = getQueryExample(params);
 
         List<ArtTextbook> list = artTextbookDao.selectByExample(example);
+        list.forEach(d -> {
+            ArtTextbookType artTextbookType = artTextbookTypeDao.selectByPrimaryKey(d.getTextbookTypeId());
+            if (artTextbookType != null) {
+                d.setTextBookName(artTextbookType.getName());
+            }
+        });
+
 
         return ArtTextbookConverter.convertToListArtTextbookDto(list);
     }
@@ -103,9 +115,18 @@ public class ArtTextbookServiceImpl implements IArtTextbookService {
         }
 
         criteria.andEqualTo("state", 1);
-        /*if (params.containsKey("name")) {
-            criteria.andEqualTo("name", params.get("name"));
-        }*/
+        if (params.containsKey("title")) {
+            criteria.andEqualTo("title", params.get("title"));
+        }
+        if (params.containsKey("author")) {
+            criteria.andEqualTo("author", params.get("author"));
+        }
+        if (params.containsKey("version")) {
+            criteria.andEqualTo("version", params.get("version"));
+        }
+        if (params.containsKey("textbookTypeId")) {
+            criteria.andEqualTo("textbookTypeId", params.get("textbookTypeId"));
+        }
 
         return example;
     }

@@ -106,6 +106,7 @@ WEB_CONFIG = {
         ART_TEXT_BOOK_ACTION : "/artTextbook",
         //教材分类
         ART_TEXT_BOOK_TYPE_ACTION : "/artTextbookType",
+        ART_TEXT_BOOK_TYPE_ALL_ACTION : "/artTextbookType/findAll",
         //老师相关
         ART_TEACHER_ACTION : "/artTeacher",
         //授权书相关接口

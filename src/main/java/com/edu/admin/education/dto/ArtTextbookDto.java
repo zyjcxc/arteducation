@@ -24,5 +24,8 @@ public class ArtTextbookDto extends ArtTextbookCommand {
     @ApiModelProperty(value="主键id", name="id")
     private Long id;
 
+    private String textBookName;
+
+
 
 }

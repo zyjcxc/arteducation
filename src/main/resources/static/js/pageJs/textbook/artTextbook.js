@@ -18,7 +18,10 @@ classification_list = (function ($, w) {
             },
             $dom: {
                 id : $("#id"),
-                name : $("#name")
+                title : $("#title"),
+                author : $("#author"),
+                version : $("#version"),
+                textbookTypeId : $("#textbookTypeId")
             },
             $btn: {
                 search: $("#searchBt"),
@@ -64,6 +67,7 @@ classification_list = (function ($, w) {
      */
     function createPageDOM() {
         var _self = this;
+        initClassInfo.call(_self);
         addEventListeners.call(_self);
     }
 
@@ -83,7 +87,10 @@ classification_list = (function ($, w) {
                     "type": "get",
                     "data": function (d) {
                         d.id = page.$dom.id.val();
-                        d.name = page.$dom.name.val();
+                        d.title = page.$dom.title.val();
+                        d.author = page.$dom.author.val();
+                        d.version = page.$dom.version.val();
+                        d.textbookTypeId  = page.$dom.textbookTypeId.val();
                     }
                 },
                 "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-6 hidden-xs'i><'col-sm-6 col-xs-12' p v>>",
@@ -93,27 +100,27 @@ classification_list = (function ($, w) {
 				{"data" : "version", "defaultContent" : ""},
 				{"data" : "author", "defaultContent" : ""},
 				{"data" : "content", "defaultContent" : ""},
-				{"data" : "textbookTypeId", "defaultContent" : ""},
+				{"data" : "textBookName", "defaultContent" : "", "orderable" : false},
 				{"data" : "createUserId", "defaultContent" : ""},
 				{"data" : "createtime", "defaultContent" : ""},
 				{"data" : "updatetime", "defaultContent" : ""},
-                    {
-                        "data": "",
-                        "defaultContent": "",
-                        "render": function (data, type, row) {
-                            var id = row['id'];
-                            // 编辑地址
-                            var edit = buttonEdit(WEB_CONFIG._page.ART_TEXT_BOOK_PAGE_WITH_PARAMS({
-                                id : id,
-                                returnUrl :  _self.get$Scope().cur_page
-                            }), "", pers);
+                {
+                    "data": "",
+                    "defaultContent": "",
+                    "render": function (data, type, row) {
+                        var id = row['id'];
+                        // 编辑地址
+                        var edit = buttonEdit(WEB_CONFIG._page.ART_TEXT_BOOK_PAGE_WITH_PARAMS({
+                            id : id,
+                            returnUrl :  _self.get$Scope().cur_page
+                        }), "", pers);
 
-                            var del_fun = "onclick='updateState(\"" + id + "\", \"2\", \"删除\")'";
-                            var del_op = "<button title='删除' class='layui-btn layui-btn-mini' " + del_fun +">删除</button>";
+                        var del_fun = "onclick='updateState(\"" + id + "\", \"2\", \"删除\")'";
+                        var del_op = "<button title='删除' class='layui-btn layui-btn-mini' " + del_fun +">删除</button>";
 
-                            return edit + del_op;
-                        }, "orderable" : false
-                    }
+                        return edit + del_op;
+                    }, "orderable" : false
+                }
 
                 ],
                 "order": [[0, "asc"]]
@@ -141,6 +148,24 @@ classification_list = (function ($, w) {
             w.location.reload();
         });
 
+    }
+
+    function initClassInfo() {
+        var _self = this;
+        $.ajax({
+            type : 'get',
+            url : WEB_CONFIG._action.ART_TEXT_BOOK_TYPE_ALL_ACTION,
+            contentType: "application/json; charset=utf-8",
+            success : function(data) {
+                var $selectDom = _self.getPageDom().textbookTypeId;
+                if (data && data.length > 0) {
+                    for (var i = 0; i < data.length; i++) {
+                        var $item = $("<option value='" + data[i].id + "'>" + data[i].name + "</option>");
+                        $selectDom.append($item);
+                    }
+                }
+            }
+        });
     }
 
     return new _$();
