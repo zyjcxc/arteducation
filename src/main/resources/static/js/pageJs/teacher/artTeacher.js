@@ -18,7 +18,8 @@ classification_list = (function ($, w) {
             },
             $dom: {
                 id : $("#id"),
-                name : $("#name")
+                name : $("#name"),
+                sex : $("#sex")
             },
             $btn: {
                 search: $("#searchBt"),
@@ -84,6 +85,7 @@ classification_list = (function ($, w) {
                     "data": function (d) {
                         d.id = page.$dom.id.val();
                         d.name = page.$dom.name.val();
+                        d.sex = page.$dom.sex.val();
                     }
                 },
                 "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-6 hidden-xs'i><'col-sm-6 col-xs-12' p v>>",
@@ -91,7 +93,11 @@ classification_list = (function ($, w) {
 				{"data" : "id", "defaultContent" : ""},
 				{"data" : "name", "defaultContent" : ""},
 				{"data" : "namePy", "defaultContent" : ""},
-				{"data" : "sex", "defaultContent" : ""},
+                {"data" : "sex", "defaultContent" : "",
+                    "render": function (data) {
+                        return $$.SexChinese(data);
+                    }
+                },
 				{"data" : "position", "defaultContent" : ""},
 				{"data" : "photoUrl", "defaultContent" : ""},
 				{"data" : "content", "defaultContent" : ""},

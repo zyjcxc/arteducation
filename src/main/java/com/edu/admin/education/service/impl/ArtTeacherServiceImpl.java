@@ -101,9 +101,12 @@ public class ArtTeacherServiceImpl implements IArtTeacherService {
         }
 
         criteria.andEqualTo("state", 1);
-        /*if (params.containsKey("name")) {
+        if (params.containsKey("name")) {
             criteria.andEqualTo("name", params.get("name"));
-        }*/
+        }
+        if (params.containsKey("sex")) {
+            criteria.andEqualTo("sex", params.get("sex"));
+        }
 
         return example;
     }
