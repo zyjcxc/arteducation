@@ -18,7 +18,7 @@ classification_list = (function ($, w) {
             },
             $dom: {
                 id : $("#id"),
-                title : $("#title")
+                name : $("#name")
             },
             $btn: {
                 search: $("#searchBt"),
@@ -79,7 +79,7 @@ classification_list = (function ($, w) {
                     "url": "/js/plugin/datatables/Chinese.lang"
                 },
                 "ajax": {
-                    "url": WEB_CONFIG._action.ART_NEWS_ACTION,
+                    "url": WEB_CONFIG._action.ART_GUEST_INFO,
                     "type": "get",
                     "data": function (d) {
                         d.id = page.$dom.id.val();
@@ -89,12 +89,11 @@ classification_list = (function ($, w) {
                 "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-6 hidden-xs'i><'col-sm-6 col-xs-12' p v>>",
                 "columns": [
 				{"data" : "id", "defaultContent" : ""},
-				{"data" : "type", "defaultContent" : ""},
-				{"data" : "title", "defaultContent" : ""},
-				{"data" : "author", "defaultContent" : ""},
-				{"data" : "content", "defaultContent" : ""},
-				{"data" : "source", "defaultContent" : ""},
-				{"data" : "createUserId", "defaultContent" : ""},
+				{"data" : "name", "defaultContent" : ""},
+				{"data" : "phone", "defaultContent" : ""},
+				{"data" : "email", "defaultContent" : ""},
+				{"data" : "address", "defaultContent" : ""},
+				{"data" : "message", "defaultContent" : ""},
 				{"data" : "createtime", "defaultContent" : ""},
 				{"data" : "updatetime", "defaultContent" : ""},
                     {
@@ -157,7 +156,7 @@ function updateState(id, state, operator) {
     }, function() {
         $.ajax({
             type : 'DELETE',
-            url : WEB_CONFIG._action.ART_NEWS_ACTION + '/' + id ,
+            url : WEB_CONFIG._action.ART_GUEST_INFO + '/' + id ,
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(obj),
             success : function() {
