@@ -83,7 +83,7 @@ classification_list = (function ($, w) {
                     "type": "get",
                     "data": function (d) {
                         d.id = page.$dom.id.val();
-                        d.title = page.$dom.title.val();
+                        d.name = page.$dom.name.val();
                     }
                 },
                 "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-6 hidden-xs'i><'col-sm-6 col-xs-12' p v>>",
