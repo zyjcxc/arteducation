@@ -200,10 +200,6 @@ classification_add = (function ($, w) {
         $("#banner").show().attr('src',data.url);
         $("#photoUrl").val(data.url);
     }
-    $("#photoUrl").keyup(function () {
-        var that = this;
-        $("#banner").attr('src',$(that).val());
-    })
 
 
     return new _$();

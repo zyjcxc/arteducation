@@ -95,14 +95,25 @@ classification_add = (function ($, w) {
         });
 
     }
-
+    function hasContent() {
+        var arr = [];
+        arr.push(UM.getEditor('addAuthbookEditor').hasContents());
+        UM.getEditor('addAuthbookEditor').focus();
+        return (arr.join("\n"));
+    }
+    function setContent(isAppendTo) {
+        UM.getEditor('addAuthbookEditor').setContent(isAppendTo);
+    }
     function save() {
         var _self = this;
         var b = checkFormBefore.call(_self);
         if (!b) {
             return;
         }
-
+        if(hasContent() === 'false'){
+            layer.msg("请填写内容！", {shift: -1, time: 3000});
+            return;
+        }
         $.ajax({
             type : 'post',
             url : WEB_CONFIG._action.ART_AUTHBOOK_ACTION,
@@ -162,11 +173,10 @@ classification_add = (function ($, w) {
             success : function(data) {
                 _self.getPageDom().id.val(data.id);
                 _self.getPageDom().title.val(data.title);
-                _self.getPageDom().content.val(data.content)
+                setContent(data.content);
             }
         });
     }
-
 
 
 
