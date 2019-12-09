@@ -122,7 +122,7 @@ classification_add = (function ($, w) {
 
         $.ajax({
             type : 'post',
-            url : WEB_CONFIG._action.ART_NEWS_ACTION,
+            url : WEB_CONFIG._action.ART_GUEST_INFO,
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(params),
             success : function(data) {
@@ -150,7 +150,7 @@ classification_add = (function ($, w) {
 
         $.ajax({
             type : 'put',
-            url : WEB_CONFIG._action.ART_NEWS_ACTION,
+            url : WEB_CONFIG._action.ART_GUEST_INFO,
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(params),
             async: false,
@@ -180,7 +180,7 @@ classification_add = (function ($, w) {
         var _self = this;
         $.ajax({
             type : 'get',
-            url : WEB_CONFIG._action.ART_NEWS_ACTION + '/' + _self.get$Scope().id,
+            url : WEB_CONFIG._action.ART_GUEST_INFO + '/' + _self.get$Scope().id,
             async : false,
             success : function(data) {
                 _self.getPageDom().id.val(data.id);

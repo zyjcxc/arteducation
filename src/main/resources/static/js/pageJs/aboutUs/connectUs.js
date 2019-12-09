@@ -22,14 +22,12 @@ classification_list = (function ($, w) {
             },
             $btn: {
                 search: $("#searchBt"),
-                rest: $("#restBt"),
-                add: $("#addBtn")
+                rest: $("#restBt")
             }
         };
 
         this.dataTable = initDateTable.call(this);
 
-        createPageDOM.call(this);
 
     }
 
@@ -59,13 +57,6 @@ classification_list = (function ($, w) {
 
     };
 
-    /**
-     * Dom相关初始化
-     */
-    function createPageDOM() {
-        var _self = this;
-        addEventListeners.call(_self);
-    }
 
     function initDateTable() {
         var _self = this;
@@ -101,45 +92,17 @@ classification_list = (function ($, w) {
                         "defaultContent": "",
                         "render": function (data, type, row) {
                             var id = row['id'];
-                            // 编辑地址
-                            var edit = buttonEdit(WEB_CONFIG._page.ABOUT_US_UPDATE_PAGE_WITH_PARAMS({
-                                id : id,
-                                returnUrl :  _self.get$Scope().cur_page
-                            }), "", pers);
 
                             var del_fun = "onclick='updateState(\"" + id + "\", \"2\", \"删除\")'";
                             var del_op = "<button title='删除' class='layui-btn layui-btn-mini' " + del_fun +">删除</button>";
 
-                            return edit + del_op;
+                            return del_op;
                         }, "orderable" : false
                     }
 
                 ],
                 "order": [[0, "asc"]]
             });
-    }
-
-    /**
-     * 添加事件
-     */
-    function addEventListeners() {
-        var _self = this;
-        $$.onJq(_self.getPageBtn().add, "click", function () {
-            $$.goTo.call(_self, {
-                url : WEB_CONFIG._page.ABOUT_US_UPDATE_PAGE_WITH_PARAMS({
-                        returnUrl :  _self.get$Scope().cur_page
-                })
-            });
-        });
-
-        $$.onJq(_self.getPageBtn().search, "click", function () {
-            _self.reloadDataTable();
-        });
-
-        $$.onJq(_self.getPageBtn().rest, "click", function () {
-            w.location.reload();
-        });
-
     }
 
     return new _$();

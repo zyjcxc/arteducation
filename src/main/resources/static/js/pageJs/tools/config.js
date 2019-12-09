@@ -115,6 +115,8 @@ WEB_CONFIG = {
         ART_NEWS_ACTION : "/artNews",
         //首页banner
         MAIN_BANNER_ACTION : "/artBannerInfo",
+        //联系我们
+        ART_GUEST_INFO : "/artGuestInfo",
     },
     _page : {
         // 特殊长生列表
