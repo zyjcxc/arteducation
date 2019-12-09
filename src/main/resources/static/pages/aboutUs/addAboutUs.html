@@ -12,35 +12,15 @@
             <div class='form-group'>
                 <label class='col-md-2 control-label'>类型</label>
                 <div class='col-md-10'>
-                    <input class='form-control' placeholder='类型' type='text' name='type' id='type' data-bv-notempty="true" data-bv-notempty-message="类型不能为空">
-                </div>
-            </div>
-            <div class='form-group'>
-                <label class='col-md-2 control-label'>标题</label>
-                <div class='col-md-10'>
-                    <input class='form-control' placeholder='标题' type='text' name='title' id='title' data-bv-notempty="true" data-bv-notempty-message="标题不能为空">
-                </div>
-            </div>
-            <div class='form-group'>
-                <label class='col-md-2 control-label'>作者</label>
-                <div class='col-md-10'>
-                    <input class='form-control' placeholder='作者' type='text' name='author' id='author' data-bv-notempty="true" data-bv-notempty-message="作者不能为空">
+                    <input class='form-control' placeholder='类型' type='text' name='title' id='title' data-bv-notempty="true" data-bv-notempty-message="类型不能为空">
                 </div>
             </div>
             <div class='form-group'>
                 <label class='col-md-2 control-label'>内容</label>
                 <div class='col-md-10'>
-                    <div  id="addAboutUsEditor" style="width:100%;height:240px;"></div>
+                    <div  id="addAboutUsEditor" name="content" style="width:100%;height:240px;"></div>
                 </div>
             </div>
-
-            <div class='form-group'>
-                <label class='col-md-2 control-label'>来源</label>
-                <div class='col-md-10'>
-                    <input class='form-control' placeholder='来源' type='text' name='source' id='source' data-bv-notempty="true" data-bv-notempty-message="来源不能为空">
-                </div>
-            </div>
-
 
 
             <div class="form-actions">
@@ -76,9 +56,7 @@
 <script type="text/javascript" src="../../js/umeditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
     //实例化编辑器
-    var um = UM.getEditor('addAboutUsEditor', {
-        textarea: 'content'
-    });
+    var um = UM.getEditor('addAboutUsEditor');
 </script>
 <!-- 本页面js, 其他页面忽引用此js -->
 <script type="text/javascript" charset="utf-8" src="../../js/pageJs/aboutUs/addAboutUs.js"></script>

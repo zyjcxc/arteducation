@@ -9,7 +9,7 @@ classification_add = (function ($, w) {
     var PAGE_FLAG = "classification_add";
     var $PAGE_FORM = $("#form");
 
-    var id = getUrlParamDecode("id");
+    var id = 216;
 
     function _$() {
         // 是否为修改
@@ -21,15 +21,11 @@ classification_add = (function ($, w) {
             },
             $dom: {
 					id : $("#id"),
-                type : $("#type"),
-                title : $("#title"),
-                author : $("#author"),
-                source : $("#source")
+					title : $("#title")
             },
             $btn: {
                 back: $("#backBtn"),
-                save: $("#saveBtn"),
-                up1: $("#pickfiles2"),
+                save: $("#saveBtn")
             }
         };
 
@@ -86,10 +82,6 @@ classification_add = (function ($, w) {
             });
         }
 
-        $$.onJq(_self.getPageBtn().up1, "click", function () {
-            upload.call(_self, 'thumbnail', uploader1);
-        });
-
         $$.onJq(_self.getPageBtn().back, "click", function () {
             $$.goTo({
                 url: getUrlParamDecode("returnUrl", true)
@@ -122,7 +114,7 @@ classification_add = (function ($, w) {
 
         $.ajax({
             type : 'post',
-            url : WEB_CONFIG._action.ART_GUEST_INFO,
+            url : WEB_CONFIG._action.ART_AUTHBOOK_ACTION,
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(params),
             success : function(data) {
@@ -150,7 +142,7 @@ classification_add = (function ($, w) {
 
         $.ajax({
             type : 'put',
-            url : WEB_CONFIG._action.ART_GUEST_INFO,
+            url : WEB_CONFIG._action.ART_AUTHBOOK_ACTION,
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(params),
             async: false,
@@ -180,14 +172,11 @@ classification_add = (function ($, w) {
         var _self = this;
         $.ajax({
             type : 'get',
-            url : WEB_CONFIG._action.ART_GUEST_INFO + '/' + _self.get$Scope().id,
+            url : WEB_CONFIG._action.ART_AUTHBOOK_ACTION + '/' + _self.get$Scope().id,
             async : false,
             success : function(data) {
                 _self.getPageDom().id.val(data.id);
-                _self.getPageDom().type.val(data.type);
                 _self.getPageDom().title.val(data.title);
-                _self.getPageDom().author.val(data.author);
-                _self.getPageDom().source.val(data.source);
                 setContent(data.content);
 
             }
