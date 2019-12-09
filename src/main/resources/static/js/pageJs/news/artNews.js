@@ -18,7 +18,8 @@ classification_list = (function ($, w) {
             },
             $dom: {
                 id : $("#id"),
-                title : $("#title")
+                title : $("#title"),
+                type : $("#type")
             },
             $btn: {
                 search: $("#searchBt"),
@@ -84,12 +85,17 @@ classification_list = (function ($, w) {
                     "data": function (d) {
                         d.id = page.$dom.id.val();
                         d.title = page.$dom.title.val();
+                        d.type = page.$dom.type.val();
                     }
                 },
                 "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-6 hidden-xs'i><'col-sm-6 col-xs-12' p v>>",
                 "columns": [
 				{"data" : "id", "defaultContent" : ""},
-				{"data" : "type", "defaultContent" : ""},
+                {"data" : "type", "defaultContent" : "",
+                    "render": function (data) {
+                        return $$.NewsTypeChinese(data);
+                    }
+                },
 				{"data" : "title", "defaultContent" : ""},
 				{"data" : "author", "defaultContent" : ""},
 				{"data" : "content", "defaultContent" : ""},

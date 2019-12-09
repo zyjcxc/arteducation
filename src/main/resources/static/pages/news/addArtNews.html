@@ -9,12 +9,16 @@
     <form class="form-horizontal" onsubmit="return false" id="form">
         <input type='hidden' id='id' name='id' />
         <fieldset>
-            <div class='form-group'>
-                <label class='col-md-2 control-label'>类型</label>
-                <div class='col-md-10'>
-                    <input class='form-control' placeholder='类型' type='text' name='type' id='type' data-bv-notempty="true" data-bv-notempty-message="类型不能为空">
+            <div class="form-group">
+                <label class="col-md-2 control-label">类型</label>
+                <div class="col-md-10" style="width: 100px">
+                    <select class="form-control input-sm" name="type" id="type">
+                        <option value="1">新闻</option>
+                        <option value="2">公告</option>
+                    </select>
                 </div>
             </div>
+
             <div class='form-group'>
                 <label class='col-md-2 control-label'>标题</label>
                 <div class='col-md-10'>

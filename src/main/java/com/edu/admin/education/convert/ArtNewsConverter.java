@@ -56,7 +56,22 @@ public class ArtNewsConverter {
         artNewsDto.setUpdatetime(artNews.getUpdatetime());
         artNewsDto.setId(artNews.getId());
 
+        artNewsDto.setTypeName(getTypeName(artNews.getType()));
+
+
         return artNewsDto;
+    }
+
+    private static String getTypeName(Integer type) {
+        switch (type) {
+            case 1:
+                return "新闻";
+            case 2:
+                return "公告";
+            default:
+                break;
+        }
+        return null;
     }
 
     /**

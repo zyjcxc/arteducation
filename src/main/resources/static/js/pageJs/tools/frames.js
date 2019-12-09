@@ -526,5 +526,18 @@ $$.extend($$, {
             return '个人';
         }
         return '未知';
-    }
+    },
+
+    /**
+     * live_public_account_info == sex字段
+     * @returns {string}
+     */
+    NewsTypeChinese : function(data) {
+        if (data === '1' || data === 1) {
+            return '新闻';
+        } else if (data === '2' || data === 2) {
+            return '公告';
+        }
+        return '未知';
+    },
 });

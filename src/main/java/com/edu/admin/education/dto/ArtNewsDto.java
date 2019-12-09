@@ -24,5 +24,8 @@ public class ArtNewsDto extends ArtNewsCommand {
     @ApiModelProperty(value="主键id", name="id")
     private Long id;
 
+    private String typeName;
+
+
 
 }
