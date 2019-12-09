@@ -421,9 +421,9 @@ $$.extend($$, {
      */
     YesOrNo : function(data) {
         // 0 否  1 是
-        if (data === '0') {
+        if (parseInt(data) === 0) {
             return '否';
-        } else if (data === '1') {
+        } else if (parseInt(data) === 1) {
             return '是';
         }
         return '否';

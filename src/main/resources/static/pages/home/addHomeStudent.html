@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../js/umeditor/css/umeditor.css">
+    <style>
+        .thumbnail{text-align: center}
+        .thumbnail img{height:120px;width: auto}
+    </style>
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <form class="form-horizontal" onsubmit="return false" id="form">
+        <input type='hidden' id='id' name='id' />
+        <fieldset>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>学生名</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='学生名' type='text' name='name' id='name' data-bv-notempty="true" data-bv-notempty-message="学生名不能为空">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">首页展示</label>
+                <div class="col-md-10" style="width: 100px">
+                    <select class="form-control input-sm" name="recommend" id="recommend">
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'><button class="btn btn-primary" type="button" id="open">上传图片</button></label>
+                <div class='col-md-5'>
+                    <img style="width: auto;max-height: 240px;display: none;" class="col-xs-10" src="" id="picture">
+                </div>
+                <input class='form-control' placeholder='图片连接' type='hidden' name='picurl' id='picurl' data-bv-notempty="true" data-bv-notempty-message="图片不能为空">
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>顺序</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='顺序' type='text' name='sort' id='sort' data-bv-notempty="true" data-bv-notempty-message="顺序不能为空">
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>简介</label>
+                <div class='col-md-10'>
+                    <div id="addHomeStudentEditor"  name="content" style="width:100%;height:240px;"></div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <div class="row" align="center">
+                    <div class="col-md-12">
+                        <button id="backBtn" class="btn btn-primary">返回</button>
+                        <button id="saveBtn" class="btn btn-primary">
+                            <i class="fa fa-save"></i> 保存
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+        </fieldset>
+    </form>
+</div>
+<input type='hidden' id='token' />
+<input type='hidden' id='type' />
+</body>
+</html>
+
+<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../js/jq.js"></script>
+<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/tools/config.js"></script>
+
+<!-- 框架-->
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/tools/frames.js"></script>
+
+<!-- 富文本编辑器-->
+<script type="text/javascript" charset="utf-8" src="../../js/umeditor/script/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/umeditor/script/editor_api.js"></script>
+<script type="text/javascript" src="../../js/umeditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    //实例化编辑器
+    var um = UM.getEditor('addHomeStudentEditor');
+</script>
+
+<!-- 本页面js, 其他页面忽引用此js -->
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/home/addHomeStudent.js"></script>
+

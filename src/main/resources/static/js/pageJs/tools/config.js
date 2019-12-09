@@ -117,6 +117,8 @@ WEB_CONFIG = {
         MAIN_BANNER_ACTION : "/artBannerInfo",
         //联系我们
         ART_GUEST_INFO : "/artGuestInfo",
+        //学生风采
+        ART_HOME_STUDENT : "/artHomeStudent",
     },
     _page : {
         // 特殊长生列表
@@ -261,6 +263,11 @@ WEB_CONFIG = {
         MAIN_BANNER_UPDATE_PAGE : "/pages/home/addMainBanner.html",
         MAIN_BANNER_PAGE_WITH_PARAMS : function(keyValues) {
             return $$.makeWithUrl(WEB_CONFIG._page.MAIN_BANNER_UPDATE_PAGE, keyValues);
+        },
+        // 学生风采
+        ART_HOME_STUDENT_PAGE : "/pages/home/addHomeStudent.html",
+        ART_HOME_STUDENT_PAGE_WITH_PARAMS : function(keyValues) {
+            return $$.makeWithUrl(WEB_CONFIG._page.ART_HOME_STUDENT_PAGE, keyValues);
         },
     },
     _qnConfig : {
