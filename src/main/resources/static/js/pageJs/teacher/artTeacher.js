@@ -100,7 +100,6 @@ classification_list = (function ($, w) {
                 },
 				{"data" : "position", "defaultContent" : ""},
 				{"data" : "photoUrl", "defaultContent" : ""},
-				{"data" : "content", "defaultContent" : ""},
 				{"data" : "createtime", "defaultContent" : ""},
 				{"data" : "updatetime", "defaultContent" : ""},
                     {
