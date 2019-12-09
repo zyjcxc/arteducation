@@ -101,6 +101,15 @@ classification_add = (function ($, w) {
         });
 
     }
+    function hasContent() {
+        var arr = [];
+        arr.push(UM.getEditor('addTeacherEditor').hasContents());
+        UM.getEditor('addTeacherEditor').focus();
+        return (arr.join("\n"));
+    }
+    function setContent(isAppendTo) {
+        UM.getEditor('addTeacherEditor').setContent(isAppendTo);
+    }
 
     function save() {
         var _self = this;
@@ -108,12 +117,17 @@ classification_add = (function ($, w) {
         if (!b) {
             return;
         }
+        if(hasContent() === 'false'){
+            layer.msg("请填写内容！", {shift: -1, time: 3000});
+            return;
+        }
+        var params = $PAGE_FORM.serializeObject();
 
         $.ajax({
             type : 'post',
             url : WEB_CONFIG._action.ART_TEACHER_ACTION,
             contentType: "application/json; charset=utf-8",
-            data : JSON.stringify($PAGE_FORM.serializeObject()),
+            data : JSON.stringify(params),
             success : function(data) {
                 layer.msg("添加成功", {shift: -1, time: 1000}, function() {
                     $$.goTo({
@@ -172,12 +186,24 @@ classification_add = (function ($, w) {
                 _self.getPageDom().sex.val(data.sex);
                 _self.getPageDom().position.val(data.position);
                 _self.getPageDom().photoUrl.val(data.photoUrl);
-                _self.getPageDom().content.val(data.content);
+                setContent(data.content);
             }
         });
     }
 
-
+    $("#open").click(function () {
+        $$.showQiniuSgl().then(function (data) {
+            buildImgs(data[0]);
+        })
+    });
+    function buildImgs(data) {
+        $("#banner").show().attr('src',data.url);
+        $("#photoUrl").val(data.url);
+    }
+    $("#photoUrl").keyup(function () {
+        var that = this;
+        $("#banner").attr('src',$(that).val());
+    })
 
 
     return new _$();
