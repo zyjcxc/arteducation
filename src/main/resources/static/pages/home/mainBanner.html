@@ -20,8 +20,25 @@
 									<div class="form-group">
 										id：
 										<input id="id" type="text" class="form-control" placeholder="id">
-										教材分类名称：
-										<input id="name" type="text" class="form-control" placeholder="教材分类名称">
+										<!--教材分类名称：
+										<input id="name" type="text" class="form-control" placeholder="教材分类名称">-->
+										位置 :
+										<div class="layui-input-inline" style="width: 100px">
+											<select class="form-control input-sm" name="site" id="site">
+												<option value="">全部</option>
+												<option value="1">首页顶部</option>
+												<option value="2">其他页面顶部</option>
+												<option value="3">首页底部</option>
+											</select>
+										</div>
+										是否展示 :
+										<div class="layui-input-inline" style="width: 100px">
+											<select class="form-control input-sm" name="recommend" id="recommend">
+												<option value="">全部</option>
+												<option value="0">否</option>
+												<option value="1">是</option>
+											</select>
+										</div>
 									</div>
 								</form>
 							</td>

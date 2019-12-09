@@ -18,7 +18,10 @@ classification_list = (function ($, w) {
             },
             $dom: {
                 id : $("#id"),
-                name : $("#name")
+                site : $("#site"),
+                recommend : $("#recommend")
+
+
             },
             $btn: {
                 search: $("#searchBt"),
@@ -83,18 +86,27 @@ classification_list = (function ($, w) {
                     "type": "get",
                     "data": function (d) {
                         d.id = page.$dom.id.val();
-                        d.name = page.$dom.name.val();
+                        d.site = page.$dom.site.val();
+                        d.recommend = page.$dom.recommend.val();
                     }
                 },
                 "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-6 hidden-xs'i><'col-sm-6 col-xs-12' p v>>",
                 "columns": [
 				{"data" : "id", "defaultContent" : ""},
-				{"data" : "site", "defaultContent" : ""},
+                {"data" : "site", "defaultContent" : "",
+                    "render": function (data) {
+                        return $$.SiteChinese(data);
+                    }
+                },
 				{"data" : "sort", "defaultContent" : ""},
 				{"data" : "title", "defaultContent" : ""},
 				{"data" : "picurl", "defaultContent" : ""},
 				{"data" : "url", "defaultContent" : ""},
-				{"data" : "recommend", "defaultContent" : ""},
+                {"data" : "recommend", "defaultContent" : "",
+                    "render": function (data) {
+                        return $$.YesOrNo(data);
+                    }
+                },
 				{"data" : "createtime", "defaultContent" : ""},
 				{"data" : "updatetime", "defaultContent" : ""},
                     {

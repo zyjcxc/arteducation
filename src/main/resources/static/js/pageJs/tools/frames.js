@@ -540,4 +540,20 @@ $$.extend($$, {
         }
         return '未知';
     },
+
+    /**
+     * 位置 1.首页顶部 2.其他页面顶部 3.首页底部
+     * live_public_account_info == sex字段
+     * @returns {string}
+     */
+    SiteChinese : function(data) {
+        if (data === '1' || data === 1) {
+            return '首页顶部';
+        } else if (data === '2' || data === 2) {
+            return '其他页面顶部';
+        } else if (data === '3' || data === 3) {
+            return '首页底部';
+        }
+        return '未知';
+    }
 });

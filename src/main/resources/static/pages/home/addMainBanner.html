@@ -18,16 +18,23 @@
                     <input class='form-control' placeholder='banner标题' type='text' name='title' id='title' data-bv-notempty="true" data-bv-notempty-message="banner标题不能为空">
                 </div>
             </div>
-            <div class='form-group'>
-                <label class='col-md-2 control-label'>首页展示</label>
-                <div class='col-md-10'>
-                    <input class='form-control' placeholder='首页展示' type='text' name='recommend' id='recommend' data-bv-notempty="true" data-bv-notempty-message="首页展示不能为空">
+            <div class="form-group">
+                <label class="col-md-2 control-label">首页展示</label>
+                <div class="col-md-10" style="width: 100px">
+                    <select class="form-control input-sm" name="recommend" id="recommend">
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
                 </div>
             </div>
-            <div class='form-group'>
-                <label class='col-md-2 control-label'>位置</label>
-                <div class='col-md-10'>
-                    <input class='form-control' placeholder='位置' type='text' name='site' id='site' data-bv-notempty="true" data-bv-notempty-message="位置不能为空">
+            <div class="form-group">
+                <label class="col-md-2 control-label">位置</label>
+                <div class="col-md-10" style="width: 200px">
+                    <select class="form-control input-sm" name="site" id="site">
+                        <option value="1">首页顶部</option>
+                        <option value="2">其他页面顶部</option>
+                        <option value="3">首页底部</option>
+                    </select>
                 </div>
             </div>
             <div class='form-group'>
@@ -36,7 +43,7 @@
                     <img style="width: 100%;display: none;" class="col-xs-10" src="" id="banner">
                 </div>
             </div>
-            <div class='form-group'>
+            <div class='form-group' style="display:none;">
                 <label class='col-md-2 control-label'>图片连接</label>
                 <div class='col-md-10'>
                     <input class='form-control' placeholder='图片连接' type='text' name='picurl' id='picurl' data-bv-notempty="true" data-bv-notempty-message="图片不能为空">
