@@ -25,6 +25,7 @@ classification_add = (function ($, w) {
                 version : $("#version"),
                 author : $("#author"),
                 content : $("#content"),
+                photoUrl : $("#photoUrl"),
                 textbookTypeId : $("#textbookTypeId")
             },
             $btn: {
@@ -101,13 +102,26 @@ classification_add = (function ($, w) {
 
     }
 
+    function hasContent() {
+        var arr = [];
+        arr.push(UM.getEditor('addArtTextbookEditor').hasContents());
+        UM.getEditor('addArtTextbookEditor').focus();
+        return (arr.join("\n"));
+    }
+    function setContent(isAppendTo) {
+        UM.getEditor('addArtTextbookEditor').setContent(isAppendTo);
+    }
+
     function save() {
         var _self = this;
         var b = checkFormBefore.call(_self);
         if (!b) {
             return;
         }
-
+        if(hasContent() === 'false'){
+            layer.msg("请填写内容！", {shift: -1, time: 3000});
+            return;
+        }
         $.ajax({
             type : 'post',
             url : WEB_CONFIG._action.ART_TEXT_BOOK_ACTION,
@@ -171,6 +185,9 @@ classification_add = (function ($, w) {
                 _self.getPageDom().author.val(data.author);
                 _self.getPageDom().content.val(data.content);
                 _self.get$Scope().textbookTypeId = data.textbookTypeId;
+                _self.get$Scope().photoUrl = data.photoUrl;
+                $("#picture").show().attr('src',data.photoUrl);
+                setContent(data.content);
             }
         });
     }
@@ -202,8 +219,15 @@ classification_add = (function ($, w) {
         });
     }
 
-
-
+    $("#open").click(function () {
+        $$.showQiniuSgl().then(function (data) {
+            buildImgs(data[0].url);
+        })
+    });
+    function buildImgs(url) {
+        $("#picture").show().attr('src',url);
+        $("#photoUrl").val(url);
+    }
     return new _$();
 
 })(jQuery, window);

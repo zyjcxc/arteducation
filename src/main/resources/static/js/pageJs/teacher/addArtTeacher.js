@@ -186,6 +186,7 @@ classification_add = (function ($, w) {
                 _self.getPageDom().sex.val(data.sex);
                 _self.getPageDom().position.val(data.position);
                 _self.getPageDom().photoUrl.val(data.photoUrl);
+                $("#picture").show().attr('src',data.photoUrl);
                 setContent(data.content);
             }
         });
@@ -197,7 +198,7 @@ classification_add = (function ($, w) {
         })
     });
     function buildImgs(data) {
-        $("#banner").show().attr('src',data.url);
+        $("#picture").show().attr('src',data.url);
         $("#photoUrl").val(data.url);
     }
 

@@ -155,7 +155,7 @@
             'source | undo redo | bold italic underline strikethrough |  forecolor backcolor | removeformat |',
             'insertorderedlist insertunorderedlist | selectall cleardoc paragraph | fontfamily fontsize' ,
             '| justifyleft justifycenter justifyright justifyjustify |',
-            'link unlink |  image  map',
+            'link unlink |  image ',
             '| horizontal preview fullscreen'
         ]
 
