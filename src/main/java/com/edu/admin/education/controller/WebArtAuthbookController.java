@@ -26,7 +26,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/web/artAuthbook")
-@Api(tags = "art-授权书相关接口")
+@Api(tags = "art-web-授权书相关接口")
 public class WebArtAuthbookController extends BaseController {
 
     protected static final Logger logger = LoggerFactory.getLogger(WebArtAuthbookController.class);

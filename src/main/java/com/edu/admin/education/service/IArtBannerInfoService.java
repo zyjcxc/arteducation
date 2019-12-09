@@ -27,5 +27,7 @@ public interface IArtBannerInfoService {
 
     List<ArtBannerInfoDto> findAll();
 
+    List<ArtBannerInfoDto> findAllBySite(Map<String, Object> params);
+
 }
 

@@ -75,7 +75,16 @@ public class ArtStudentServiceImpl implements IArtStudentService{
             badHanyuPinyinOutputFormatCombination.printStackTrace();
             artStudent.setNamePy("");
         }
-        artStudentDao.insertSelective(artStudent);
+        if (artStudent.getBookType() == null || artStudent.getBookType() == 0) {
+            // 插入两条数据
+            artStudent.setBookType(1);
+            artStudentDao.insertSelective(artStudent);
+            artStudent.setBookType(2);
+            artStudentDao.insertSelective(artStudent);
+        } else {
+            // 插入一条数据
+            artStudentDao.insertSelective(artStudent);
+        }
     }
 
     private ArtStudent getByActivityAndCarNo(Integer activityId, String cardNo, Integer classificationId, String level) {
@@ -150,8 +159,42 @@ public class ArtStudentServiceImpl implements IArtStudentService{
                 continue;
             }
 
-            artStudentDao.insertSelective(artStudent);
+            if (StringUtils.isEmpty(dto.getBookNo())) {
+                throw new HumanResourceException(ResultEnum.NO_BOOK_NO_RECORD);
+            }
+            artStudent.setBookNo(dto.getBookNo());
+
+            if (dto.getBookType() == null || dto.getBookType() == 0) {
+                artStudent.setBookType(1);
+                artStudentDao.insertSelective(artStudent);
+                artStudent.setBookType(2);
+                artStudentDao.insertSelective(artStudent);
+            } else {
+                artStudent.setBookType(dto.getBookType());
+                artStudentDao.insertSelective(artStudent);
+            }
+
         }
+    }
+
+    @Override
+    public ArtStudent getByCondition(Map<String, Object> params) {
+        Example example = new Example(ArtStudent.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("cardNo", params.get("cardNo"));
+        criteria.andEqualTo("name", params.get("name"));
+        criteria.andEqualTo("classificationId", params.get("classificationId"));
+        criteria.andEqualTo("level", params.get("level"));
+        criteria.andEqualTo("bookType", params.get("bookType"));
+        List<ArtStudent> list = artStudentDao.selectByExample(example);
+        if (CollectionUtils.isEmpty(list)) {
+            return null;
+        }
+        ArtStudent artStudent = list.get(0);
+        LiveCourseClassification byId = liveCourseClassificationService.getById(artStudent.getClassificationId()
+                .longValue());
+        artStudent.setClassificationName(byId.getName());
+        return artStudent;
     }
 
     private String getChineseLevel(String level) {

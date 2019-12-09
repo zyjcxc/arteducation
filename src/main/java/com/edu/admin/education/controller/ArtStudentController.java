@@ -38,6 +38,9 @@ public class ArtStudentController {
     @ApiOperation(value = "保存")
     public ArtStudent save(@RequestBody ArtStudent artStudent) {
         validParams(artStudent);
+        if (StringUtils.isEmpty(artStudent.getBookNo())) {
+            throw new HumanResourceException(ResultEnum.PARAMS_ERROR_BON);
+        }
         artStudentService.save(artStudent);
         return artStudent;
     }
@@ -144,6 +147,8 @@ public class ArtStudentController {
             objs[7] = source.getClassificationName();
             objs[8] = source.getLevel();
             objs[9] = source.getCardNo();
+            objs[10] = source.getBookNo();
+            objs[11] = source.getBookType();
             dataList.add(objs);
         }
         return dataList;

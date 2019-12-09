@@ -29,7 +29,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/web/artTextbookType")
-@Api(tags = "art-教材分类相关接口")
+@Api(tags = "art-web-教材分类相关接口")
 public class WebArtTextbookTypeController extends BaseController {
 
     protected static final Logger logger = LoggerFactory.getLogger(WebArtTextbookTypeController.class);

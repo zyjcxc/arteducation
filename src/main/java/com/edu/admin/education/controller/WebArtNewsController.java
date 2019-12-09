@@ -26,7 +26,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/web/artNews")
-@Api(tags = "art-新闻中心、公告相关接口")
+@Api(tags = "art-web-新闻中心、公告相关接口")
 public class WebArtNewsController extends BaseController {
 
     protected static final Logger logger = LoggerFactory.getLogger(WebArtNewsController.class);
