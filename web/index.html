@@ -29,7 +29,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide swiper-slide-1" style="background-image:url('images/banner-5.jpg')">
                     <div class="centent">
-                        <div class="wrap">
+                    	<div class="wrap">
                             <div class="banner-box banner-box1 pull-right">
                                 <h4>Standard Grade Examination Committee Of The Central Conservatory Of Music</h4>
                                 <h3>中央音乐学院</h3>
@@ -276,30 +276,7 @@
         <div class="timeline">
             <div class="swiper-container">
                 <div class="swiper-wrapper" id="history">
-                    <div class="swiper-slide" style="background-image: url(http://www.tcszh.com/static/KindEditorAttached/UploadOther/image/20150602/20150602140817_88748.jpg);" data-year="2016">
-                        <div class="swiper-slide-content"><span class="timeline-year">2016</span>
-                            <h4 class="timeline-title">青少年节</h4>
-                            <p class="timeline-text">在全国正式启动“星耀香江”亚洲青少年艺术人才年度盛典暨第九届“校园之星”两岸四地青少年艺术展演交流活动，总决赛盛典将于2016年2月在香港举行。</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide" style="background-image: url(http://demo.cssmoban.com/cssthemes6/cpts_1866_cvr/images/ab3.jpg);" data-year="2017">
-                        <div class="swiper-slide-content"><span class="timeline-year">2017</span>
-                            <h4 class="timeline-title">“未来之星”</h4>
-                            <p class="timeline-text">特长生中国第十二届“未来之星”暨全国优秀特长生文化艺术周8月在北京、上海两地成功举办</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide" style="background-image: url(http://www.tcszh.com/static/KindEditorAttached/UploadOther/image/20150602/20150602110046_41383.jpg);" data-year="2018">
-                        <div class="swiper-slide-content"><span class="timeline-year">2018</span>
-                            <h4 class="timeline-title">“校园之星”</h4>
-                            <p class="timeline-text">由文化部中华社会文化发展基金会发起，教育部中国教育电视协会、中国关心下一代工作委员会公益文化中心等单位联合主办的“校园之星”全国青少年艺术风采展示活动已经成功举办</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide" style="background-image: url(http://www.tcszh.com/static/editor/ckeditor/ckfinder/upfile/images/WLZX/12/28.jpg);" data-year="2019">
-                        <div class="swiper-slide-content"><span class="timeline-year">2019</span>
-                            <h4 class="timeline-title">弘扬、传承</h4>
-                            <p class="timeline-text">为促进两岸四地青少年文化艺术交流，弘扬、传承中华民族传统文化艺术，逐步与国际化青少年艺术人才的培养模式接轨</p>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
@@ -376,21 +353,22 @@
     	 var url = "pages/detail/search_detail.html?name=莉莉&age=18";//此处拼接内容
          window.location.href = url;
     }
+	var mySwiper = new Swiper('#swiper_head', {
+	    pagination : '.swiper-pagination-banner',
+	    paginationClickable :true,
+	    loop : true,
+	    autoplay : 5000,
+	    touchRatio : 1
+	});
+	
     /*banner展示*/
-    $.EXTEND.GET('http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',{page_number:1,page_size:10,type:1})
+    $.EXTEND.GET('artBannerInfo/findAllBySite',{site:1})
         .then(function (res) {
-            $.each(res.data.list, function(i, item) {
+            $.each(res.data, function(i, item) {
                 if(i>=3) return false;
-                $("#swiper_head").find(".swiper-slide-"+(i+1)).css("background-image","url('"+item.imgPath+"')");
-
-                var mySwiper = new Swiper('#swiper_head', {
-                    pagination : '.swiper-pagination-banner',
-                    paginationClickable :true,
-                    loop : true,
-                    autoplay : 5000,
-                    touchRatio : 1
-                });
+                $("#swiper_head").find(".swiper-slide-"+(i+1)).css("background-image","url('"+item.picurl+"')");
             })
+            
         });
     /*新闻*/
     $.EXTEND.GET('artNews',{type:1})
@@ -431,10 +409,10 @@
         });
 
     /*学生信息展示*/
-    $.EXTEND.GET('http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',{page_number:1,page_size:10,type:1})
+    $.EXTEND.GET('artBannerInfo/findAllBySite',{site:1})
         .then(function (res) {
             var str1 = '';
-            $.each(res.data.list, function(i, item) {
+            $.each(res, function(i, item) {
                 if(i>=9) return false;
                 str1 +=
                     '<a class="col-xs-4" href="' + item.bannerLink + '" target="_blank">' +
@@ -445,10 +423,11 @@
             })
         });
     /*学校展示*/
-    $.EXTEND.GET('http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',{page_number:1,page_size:10,type:1})
+    $.EXTEND.GET('artBannerInfo/findAllBySite',{site:1})
         .then(function (res) {
+
             var str1 = '';
-            $.each(res.data.list, function(i, item) {
+            $.each(res, function(i, item) {
                 if(i>=9) return false;
                 str1 +=
                     '<div class="swiper-slide">' +
@@ -468,26 +447,20 @@
                 })
             })
         });
-    /*联系我们*/
-    $('#submit').click(function () {
-        var param = $('#fm').serializeObject(true);
-        $.EXTEND.POST('artTextbookType',param)
-            .then(function (res) {
-               console.log(res)
-            });
-    });
-
-    /*历史展示*/
-    $.EXTEND.GET('http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',{page_number:1,page_size:10,type:1})
+        
+     /*历史展示*/
+    $.EXTEND.GET('artBannerInfo/findAllBySite',{site:3})
         .then(function (res) {
+        	console.log(res)
             var str1 = '';
-            $.each(res.data.list, function(i, item) {
+            $.each(res, function(i, item) {
+            	console.log(res)
                 if(i>=5) return false;
                 str1 +=
-                    '<div class="swiper-slide" style="background-image: url('+ item.imgPath +');" data-year="'+ item.id +'">' +
-                    '<div class="swiper-slide-content"><span class="timeline-year">'+ item.id +'</span>' +
-                    '<h4 class="timeline-title">'+ item.bannerTypeName +'</h4>' +
-                    '<p class="timeline-text">'+ item.bannerName +'</p>' +
+                    '<div class="swiper-slide" style="background-image: url('+ item.picurl +');" data-year="'+ item.sort +'">' +
+                    '<div class="swiper-slide-content"><span class="timeline-year">'+ item.sort +'</span>' +
+                    '<h4 class="timeline-title">'+ item.title +'</h4>' +
+                    '<p class="timeline-text">'+ item.title +'</p>' +
                     '</div>' +
                     '</div>';
 
@@ -515,6 +488,17 @@
             })
         });
 
+    
+    /*联系我们*/
+    $('#submit').click(function () {
+        var param = $('#fm').serializeObject(true);
+        $.EXTEND.POST('artTextbookType',param)
+            .then(function (res) {
+               console.log(res)
+            });
+    });
+
+   
 </script>
 <!--公共页面-->
 <script>

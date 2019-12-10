@@ -52,26 +52,29 @@
     var type = window.location.search.split("_")[1];
     function getList(num) {
         /*新闻*/
-        $.EXTEND.GET('http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',{page_number:num,page_size:10,type:type})
+        $.EXTEND.GET('artNews',{draw:num,limit:10,type:type})
             .then(function (res) {
                 var str1 = '';
-                $.each(res.data.list, function(i, item) {
+                $.each(res.data, function(i, item) {
+                	var m = new Date(item.updatetime).getMonth();
+                	var d = new Date(item.updatetime).getDate();
                     str1 +=
                         '<li>' +
-                        '<a href="'+ item.bannerLink +'" target="_blank">' +
+                        '<a href="'+ item.id +'" target="_blank">' +
                         '<div class="item-date">' +
-                        '<p>11</p>' +
+                        '<p>'+ m +'</p>' +
                         '<span class="xspan"></span>' +
-                        '<p class="down">08</p>' +
+                        '<p class="down">'+ d +'</p>' +
                         '</div>' +
                         '<div class="item-content">' +
-                        '<h3> '+ item.bannerTypeName +'</h3>' +
-                        '<p>'+ item.bannerName +'</p>' +
+                        '<h3> '+ item.title +'</h3>' +
+                        '<p>'+ item.content +'</p>' +
                         '</div>' +
                         '</a>' +
                         '</li>';
                 });
                 $(".item-list").html(str1);
+                page(Math.ceil(res.recordsTotal / 10));
             });
     }
     function page(total) {
@@ -92,16 +95,9 @@
 
     function init() {
         getList(1);
-        page(15);
     }
     init()
 </script>
-<!--<li>
-			 		<a href="../pages/detail/book_detail.html">
-			 			<img src="../images/book.jpg" alt="" />
-                    	<p>电子琴（业余）考级教程</p>
-			 		</a>
-                </li>-->
 </body>
 
 </html>
