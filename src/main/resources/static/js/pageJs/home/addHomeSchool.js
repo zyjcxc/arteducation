@@ -100,12 +100,12 @@ classification_add = (function ($, w) {
 
     function hasContent() {
         var arr = [];
-        arr.push(UM.getEditor('addHomeStudentEditor').hasContents());
-        UM.getEditor('addHomeStudentEditor').focus();
+        arr.push(UM.getEditor('addHomeSchoolEditor').hasContents());
+        UM.getEditor('addHomeSchoolEditor').focus();
         return (arr.join("\n"));
     }
     function setContent(isAppendTo) {
-        UM.getEditor('addHomeStudentEditor').setContent(isAppendTo);
+        UM.getEditor('addHomeSchoolEditor').setContent(isAppendTo);
     }
 
     function save() {
@@ -120,7 +120,7 @@ classification_add = (function ($, w) {
         }
         $.ajax({
             type : 'post',
-            url : WEB_CONFIG._action.ART_HOME_STUDENT,
+            url : WEB_CONFIG._action.ART_HOME_SCHOOL,
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify($PAGE_FORM.serializeObject()),
             success : function(data) {
@@ -142,7 +142,7 @@ classification_add = (function ($, w) {
         _self.getPageBtn().save.attr("disabled", true);
         $.ajax({
             type : 'put',
-            url : WEB_CONFIG._action.ART_HOME_STUDENT,
+            url : WEB_CONFIG._action.ART_HOME_SCHOOL,
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify($PAGE_FORM.serializeObject()),
             async: false,
@@ -172,7 +172,7 @@ classification_add = (function ($, w) {
         var _self = this;
         $.ajax({
             type : 'get',
-            url : WEB_CONFIG._action.ART_HOME_STUDENT + '/' + _self.get$Scope().id,
+            url : WEB_CONFIG._action.ART_HOME_SCHOOL + '/' + _self.get$Scope().id,
             async : false,
             success : function(data) {
                 $("#picture").show().attr('src',data.picurl);

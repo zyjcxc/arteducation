@@ -119,6 +119,8 @@ WEB_CONFIG = {
         ART_GUEST_INFO : "/artGuestInfo",
         //学生风采
         ART_HOME_STUDENT : "/artHomeStudent",
+        //学校风采
+        ART_HOME_SCHOOL : "/artHomeSchool",
     },
     _page : {
         // 特殊长生列表
@@ -268,6 +270,11 @@ WEB_CONFIG = {
         ART_HOME_STUDENT_PAGE : "/pages/home/addHomeStudent.html",
         ART_HOME_STUDENT_PAGE_WITH_PARAMS : function(keyValues) {
             return $$.makeWithUrl(WEB_CONFIG._page.ART_HOME_STUDENT_PAGE, keyValues);
+        },
+        // 学校风采
+        ART_HOME_SCHOOL_PAGE : "/pages/home/addHomeSchool.html",
+        ART_HOME_SCHOOL_PAGE_WITH_PARAMS : function(keyValues) {
+            return $$.makeWithUrl(WEB_CONFIG._page.ART_HOME_SCHOOL_PAGE, keyValues);
         },
     },
     _qnConfig : {

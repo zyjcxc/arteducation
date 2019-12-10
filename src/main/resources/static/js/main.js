@@ -16,7 +16,7 @@ function initMenu(){
                      },
                      {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/home/homeStudent.html",id: 178,name: "学生风采",parentId: 17,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
                      },
-                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/home/mainBanner.html",id: 179,name: "学校风采",parentId: 17,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
+                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/home/homeSchool.html",id: 179,name: "学校风采",parentId: 17,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
                      }
                  ],
                  createTime: "2019-11-18 09:12:35",
