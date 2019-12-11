@@ -1,0 +1,23 @@
+ <!------------ 注释：头部大屏滚动 start ----------->
+    <div class="detail-top" style="background: url(../../images/banner-6.jpg) center;">
+    	<div class="contain">
+    		<div class="nav-label visible-md-block visible-lg-block visible-sm-block">
+	            <span id="nav-label"></span>
+	        </div>
+	        <ul id="breadcrumb" class="breadcrumb">
+	            
+	        </ul>
+    	</div>
+        
+    </div>
+    <!------------ 注释：头部大屏滚动 end ----------->
+    
+   <script>
+   	/*banner展示*/
+    $.EXTEND.GET('artBannerInfo/findAllBySite',{site:2})
+        .then(function (res) {
+            $(".detail-top").css("background","url('"+res[0].picurl+"') center");
+        });
+
+   </script> 	
+    
