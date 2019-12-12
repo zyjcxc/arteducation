@@ -49,17 +49,20 @@
 <script type="text/javascript" src="../js/common.js"></script>
 <script type="text/javascript">
     var type = window.location.search.split("_")[1];
+    var page_num = 1;
     function getList(num) {
         /*新闻*/
-        $.EXTEND.GET('artNews',{draw:num,limit:10,type:type})
+        $.EXTEND.GET('artNews',{type:type})
             .then(function (res) {
                 var str1 = '';
+
                 $.each(res.data, function(i, item) {
+
                 	var m = new Date(item.updatetime).getMonth();
                 	var d = new Date(item.updatetime).getDate();
                     str1 +=
                         '<li>' +
-                        '<a href="detail/news_detail?'+ item.id +'" target="_blank">' +
+                        '<a href="detail/detail.html?path=news&id='+ item.id +'" target="_blank">' +
                         '<div class="item-date">' +
                         '<p>'+ m +'</p>' +
                         '<span class="xspan"></span>' +
@@ -78,7 +81,7 @@
     }
     function page(total) {
         $("#pagination").pagination({
-            currentPage: 1,
+            currentPage: page_num,
             totalPage: total,
             isShow: true,
             homePageText: "首页",
@@ -87,13 +90,14 @@
             nextPageText: "下一页",
             callback: function(current) {
                 $("#current3").text(current);
+                page_num = current;
                 getList(current)
             }
         });
     }
 
     function init() {
-        getList(1);
+        getList(page_num);
     }
     init()
 </script>

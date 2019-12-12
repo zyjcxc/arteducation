@@ -52,34 +52,35 @@
 <!--通用：包括config，公共头底页面，面包屑及目录-->
 <script type="text/javascript" src="../js/common.js"></script>
 <script type="text/javascript">
+	var page_num = 1;
     function getList(num) {
-		/*新闻*/
-        $.EXTEND.GET('http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',{page_number:num,page_size:10,type:1})
+        $.EXTEND.GET('artTeacher',{offset:num})
             .then(function (res) {
                 var str1 = '';
-                $.each(res.data.list, function(i, item) {
+                $.each(res.data, function(i, item) {
+                	var mg = item.sex==="m"?"女":item.sex==="g"?"男":"";
                     str1 +=
 					'<div class="personing">' +
 						'<div class="apply">' +
-							'<h4 class="person_cor">'+ item.bannerTypeName +'</h4>' +
+							'<h4 class="person_cor">'+ item.name +'</h4>' +
 						'</div>' +
 						'<div class="personingA">' +
-							'<p><span>'+ item.bannerName +'</span></p>' +
+							'<p><span>'+ item.name +'</span></p>' +
 							'<div class="describe">' +
-								'<a href="'+ item.bannerLink +'" target="_blank"><img src="'+ item.imgPath +'"></a>' +
+								'<a href="detail/detail.html?path=artTeacher&id='+ item.id +'" target="_blank"><img src="'+ item.photoUrl +'"></a>' +
 								'<table>' +
 									'<tbody>' +
 										'<tr>' +
-											'<td class="person_td">毕业院校：</td>' +
-											'<td>'+ item.bannerTypeName +'</td>' +
+											'<td class="person_td">职称、职位：</td>' +
+											'<td>'+ item.position +'</td>' +
 										'</tr>' +
 										'<tr>' +
-											'<td class="person_td">联系方式：</td>' +
-											'<td>'+ item.bannerTypeName +'</td>' +
+											'<td class="person_td">姓名拼音：</td>' +
+											'<td>'+ item.namePy +'</td>' +
 										'</tr>' +
 										'<tr>' +
-											'<td valign="top" class="person_td">擅长方向：</td>' +
-											'<td>'+ item.bannerTypeName +'</td>' +
+											'<td valign="top" class="person_td">性别：</td>' +
+											'<td>'+ mg +'</td>' +
 										'</tr>' +
 									'</tbody>' +
 								'</table>' +
@@ -88,11 +89,12 @@
 					'</div>';
                 });
                 $(".personing_box").html(str1);
+                page(Math.ceil(res.recordsTotal / 10));
             });
     }
     function page(total) {
         $("#pagination").pagination({
-            currentPage: 1,
+            currentPage: page_num,
             totalPage: total,
             isShow: true,
             homePageText: "首页",
@@ -101,14 +103,14 @@
             nextPageText: "下一页",
             callback: function(current) {
                 $("#current3").text(current);
+                page_num = current;
                 getList(current)
             }
         });
     }
 
     function init() {
-        getList(1);
-        page(15);
+        getList(page_num);
     }
     init()
 </script>

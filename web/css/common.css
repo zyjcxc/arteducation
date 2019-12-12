@@ -110,7 +110,7 @@ textarea{
 .base-detail .info li { display: inline-block; padding: 0 20px; }
 .base-detail .content{padding-left: 0px; }
 
-.umEdit {padding:0 10px 20px;}
+.umEdit {padding:0 10px 20px;min-height: 200px;}
 .umEdit img{width:100%!important}
 @media (min-width:767px) {
 	.umEdit img{width:auto!important}

@@ -353,13 +353,7 @@
     	 var url = "pages/detail/search_detail.html?name=莉莉&age=18";//此处拼接内容
          window.location.href = url;
     }
-	var mySwiper = new Swiper('#swiper_head', {
-	    pagination : '.swiper-pagination-banner',
-	    paginationClickable :true,
-	    loop : true,
-	    autoplay : 5000,
-	    touchRatio : 1
-	});
+	
 	
     /*banner展示*/
     $.EXTEND.GET('artBannerInfo/findAllBySite',{site:1})
@@ -368,6 +362,17 @@
                 if(i>=3) return false;
                 $("#swiper_head").find(".swiper-slide-"+(i+1)).css("background-image","url('"+item.picurl+"')");
             })
+            var mySwiper = new Swiper('#swiper_head', {
+			    pagination : '.swiper-pagination-banner',
+			    paginationClickable :true,
+			    loop : true,
+			    autoplay : 5000,
+			    touchRatio : 1,
+			    onClick: function(swiper){
+			    	var url = res[swiper.activeIndex - 1].url;
+				      window.open(url)
+				    }
+			});
             
         });
     /*新闻*/
@@ -430,7 +435,7 @@
                 str1 +=
                     '<div class="swiper-slide">' +
                         '<div class="thumb">' +
-                            '<a href="./pages/detail/detail.html?path=artHomeSchool&id='+ item.id +'"><img src="'+ item.picurl +'"></a>' +
+                            '<a href="./pages/detail/detail.html?path=artHomeSchool&id='+ item.id +'" target="_blank"><img src="'+ item.picurl +'"></a>' +
                         '</div>' +
                     '</div>';
 
@@ -455,8 +460,8 @@
                 str1 +=
                     '<div class="swiper-slide" style="background-image: url('+ item.picurl +');" data-year="'+ item.sort +'">' +
                     '<div class="swiper-slide-content"><span class="timeline-year">'+ item.sort +'</span>' +
-                    '<h4 class="timeline-title">'+ item.title +'</h4>' +
-                    '<p class="timeline-text">'+ item.title +'</p>' +
+                    '<h4 class="timeline-title"><a href="'+ item.url +'" target="_blank">'+ item.title +'</a></h4>' +
+                    '<p class="timeline-text"><a href="'+ item.url +'" target="_blank">'+ item.title +'</a></p>' +
                     '</div>' +
                     '</div>';
 

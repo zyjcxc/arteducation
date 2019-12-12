@@ -24,9 +24,9 @@
 				isParent:false
 			},
 			{
-				code:'downloads',
-				url:'downloads.html',
-				title:'文件下载',
+				code:'aboutus',
+				url:'aboutus.html',
+				title:'关于我们',
 				isParent:false
 			},
 			{

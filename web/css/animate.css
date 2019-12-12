@@ -23,6 +23,10 @@
     padding:2%;
     margin-top:20px;
 }
+.timeline a,.timeline a:hover{
+    color:#fff;
+}
+
 .timeline .swiper-container {
     height: 300px;
     width: 100%;
