@@ -141,6 +141,16 @@ art_student_list = (function ($, w) {
                 },
                 "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-6 hidden-xs'i><'col-sm-6 col-xs-12' p v>>",
                 "columns": [
+                {"data" : "sex", "orderable" : false, "defaultContent" : "",
+                        "render": function (data, type, row) {
+                            var id = row['id'];
+                            // 逻辑删除操作
+                            var fun = "onclick='childclick()'";
+                            var check = "<div align='center'><input data-id='" + id +"' type='checkbox' " + fun +" name='single-check' value=''" + data + "></div>";
+
+                            return check;
+                        }
+                    },
 				{"data" : "id", "defaultContent" : "", "orderable" : false},
 				{"data" : "name", "defaultContent" : ""},
                 {"data" : "sex", "defaultContent" : "",
@@ -288,3 +298,74 @@ function importData() {
 
     })
 }
+/*多选*/
+function childclick(){
+    console.log(this);
+    if ($(this).is(":checked") == false) {
+        $("#checkAll").prop("checked", false);
+    }
+}
+$("#checkAll").on("click", function () {
+    if (this.checked) {
+        $(this).attr('checked', 'checked')
+        $("input[name='single-check']").each(function () {
+            this.checked = true;
+        });
+
+
+    } else {
+        $(this).removeAttr('checked')
+        $("input[name='single-check']").each(function () {
+            this.checked = false;
+
+        });
+    }
+});
+$("input[name='single-check']").on("click", function () {
+    if ($(this).is(":checked") == false) {
+        $("#checkAll").prop("checked", false);
+    } else {
+        var flag = true;
+        $("#checkAll").prop("checked", true);
+        $("input[name='single-check']").each(function () {
+            if (this.checked == false) {
+                $("#checkAll").prop("checked", false);
+                flag = false;
+                return;
+            }
+        });
+    }
+
+
+});
+$("#mulDel").click(function () {
+    layer.confirm('确定要批量删除吗？', {
+        btn : [ '确定', '取消' ]
+    }, function() {
+        var data = [];
+        $("input[name='single-check']").each(function () {
+            if (this.checked == true) {
+                data.push($(this)[0].dataset.id);
+                /*清空*/
+                $(this).prop("checked", false);
+            }
+        });
+        /*清空*/
+        $("#checkAll").prop("checked", false);
+        /*入参*/
+        var obj = {
+            id: data,
+            state: "2"
+        };
+        $.ajax({
+            type : 'post',
+            url : WEB_CONFIG._action.ART_STUDENT_LOGIC_DELETE_ACTION,
+            contentType: "application/json; charset=utf-8",
+            data : JSON.stringify(obj),
+            success : function(data) {
+                art_student_list.reloadDataTable();
+                layer.msg("操作成功");
+            }
+        });
+    });
+});
