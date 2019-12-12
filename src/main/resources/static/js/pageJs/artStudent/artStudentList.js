@@ -141,7 +141,7 @@ art_student_list = (function ($, w) {
                 },
                 "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-6 hidden-xs'i><'col-sm-6 col-xs-12' p v>>",
                 "columns": [
-                {"data" : "", "defaultContent" : "", "orderable" : false,
+                {"data" : "id", "defaultContent" : "",
                         "render": function (data, type, row) {
                             var id = row['id'];
                             // 逻辑删除操作
@@ -149,7 +149,7 @@ art_student_list = (function ($, w) {
                             var check = "<div align='center'><input data-id='" + id +"' type='checkbox' " + fun +" name='single-check' value=''" + data + "></div>";
 
                             return check;
-                        }
+                        }, "orderable" : false
                     },
 				{"data" : "id", "defaultContent" : "", "orderable" : false},
 				{"data" : "name", "defaultContent" : ""},
