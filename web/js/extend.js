@@ -36,8 +36,7 @@
             GET:function (url,params) {
                 var deferred = $.Deferred();
                 var data = params?params:{};
-                data.token = '401fec7d807d4d519394d121942b0951';
-                var action = /^(http|https):\/\//.test(url) ? url : (baseUrl + url);
+                var action = (/^(http|https):\/\//.test(url))? url : (baseUrl + url);
                 $.ajax({
                     type : 'GET',
                     url : action,
@@ -55,8 +54,7 @@
             POST:function (url,params) {
                 var deferred = $.Deferred();
                 var data = params?params:{};
-                console.log(params);
-                var action = /^(http|https):\/\//.test(url) ? url : (baseUrl + url);
+                var action = (/^(http|https):\/\//.test(url))? url : (baseUrl + url);
                 $.ajax({
                     type : 'POST',
                     url : action,

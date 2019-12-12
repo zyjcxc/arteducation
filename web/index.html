@@ -291,17 +291,17 @@
                         <input type="text" name="name" class="form-control" placeholder="您的姓名" required="">
                     </div>
                     <div class="col-md-6 form-group contact-forms">
-                        <input type="text" name="type" class="form-control" placeholder="您所在地" required="">
+                        <input type="text" name="address" class="form-control" placeholder="您所在地" required="">
                     </div>
                 </div>
                 <div class="form-group contact-forms">
-                    <input type="text" name="tel" class="form-control" placeholder="您的电话" required="">
+                    <input type="text" name="phone" class="form-control" placeholder="您的电话" required="">
                 </div>
                 <div class="form-group contact-forms">
                     <input type="text" name="email" class="form-control" placeholder="您的Email" required="">
                 </div>
                 <div class="form-group contact-forms">
-                    <textarea class="form-control" name="text" rows="3" placeholder="请给我们留言，我们会尽快回复" required=""></textarea>
+                    <textarea class="form-control" name="message" rows="3" placeholder="请给我们留言，我们会尽快回复" required=""></textarea>
                 </div>
                 <div class="sent-butnn text-center">
                     <button type="button" id="submit" class="btn btn-block" data-blast="bgColor">提交</button>
@@ -386,7 +386,7 @@
                        		'<p class="down">'+ d +'</p>' +
                         '</div>' +
                         '<div class="content">' +
-                            '<h6><img src="images/sticky.png" alt="置顶"><a href="./pages/detail/base_detail.html/'+ item.id +'"  target="_blank"> '+ item.title +'</a></h6>' +
+                            '<h6><img src="images/sticky.png" alt="置顶"><a href="./pages/detail/detail.html?path=news&id='+ item.id +'"  target="_blank"> '+ item.title +'</a></h6>' +
                             '<div class="info"><p>'+ item.content +'</p>' +
                             '</div>' +
                         '</div>' +
@@ -402,37 +402,35 @@
             $.each(res.data, function(i, item) {
                 if(i>=9) return false;
                 str1 +=
-                    '<li><a href="./pages/detail/base_detail.html/'+ item.id +'" target="_blank"> 【'+ item.updatetime +'】'+ item.title +'</a></li>';
+                    '<li><a href="./pages/detail/detail.html?path=news&id='+ item.id +'" target="_blank"> 【'+ item.updatetime +'】'+ item.title +'</a></li>';
 
                 $("#new_2").html(str1);
             })
         });
 
     /*学生信息展示*/
-    $.EXTEND.GET('artBannerInfo/findAllBySite',{site:1})
+    $.EXTEND.GET('artHomeStudent/findRecommendList')
         .then(function (res) {
             var str1 = '';
             $.each(res, function(i, item) {
                 if(i>=9) return false;
                 str1 +=
-                    '<a class="col-xs-4" href="' + item.bannerLink + '" target="_blank">' +
-                    '<img src="'+ item.imgPath +'">' +
+                    '<a class="col-xs-4" href="./pages/detail/detail.html?path=artHomeStudent&id='+ item.id +'" target="_blank">' +
+                    '<img src="'+ item.picurl +'">' +
                     '</a>';
 
                 $(".right-zt-thumb").html(str1);
             })
         });
     /*学校展示*/
-    $.EXTEND.GET('artBannerInfo/findAllBySite',{site:1})
+    $.EXTEND.GET('artHomeSchool/findRecommendList')
         .then(function (res) {
-
             var str1 = '';
             $.each(res, function(i, item) {
-                if(i>=9) return false;
                 str1 +=
                     '<div class="swiper-slide">' +
                         '<div class="thumb">' +
-                            '<img src="'+ item.imgPath +'">' +
+                            '<a href="./pages/detail/detail.html?path=artHomeSchool&id='+ item.id +'"><img src="'+ item.picurl +'"></a>' +
                         '</div>' +
                     '</div>';
 
@@ -451,10 +449,8 @@
      /*历史展示*/
     $.EXTEND.GET('artBannerInfo/findAllBySite',{site:3})
         .then(function (res) {
-        	console.log(res)
             var str1 = '';
             $.each(res, function(i, item) {
-            	console.log(res)
                 if(i>=5) return false;
                 str1 +=
                     '<div class="swiper-slide" style="background-image: url('+ item.picurl +');" data-year="'+ item.sort +'">' +
@@ -492,9 +488,9 @@
     /*联系我们*/
     $('#submit').click(function () {
         var param = $('#fm').serializeObject(true);
-        $.EXTEND.POST('artTextbookType',param)
+        $.EXTEND.POST('artGuestInfo',param)
             .then(function (res) {
-               console.log(res)
+               alert("提交成功，我们回尽快回复您哒~");
             });
     });
 
