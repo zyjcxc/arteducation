@@ -53,7 +53,7 @@ public class ArtTeacherServiceImpl implements IArtTeacherService {
 
     @Override
     public List<ArtTeacherDto> list(Map<String, Object> params, Integer offset, Integer limit) {
-        PageHelper.startPage(offset, limit);
+        PageHelper.offsetPage(offset, limit);
 
         Example example = getQueryExample(params);
 
