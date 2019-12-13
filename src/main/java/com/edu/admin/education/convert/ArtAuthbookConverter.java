@@ -49,7 +49,7 @@ public class ArtAuthbookConverter {
         artAuthbookDto.setCreatetime(artAuthbook.getCreatetime());
         artAuthbookDto.setUpdatetime(artAuthbook.getUpdatetime());
         artAuthbookDto.setId(artAuthbook.getId());
-        artAuthbook.setPicurl(artAuthbook.getPicurl());
+        artAuthbookDto.setPicurl(artAuthbook.getPicurl());
 
         return artAuthbookDto;
     }
