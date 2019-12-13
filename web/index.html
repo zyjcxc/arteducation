@@ -147,8 +147,8 @@
                     <input type="text" class="form kaoqubig" name="cardid" placeholder="请输入身份证号">
                     <select class="form kaoqubig" name="object">
                         <option value ="">请选择项目</option>
-                        <option value ="1">书法</option>
-                        <option value ="2">钢琴</option>
+                        <option value ="1">1</option>
+                        <option value ="2">2</option>
                     </select>
                     <select class="form kaoqubig" name="num">
                         <option value ="">请选择级别</option>
@@ -490,8 +490,8 @@
             $.each(res, function(i, item) {
                 if(i>=5) return false;
                 str1 +=
-                    '<div class="swiper-slide" style="background-image: url('+ item.picurl +');" data-year="'+ item.sort +'">' +
-                    '<div class="swiper-slide-content"><span class="timeline-year">'+ item.sort +'</span>' +
+                    '<div class="swiper-slide" style="background-image: url('+ item.picurl +');" data-year="'+ item.name +'">' +
+                    '<div class="swiper-slide-content"><span class="timeline-year">'+ item.name +'</span>' +
                     '<h4 class="timeline-title"><a href="'+ item.url +'" target="_blank">'+ item.title +'</a></h4>' +
                     '<p class="timeline-text"><a href="'+ item.url +'" target="_blank">'+ item.title +'</a></p>' +
                     '</div>' +

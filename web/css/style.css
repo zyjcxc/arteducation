@@ -179,9 +179,9 @@
 	padding: .25rem;
 	background-color: #fff;
 	border: 1px solid #dee2e6;
-	height: 235px;
+	height: 230px;
 	border-radius: 0;
-	width: 88%;
+	width: 100%;
 }
 .column .right  .lists .swiper-pagination-school{
 	font-weight: bold;
@@ -254,7 +254,7 @@
 .teacher .describe{margin-top:10px; padding-bottom:10px;  }
 .teacher .describeA{margin-top:30px; margin-top:30px; width:900px;}
 
-.teacher .describe img{float:left;width: 105px;}
+.teacher .describe img{float:left;width: 120px;}
 .teacher .describeA img{float:left;}
 .teacher .personing_box table{ float:left; margin-left:24px; margin-top:22px;}
 .teacher .personing_box table td{ line-height:32px;}
