@@ -30,9 +30,9 @@
 				isParent:false
 			},
 			{
-				code:'videos',
-				url:'videos.html',
-				title:'活动视频',
+				code:'authorization',
+				url:'authorization.html',
+				title:'授权书',
 				isParent:false
 			},
 			{

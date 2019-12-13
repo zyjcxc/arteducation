@@ -8,7 +8,7 @@
     <meta name="keywords" content="全国特长生认证委员会，证书展示">
     <script type="text/javascript" src="../utils/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="../css/style.css">
-	
+
 
 </head>
 
@@ -29,38 +29,38 @@
 </div>
 
 <div class="page-list">
-	
-	<!------------ 注释：顶部 start ----------->
-	<div id="header-page"></div>
-	<!------------ 注释：顶部 end ----------->
-	<!------------ 注释：面包屑 start ----------->
-	<div id="breadcrumb-page"></div>
-	<!------------ 注释：面包屑 end ----------->
-	<div class="contain credentials">
-		
-		<!------------ 注释：插入 menu start ----------->
-		<div id="menu_list"></div>
-		<!------------ 注释：插入 menu end ----------->
-		
-		<div class="content">
-			 <h2 class="visible-md-block visible-lg-block visible-sm-block">证书展示</h2>
-			 <ul class="item-list">
 
-			 </ul>
+    <!------------ 注释：顶部 start ----------->
+    <div id="header-page"></div>
+    <!------------ 注释：顶部 end ----------->
+    <!------------ 注释：面包屑 start ----------->
+    <div id="breadcrumb-page"></div>
+    <!------------ 注释：面包屑 end ----------->
+    <div class="contain credentials">
+
+        <!------------ 注释：插入 menu start ----------->
+        <div id="menu_list"></div>
+        <!------------ 注释：插入 menu end ----------->
+
+        <div class="content">
+            <h2 class="visible-md-block visible-lg-block visible-sm-block">授权书</h2>
+            <ul class="item-list">
+
+            </ul>
             <div id="pagination" class="page fl">
                 <div class="ui-pagination-container"></div>
             </div>
-		</div>
-		
-	</div>
+        </div>
+
+    </div>
 
 
 
 
-  
-     <!------------ 注释：底部 start ----------->
-	<div id="footer-page"></div>
-	<!------------ 注释：底部 start ----------->
+
+    <!------------ 注释：底部 start ----------->
+    <div id="footer-page"></div>
+    <!------------ 注释：底部 start ----------->
 
 </div>
 
@@ -72,14 +72,14 @@
     var page_num = 1;
     var page_size = 10;
     function getList(num) {
-        $.EXTEND.GET('artAward',{offset:( num - 1 )*page_size})
+        $.EXTEND.GET('artAuthbook',{offset:( num - 1 )*page_size})
             .then(function (res) {
                 var str1 = '';
                 $.each(res.data, function(i, item) {
                     str1 +=
                         '<li data-toggle="modal" class="myModal" data-title="'+ item.title +'" data-img="'+ item.title +'">' +
-                            '<img src="'+ item.title +'" alt="" />' +
-                            '<p>'+ item.title +'</p>' +
+                        '<img src="'+ item.title +'" alt="" />' +
+                        '<p>'+ item.title +'</p>' +
                         '</li>';
                 });
                 $(".item-list").html(str1);

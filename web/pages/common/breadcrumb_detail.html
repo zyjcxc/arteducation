@@ -1,6 +1,6 @@
  <!------------ 注释：头部大屏滚动 start ----------->
-    <div class="detail-top" style="background: url(../../images/banner-6.jpg) center;">
-    	<div class="contain">
+    <div class="detail-top">
+    	<div class="contain" style=" background: #666;">
     		<div class="nav-label visible-md-block visible-lg-block visible-sm-block">
 	            <span id="nav-label"></span>
 	        </div>
@@ -16,7 +16,7 @@
    	/*banner展示*/
     $.EXTEND.GET('artBannerInfo/findAllBySite',{site:2})
         .then(function (res) {
-            $(".detail-top").css("background","url('"+res[0].picurl+"') center");
+            $(".detail-top .contain").css("background","url('"+res[0].picurl+"') center");
         });
 
    </script> 	

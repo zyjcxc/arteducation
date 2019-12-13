@@ -52,9 +52,10 @@
 <!--通用：包括config，公共头底页面，面包屑及目录-->
 <script type="text/javascript" src="../js/common.js"></script>
 <script type="text/javascript">
-	var page_num = 1;
+    var page_num = 1;
+    var page_size = 10;
     function getList(num) {
-        $.EXTEND.GET('artTeacher',{offset:num})
+        $.EXTEND.GET('artTeacher',{offset:( num - 1 )*page_size})
             .then(function (res) {
                 var str1 = '';
                 $.each(res.data, function(i, item) {
@@ -89,7 +90,7 @@
 					'</div>';
                 });
                 $(".personing_box").html(str1);
-                page(Math.ceil(res.recordsTotal / 10));
+                page(Math.ceil(res.recordsTotal / page_size));
             });
     }
     function page(total) {

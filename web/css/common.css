@@ -72,7 +72,8 @@ textarea{
 .suggest {display:none;width:100%;height:50px;color:white;line-height:50px;position:fixed;left:0;top:0;background-color:black;opacity:0.5;z-index:500;text-align:center}
 
 /*详情头部*/
-.detail-top{width: 100%;height:100px;/* background: url(../images/banner-6.jpg) center; */background-size: cover;position: relative;}
+.detail-top {background-color: #666;}
+.detail-top .contain{width: 100%;height:100px;background: url(../images/banner-6.jpg) center;background-size: cover;position: relative}
 .detail-top .nav-label { display:none; }
 .detail-top .breadcrumb { position: absolute;left:0;bottom:0;width:100%; padding: 0; line-height: 30px; font-size: 14px; background: none; margin: 0 5px;}
 .detail-top .breadcrumb li { color: #fff; }

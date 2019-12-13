@@ -50,9 +50,10 @@
 <script type="text/javascript">
     var type = window.location.search.split("_")[1];
     var page_num = 1;
+    var page_size = 10;
     function getList(num) {
         /*新闻*/
-        $.EXTEND.GET('artNews',{type:type})
+        $.EXTEND.GET('artNews',{type:type,offset:( num - 1 )*page_size})
             .then(function (res) {
                 var str1 = '';
 
@@ -76,7 +77,7 @@
                         '</li>';
                 });
                 $(".item-list").html(str1);
-                page(Math.ceil(res.recordsTotal / 10));
+                page(Math.ceil(res.recordsTotal / page_size));
             });
     }
     function page(total) {
