@@ -185,10 +185,6 @@ classification_add = (function ($, w) {
         $("#banner").show().attr('src',data.url);
         $("#picurl").val(data.url);
     }
-    $("#picurl").keyup(function () {
-        var that = this;
-        $("#banner").attr('src',$(that).val());
-    })
 
 
     return new _$();

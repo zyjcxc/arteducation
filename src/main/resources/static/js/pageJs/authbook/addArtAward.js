@@ -21,17 +21,8 @@ classification_add = (function ($, w) {
             },
             $dom: {
 					id : $("#id"),
-					name : $("#name"),
-                namePy : $("#namePy"),
-                sex : $("#sex"),
-                position : $("#position"),
-                photoUrl : $("#photoUrl"),
-                content : $("#content"),
-                createtime : $("#createtime"),
-                school : $("#school"),
                 title : $("#title"),
-                phone : $("#phone"),
-                updatetime : $("#updatetime"),
+                content : $("#content")
             },
             $btn: {
                 back: $("#backBtn"),
@@ -106,14 +97,13 @@ classification_add = (function ($, w) {
     }
     function hasContent() {
         var arr = [];
-        arr.push(UM.getEditor('addTeacherEditor').hasContents());
-        UM.getEditor('addTeacherEditor').focus();
+        arr.push(UM.getEditor('addAuthbookEditor').hasContents());
+        UM.getEditor('addAuthbookEditor').focus();
         return (arr.join("\n"));
     }
     function setContent(isAppendTo) {
-        UM.getEditor('addTeacherEditor').setContent(isAppendTo);
+        UM.getEditor('addAuthbookEditor').setContent(isAppendTo);
     }
-
     function save() {
         var _self = this;
         var b = checkFormBefore.call(_self);
@@ -125,10 +115,13 @@ classification_add = (function ($, w) {
             return;
         }
         var params = $PAGE_FORM.serializeObject();
-
+        if(!params.picurl || params.params === ''){
+            layer.msg("请上传图片！", {shift: -1, time: 3000});
+            return;
+        }
         $.ajax({
             type : 'post',
-            url : WEB_CONFIG._action.ART_TEACHER_ACTION,
+            url : WEB_CONFIG._action.ART_award_ACTION,
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(params),
             success : function(data) {
@@ -147,12 +140,17 @@ classification_add = (function ($, w) {
         if (!b) {
             return;
         }
+        var params = $PAGE_FORM.serializeObject();
+        if(!params.picurl || params.params === ''){
+            layer.msg("请上传图片！", {shift: -1, time: 3000});
+            return;
+        }
         _self.getPageBtn().save.attr("disabled", true);
         $.ajax({
             type : 'put',
-            url : WEB_CONFIG._action.ART_TEACHER_ACTION,
+            url : WEB_CONFIG._action.ART_award_ACTION,
             contentType: "application/json; charset=utf-8",
-            data : JSON.stringify($PAGE_FORM.serializeObject()),
+            data : JSON.stringify(params),
             async: false,
             success : function(data) {
                 layer.msg("修改成功", {shift: -1, time: 1000}, function() {
@@ -180,19 +178,12 @@ classification_add = (function ($, w) {
         var _self = this;
         $.ajax({
             type : 'get',
-            url : WEB_CONFIG._action.ART_TEACHER_ACTION + '/' + _self.get$Scope().id,
+            url : WEB_CONFIG._action.ART_award_ACTION + '/' + _self.get$Scope().id,
             async : false,
             success : function(data) {
                 _self.getPageDom().id.val(data.id);
-                _self.getPageDom().name.val(data.name);
-                _self.getPageDom().namePy.val(data.namePy);
-                _self.getPageDom().sex.val(data.sex);
-                _self.getPageDom().position.val(data.position);
-                _self.getPageDom().photoUrl.val(data.photoUrl);
-                _self.getPageDom().school.val(data.school);
                 _self.getPageDom().title.val(data.title);
-                _self.getPageDom().phone.val(data.phone);
-                $("#picture").show().attr('src',data.photoUrl);
+                $("#banner").show().attr('src',data.picurl);
                 setContent(data.content);
             }
         });
@@ -204,10 +195,9 @@ classification_add = (function ($, w) {
         })
     });
     function buildImgs(data) {
-        $("#picture").show().attr('src',data.url);
-        $("#photoUrl").val(data.url);
+        $("#banner").show().attr('src',data.url);
+        $("#picurl").val(data.url);
     }
-
 
     return new _$();
 

@@ -111,6 +111,8 @@ WEB_CONFIG = {
         ART_TEACHER_ACTION : "/artTeacher",
         //授权书相关接口
         ART_AUTHBOOK_ACTION : "/artAuthbook",
+        //证书相关接口
+        ART_award_ACTION : "/artAward",
         //新闻中心相关接口
         ART_NEWS_ACTION : "/artNews",
         //首页banner
@@ -252,6 +254,11 @@ WEB_CONFIG = {
         ART_AUTHBOOK_UPDATE_PAGE : "/pages/authbook/addAuthbook.html",
         ART_AUTHBOOK_UPDATE_PAGE_WITH_PARAMS : function(keyValues) {
             return $$.makeWithUrl(WEB_CONFIG._page.ART_AUTHBOOK_UPDATE_PAGE, keyValues);
+        },
+        // 证书相关修改页
+        ART_AWARD_UPDATE_PAGE : "/pages/authbook/addArtAward.html",
+        ART_AWARD_UPDATE_PAGE_WITH_PARAMS : function(keyValues) {
+            return $$.makeWithUrl(WEB_CONFIG._page.ART_AWARD_UPDATE_PAGE, keyValues);
         },
         // 新闻中心修改页
         ART_News_UPDATE_PAGE : "/pages/news/addArtNews.html",
