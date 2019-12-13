@@ -63,53 +63,48 @@
         return theRequest;
     }
 
-    /*新闻类模板*/
-    function getNews(res){
+    /*模板*/
+    function getTempt(res){
         var str =
-            '<div class="section">' +
-            '<h1>' + res.title + '</h1>' +
-            '<ul class="info">' +
-            '<li>作者：' + res.author + '</li>' +
-            '<li>来源：' + res.source + '</li>' +
-            '<li>发布日期： ' + res.updatetime + '</li>' +
-            '</ul>' +
-            '<div class="umEdit">' + res.content + '</div>' +
-            '</div>';
-        return str;
-    }
-    /*学生类模板*/
-    function getSingle(res){
-        var str =
-            '<div class="section">' +
-            '<h1>' + res.name + '</h1>' +
-            '<ul class="info">' +
-            '<li>发布日期： ' + res.updatetime + '</li>' +
-            '</ul>' +
-            '<div class="umEdit">' + res.content + '</div>' +
+            '<h2 class="visible-md-block visible-lg-block visible-sm-block">使用教材</h2>' +
+            '<div class="text_content">' +
+                '<div class="textbook visible-md-block visible-lg-block visible-sm-block" style="height: 647px;">' +
+                '   <img width="180px" height="250px" src="http://kjwyh.ccom.edu.cn/manage/20160822/ajhntwt8kd.jpg">' +
+                '</div>' +
+                '<div class="textintro">' +
+                    '<p>' + res.title + '</p>' +
+                        '<div class="text_author">' +
+                            '<img class="visible-xs-block" src="' + res.picUrl + '">' +
+                            '<table>' +
+                                '<tbody>' +
+                                    '<tr>' +
+                                        '<td class="td1">作者：</td>' +
+                                        '<td>' + res.author + '</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                        '<td class="td1">类型：</td>' +
+                                        '<td>' + res.textBookName + '</td>' +
+                                    '</tr>' +
+                                    '<tr>' +
+                                        '<td class="td1">版本：</td>' +
+                                        '<td>' + res.version + '</td>' +
+                                    '</tr>' +
+                                '</tbody>' +
+                            '</table>' +
+                        '</div>' +
+                    '<div class="intro">' + res.content +'</div>' +
+                '</div>' +
             '</div>';
         return str;
     }
 
     /*获取详情*/
     function getDetail(){
-        var url=null,template=null;
-        switch (params.path){
-            case 'news': url = '/artNews/' + params.id;template = getNews;
-                break;
-            case 'artHomeStudent': url = '/artHomeStudent/' + params.id;template = getSingle;
-                break;
-            case 'artHomeSchool': url = '/artHomeSchool/' + params.id;template = getSingle;
-                break;
-            case 'artTeacher': url = '/artTeacher/' + params.id;template = getSingle;
-                break;
-            default: url = null;
-        }
-        if(url){
-            $.EXTEND.GET(url)
-                .then(function (res) {
-                    $(".content").html(template(res));
-                });
-        }
+        var template=getTempt;
+        $.EXTEND.GET("artTextbook/" + params.id)
+            .then(function (res) {
+                $(".content").html(template(res));
+            });
 
     }
 

@@ -29,12 +29,7 @@
 		<div class="content">
 			 <h2 class="visible-md-block visible-lg-block visible-sm-block">使用教材</h2>
 			 <ul class="item-list">
-			 	<li>
-			 		<a href="../pages/detail/book_detail.html">
-			 			<img src="../images/book.jpg" alt="" />
-                    	<p>电子琴（业余）考级教程</p>
-			 		</a>
-                </li>
+
 
 			 </ul>
 		</div>
@@ -51,7 +46,48 @@
 <script type="text/javascript" src="../js/extend.js"></script>
 <!--通用：包括config，公共头底页面，面包屑及目录-->
 <script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript">
+    var page_num = 1;
+    var page_size = 10;
+    function getList(num) {
+        $.EXTEND.GET('artTextbook',{offset:( num - 1 )*page_size})
+            .then(function (res) {
+                var str1 = '';
+                $.each(res.data, function(i, item) {
+                    str1 +=
+                        '<li>' +
+							'<a href="../pages/detail/book_detail.html?id=' +item.id+ '">' +
+								'<img src="' +item.picUrl+ '" alt="" />' +
+								'<p>' +item.title+ '</p>' +
+							'</a>' +
+						'</li>';
+                });
+                $(".item-list").html(str1);
+                page(Math.ceil(res.recordsTotal / page_size));
+            });
+    }
+    function page(total) {
+        $("#pagination").pagination({
+            currentPage: page_num,
+            totalPage: total,
+            isShow: true,
+            homePageText: "首页",
+            endPageText: "尾页",
+            prevPageText: "上一页",
+            nextPageText: "下一页",
+            callback: function(current) {
+                $("#current3").text(current);
+                page_num = current;
+                getList(current)
+            }
+        });
+    }
 
+    function init() {
+        getList(page_num);
+    }
+    init()
+</script>
 
 </body>
 
