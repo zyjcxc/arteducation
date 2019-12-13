@@ -114,11 +114,16 @@ classification_add = (function ($, w) {
             layer.msg("请填写内容！", {shift: -1, time: 3000});
             return;
         }
+        var params = $PAGE_FORM.serializeObject();
+        if(!params.picurl || params.params === ''){
+            layer.msg("请上传图片！", {shift: -1, time: 3000});
+            return;
+        }
         $.ajax({
             type : 'post',
             url : WEB_CONFIG._action.ART_AUTHBOOK_ACTION,
             contentType: "application/json; charset=utf-8",
-            data : JSON.stringify($PAGE_FORM.serializeObject()),
+            data : JSON.stringify(params),
             success : function(data) {
                 layer.msg("添加成功", {shift: -1, time: 1000}, function() {
                     $$.goTo({
@@ -135,12 +140,17 @@ classification_add = (function ($, w) {
         if (!b) {
             return;
         }
+        var params = $PAGE_FORM.serializeObject();
+        if(!params.picurl || params.picurl === ''){
+            layer.msg("请上传图片！", {shift: -1, time: 3000});
+            return;
+        }
         _self.getPageBtn().save.attr("disabled", true);
         $.ajax({
             type : 'put',
             url : WEB_CONFIG._action.ART_AUTHBOOK_ACTION,
             contentType: "application/json; charset=utf-8",
-            data : JSON.stringify($PAGE_FORM.serializeObject()),
+            data : JSON.stringify(params),
             async: false,
             success : function(data) {
                 layer.msg("修改成功", {shift: -1, time: 1000}, function() {
@@ -173,11 +183,22 @@ classification_add = (function ($, w) {
             success : function(data) {
                 _self.getPageDom().id.val(data.id);
                 _self.getPageDom().title.val(data.title);
+                $("#banner").show().attr('src',data.picurl);
                 setContent(data.content);
             }
         });
     }
 
+
+    $("#open").click(function () {
+        $$.showQiniuSgl().then(function (data) {
+            buildImgs(data[0]);
+        })
+    });
+    function buildImgs(data) {
+        $("#banner").show().attr('src',data.url);
+        $("#picurl").val(data.url);
+    }
 
 
     return new _$();

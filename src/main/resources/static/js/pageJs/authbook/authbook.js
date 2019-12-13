@@ -90,6 +90,13 @@ classification_list = (function ($, w) {
                 "columns": [
 				{"data" : "id", "defaultContent" : ""},
 				{"data" : "title", "defaultContent" : ""},
+                {"data" : "picurl", "defaultContent" : "",
+                    "render": function (data) {
+                        var fun = "onclick='$$.bigImg(\"" + data + "\")'";
+                        var img = "<img src='" + data +"' style='height:70px;width:auto;max-width:500px;' " + fun +"/ >";
+
+                        return img;
+                    }, "orderable" : false},
 				{"data" : "createUserId", "defaultContent" : ""},
 				{"data" : "createtime", "defaultContent" : ""},
 				{"data" : "updatetime", "defaultContent" : ""},
