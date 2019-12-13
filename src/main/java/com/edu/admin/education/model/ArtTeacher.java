@@ -50,5 +50,11 @@ public class ArtTeacher extends BaseModel {
 
     private Date updatetime;
 
+    private String school;
+
+    private String phone;
+
+    private String title;
+
 
 }

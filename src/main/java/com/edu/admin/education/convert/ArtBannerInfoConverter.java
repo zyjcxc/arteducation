@@ -33,6 +33,7 @@ public class ArtBannerInfoConverter {
 
         artBannerInfo.setTitle(artBannerInfoCommand.getTitle());
         artBannerInfo.setRecommend(artBannerInfoCommand.getRecommend());
+        artBannerInfo.setName(artBannerInfoCommand.getName());
 
 
         return artBannerInfo;
@@ -58,6 +59,8 @@ public class ArtBannerInfoConverter {
 
         artBannerInfoDto.setTitle(artBannerInfo.getTitle());
         artBannerInfoDto.setRecommend(artBannerInfo.getRecommend());
+        artBannerInfoDto.setName(artBannerInfo.getName());
+
 
         artBannerInfoDto.setId(artBannerInfo.getId());
         return artBannerInfoDto;

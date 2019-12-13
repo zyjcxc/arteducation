@@ -16,6 +16,9 @@
     <result column="state" jdbcType="VARCHAR" property="state" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
   </resultMap>
 
 </mapper>

@@ -28,6 +28,7 @@ public class ArtAuthbookConverter {
         artAuthbook.setContent(artAuthbookCommand.getContent());
         artAuthbook.setTitle(artAuthbookCommand.getTitle());
         artAuthbook.setState(artAuthbookCommand.getState());
+        artAuthbook.setPicurl(artAuthbookCommand.getPicurl());
 
         return artAuthbook;
     }
@@ -48,6 +49,8 @@ public class ArtAuthbookConverter {
         artAuthbookDto.setCreatetime(artAuthbook.getCreatetime());
         artAuthbookDto.setUpdatetime(artAuthbook.getUpdatetime());
         artAuthbookDto.setId(artAuthbook.getId());
+        artAuthbook.setPicurl(artAuthbook.getPicurl());
+
         return artAuthbookDto;
     }
 

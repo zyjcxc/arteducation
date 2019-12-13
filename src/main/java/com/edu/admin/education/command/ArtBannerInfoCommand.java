@@ -62,4 +62,9 @@ public class ArtBannerInfoCommand {
     @ApiModelProperty(value="1.首页展示 0.首页不展示", name="recommend", required=true, example="1")
     private Integer recommend;
 
+    /**
+     *
+     */
+    @ApiModelProperty(value="名字", name="name", example="2016")
+    private String name;
 }

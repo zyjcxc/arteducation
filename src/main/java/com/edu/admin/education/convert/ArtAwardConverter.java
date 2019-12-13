@@ -28,6 +28,7 @@ public class ArtAwardConverter {
         artAward.setContent(artAwardCommand.getContent());
         artAward.setTitle(artAwardCommand.getTitle());
         artAward.setState(artAwardCommand.getState());
+        artAward.setPicurl(artAwardCommand.getPicurl());
 
         return artAward;
     }
@@ -48,6 +49,8 @@ public class ArtAwardConverter {
         artAwardDto.setCreatetime(artAward.getCreatetime());
         artAwardDto.setUpdatetime(artAward.getUpdatetime());
         artAwardDto.setId(artAward.getId());
+        artAwardDto.setPicurl(artAward.getPicurl());
+
         return artAwardDto;
     }
 

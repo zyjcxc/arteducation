@@ -45,4 +45,7 @@ public class ArtBannerInfo extends BaseModel {
 
     private Date updatetime;
 
+    private String name;
+
+
 }

@@ -56,4 +56,10 @@ public class ArtTeacherCommand {
     @ApiModelProperty(value="状态 1 正常 2删除", name="state", example="1")
     private String state;
 
+    private String school;
+
+    private String phone;
+
+    private String title;
+
 }

@@ -35,4 +35,10 @@ public class ArtAwardCommand {
     @ApiModelProperty(value="状态 0.草稿 1 正常 2删除", name="state", example="1")
     private String state;
 
+    /**
+     * 图片url
+     */
+    @ApiModelProperty(value="图片url", name="picurl", example="www.baidu.com")
+    private String picurl;
+
 }

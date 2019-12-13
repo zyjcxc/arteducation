@@ -14,5 +14,6 @@
     <result column="create_user_id" jdbcType="BIGINT" property="createUserId" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="picurl" jdbcType="VARCHAR" property="picurl" />
   </resultMap>
 </mapper>

@@ -33,6 +33,10 @@ public class ArtTeacherConverter {
         artTeacher.setPosition(artTeacherCommand.getPosition());
         artTeacher.setSex(artTeacherCommand.getSex());
 
+        artTeacher.setTitle(artTeacherCommand.getTitle());
+        artTeacher.setPhone(artTeacherCommand.getPhone());
+        artTeacher.setSchool(artTeacherCommand.getSchool());
+
         return artTeacher;
     }
 
@@ -55,6 +59,11 @@ public class ArtTeacherConverter {
         artTeacherDto.setCreatetime(artTeacher.getCreatetime());
         artTeacherDto.setUpdatetime(artTeacher.getUpdatetime());
         artTeacherDto.setId(artTeacher.getId());
+
+        artTeacherDto.setTitle(artTeacher.getTitle());
+        artTeacherDto.setPhone(artTeacher.getPhone());
+        artTeacherDto.setSchool(artTeacher.getSchool());
+
         return artTeacherDto;
     }
 

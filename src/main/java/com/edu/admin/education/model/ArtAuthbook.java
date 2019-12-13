@@ -14,6 +14,11 @@ import java.util.Date;
 public class ArtAuthbook extends BaseModel {
 
     /**
+     *
+     */
+    private String picurl;
+
+    /**
 	* 授权书名称
 	*/
     private String title;

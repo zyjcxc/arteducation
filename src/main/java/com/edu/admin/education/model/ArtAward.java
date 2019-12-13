@@ -13,6 +13,10 @@ import java.util.Date;
 @AllArgsConstructor
 public class ArtAward extends BaseModel {
 
+    /**
+     *
+     */
+    private String picurl;
 
     /**
 	* 奖项、证书名
