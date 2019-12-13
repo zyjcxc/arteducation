@@ -99,7 +99,13 @@ classification_list = (function ($, w) {
                     }
                 },
 				{"data" : "position", "defaultContent" : ""},
-				{"data" : "photoUrl", "defaultContent" : ""},
+				{"data" : "photoUrl", "defaultContent" : "",
+                    "render": function (data) {
+                        var fun = "onclick='$$.bigImg(\"" + data + "\")'";
+                        var img = "<img src='" + data +"' style='height:70px;width:auto;max-width:500px;' " + fun +"/ >";
+
+                        return img;
+                    }, "orderable" : false},
 				{"data" : "createtime", "defaultContent" : ""},
 				{"data" : "updatetime", "defaultContent" : ""},
                     {

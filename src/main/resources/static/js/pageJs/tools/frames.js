@@ -555,5 +555,17 @@ $$.extend($$, {
             return '首页底部';
         }
         return '未知';
-    }
+    },
+    bigImg : function (pic) {
+    //页面层-图片
+    layer.open({
+        type: 1,
+        title: false,
+        closeBtn: 0,
+        area: "70%",
+        skin: 'layui-layer-nobg', //没有背景色
+        shadeClose: true,
+        content: "<div style='width: 100%;text-align: center'><img src='" + pic + "' style='width:auto;max-width: 100%;height: auto;'></div>"
+    });
+}
 });

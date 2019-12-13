@@ -101,12 +101,11 @@ classification_list = (function ($, w) {
 				{"data" : "sort", "defaultContent" : ""},
 				{"data" : "title", "defaultContent" : ""},
                 {
-                    "data": "",
+                    "data": "picurl",
                     "defaultContent": "",
-                    "render": function (data, type, row) {
-                        var picurl = row['picurl'];
-                        var fun = "onclick='bigImg(\"" + picurl + "\")'";
-                        var img = "<img src='" + picurl +"' style='height:70px;width:auto;max-width:500px;' " + fun +"/ >";
+                    "render": function (data) {
+                        var fun = "onclick='$$.bigImg(\"" + data + "\")'";
+                        var img = "<img src='" + data +"' style='height:70px;width:auto;max-width:500px;' " + fun +"/ >";
 
                         return img;
                     }, "orderable" : false
@@ -193,15 +192,3 @@ function updateState(id, state, operator) {
 
 }
 
-function bigImg(pic) {
-    //页面层-图片
-    layer.open({
-        type: 1,
-        title: false,
-        closeBtn: 0,
-        area: "80%",
-        skin: 'layui-layer-nobg', //没有背景色
-        shadeClose: true,
-        content: "<img src='" + pic + "' style='width: 100%;height: auto;'>"
-    });
-}

@@ -95,7 +95,14 @@ classification_list = (function ($, w) {
 				{"data" : "id", "defaultContent" : ""},
 				{"data" : "name", "defaultContent" : ""},
 				{"data" : "sort", "defaultContent" : ""},
-				{"data" : "picurl", "defaultContent" : ""},
+                {"data" : "picurl", "defaultContent" : "",
+                    "render": function (data) {
+                        var fun = "onclick='$$.bigImg(\"" + data + "\")'";
+                        var img = "<img src='" + data +"' style='height:70px;width:auto;max-width:500px;' " + fun +"/ >";
+
+                        return img;
+                    }, "orderable" : false
+                },
                 {"data" : "recommend", "defaultContent" : "",
                     "render": function (data) {
                         return $$.YesOrNo(data);

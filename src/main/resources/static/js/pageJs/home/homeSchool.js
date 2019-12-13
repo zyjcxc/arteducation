@@ -95,7 +95,14 @@ classification_list = (function ($, w) {
 				{"data" : "id", "defaultContent" : ""},
 				{"data" : "name", "defaultContent" : ""},
 				{"data" : "sort", "defaultContent" : ""},
-				{"data" : "picurl", "defaultContent" : ""},
+                {"data" : "picurl", "defaultContent" : "",
+                    "render": function (data) {
+                        var fun = "onclick='$$.bigImg(\"" + data + "\")'";
+                        var img = "<img src='" + data +"' style='height:70px;width:auto;max-width:500px;' " + fun +"/ >";
+
+                        return img;
+                    }, "orderable" : false
+                },
                 {"data" : "recommend", "defaultContent" : "",
                     "render": function (data) {
                         return $$.YesOrNo(data);
@@ -103,23 +110,23 @@ classification_list = (function ($, w) {
                 },
 				{"data" : "createtime", "defaultContent" : ""},
 				{"data" : "updatetime", "defaultContent" : ""},
-                    {
-                        "data": "",
-                        "defaultContent": "",
-                        "render": function (data, type, row) {
-                            var id = row['id'];
-                            // 编辑地址
-                            var edit = buttonEdit(WEB_CONFIG._page.ART_HOME_SCHOOL_PAGE_WITH_PARAMS({
-                                id : id,
-                                returnUrl :  _self.get$Scope().cur_page
-                            }), "", pers);
+                {
+                    "data": "",
+                    "defaultContent": "",
+                    "render": function (data, type, row) {
+                        var id = row['id'];
+                        // 编辑地址
+                        var edit = buttonEdit(WEB_CONFIG._page.ART_HOME_SCHOOL_PAGE_WITH_PARAMS({
+                            id : id,
+                            returnUrl :  _self.get$Scope().cur_page
+                        }), "", pers);
 
-                            var del_fun = "onclick='updateState(\"" + id + "\", \"2\", \"删除\")'";
-                            var del_op = "<button title='删除' class='layui-btn layui-btn-mini' " + del_fun +">删除</button>";
+                        var del_fun = "onclick='updateState(\"" + id + "\", \"2\", \"删除\")'";
+                        var del_op = "<button title='删除' class='layui-btn layui-btn-mini' " + del_fun +">删除</button>";
 
-                            return edit + del_op;
-                        }, "orderable" : false
-                    }
+                        return edit + del_op;
+                    }, "orderable" : false
+                }
 
                 ],
                 "order": [[0, "asc"]]
