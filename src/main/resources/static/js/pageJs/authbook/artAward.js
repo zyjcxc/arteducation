@@ -79,7 +79,7 @@ classification_list = (function ($, w) {
                     "url": "/js/plugin/datatables/Chinese.lang"
                 },
                 "ajax": {
-                    "url": WEB_CONFIG._action.ART_AUTHBOOK_ACTION,
+                    "url": WEB_CONFIG._action.ART_award_ACTION,
                     "type": "get",
                     "data": function (d) {
                         d.id = page.$dom.id.val();
@@ -106,7 +106,7 @@ classification_list = (function ($, w) {
                         "render": function (data, type, row) {
                             var id = row['id'];
                             // 编辑地址
-                            var edit = buttonEdit(WEB_CONFIG._page.ART_AUTHBOOK_UPDATE_PAGE_WITH_PARAMS({
+                            var edit = buttonEdit(WEB_CONFIG._page.ART_AWARD_UPDATE_PAGE_WITH_PARAMS({
                                 id : id,
                                 returnUrl :  _self.get$Scope().cur_page
                             }), "", pers);
@@ -130,7 +130,7 @@ classification_list = (function ($, w) {
         var _self = this;
         $$.onJq(_self.getPageBtn().add, "click", function () {
             $$.goTo.call(_self, {
-                url : WEB_CONFIG._page.ART_AUTHBOOK_UPDATE_PAGE_WITH_PARAMS({
+                url : WEB_CONFIG._page.ART_AWARD_UPDATE_PAGE_WITH_PARAMS({
                         returnUrl :  _self.get$Scope().cur_page
                 })
             });
@@ -160,7 +160,7 @@ function updateState(id, state, operator) {
     }, function() {
         $.ajax({
             type : 'DELETE',
-            url : WEB_CONFIG._action.ART_AUTHBOOK_ACTION + '/' + id ,
+            url : WEB_CONFIG._action.ART_award_ACTION + '/' + id ,
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(obj),
             success : function() {

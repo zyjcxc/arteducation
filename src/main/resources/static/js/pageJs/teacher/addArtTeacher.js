@@ -28,6 +28,9 @@ classification_add = (function ($, w) {
                 photoUrl : $("#photoUrl"),
                 content : $("#content"),
                 createtime : $("#createtime"),
+                school : $("#school"),
+                title : $("#title"),
+                phone : $("#phone"),
                 updatetime : $("#updatetime"),
             },
             $btn: {
@@ -186,6 +189,9 @@ classification_add = (function ($, w) {
                 _self.getPageDom().sex.val(data.sex);
                 _self.getPageDom().position.val(data.position);
                 _self.getPageDom().photoUrl.val(data.photoUrl);
+                _self.getPageDom().school.val(data.school);
+                _self.getPageDom().title.val(data.title);
+                _self.getPageDom().phone.val(data.phone);
                 $("#picture").show().attr('src',data.photoUrl);
                 setContent(data.content);
             }
