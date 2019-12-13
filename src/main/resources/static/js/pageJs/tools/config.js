@@ -117,6 +117,8 @@ WEB_CONFIG = {
         MAIN_BANNER_ACTION : "/artBannerInfo",
         //联系我们
         ART_GUEST_INFO : "/artGuestInfo",
+        //关于我们
+        ART_ABOUT_US : "/artAboutUs",
         //学生风采
         ART_HOME_STUDENT : "/artHomeStudent",
         //学校风采

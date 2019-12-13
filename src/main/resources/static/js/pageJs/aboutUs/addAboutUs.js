@@ -20,8 +20,7 @@ classification_add = (function ($, w) {
                 id : id
             },
             $dom: {
-					id : $("#id"),
-					title : $("#title")
+					id : $("#id")
             },
             $btn: {
                 back: $("#backBtn"),
@@ -114,7 +113,7 @@ classification_add = (function ($, w) {
 
         $.ajax({
             type : 'post',
-            url : WEB_CONFIG._action.ART_AUTHBOOK_ACTION,
+            url : WEB_CONFIG._action.ART_ABOUT_US,
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(params),
             success : function(data) {
@@ -142,7 +141,7 @@ classification_add = (function ($, w) {
 
         $.ajax({
             type : 'put',
-            url : WEB_CONFIG._action.ART_AUTHBOOK_ACTION,
+            url : WEB_CONFIG._action.ART_ABOUT_US,
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(params),
             async: false,
@@ -172,11 +171,10 @@ classification_add = (function ($, w) {
         var _self = this;
         $.ajax({
             type : 'get',
-            url : WEB_CONFIG._action.ART_AUTHBOOK_ACTION + '/' + _self.get$Scope().id,
+            url : WEB_CONFIG._action.ART_ABOUT_US,
             async : false,
             success : function(data) {
                 _self.getPageDom().id.val(data.id);
-                _self.getPageDom().title.val(data.title);
                 setContent(data.content);
 
             }
