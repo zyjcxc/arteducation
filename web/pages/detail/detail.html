@@ -79,9 +79,10 @@
   	}
 	/*学生类模板*/
   	function getSingle(res){
+  	    var TITLE = res.title || res.name;
   		var str = 
 	    		'<div class="section">' +
-	    			'<h1>' + res.name + '</h1>' +
+	    			'<h1>' + TITLE + '</h1>' +
 	    			'<ul class="info">' +
 	                    '<li>发布日期： ' + res.updatetime + '</li>' +
                		'</ul>' +
@@ -93,16 +94,11 @@
   	/*获取详情*/
   	function getDetail(){
   		var url=null,template=null;
+  		if(params.path) url = '/'+params.path+'/' + params.id;
   		switch (params.path){
-			case 'news': url = '/artNews/' + params.id;template = getNews;
+			case 'artNews': template = getNews;
 			break;
-			case 'artHomeStudent': url = '/artHomeStudent/' + params.id;template = getSingle;
-			break;
-			case 'artHomeSchool': url = '/artHomeSchool/' + params.id;template = getSingle;
-			break;
-			case 'artTeacher': url = '/artTeacher/' + params.id;template = getSingle;
-			break;
-			default: url = null;
+			default: template = getSingle;
 		}
   		if(url){
   			$.EXTEND.GET(url)

@@ -24,6 +24,9 @@
             <div class="modal-body">
                 <img style="margin:0 auto;display: block" id="modalImg" src="" alt="" />
             </div>
+            <div class="modal-footer">
+                <a href="" target="_blank" class="btn btn-sm" style="background: #840e35;color:#fff;">查看详情</a>
+            </div>
         </div>
     </div>
 </div>
@@ -106,6 +109,7 @@
         var that = this;
         $('.modal-title').html($(that).data('title'));
         $('#modalImg').attr('src',$(that).data('img'));
+        $('.modal-footer a').attr('href','http://localhost:63342/arteducation/web/pages/detail/detail.html?path=artAuthbook&id=' + $(that).data('id'));
         $('#myModal').modal({
             show:true
         })

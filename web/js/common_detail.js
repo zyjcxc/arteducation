@@ -45,13 +45,7 @@
 					pCode:'news',
 					code:'news_1',
 					url:'news.html?news_1',
-					title:'新闻',
-					detail:{
-						pCode:'news',
-						code:'news_detail',
-						url:'news_detail.html',
-						title:'详情'
-						}
+					title:'新闻'
 				},
 				{
 					pCode:'news',
