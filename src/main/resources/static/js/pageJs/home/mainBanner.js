@@ -93,6 +93,7 @@ classification_list = (function ($, w) {
                 "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-6 hidden-xs'i><'col-sm-6 col-xs-12' p v>>",
                 "columns": [
 				{"data" : "id", "defaultContent" : ""},
+				{"data" : "name", "defaultContent" : ""},
                 {"data" : "site", "defaultContent" : "",
                     "render": function (data) {
                         return $$.SiteChinese(data);

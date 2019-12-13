@@ -26,6 +26,7 @@ classification_add = (function ($, w) {
                 sort : $("#sort"),
                 url : $("#url"),
                 recommend : $("#recommend"),
+                name : $("#name"),
                 title : $("#title"),
             },
             $btn: {
@@ -171,6 +172,7 @@ classification_add = (function ($, w) {
                 _self.getPageDom().sort.val(data.sort);
                 _self.getPageDom().url.val(data.url);
                 _self.getPageDom().title.val(data.title);
+                _self.getPageDom().name.val(data.name);
                 _self.getPageDom().recommend.val(data.recommend);
             }
         });
