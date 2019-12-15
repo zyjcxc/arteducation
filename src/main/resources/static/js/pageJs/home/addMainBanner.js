@@ -174,6 +174,7 @@ classification_add = (function ($, w) {
                 _self.getPageDom().title.val(data.title);
                 _self.getPageDom().name.val(data.name);
                 _self.getPageDom().recommend.val(data.recommend);
+                changeSelect(data.name);
             }
         });
     }
@@ -192,3 +193,10 @@ classification_add = (function ($, w) {
     return new _$();
 
 })(jQuery, window);
+
+function changeSelect(v) {
+    $("#topic").hide();
+    if(v == 3){
+        $("#topic").show();
+    }
+}
