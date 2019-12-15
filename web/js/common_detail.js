@@ -24,18 +24,6 @@
 				isParent:false
 			},
 			{
-				code:'downloads',
-				url:'downloads.html',
-				title:'文件下载',
-				isParent:false
-			},
-			{
-				code:'videos',
-				url:'videos.html',
-				title:'活动视频',
-				isParent:false
-			},
-			{
 				code:'news',
 				url:'news.html?news_1',
 				title:'新闻中心',
