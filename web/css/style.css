@@ -74,21 +74,23 @@
 .list-search-o .query-check .group .btn.score {color:#fff;background-color:#d5b345;}
 .list-search-o .query-check .group .btn.express {color:#fff;background-color:#898989;}
 .search-icon {background-size:50%;background-repeat:no-repeat;background-position:center;height:95px;width: 95px;margin: 0 auto;}
-.search-icon.area {background-color:#a74752;background-image:url(../images/query-tap-1.png);}
-.search-icon.field {background-color:#d72324;background-image:url(../images/query-tap-2.png);}
-.search-icon.score {background-color:#d5b345;background-image:url(../images/query-tap-3.png);}
-.search-icon.express{background-color:white;background-image:url(../images/query-tap-4.png);background-size: cover!important;}
-.search-icon.video {background-color:#CD8500;background-image:url(../images/query-tap-5.png);}
 .search-icon img {width:100%;}
 .list-search-o .item:hover .search-icon{background-image:none}
 .list-search {display:none;top:190px;left:40px;z-index:20000;}
 .list-search .item {position:relative;margin: 10px;overflow: hidden;}
-.list-search .item .search-icon {float: left;width: 22%;height: 80px;background-size:40%;background-repeat:no-repeat;background-position:center 14px;transition:all 0.3s ease;-moz-transition:all 0.3s ease;-webkit-transition:all 0.3s ease;}
-.list-search .item .search-icon .title {padding-top:60px;color:#fff;display:block;font-size:12px;text-align:center;line-height:1;}
-.list-search .item .group {background-color:#fff;padding: 2px 20px;height: 80px;width: 78%;opacity:0;-webkit-box-shadow:0 0px 30px rgba(0,0,0,0.2);box-shadow:0 0px 30px rgba(0,0,0,0.2);opacity:1;visibility:visible;float: left;}
-.list-search .item .group input{text-indent:4px;margin-top: 5px;width: 70%;display: block;line-height: 26px;border: none;border-bottom: 1px #666 solid;border-radius: 0;}
+.list-search .item .search-icon {float: left;width: 22%;height: 95px;background-size:40%;background-repeat:no-repeat;background-position:center 14px;transition:all 0.3s ease;-moz-transition:all 0.3s ease;-webkit-transition:all 0.3s ease;}
+.list-search .item .search-icon .title {padding: 50px 10px 0;color:#fff;display:block;font-size:12px;text-align:center;line-height: 1;}
+.list-search .item .group {background-color:#fff;padding: 6px 20px;min-height: 95px;width: 78%;opacity:0;-webkit-box-shadow:0 0px 30px rgba(0,0,0,0.2);box-shadow:0 0px 30px rgba(0,0,0,0.2);opacity:1;visibility:visible;float: left;}
+.list-search .item .group .form{text-indent:4px;margin-top: 5px;width: 70%;display: block;line-height: 26px;border: none;border-bottom: 1px #666 solid;border-radius: 0;}
 .list-search .item .group img{position:absolute;right:20px;top: 22px;height: 38px;}
-.list-search .item .search-icon {background-size: 35%;background-repeat:no-repeat;background-position: center 25%;}
+.list-search .item .search-icon {background-size: 28px;background-repeat:no-repeat;background-position: center 16%;}
+.search-icon.area {background-color:#a74752;background-image:url(../images/query-tap-1.png);}
+.list-search .search-icon.area {height: 156px;}
+.search-icon.field {background-color:#d72324;background-image:url(../images/query-tap-2.png);}
+.search-icon.score {background-color:#d5b345;background-image:url(../images/query-tap-3.png);}
+.search-icon.express{background-color:white;background-image:url(../images/query-tap-4.png);background-size: cover!important;}
+.search-icon.video {background-color:#CD8500;background-image:url(../images/query-tap-5.png);}
+/*
 @media (min-width:767px) {
 	.list-search-o {*zoom:1;width: 1320px;margin: 0 auto;}
 	.list-search-o:before,.list-search-o:after {content:" ";display:table;}
@@ -115,7 +117,7 @@
 	.list-search .item:hover .group {opacity:1;visibility:visible;transition:0.3s;-moz-transition:0.3s;-webkit-transition:0.3s;-o-transition:0.3s;}
 	.list-search .item:hover .search-icon {background-size:40%;background-repeat:no-repeat;background-position:center;}
 	.list-search .item:hover .search-icon .title {opacity:0;transition:0.3s;-moz-transition:0.3s;-webkit-transition:0.3s;-o-transition:0.3s;}
-}
+}*/
 /*专栏*/
 .column {}
 .column .col-xs-12,.column .col-md-6{margin: 0;}

@@ -54,8 +54,10 @@
                                     <li class="t">科学</li>
                                     <li class="t">公正</li>
                                 </ul>
+                                <div class="group enter">
                                 <a class="btn" href="./pages/teacher.html">优秀师资团队</a>
                                 <a class="btn pull-right" href="./pages/books.html">高级荣誉证书</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -68,7 +70,7 @@
                                 <h3>中 央 音 乐 学 院</h3>
                                 <h2>考 级 委 员 会</h2>
                                 <div class="group enter">
-                                    <a class="btn" href="">全国特长生视频</a>
+                                    <a class="btn" href="./pages/teacher.html">优秀师资团队</a>
                                     <a class="btn pull-right" href="./pages/credentials.html">高级荣誉证书</a>
                                 </div>
                             </div>
@@ -86,25 +88,33 @@
 
     <!------------ 注释：搜索 start ----------->
 
-    <div class="list-search visible-xs-block visible-sm-block">
+    <div class="list-search visible-xs-block">
         <div class="item area">
             <div class="search-icon area"><span class="title">特长生认证查询系统</span></div>
-            <form action="" class="group">
-                <input type="text" class="cx_left kaoqusmall" placeholder="请输入学生姓名">
-                <input type="text" class="cx_left kaoqusmall" placeholder="请输入身份证号">
-                <select name="num">
-                    <option value ="1">1</option>
-                    <option value ="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value ="5">5</option>
-                    <option value ="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value ="9">9</option>
-                    <option value ="10">10</option>
+            <form  id="student"  onsubmit="return false" class="group">
+                <input type="text" class="form" name="name" placeholder="请输入学生姓名">
+                <input type="text" class="form" name="classificationId" placeholder="请输入分类id">
+                <input type="text" class="form" name="cardNo" placeholder="请输入身份证号">
+                <select class="form" name="level">
+                    <option value ="">级别</option>
+                    <option value ="1">一级</option>
+                    <option value ="2">二级</option>
+                    <option value="3">三级</option>
+                    <option value="4">四级</option>
+                    <option value ="5">五级</option>
+                    <option value ="6">六级</option>
+                    <option value="7">七级</option>
+                    <option value="8">八级</option>
+                    <option value ="9">九级</option>
+                    <option value ="10">十级</option>
                 </select>
-                <img class="cx" data-ele='kaoqusmall' onclick='targetexam(this);' src="images/sreach_icon1.png">
+
+                <select class="form" name="bookType">
+                    <option value ="">证书类型</option>
+                    <option value ="1">白皮</option>
+                    <option value ="2">蓝皮</option>
+                </select>
+                <img class="cx" onclick='targetexam();' src="images/sreach_icon1.png">
             </form>
         </div>
         <div class="item field">
@@ -132,7 +142,7 @@
             </form>
         </div>
     </div>
-    <div class="list-search-o visible-md-block visible-lg-block">
+    <div class="list-search-o visible-sm-block visible-md-block visible-lg-block">
         <div class="item">
             <div class="search-icon area"></div>
             <p>特长生认证查询系统</p>
@@ -164,7 +174,7 @@
                         <option value ="2">蓝皮</option>
                     </select>
                     <div class="group">
-                        <input type="button" class="btn area" value="查 询" onclick="targetexam(this);">
+                        <input type="button" class="btn area" value="查 询" onclick="targetexam();">
                     </div>
                 </form>
             </div>
@@ -381,7 +391,7 @@
 <script type="text/javascript" src="js/extend.js"></script>
 <script>
 
-    function targetexam(vm){
+    function targetexam(){
         var serialize = $('#student').serializeObject(true)
         var param = JSON.parse(serialize);
         var validate = false;
@@ -425,7 +435,7 @@
         .then(function (res) {
             var str1 = '';
             $.each(res.data, function(i, item) {
-                if(i>=9) return false;
+                if(i>=3) return false;
                 var m = new Date(item.updatetime).getMonth();
                 var d = new Date(item.updatetime).getDate();
                 str1 +=
@@ -450,7 +460,7 @@
         .then(function (res) {
             var str1 = '';
             $.each(res.data, function(i, item) {
-                if(i>=9) return false;
+                if(i>=3) return false;
                 str1 +=
                     '<li><a href="./pages/detail/detail.html?path=news&id='+ item.id +'" target="_blank"> 【'+ item.updatetime +'】'+ item.title +'</a></li>';
 
