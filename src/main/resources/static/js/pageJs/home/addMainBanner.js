@@ -205,7 +205,11 @@ classification_add = (function ($, w) {
 
 function changeSelect(v) {
     $("#topic").hide();
+    $("#link").hide();
     if(v == 3){
         $("#topic").show();
+    }
+    if(v != 1){
+        $("#link").show();
     }
 }
