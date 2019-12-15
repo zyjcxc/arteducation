@@ -125,7 +125,10 @@ classification_add = (function ($, w) {
             return;
         }
         var params = $PAGE_FORM.serializeObject();
-
+        if(!params.photoUrl || params.params === ''){
+            layer.msg("请上传图片！", {shift: -1, time: 3000});
+            return;
+        }
         $.ajax({
             type : 'post',
             url : WEB_CONFIG._action.ART_TEACHER_ACTION,
@@ -148,11 +151,16 @@ classification_add = (function ($, w) {
             return;
         }
         _self.getPageBtn().save.attr("disabled", true);
+        var params = $PAGE_FORM.serializeObject();
+        if(!params.photoUrl || params.params === ''){
+            layer.msg("请上传图片！", {shift: -1, time: 3000});
+            return;
+        }
         $.ajax({
             type : 'put',
             url : WEB_CONFIG._action.ART_TEACHER_ACTION,
             contentType: "application/json; charset=utf-8",
-            data : JSON.stringify($PAGE_FORM.serializeObject()),
+            data : JSON.stringify(params),
             async: false,
             success : function(data) {
                 layer.msg("修改成功", {shift: -1, time: 1000}, function() {
