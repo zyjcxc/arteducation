@@ -127,11 +127,12 @@ textarea{
 .date-sign a:hover .item-date { color: #fff; background-color: #999; }
 
 /*查询详情*/
-.search-detail .section .infor{margin:20px auto;padding:20px 20px 5px;width: 80%;max-width:500px;-webkit-box-shadow:0 -5px 30px rgba(0,0,0,0.1);box-shadow:0 -5px 30px rgba(0,0,0,0.1);background-color: #fff;border-radius: 10px;font-size: 14px;background: url("http://demo.cssmoban.com/cssthemes6/fish_35_patara-everyone/img/news-1.jpg") center bottom;background-size: cover;}
-.search-detail .section .infor h3{text-align: center;}
+.search-detail .section .infor{margin: 20px auto;width: 1200px;-webkit-box-shadow:0 -5px 30px rgba(0,0,0,0.1);box-shadow:0 -5px 30px rgba(0,0,0,0.1);font-size: 14px;position:relative;border: 5px #840e35 solid;}
+.search-detail .section .infor img{width:100%;}
 .search-detail .section .infor ul{padding:10px;background: none;}
 .search-detail .section .list-group-item{background: rgba(255, 255, 255,0.7);;}
-
+.search-detail .section .infor .left{color:#653a29;position:absolute;top: 350px;right: 320px;z-index:99;font-size: 12px;}
+.search-detail .section .infor .left .item{margin-top: 5px;}
 /*模态框*/
 .modal-header{padding:5px 10px;background:#840e35;color:#fff;border-top-left-radius: 5px;border-top-right-radius: 5px;}
 .modal-header h4{font-size:16px;}

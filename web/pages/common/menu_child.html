@@ -48,7 +48,7 @@
 		    		var className = item.url.split("?")[1] == path.search ?'active':'';
 		            li = li + '<li class="' + className + '"><a href="../pages/' + item.url + '">' + item.title + '</a></li>';
 		            li_xs = li_xs + 
-			    	'<li role="presentation"><a href="../pages/' + item.url + '">' + item.title + '</a></li>';
+			    	'<li role="presentation" class="' + className + '"><a href="../pages/' + item.url + '">' + item.title + '</a></li>';
 		    	};
 		    }else{
 		    	li = 

@@ -19,13 +19,27 @@
 	<div id="header-page"></div>
 	<!------------ 注释：顶部 end ----------->
 	<!------------ 注释：面包屑 start ----------->
-	<div id="breadcrumb-page"></div>
+	<div class="detail-top">
+		<div class="contain" style=" background: #666;">
+			<div class="nav-label visible-md-block visible-lg-block visible-sm-block">
+				<span id="nav-label"></span>
+			</div>
+			<ul id="breadcrumb" class="breadcrumb">
+
+			</ul>
+		</div>
+
+	</div>
 
 
 	<div class="contain books">
-		<!------------ 注释：插入 menu start ----------->
-		<div id="menu_list"></div>
-		<!------------ 注释：插入 menu end ----------->
+		<div class="sidebar visible-md-block visible-lg-block visible-sm-block">
+			<ul id="menu_sidebar">
+
+			</ul>
+		</div>
+		<ul id="menu_sidebar_xs" class="nav nav-tabs visible-xs-block">
+		</ul>
 		<div class="content">
 			 <h2 class="visible-md-block visible-lg-block visible-sm-block">使用教材</h2>
 			 <ul class="item-list">
@@ -49,8 +63,9 @@
 <script type="text/javascript">
     var page_num = 1;
     var page_size = 10;
+    var path = {},id = null;
     function getList(num) {
-        $.EXTEND.GET('artTextbook',{offset:( num - 1 )*page_size})
+        $.EXTEND.GET('artTextbook',{offset:( num - 1 )*page_size,textbookTypeId:id})
             .then(function (res) {
                 var str1 = '';
                 $.each(res.data, function(i, item) {
@@ -82,11 +97,69 @@
             }
         });
     }
+    function findPath(array){
+        for (var i = 0; i < array.length; i++) {
+            var item = array[i]
+            if(item.isParent){
+                for (var i = 0; i < item.children.length; i++){
+                    if(item.children[i].url == (path.pathname + searchUrl)){
+                        return item;
+                        break;
+                    }
+                }
+                return false;
+            }else if(item.url == (path.pathname + searchUrl)){
+                return item
+                break;
+            }
+        };
+    }
 
-    function init() {
+    function initCrumb(res){
+        $("#nav-label").html('使用教材');
+        var li = '<li>首页</li><li>' + '使用教材' + '</li>';
+        for (var i = 0; i < res.length; i++) {
+            var item = res[i];
+            if(item.id == id){
+                li = li + '<li>' + item.name + '</li>';
+                break;
+            }
+
+        };
+        $("#breadcrumb").html(li);
+
+    }
+
+    function initMenu(){
+        var li = '',li_xs = '';
+        $.EXTEND.GET('artTextbookType/findAll')
+            .then(function (res) {
+                path = {
+                    href:window.location.href,
+                    pathname:window.location.pathname.split('/pages/')[1],
+                    search:window.location.search.split('?')[1]
+                };
+                id = path.search ? path.search.split('_')[1] : res[0].id ;
+                for (var i = 0; i < res.length; i++) {
+                    var item = res[i];
+
+                    var className = (item.id == id) ?'active':'';
+                    li = li + '<li class="' + className + '"><a href="../pages/books.html?book_' + item.id + '">' + item.name + '</a></li>';
+                    li_xs = li_xs +
+                        '<li role="presentation" class="' + className + '"><a href="../pages/books.html?book_' + item.id + '">' + item.name + '</a></li>';
+                }
+                $("#menu_sidebar").html(li);
+                $("#menu_sidebar_xs").html(li_xs);
+                init(res)
+            });
+
+
+    }
+    function init(res) {
+        initCrumb(res);
         getList(page_num);
     }
-    init()
+    initMenu()
 </script>
 
 </body>

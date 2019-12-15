@@ -19,8 +19,8 @@
     <div id="header-page"></div>
     <!------------ 注释：顶部 end ----------->
     <!------------ 注释：头部大屏滚动 start ----------->
-    <div class="detail-top" style="background: url(../../images/banner-6.jpg) center;">
-
+    <div class="detail-top">
+        <div class="contain" style=" background: #666;"></div>
     </div>
     <!------------ 注释：头部大屏滚动 end ----------->
 
@@ -44,11 +44,7 @@
 <script type="text/javascript" src="../../js/common_detail.js"></script>
 <script>
 
-    /*banner展示*/
-    $.EXTEND.GET('artBannerInfo/findAllBySite',{site:2})
-        .then(function (res) {
-            $(".detail-top").css("background","url('"+res[0].picurl+"') center");
-        });
+
     /*获取参数*/
     function GetRequest() {
         var url = location.search; //获取url中"?"符后的字串
