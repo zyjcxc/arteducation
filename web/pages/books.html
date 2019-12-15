@@ -20,7 +20,7 @@
 	<!------------ 注释：顶部 end ----------->
 	<!------------ 注释：面包屑 start ----------->
 	<div class="detail-top">
-		<div class="contain" style=" background: #666;">
+		<div class="contain">
 			<div class="nav-label visible-md-block visible-lg-block visible-sm-block">
 				<span id="nav-label"></span>
 			</div>
@@ -71,7 +71,7 @@
                 $.each(res.data, function(i, item) {
                     str1 +=
                         '<li>' +
-							'<a href="../pages/detail/book_detail.html?id=' +item.id+ '">' +
+							'<a target="_blank" href="../pages/detail/book_detail.html?id=' +item.id+ '">' +
 								'<img src="' +item.picUrl+ '" alt="" />' +
 								'<p>' +item.title+ '</p>' +
 							'</a>' +

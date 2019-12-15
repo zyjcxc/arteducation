@@ -19,9 +19,7 @@
     <div id="header-page"></div>
     <!------------ 注释：顶部 end ----------->
     <!------------ 注释：头部大屏滚动 start ----------->
-    <div class="detail-top">
-        <div class="contain" style=" background: #666;"></div>
-    </div>
+    <div class="detail-top"></div>
     <!------------ 注释：头部大屏滚动 end ----------->
 
 
@@ -30,41 +28,60 @@
 		<div class="content">
 			 <div class="section">
 
-                     <div class="infor">
+                <div id="type_1" style="display: none" class="infor">
                          <img src="../../images/search1.jpg" alt="">
-                         <div class="left" style="top: 350px;right: 360px;">
+                         <div class="list" style="top: 200px; right: 300px;">
                              <div class="item">
-                                 <p>发证时间：<span></span></p>
-                                 <p>DATA OF ISSUE：<span></span></p>
+                                 <p class="createtime"><i>发证时间：</i><span></span></p>
+                                 <p class="createtime"><i>DATA OF ISSUE：</i><span></span></p>
+                             </div>
+                             <div class="item"><!--todo-->
+                                 <p><i>起止级：</i><span></span></p>
+                                 <p><i>GRADE OF BEGINNING&END：</i><span></span></p>
                              </div>
                              <div class="item">
-                                 <p>起止级：<span></span></p>
-                                 <p>DATA OF ISSUE：<span></span></p>
-                             </div>
-                             <div class="item">
-                                 <p>发证时间：<span></span></p>
-                                 <p>DATA OF ISSUE：<span></span></p>
-                             </div>
-                         </div>
-                         <div class="left" style="top: 350px;right: 140px;">
-                             <div class="item">
-                                 <p>发证时间：<span></span></p>
-                                 <p>DATA OF ISSUE：<span></span></p>
-                             </div>
-                             <div class="item">
-                                 <p>起止级：<span></span></p>
-                                 <p>DATA OF ISSUE：<span></span></p>
-                             </div>
-                             <div class="item">
-                                 <p>发证时间：<span></span></p>
-                                 <p>DATA OF ISSUE：<span></span></p>
+                                 <p class="bookNo"><i>证书编号：</i><span></span></p>
+                                 <p class="bookNo"><i>NO.：</i><span></span></p>
                              </div>
                          </div>
-
+                         <div class="list" style="top: 200px; right: 80px;">
+                             <div class="item">
+                                 <p class="name"><i>姓名：</i><span></span></p>
+                                 <p class="namePy"><i>NAME：</i><span></span></p>
+                             </div>
+                             <div class="item">
+                                 <p class="sex"><i>性别：</i><span></span></p>
+                                 <p class="sex"><i>SEX：</i><span></span></p>
+                             </div>
+                             <div class="item">
+                                 <p class="country"><i>国籍：</i><span></span></p>
+                                 <p class="country"><i>NATIONALITY：</i><span></span></p>
+                             </div>
+                             <div class="item">
+                                 <p class="nation"><i>民族：</i><span></span></p>
+                                 <p class="nation"><i>NATION：</i><span></span></p>
+                             </div>
+                             <div class="item">
+                                 <p class="born"><i>出生日期：</i><span></span></p>
+                                 <p class="born"><i>DATE OF BIRTH：</i><span></span></p>
+                             </div>
+                             <div class="item">
+                                 <p class="classificationName"><i>专业项目：</i><span></span></p>
+                                 <p class="classificationName"><i>CONTEST：</i><span></span></p>
+                             </div>
+                             <div class="item">
+                                 <p class="level"><i>等级：</i><span></span></p>
+                                 <p class="level"><i>GRADE：</i><span></span></p>
+                             </div>
+                             <div class="item"><!--todo-->
+                                 <p class="level"><i>成绩：</i><span></span></p>
+                                 <p class="level"><i>LEVEL：</i><span></span></p>
+                             </div>
+                         </div>
                      </div>
-			 	<div class="infor">
+			 	<div id="type_2" style="display: none" class="infor">
                     <img src="../../images/search2.jpg" alt="">
-                    <div class="left" style="top: 350px;right: 360px;">
+                    <div class="list" style="top: 240px; right: 400px;">
                         <div class="item">
                             <p>发证时间：<span></span></p>
                             <p>DATA OF ISSUE：<span></span></p>
@@ -78,7 +95,7 @@
                             <p>DATA OF ISSUE：<span></span></p>
                         </div>
                     </div>
-                    <div class="left" style="top: 350px;right: 140px;">
+                    <div class="list" style="top: 240px; right: 165px;">
                         <div class="item">
                             <p>发证时间：<span></span></p>
                             <p>DATA OF ISSUE：<span></span></p>
@@ -92,7 +109,6 @@
                             <p>DATA OF ISSUE：<span></span></p>
                         </div>
                     </div>
-
 			 	</div>
 			 </div>
 		</div>
@@ -109,7 +125,19 @@
 <script type="text/javascript" src="../../js/extend.js"></script>
 <!--通用：包括config，公共头底页面，面包屑及目录 -->
 <script type="text/javascript" src="../../js/common_detail.js"></script>
-
+<script>
+    var params = $.EXTEND.GETREQUEST();
+    $.EXTEND.GET('/artStudents/getByCondition',params)
+        .then(function (res) {
+                if(res){
+                    for(i in res){
+                        $("." + i).find("span").html(res[i])
+                    }
+                }
+//                $("#type_" + res.bookType).show()
+                $("#type_1").show()
+        });
+</script>
 </body>
 
 </html>

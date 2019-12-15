@@ -50,25 +50,6 @@
 	window.localStorage.setItem('config', JSON.stringify(config));
 	var baseURL = '../../';
 
-	/*获取目录*/
-    $.EXTEND.GET('http://cc.aerohuanyou.com:8081/api/qingqi/operate/BannerInfo/QueryBannerInfo',{page_number:1,page_size:10,type:1})
-        .then(function (res) {
-            var data = [
-                {
-                    url:'books.html?books_1',
-                    title:'新闻'
-                },
-                {
-                    url:'books.html?books_2',
-                    title:'公告'
-                }
-            ];
-            config.pages.push({
-                url:data[0].url ,
-                title:'新闻中心',
-                isParent:true,
-                children:data});
-        });
     function initScript(){
     	for (var i=0,pi;pi = config.script[i++];) {
         	document.write('<script type="text/javascript" src="'+ baseURL + pi +'"></script>');
@@ -76,7 +57,7 @@
         /*banner展示*/
         $.EXTEND.GET('artBannerInfo/findAllBySite',{site:2})
             .then(function (res) {
-                $(".detail-top .contain").css("background","url('"+res[0].picurl+"') center");
+                $(".detail-top").css("background","url('"+res[0].picurl+"') center");
             });
     }
     //页面模板，注意navbar_child.html里有脚本代码

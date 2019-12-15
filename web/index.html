@@ -35,8 +35,8 @@
                                 <h3>中央音乐学院</h3>
                                 <h2>考级委员会</h2>
                                 <div class="group enter">
-                                    <a class="btn" href="">全国特长生视频</a>
-                                    <a class="btn pull-right" href="./pages/credentials.html">高级荣誉证书</a>
+                                    <a class="btn" href="./pages/teacher.html">优秀师资团队</a>
+                                    <a class="btn pull-right" href="./pages/books.html">高级荣誉证书</a>
                                 </div>
                             </div>
                         </div>
@@ -54,10 +54,8 @@
                                     <li class="t">科学</li>
                                     <li class="t">公正</li>
                                 </ul>
-                                <div class="group enter">
-                                    <a class="btn" href="">全国特长生视频</a>
-                                    <a class="btn pull-right" href="./pages/credentials.html">高级荣誉证书</a>
-                                </div>
+                                <a class="btn" href="./pages/teacher.html">优秀师资团队</a>
+                                <a class="btn pull-right" href="./pages/books.html">高级荣誉证书</a>
                             </div>
                         </div>
                     </div>
@@ -139,32 +137,34 @@
             <div class="search-icon area"></div>
             <p>特长生认证查询系统</p>
             <div class="query-check">
-                <form action="">
+                <form  id="student"  onsubmit="return false">
                     <div class="search-icon area">
                         <span>特长生认证查询系统</span>
                     </div>
-                    <input type="text" class="form kaoqubig" name="name" placeholder="请输入学生姓名">
-                    <input type="text" class="form kaoqubig" name="cardid" placeholder="请输入身份证号">
-                    <select class="form kaoqubig" name="object">
-                        <option value ="">请选择项目</option>
-                        <option value ="1">1</option>
-                        <option value ="2">2</option>
+                    <input type="text" class="form" name="name" placeholder="请输入学生姓名">
+                    <input type="text" class="form" name="classificationId" placeholder="请输入分类id">
+                    <input type="text" class="form" name="cardNo" placeholder="请输入身份证号">
+                    <select class="form" name="level">
+                        <option value ="">级别</option>
+                        <option value ="1">一级</option>
+                        <option value ="2">二级</option>
+                        <option value="3">三级</option>
+                        <option value="4">四级</option>
+                        <option value ="5">五级</option>
+                        <option value ="6">六级</option>
+                        <option value="7">七级</option>
+                        <option value="8">八级</option>
+                        <option value ="9">九级</option>
+                        <option value ="10">十级</option>
                     </select>
-                    <select class="form kaoqubig" name="num">
-                        <option value ="">请选择级别</option>
-                        <option value ="1">1</option>
-                        <option value ="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value ="5">5</option>
-                        <option value ="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value ="9">9</option>
-                        <option value ="10">10</option>
+
+                    <select class="form" name="bookType">
+                        <option value ="">证书类型</option>
+                        <option value ="1">白皮</option>
+                        <option value ="2">蓝皮</option>
                     </select>
                     <div class="group">
-                        <input type="button" data-ele='kaoqubig' class="btn lg area" value="查 询" onclick="targetexam(this);">
+                        <input type="button" class="btn area" value="查 询" onclick="targetexam(this);">
                     </div>
                 </form>
             </div>
@@ -336,7 +336,7 @@
                     <textarea class="form-control" name="message" rows="3" placeholder="请给我们留言，我们会尽快回复" required=""></textarea>
                 </div>
                 <div class="sent-butnn text-center">
-                    <button type="button" id="submit" class="btn btn-block" data-blast="bgColor">提交</button>
+                    <button type="button" id="submit" class="btn btn-block">提交</button>
                 </div>
             </form>
         </div>
@@ -381,9 +381,22 @@
 <script type="text/javascript" src="js/extend.js"></script>
 <script>
 
-    function targetexam(){
-    	 var url = "pages/detail/search_detail.html?name=莉莉&age=18";//此处拼接内容
-         window.location.href = url;
+    function targetexam(vm){
+        var serialize = $('#student').serializeObject(true)
+        var param = JSON.parse(serialize);
+        var validate = false;
+        for  (a in param){
+            if(!param[a] || param[a] === ''){
+                validate = true;
+            }
+        }
+        if(validate){
+            alert("请填写完整信息后查询！");
+        }else {
+            var url = "pages/detail/search_detail.html?name="+param.name+"&level="+param.level+"&classificationId="+param.classificationId+"&cardNo="+param.cardNo+"&bookType="+param.bookType;//此处拼接内容
+            window.location.href = url;
+        }
+
     }
 	
 	
@@ -399,11 +412,11 @@
 			    paginationClickable :true,
 			    loop : true,
 			    autoplay : 5000,
-			    touchRatio : 1,
+			    touchRatio : 1/*,
 			    onClick: function(swiper){
 			    	var url = res[swiper.activeIndex - 1].url;
 				      window.open(url)
-				    }
+				    }*/
 			});
             
         });
