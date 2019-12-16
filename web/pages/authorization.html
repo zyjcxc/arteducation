@@ -25,7 +25,7 @@
                 <img style="margin:0 auto;display: block" id="modalImg" src="" alt="" />
             </div>
             <div class="modal-footer">
-                <a href="" target="_blank" class="btn btn-sm" style="background: #840e35;color:#fff;">查看详情</a>
+                <button onclick="toLink()" class="btn btn-sm" style="background: #840e35;color:#fff;">查看详情</button>
             </div>
         </div>
     </div>
@@ -81,8 +81,8 @@
                     var str1 = '';
                     $.each(res.data, function(i, item) {
                         str1 +=
-                            '<li data-toggle="modal" class="myModal" data-title="'+ item.title +'" data-img="'+ item.title +'">' +
-                            '<img src="'+ item.title +'" alt="" />' +
+                            '<li data-toggle="modal" class="myModal" data-title="'+ item.title +'" data-id="'+ item.id +'" data-img="'+ item.picurl +'">' +
+                            '<img src="'+ item.picurl +'" alt="" />' +
                             '<p>'+ item.title +'</p>' +
                             '</li>';
                     });
@@ -110,13 +110,18 @@
     }
     $(".item-list").on('click', ".myModal",function(){
         var that = this;
+        link = './detail/detail.html?path=artAuthbook&id=' + $(that).data('id');
         $('.modal-title').html($(that).data('title'));
         $('#modalImg').attr('src',$(that).data('img'));
-        $('.modal-footer a').attr('href','http://localhost:63342/arteducation/web/pages/detail/detail.html?path=artAuthbook&id=' + $(that).data('id'));
         $('#myModal').modal({
             show:true
         })
     });
+    /*跳转*/
+    var link = null;
+    function toLink(url) {
+        if(link) window.open(link)
+    }
 
     function init() {
         getList(page_num);

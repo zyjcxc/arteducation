@@ -8,7 +8,7 @@
     <meta name="keywords" content="全国特长生认证委员会">
     <script type="text/javascript" src="../utils/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="../css/style.css">
-	
+
 
 </head>
 
@@ -61,14 +61,14 @@
                     var str1 = '';
                     $.each(res.data, function(i, item) {
                         str1 +=
-                            '<div class="personing">' +
+                            '<a href="detail/detail.html?path=artTeacher&id='+ item.id +'" target="_blank"><div class="personing">' +
                             '<div class="apply">' +
                             '<h4 class="person_cor">'+ item.name +'</h4>' +
                             '</div>' +
                             '<div class="personingA">' +
                             '<p><span>'+ item.title +'</span></p>' +
                             '<div class="describe">' +
-                            '<a href="detail/detail.html?path=artTeacher&id='+ item.id +'" target="_blank"><img src="'+ item.photoUrl +'"></a>' +
+                            '<img src="'+ item.photoUrl +'">' +
                             '<table>' +
                             '<tbody>' +
                             '<tr>' +
@@ -87,7 +87,7 @@
                             '</table>' +
                             '</div>' +
                             '</div>' +
-                            '</div>';
+                            '</div></a>';
                     });
                     $(".personing_box").html(str1);
                     page(Math.ceil(res.recordsTotal / page_size));
