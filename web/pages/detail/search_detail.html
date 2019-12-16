@@ -36,7 +36,7 @@
                         <img src="../../images/white2.jpg" alt="">
                         <div class="list">
                             <div class="left">
-                                <img src="../../images/QQ.png" alt="">
+                                <img class="picurl" src="../../images/QQ.png" alt="">
                             </div>
                             <div class="right">
                                 <div class="item">
@@ -76,7 +76,7 @@
                         <img src="../../images/red2.jpg" alt="">
                         <div class="list">
                             <div class="left">
-                                <img src="../../images/QQ.png" alt="">
+                                <img class="picurl" src="../../images/QQ.png" alt="">
                             </div>
                             <div class="right">
                                 <div class="item">
@@ -123,14 +123,16 @@
     $.EXTEND.GET('/artStudents/getByCondition',params)
         .then(function (res) {
                 if(res){
-                    /*todo*/
+                    for(i in res){
+                        if(i === 'sex') res[i] = res[i]==="m"?"女":res[i]==="g"?"男":"";
+                        if(i === 'picurl') $(".picurl").attr("src",res[i]);
+                        $("." + i).find("span").html(res[i])
+                    }
+                    $("#type_" + params.bookType).show();
                 }else {
                     $("#noData").show();
                 }
-            for(i in res){
-                $("." + i).find("span").html(res[i])
-            }
-            $("#type_" + params.bookType).show();
+
         });
 </script>
 </body>
