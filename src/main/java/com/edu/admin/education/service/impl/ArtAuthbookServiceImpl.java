@@ -101,7 +101,12 @@ public class ArtAuthbookServiceImpl implements IArtAuthbookService {
             String orderBy = (String) params.get("orderBy");
             example.setOrderByClause(orderBy.replace("order by", ""));
         }
-
+        if (params.containsKey("id")) {
+            criteria.andEqualTo("id", params.get("id"));
+        }
+        if (params.containsKey("title")) {
+            criteria.andEqualTo("title", params.get("title"));
+        }
         criteria.andEqualTo("state", 1);
         return example;
     }
