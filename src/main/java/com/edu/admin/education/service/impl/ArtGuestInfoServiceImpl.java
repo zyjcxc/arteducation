@@ -69,6 +69,12 @@ public class ArtGuestInfoServiceImpl implements IArtGuestInfoService {
         }
         Example example = new Example(ArtBannerInfo.class);
         Example.Criteria criteria = example.createCriteria();
+        if (params.containsKey("id")) {
+            criteria.andEqualTo("id", params.get("id"));
+        }
+        if (params.containsKey("name")) {
+            criteria.andEqualTo("name", params.get("name"));
+        }
         if (params.get("orderBy") != null) {
             String orderBy = (String) params.get("orderBy");
             example.setOrderByClause(orderBy.replace("order by", ""));
