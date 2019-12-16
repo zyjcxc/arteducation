@@ -22,12 +22,14 @@ classification_list = (function ($, w) {
             },
             $btn: {
                 search: $("#searchBt"),
-                rest: $("#restBt")
+                rest: $("#restBt"),
+                add: $("#addBtn")
             }
         };
 
         this.dataTable = initDateTable.call(this);
 
+        createPageDOM.call(this);
 
     }
 
@@ -57,6 +59,13 @@ classification_list = (function ($, w) {
 
     };
 
+    /**
+     * Dom相关初始化
+     */
+    function createPageDOM() {
+        var _self = this;
+        addEventListeners.call(_self);
+    }
 
     function initDateTable() {
         var _self = this;
@@ -79,56 +88,43 @@ classification_list = (function ($, w) {
                 },
                 "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-6 hidden-xs'i><'col-sm-6 col-xs-12' p v>>",
                 "columns": [
-				{"data" : "id", "defaultContent" : ""},
-				{"data" : "name", "defaultContent" : ""},
-				{"data" : "phone", "defaultContent" : ""},
-				{"data" : "email", "defaultContent" : ""},
-				{"data" : "address", "defaultContent" : ""},
-				{"data" : "message", "defaultContent" : ""},
-				{"data" : "createtime", "defaultContent" : ""},
-				{"data" : "updatetime", "defaultContent" : ""},
-                    {
-                        "data": "",
-                        "defaultContent": "",
-                        "render": function (data, type, row) {
-                            var id = row['id'];
-
-                            var del_fun = "onclick='updateState(\"" + id + "\", \"2\", \"删除\")'";
-                            var del_op = "<button title='删除' class='layui-btn layui-btn-mini' " + del_fun +">删除</button>";
-
-                            return del_op;
-                        }, "orderable" : false
-                    }
-
+                    {"data" : "id", "defaultContent" : ""},
+                    {"data" : "name", "defaultContent" : ""},
+                    {"data" : "phone", "defaultContent" : ""},
+                    {"data" : "email", "defaultContent" : ""},
+                    {"data" : "address", "defaultContent" : ""},
+                    {"data" : "message", "defaultContent" : ""},
+                    {"data" : "createtime", "defaultContent" : ""},
+                    {"data" : "updatetime", "defaultContent" : ""}
                 ],
                 "order": [[0, "asc"]]
             });
+    }
+
+    /**
+     * 添加事件
+     */
+    function addEventListeners() {
+        var _self = this;
+        $$.onJq(_self.getPageBtn().add, "click", function () {
+            $$.goTo.call(_self, {
+                url : WEB_CONFIG._page.ART_AWARD_UPDATE_PAGE_WITH_PARAMS({
+                    returnUrl :  _self.get$Scope().cur_page
+                })
+            });
+        });
+
+        $$.onJq(_self.getPageBtn().search, "click", function () {
+            _self.reloadDataTable();
+        });
+
+        $$.onJq(_self.getPageBtn().rest, "click", function () {
+            w.location.reload();
+        });
+
     }
 
     return new _$();
 
 })(jQuery, window);
 
-function updateState(id, state, operator) {
-    var obj = {
-        id: id
-    };
-
-    layer.confirm('确定要' + operator + '吗？', {
-        btn : [ '确定', '取消' ]
-    }, function() {
-        $.ajax({
-            type : 'DELETE',
-            url : WEB_CONFIG._action.ART_GUEST_INFO + '/' + id ,
-            contentType: "application/json; charset=utf-8",
-            data : JSON.stringify(obj),
-            success : function() {
-                classification_list.reloadDataTable();
-                layer.msg(operator +"成功");
-            }
-        });
-
-        layer.close(1);
-    });
-
-}
