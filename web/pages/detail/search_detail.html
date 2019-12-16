@@ -25,60 +25,83 @@
 
 	<div class="contain search-detail base-detail">
 
-		<div class="content" style="min-height: 300px;">
+		<div class="content">
 			 <div class="section">
-                <p id="noData" style="text-align: center;display: none;">未查询到有效证书！</p>
-                <div id="type_1" style="display: none" class="infor">
-                         <img src="../../images/search1.jpg" alt="">
-                         <div class="list" style="top: 200px; right: 180px;">
-                             <div class="item">
-                                 <p class="bookNo"><i>证书编号：</i><span></span></p>
-                             </div>
-                             <div class="item">
-                                 <p class="name"><i>姓名：</i><span></span></p>
-                             </div>
-                             <div class="item">
-                                 <p class="sex"><i>性别：</i><span></span></p>
-                             </div>
-                             <div class="item">
-                                 <p class="country"><i>国籍：</i><span></span></p>
-                             </div>
-                             <div class="item">
-                                 <p class="nation"><i>民族：</i><span></span></p>
-                             </div>
-                             <div class="item">
-                                 <p class="born"><i>出生日期：</i><span></span></p>
-                             </div>
-                             <div class="item">
-                                 <p class="classificationName"><i>专业项目：</i><span></span></p>
-                             </div>
-                             <div class="item">
-                                 <p class="level"><i>等级：</i><span></span></p>
-                             </div>
-                         </div>
-                     </div>
-			 	<div id="type_2" style="display: none" class="infor">
-                    <img src="../../images/search2.jpg" alt="">
-                    <div class="list" style="top: 200px; right: 180px;">
-                        <div class="item">
-                            <p class="bookNo"><i>证书编号：</i><span></span></p>
-                        </div>
-                        <div class="item">
-                            <p class="name"><i>姓名：</i><span></span></p>
-                        </div>
-                        <div class="item">
-                            <p class="sex"><i>性别：</i><span></span></p>
-                        </div>
-                        <div class="item">
-                            <p class="born"><i>出生日期：</i><span></span></p>
-                        </div>
-                        <div class="item">
-                            <p class="classificationName"><i>专业项目：</i><span></span></p>
-                        </div>
-                        <div class="item">
-                            <p class="level"><i>等级：</i><span></span></p>
+                <p id="noData">未查询到有效证书！</p>
+                <div id="type_1" class="infor">
+                    <div class="part visible-sm-block visible-md-block visible-lg-block">
+                        <img src="../../images/white1.jpg" alt="">
+                    </div>
+                    <div class="part">
+                        <img src="../../images/white2.jpg" alt="">
+                        <div class="list">
+                            <div class="left">
+                                <img src="../../images/QQ.png" alt="">
+                            </div>
+                            <div class="right">
+                                <div class="item">
+                                    <p class="bookNo"><i>证书编号：</i><span></span></p>
+                                </div>
+                                <div class="item">
+                                    <p class="name"><i>姓名：</i><span></span></p>
+                                </div>
+                                <div class="item">
+                                    <p class="sex"><i>性别：</i><span></span></p>
+                                </div>
+                                <div class="item">
+                                    <p class="country"><i>国籍：</i><span></span></p>
+                                </div>
+                                <div class="item">
+                                    <p class="nation"><i>民族：</i><span></span></p>
+                                </div>
+                                <div class="item">
+                                    <p class="born"><i>出生日期：</i><span></span></p>
+                                </div>
+                                <div class="item">
+                                    <p class="classificationName"><i>专业项目：</i><span></span></p>
+                                </div>
+                                <div class="item">
+                                    <p class="level"><i>等级：</i><span></span></p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
+                </div>
+			 	<div id="type_2" class="infor">
+                    <div class="part visible-sm-block visible-md-block visible-lg-block">
+                        <img src="../../images/red1.jpg" alt="">
+                    </div>
+                    <div class="part">
+                        <img src="../../images/red2.jpg" alt="">
+                        <div class="list">
+                            <div class="left">
+                                <img src="../../images/QQ.png" alt="">
+                            </div>
+                            <div class="right">
+                                <div class="item">
+                                    <p class="bookNo"><i>证书编号：</i><span></span></p>
+                                </div>
+                                <div class="item">
+                                    <p class="name"><i>姓名：</i><span></span></p>
+                                </div>
+                                <div class="item">
+                                    <p class="sex"><i>性别：</i><span></span></p>
+                                </div>
+                                <div class="item">
+                                    <p class="born"><i>出生日期：</i><span></span></p>
+                                </div>
+                                <div class="item">
+                                    <p class="classificationName"><i>专业项目：</i><span></span></p>
+                                </div>
+                                <div class="item">
+                                    <p class="level"><i>等级：</i><span></span></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
 			 	</div>
 			 </div>
 		</div>
@@ -100,16 +123,14 @@
     $.EXTEND.GET('/artStudents/getByCondition',params)
         .then(function (res) {
                 if(res){
-                    if(res){
-                        for(i in res){
-                            $("." + i).find("span").html(res[i])
-                        }
-                    }
-                    $("#type_" + params.bookType).show();
+                    /*todo*/
                 }else {
-                    $("#noData").show()
+                    $("#noData").show();
                 }
-
+            for(i in res){
+                $("." + i).find("span").html(res[i])
+            }
+            $("#type_" + params.bookType).show();
         });
 </script>
 </body>

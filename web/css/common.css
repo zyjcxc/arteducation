@@ -127,16 +127,29 @@ textarea{
 .date-sign a:hover .item-date { color: #fff; background-color: #999; }
 
 /*查询详情*/
-.search-detail .section .infor{margin: 20px auto;width: 1200px;-webkit-box-shadow:0 -5px 30px rgba(0,0,0,0.1);box-shadow:0 -5px 30px rgba(0,0,0,0.1);font-size: 14px;position:relative;border: 5px #840e35 solid;}
-.search-detail .section .infor img{width:100%;}
+.search-detail #noData{text-align: center;display: none;}
+.search-detail .content{min-height: 300px;}
+.search-detail .section .infor{margin: 20px auto;-webkit-box-shadow:0 -5px 30px rgba(0,0,0,0.1);box-shadow:0 -5px 30px rgba(0,0,0,0.1);font-size: 14px;position:relative;border: 5px #840e35 solid;overflow: hidden;display: none}
+.search-detail .section .infor img{width:100%;position: relative;}
 .search-detail .section .list-group-item{background: rgba(255, 255, 255,0.7);;}
-.search-detail .section .infor .list{color:#653a29;position:absolute;top: 350px;right: 320px;z-index:99;font-size: 12px;}
-.search-detail .section .infor .list .item{margin-top: 15px;}
+.search-detail .section .infor .list{color:#653a29;font-size: 12px;position: absolute;z-index: 1000;top: 15%;left: 10%;}
+.search-detail .section .infor .list .item{margin-bottom: 15px;}
 .search-detail .section .infor .list .item i{
 	display: inline-block;
 	max-width: 110px;
 	word-break: break-all;
 	margin-right: 10px;
+}
+.search-detail .left{float: left;margin-right: 20px;}
+.search-detail .section .infor .left img{width: 70px;border: 3px #bd5358 solid;}
+.search-detail .right{float: left}
+.search-detail .section .part{width: 100%;float: left;position: relative}
+@media (min-width:767px) {
+	.search-detail .left{margin-right: 35px;}
+	.search-detail .section .infor{width: 1210px;}
+	.search-detail .section .part{width: 50%;}
+	.search-detail .section .infor .list{position:absolute;z-index:99;top: 200px;left: 15%;}
+	.search-detail .section .infor .left img{width: 120px}
 }
 /*模态框*/
 .modal-header{padding:5px 10px;background:#840e35;color:#fff;border-top-left-radius: 5px;border-top-right-radius: 5px;}
