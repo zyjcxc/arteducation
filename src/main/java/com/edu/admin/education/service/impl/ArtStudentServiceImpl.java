@@ -75,6 +75,11 @@ public class ArtStudentServiceImpl implements IArtStudentService{
             badHanyuPinyinOutputFormatCombination.printStackTrace();
             artStudent.setNamePy("");
         }
+
+        if (isNumericZidai(artStudent.getLevel())) {
+            artStudent.setLevel(getChineseLevel(artStudent.getLevel()));
+        }
+
         if (artStudent.getBookType() == null || artStudent.getBookType() == 0) {
             // 插入两条数据
             artStudent.setBookType(1);
@@ -276,6 +281,16 @@ public class ArtStudentServiceImpl implements IArtStudentService{
             artStudent.setId(Long.parseLong(id));
             artStudentDao.updateByPrimaryKeySelective(artStudent);
         });
+    }
+
+    public static boolean isNumericZidai(String str) {
+        for (int i = 0; i < str.length(); i++) {
+            System.out.println(str.charAt(i));
+            if (!Character.isDigit(str.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
