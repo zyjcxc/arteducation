@@ -99,7 +99,6 @@ classification_list = (function ($, w) {
 				{"data" : "title", "defaultContent" : ""},
 				{"data" : "version", "defaultContent" : ""},
 				{"data" : "author", "defaultContent" : ""},
-				{"data" : "content", "defaultContent" : ""},
 				{"data" : "textBookName", "defaultContent" : "", "orderable" : false},
 				{"data" : "createUserId", "defaultContent" : ""},
 				{"data" : "createtime", "defaultContent" : ""},
