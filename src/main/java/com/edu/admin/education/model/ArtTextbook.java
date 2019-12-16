@@ -53,4 +53,9 @@ public class ArtTextbook extends BaseModel {
     @Transient
     private String textBookName;
 
+    /**
+     *
+     */
+    private String picurl;
+
 }

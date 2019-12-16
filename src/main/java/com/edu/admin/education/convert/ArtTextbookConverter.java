@@ -31,6 +31,7 @@ public class ArtTextbookConverter {
         artTextbook.setVersion(artTextbookCommand.getVersion());
         artTextbook.setTextbookTypeId(artTextbookCommand.getTextbookTypeId());
         artTextbook.setState(artTextbookCommand.getState());
+        artTextbook.setPicurl(artTextbookCommand.getPicurl());
 
         return artTextbook;
     }
@@ -55,6 +56,8 @@ public class ArtTextbookConverter {
         artTextbookDto.setUpdatetime(artTextbook.getUpdatetime());
         artTextbookDto.setId(artTextbook.getId());
         artTextbookDto.setTextBookName(artTextbook.getTextBookName());
+        artTextbookDto.setPicurl(artTextbook.getPicurl());
+
 
         return artTextbookDto;
     }
