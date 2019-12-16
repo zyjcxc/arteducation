@@ -43,8 +43,7 @@
 		<div class="content">
 			 <h2 class="visible-md-block visible-lg-block visible-sm-block">使用教材</h2>
 			 <ul class="item-list">
-
-
+				 <div style="text-align: center;line-height: 35px">暂无数据</div>
 			 </ul>
 		</div>
 
@@ -67,18 +66,21 @@
     function getList(num) {
         $.EXTEND.GET('artTextbook',{offset:( num - 1 )*page_size,textbookTypeId:id})
             .then(function (res) {
-                var str1 = '';
-                $.each(res.data, function(i, item) {
-                    str1 +=
-                        '<li>' +
-							'<a target="_blank" href="../pages/detail/book_detail.html?id=' +item.id+ '">' +
-								'<img src="' +item.picUrl+ '" alt="" />' +
-								'<p>' +item.title+ '</p>' +
-							'</a>' +
-						'</li>';
-                });
-                $(".item-list").html(str1);
-                page(Math.ceil(res.recordsTotal / page_size));
+                if(res && res.data && res.data.length>0){
+                    var str1 = '';
+                    $.each(res.data, function(i, item) {
+                        str1 +=
+                            '<li>' +
+                            '<a target="_blank" href="../pages/detail/book_detail.html?id=' +item.id+ '">' +
+                            '<img src="' +item.picUrl+ '" alt="" />' +
+                            '<p>' +item.title+ '</p>' +
+                            '</a>' +
+                            '</li>';
+                    });
+                    $(".item-list").html(str1);
+                    page(Math.ceil(res.recordsTotal / page_size));
+				}
+
             });
     }
     function page(total) {

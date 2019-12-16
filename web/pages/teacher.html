@@ -29,7 +29,7 @@
 		<div class="content">
 			<h2 class="visible-md-block visible-lg-block visible-sm-block">师资团队</h2>
 			<div class="personing_box">
-
+				<p style="text-align: center;line-height: 35px">暂无数据</p>
 			</div>
 			<div id="pagination" class="page fl">
 				<div class="ui-pagination-container"></div>
@@ -57,39 +57,41 @@
     function getList(num) {
         $.EXTEND.GET('artTeacher',{offset:( num - 1 )*page_size})
             .then(function (res) {
-                var str1 = '';
-                $.each(res.data, function(i, item) {
-                    str1 +=
-					'<div class="personing">' +
-						'<div class="apply">' +
-							'<h4 class="person_cor">'+ item.name +'</h4>' +
-						'</div>' +
-						'<div class="personingA">' +
-							'<p><span>'+ item.title +'</span></p>' +
-							'<div class="describe">' +
-								'<a href="detail/detail.html?path=artTeacher&id='+ item.id +'" target="_blank"><img src="'+ item.photoUrl +'"></a>' +
-								'<table>' +
-									'<tbody>' +
-										'<tr>' +
-											'<td class="person_td">职称、职位：</td>' +
-											'<td>'+ item.position +'</td>' +
-										'</tr>' +
-										'<tr>' +
-											'<td class="person_td">毕业院校：</td>' +
-											'<td>'+ item.school +'</td>' +
-										'</tr>' +
-										'<tr>' +
-											'<td valign="top" class="person_td">联系电话：</td>' +
-											'<td>'+ item.phone +'</td>' +
-										'</tr>' +
-									'</tbody>' +
-								'</table>' +
-							'</div>' +
-						'</div>' +
-					'</div>';
-                });
-                $(".personing_box").html(str1);
-                page(Math.ceil(res.recordsTotal / page_size));
+                if(res && res.data && res.data.length>0){
+                    var str1 = '';
+                    $.each(res.data, function(i, item) {
+                        str1 +=
+                            '<div class="personing">' +
+                            '<div class="apply">' +
+                            '<h4 class="person_cor">'+ item.name +'</h4>' +
+                            '</div>' +
+                            '<div class="personingA">' +
+                            '<p><span>'+ item.title +'</span></p>' +
+                            '<div class="describe">' +
+                            '<a href="detail/detail.html?path=artTeacher&id='+ item.id +'" target="_blank"><img src="'+ item.photoUrl +'"></a>' +
+                            '<table>' +
+                            '<tbody>' +
+                            '<tr>' +
+                            '<td class="person_td">职称、职位：</td>' +
+                            '<td>'+ item.position +'</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<td class="person_td">毕业院校：</td>' +
+                            '<td>'+ item.school +'</td>' +
+                            '</tr>' +
+                            '<tr>' +
+                            '<td valign="top" class="person_td">联系电话：</td>' +
+                            '<td>'+ item.phone +'</td>' +
+                            '</tr>' +
+                            '</tbody>' +
+                            '</table>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                    });
+                    $(".personing_box").html(str1);
+                    page(Math.ceil(res.recordsTotal / page_size));
+				}
             });
     }
     function page(total) {

@@ -90,7 +90,9 @@
   		if(url){
   			$.EXTEND.GET(url)
 			    .then(function (res) {
-			        $(".content").html(template(res));
+			        if(res && res.length > 0){
+                        $(".content").html(template(res));
+                    }
 			    });
   		}
   		

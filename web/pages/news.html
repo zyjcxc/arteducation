@@ -28,7 +28,7 @@
 		<div class="content">
 			 <h2 class="visible-md-block visible-lg-block visible-sm-block">新闻中心</h2>
 			 <ul class="item-list">
-
+				 <p style="text-align: center;line-height: 35px">暂无数据</p>
 			 </ul>
             <div id="pagination" class="page fl">
                 <div class="ui-pagination-container"></div>
@@ -55,29 +55,30 @@
         /*新闻*/
         $.EXTEND.GET('artNews',{type:type,offset:( num - 1 )*page_size})
             .then(function (res) {
-                var str1 = '';
+                if(res && res.data && res.data.length>0){
+                    var str1 = '';
+                    $.each(res.data, function(i, item) {
 
-                $.each(res.data, function(i, item) {
-
-                	var m = new Date(item.updatetime).getMonth();
-                	var d = new Date(item.updatetime).getDate();
-                    str1 +=
-                        '<li>' +
-                        '<a href="detail/detail.html?path=artNews&id='+ item.id +'" target="_blank">' +
-                        '<div class="item-date">' +
-                        '<p>'+ m +'</p>' +
-                        '<span class="xspan"></span>' +
-                        '<p class="down">'+ d +'</p>' +
-                        '</div>' +
-                        '<div class="item-content">' +
-                        '<h3> '+ item.title +'</h3>' +
-                        '<p>'+ item.content +'</p>' +
-                        '</div>' +
-                        '</a>' +
-                        '</li>';
-                });
-                $(".item-list").html(str1);
-                page(Math.ceil(res.recordsTotal / page_size));
+                        var m = new Date(item.updatetime).getMonth();
+                        var d = new Date(item.updatetime).getDate();
+                        str1 +=
+                            '<li>' +
+                            '<a href="detail/detail.html?path=artNews&id='+ item.id +'" target="_blank">' +
+                            '<div class="item-date">' +
+                            '<p>'+ m +'</p>' +
+                            '<span class="xspan"></span>' +
+                            '<p class="down">'+ d +'</p>' +
+                            '</div>' +
+                            '<div class="item-content">' +
+                            '<h3> '+ item.title +'</h3>' +
+                            '<p>'+ item.content +'</p>' +
+                            '</div>' +
+                            '</a>' +
+                            '</li>';
+                    });
+                    $(".item-list").html(str1);
+                    page(Math.ceil(res.recordsTotal / page_size));
+				}
             });
     }
     function page(total) {

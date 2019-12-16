@@ -5,8 +5,8 @@
  */
 (function (){
 	// var baseUrl = 'http://188.131.148.168:8081/web/';
-    var baseUrl = 'http://localhost:9808/web/';
-    //var baseUrl = 'http://10.30.50.152:9808/web/';
+    //var baseUrl = 'http://localhost:9808/web/';
+    var baseUrl = 'http://10.30.50.152:9808/web/';
 
 
 
@@ -74,7 +74,7 @@
             },
             /*获取地址栏参数*/
             GETREQUEST : function () {
-                var url = encodeURIComponent (location.search); //获取url中"?"符后的字串
+                var url = decodeURIComponent(window.location.search); //获取url中"?"符后的字串
                 var theRequest = new Object();
                 if (url.indexOf("?") != -1) {
                     var str = url.substr(1);
