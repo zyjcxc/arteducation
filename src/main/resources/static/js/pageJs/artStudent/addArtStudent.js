@@ -130,7 +130,9 @@ pubAccount_add = (function ($, w) {
                 cardNo : $("#cardNo"),
                 level : $("#level"),
                 born : $("#born"),
-                state : $("#state")
+                state : $("#state"),
+                bookNo : $("#bookNo"),
+                bookType : $("#bookType")
             },
             $btn: {
                 back: $("#backBtn"),
@@ -348,6 +350,7 @@ pubAccount_add = (function ($, w) {
                 _self.getPageDom().id.val(data.id);
                 _self.getPageDom().name.val(data.name);
                 _self.getPageDom().sex.val(data.sex);
+
                 _self.getPageDom().country.val(data.country);
                 _self.getPageDom().nation.val(data.nation);
                 // _self.getPageDom().classificationId.val(data.classificationId);
@@ -356,6 +359,8 @@ pubAccount_add = (function ($, w) {
                 _self.getPageDom().level.val(data.level);
                 _self.getPageDom().born.val(data.born);
                 _self.getPageDom().state.val(data.state);
+                _self.getPageDom().bookType.val(data.bookType);
+                _self.getPageDom().bookNo.val(data.bookNo);
 
             }
         });

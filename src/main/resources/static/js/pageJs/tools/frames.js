@@ -515,6 +515,16 @@ $$.extend($$, {
         }
         return '未知';
     },
+    BookTypeChinese : function(data) {
+        if (data === '0' || data === 0) {
+            return '全部';
+        } else if (data === '1' || data === 1) {
+            return '蓝';
+        } else if (data === '2' || data === 2) {
+            return '白';
+        }
+        return '未知';
+    },
     /**
      * live_push_message audience 0.全部人 1.个人
      * @returns {string}

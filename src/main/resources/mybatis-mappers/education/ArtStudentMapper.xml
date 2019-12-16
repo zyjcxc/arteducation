@@ -59,6 +59,12 @@
             <if test="activityId != null and activityId != ''">
                 AND artStudentObj.activity_id = #{activityId, jdbcType=INTEGER}
             </if>
+            <if test="bookNo != null and bookNo != ''">
+                AND artStudentObj.book_no = #{bookNo, jdbcType=VARCHAR}
+            </if>
+            <if test="bookType != null and bookType != ''">
+                AND artStudentObj.book_type = #{bookType}
+            </if>
         </where>
     </sql>
 

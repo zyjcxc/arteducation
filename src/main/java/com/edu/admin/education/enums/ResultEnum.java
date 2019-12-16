@@ -41,6 +41,8 @@ public enum ResultEnum {
     PARAMS_ERROR_P(15, "民族不能为空"),
     PARAMS_ERROR_N(16, "国籍不能为空"),
     PARAMS_ERROR_BON(18, "证书编号不能为空"),
+    PARAMS_ERROR_BOTYPE(20, "证书类型不能为空"),
+
 
     NO_BOOK_NO_RECORD(19, "导入失败, 证书编号不能有空的记录"),
 

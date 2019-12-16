@@ -80,6 +80,7 @@ public class ArtStudentServiceImpl implements IArtStudentService{
             artStudent.setBookType(1);
             artStudentDao.insertSelective(artStudent);
             artStudent.setBookType(2);
+            artStudent.setId(null);
             artStudentDao.insertSelective(artStudent);
         } else {
             // 插入一条数据

@@ -30,6 +30,8 @@ art_student_list = (function ($, w) {
 					sex : $("#sex"),
                     classificationId : $("#classificationId"),
                     activityId : $("#activityId"),
+                    bookNo : $("#bookNo"),
+                    bookType : $("#bookType"),
             },
             $btn: {
                 search: $("#searchBt"),
@@ -137,6 +139,8 @@ art_student_list = (function ($, w) {
                         d.cardNo  = page.$dom.cardNo.val();
                         d.classificationId  = page.$dom.classificationId.val();
                         d.activityId  = page.$dom.activityId.val();
+                        d.bookNo  = page.$dom.bookNo.val();
+                        d.bookType = page.$dom.bookType.val();
                     }
                 },
                 "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-6 hidden-xs'i><'col-sm-6 col-xs-12' p v>>",
@@ -170,7 +174,12 @@ art_student_list = (function ($, w) {
                 //     }
                 // },
                 {"data" : "cardNo", "defaultContent" : ""},
-
+                {"data" : "bookType", "defaultContent" : "",
+                    "render": function (data) {
+                        return $$.BookTypeChinese(data);
+                    }
+                },
+                {"data" : "bookNo", "defaultContent" : ""},
                 {
                     "data": "",
                     "defaultContent": "",
