@@ -324,9 +324,9 @@
                         <div class="swiper-wrapper">
                             <p style="text-align: center">暂无数据</p>
                         </div>
-                        <div class="swiper-pagination swiper-pagination-school"></div>
+                        <div class="swiper-button-prev" style="background-image: url('images/left.png')"></div>
+                        <div class="swiper-button-next" style="background-image: url('images/right.png')"></div>
                     </div>
-
                 </div>
             </div>
 
@@ -471,7 +471,7 @@
         .then(function (res) {
             var str1 = '';
             $.each(res.data, function(i, item) {
-                if(i>=3) return false;
+                if(i>=4) return false;
                 var m = new Date(item.updatetime.replace(/-/g,'/')).getMonth();
                 var d = new Date(item.updatetime.replace(/-/g,'/')).getDate();
                 str1 +=
@@ -513,6 +513,7 @@
                 str1 +=
                     '<a class="col-xs-4" href="./pages/detail/detail.html?path=artHomeStudent&id='+ item.id +'" target="_blank">' +
                     '<img src="'+ item.picurl +'">' +
+                    '<p>'+ item.name +'</p>' +
                     '</a>';
 
                 $(".right-zt-thumb").html(str1);
@@ -528,7 +529,7 @@
                     str1 +=
                         '<div class="swiper-slide">' +
                         '<div class="thumb">' +
-                        '<a href="./pages/detail/detail.html?path=artHomeSchool&id='+ item.id +'" target="_blank"><img src="'+ item.picurl +'"></a>' +
+                        '<a href="./pages/detail/detail.html?path=artHomeSchool&id='+ item.id +'" target="_blank"><img src="'+ item.picurl +'"><p style="background: #fff">'+ item.name +'</p></a>' +
                         '</div>' +
                         '</div>';
 
@@ -537,7 +538,8 @@
                 var schoolSwiper = new Swiper('#schoolSwiper', {
                     pagination : '.swiper-pagination-school',
                     paginationClickable :true,
-                    paginationType : 'fraction',
+                    nextButton: '.swiper-button-next',
+                    prevButton: '.swiper-button-prev',
                     loop : true,
                     effect : 'fade',
                     autoplay: 3000,//可选选项，自动滑动

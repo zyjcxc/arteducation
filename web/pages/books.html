@@ -95,7 +95,8 @@
             callback: function(current) {
                 $("#current3").text(current);
                 page_num = current;
-                getList(current)
+                getList(current);
+                window.scroll(0,0);
             }
         });
     }
