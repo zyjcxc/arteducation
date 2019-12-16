@@ -62,7 +62,7 @@ public class WebArtStudentController {
             @ApiImplicitParam(name = "level", value = "级别 例子:十级 必填", paramType = "query", dataType="string"),
             @ApiImplicitParam(name = "classificationId", value = "分类id 必填", paramType = "query", dataType="int"),
             @ApiImplicitParam(name = "cardNo", value = "身份证 必填", paramType = "query", dataType="string"),
-            @ApiImplicitParam(name = "bookType", value = "证书类型 1.白皮 2.蓝皮 必填", paramType = "query", dataType="int")
+            @ApiImplicitParam(name = "bookType", value = "证书类型 1.白皮 2.红皮 必填", paramType = "query", dataType="int")
     })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "请求成功", response = ArtBannerInfoDto.class),

@@ -519,9 +519,9 @@ $$.extend($$, {
         if (data === '0' || data === 0) {
             return '全部';
         } else if (data === '1' || data === 1) {
-            return '蓝';
-        } else if (data === '2' || data === 2) {
             return '白';
+        } else if (data === '2' || data === 2) {
+            return '红';
         }
         return '未知';
     },
