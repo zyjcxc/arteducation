@@ -34,7 +34,15 @@ public class ArtTextbookServiceImpl implements IArtTextbookService {
 
     @Override
     public ArtTextbookDto getById(Long id) {
-        return ArtTextbookConverter.convertToArtTextbookDto(artTextbookDao.selectByPrimaryKey(id));
+        ArtTextbook artTextbook = artTextbookDao.selectByPrimaryKey(id);
+        if (artTextbook != null) {
+            ArtTextbookType artTextbookType = artTextbookTypeDao.selectByPrimaryKey(artTextbook.getTextbookTypeId());
+            if (artTextbookType != null) {
+                artTextbook.setTextBookName(artTextbookType.getName());
+            }
+            return ArtTextbookConverter.convertToArtTextbookDto(artTextbook);
+        }
+        return null;
     }
 
     @Override
