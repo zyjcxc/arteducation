@@ -153,7 +153,7 @@
 
         ,toolbar:[
             'source | undo redo | bold italic underline strikethrough |  forecolor backcolor | removeformat |',
-            'insertorderedlist insertunorderedlist | selectall cleardoc paragraph | fontfamily fontsize' ,
+            'insertorderedlist insertunorderedlist | selectall cleardoc ' ,
             '| justifyleft justifycenter justifyright justifyjustify |',
             'link unlink |  image ',
             '| horizontal preview fullscreen'
