@@ -92,6 +92,7 @@
         <div class="item area">
             <div class="search-icon area"><span class="title">特长生认证查询系统</span></div>
             <form  id="student"  onsubmit="return false" class="group">
+                <input type="hidden" autocomplete="off" class="form" name="bookType" value="1">
                 <input type="text" autocomplete="off" class="form" name="name" placeholder="请输入学生姓名">
                 <input type="text" autocomplete="off" class="form" name="cardNo" placeholder="请输入身份证号">
                 <select class="form classificationId" name="classificationId"></select>
@@ -108,36 +109,48 @@
                     <option value ="9">九级</option>
                     <option value ="10">十级</option>
                 </select>
-                <select class="form" name="bookType">
-                    <option value ="">证书类型</option>
-                    <option value ="1">白皮</option>
-                    <option value ="2">蓝皮</option>
-                </select>
                 <img class="cx" onclick='targetexam("student");' src="images/sreach_icon1.png">
             </form>
         </div>
         <div class="item field">
             <div class="search-icon field"><span class="title">艺术能力测评查询系统</span></div>
-            <form action="" class="group">
-                <input type="text" autocomplete="off" class="cx_left" name="litsearchanme" id="litsearchanme" placeholder="请输入所在考区">
-                <input type="text" autocomplete="off" class="cx_left" name="litsearchcard" id="litsearchcard" placeholder="请输入考区名称">
-                <img id="kc1" class="cx" src="images/sreach_icon2.png" onclick="targetexam();">
+            <form  id="artForm" onsubmit="return false" class="group">
+                <input type="hidden" autocomplete="off" class="form" name="bookType" value="2">
+                <input type="text" autocomplete="off" class="form" name="name" placeholder="请输入学生姓名">
+                <input type="text" autocomplete="off" class="form" name="cardNo" placeholder="请输入身份证号">
+                <select class="form classificationId" name="classificationId"></select>
+                <select class="form" name="level">
+                    <option value ="">级别</option>
+                    <option value ="1">一级</option>
+                    <option value ="2">二级</option>
+                    <option value="3">三级</option>
+                    <option value="4">四级</option>
+                    <option value ="5">五级</option>
+                    <option value ="6">六级</option>
+                    <option value="7">七级</option>
+                    <option value="8">八级</option>
+                    <option value ="9">九级</option>
+                    <option value ="10">十级</option>
+                </select>
+                <img class="cx" src="images/sreach_icon2.png" onclick="targetexam('artForm');">
             </form>
         </div>
         <div class="item score">
             <div class="search-icon score"><span class="title">考官查询系统</span></div>
-            <form action="" class="group">
-                <input type="text" autocomplete="off" class="cx_left" placeholder="请输入姓名">
-                <input type="text" autocomplete="off" class="cx_left" placeholder="请输入准考证号">
-                <img id="kc1" class="cx" src="images/sreach_icon2.png" onclick="targetexam();">
+            <form  id="teacherForm"  onsubmit="return false" class="group">
+                <input type="hidden" autocomplete="off" class="form" name="bookType" value="1">
+                <input type="text" autocomplete="off" class="form" name="name" placeholder="请输入学生姓名">
+                <input type="text" autocomplete="off" class="form" name="cardNo" placeholder="请输入身份证号">
+                <img id="kc1" class="cx" src="images/sreach_icon2.png" onclick="targetexam('teacherForm');">
             </form>
         </div>
         <div class="item express">
             <div class="search-icon video"><span class="title">师资认证查询系统</span></div>
-            <form action="" class="group">
-                <input type="text" autocomplete="off" name='szuser' class="cx_left" placeholder="请输入姓名">
-                <input type="text" autocomplete="off" name='szexamnum' class="cx_left" placeholder="请输入证书号">
-                <img id="cj1" class="cx" src="images/sreach_icon4.png" onclick="targetexam('szuser', 'szexamnum');">
+            <form  id="szuser"  onsubmit="return false" class="group">
+                <input type="hidden" autocomplete="off" class="form" name="bookType" value="1">
+                <input type="text" autocomplete="off" class="form" name="name" placeholder="请输入学生姓名">
+                <input type="text" autocomplete="off" class="form" name="cardNo" placeholder="请输入身份证号">
+                <img id="cj1" class="cx" src="images/sreach_icon4.png" onclick="targetexam('szuser');">
             </form>
         </div>
     </div>
@@ -152,8 +165,7 @@
                     </div>
                     <input type="text" autocomplete="off" class="form" name="name" placeholder="请输入学生姓名">
                     <input type="text" autocomplete="off" class="form" name="cardNo" placeholder="请输入身份证号">
-                    <select class="form classificationId" name="classificationId">
-                    </select>
+                    <select class="form classificationId" name="classificationId"></select>
                     <select class="form" name="level">
                         <option value ="">级别</option>
                         <option value ="1">一级</option>
@@ -167,12 +179,7 @@
                         <option value ="9">九级</option>
                         <option value ="10">十级</option>
                     </select>
-
-                    <select class="form" name="bookType">
-                        <option value ="">证书类型</option>
-                        <option value ="1">白皮</option>
-                        <option value ="2">蓝皮</option>
-                    </select>
+                    <input type="hidden" autocomplete="off" class="form" name="bookType" value="1">
                     <div class="group">
                         <input type="button" class="btn area" value="查 询" onclick="targetexam('student_o');">
                     </div>
@@ -185,14 +192,29 @@
             <div class="search-icon field"></div>
             <p>艺术能力测评查询系统</p>
             <div class="query-check">
-                <form action="">
+                <form  id="artForm_o" onsubmit="return false">
                     <div class="search-icon field">
                         <span>艺术能力测评查询系统</span>
                     </div>
-                    <input type="text" autocomplete="off" name="username" id="searchname" class="kq form" placeholder="请输入姓名">
-                    <input type="text" autocomplete="off" name="examcard"  id="searchcard" class="form" placeholder="请输入准考证号">
+                    <input type="text" autocomplete="off" class="form" name="name" placeholder="请输入学生姓名">
+                    <input type="text" autocomplete="off" class="form" name="cardNo" placeholder="请输入身份证号">
+                    <select class="form classificationId" name="classificationId"></select>
+                    <select class="form" name="level">
+                        <option value ="">级别</option>
+                        <option value ="1">一级</option>
+                        <option value ="2">二级</option>
+                        <option value="3">三级</option>
+                        <option value="4">四级</option>
+                        <option value ="5">五级</option>
+                        <option value ="6">六级</option>
+                        <option value="7">七级</option>
+                        <option value="8">八级</option>
+                        <option value ="9">九级</option>
+                        <option value ="10">十级</option>
+                    </select>
+                    <input type="hidden" autocomplete="off" class="form" name="bookType" value="2">
                     <div class="group">
-                        <input id="kc" type="button" onclick="targetexam();" class="btn lg field" value="查 询">
+                        <input id="kc" type="button" onclick="targetexam('artForm_o');" class="btn lg field" value="查 询">
                     </div>
                 </form>
             </div>
@@ -442,8 +464,8 @@
             var str1 = '';
             $.each(res.data, function(i, item) {
                 if(i>=3) return false;
-                var m = new Date(item.updatetime).getMonth();
-                var d = new Date(item.updatetime).getDate();
+                var m = new Date(item.updatetime.replace(/-/g,'/')).getMonth();
+                var d = new Date(item.updatetime.replace(/-/g,'/')).getDate();
                 str1 +=
                     '<li>' +
                         '<div class="thumb date-sign">' +

@@ -83,30 +83,38 @@
                     <img src="../../images/search2.jpg" alt="">
                     <div class="list" style="top: 200px; right: 400px;">
                         <div class="item">
-                            <p>发证时间：<span></span></p>
-                            <p>DATA OF ISSUE：<span></span></p>
+                            <p class="createtime"><i>发证时间：</i><span></span></p>
+                            <p class="createtime"><i>DATA OF ISSUE：</i><span></span></p>
                         </div>
                         <div class="item">
-                            <p>起止级：<span></span></p>
-                            <p>DATA OF ISSUE：<span></span></p>
-                        </div>
-                        <div class="item">
-                            <p>发证时间：<span></span></p>
-                            <p>DATA OF ISSUE：<span></span></p>
+                            <p class="bookNo"><i>证书编号：</i><span></span></p>
+                            <p class="bookNo"><i>NO.：</i><span></span></p>
                         </div>
                     </div>
                     <div class="list" style="top: 200px; right: 180px;">
                         <div class="item">
-                            <p>发证时间：<span></span></p>
-                            <p>DATA OF ISSUE：<span></span></p>
+                            <p class="name"><i>姓名：</i><span></span></p>
+                            <p class="namePy"><i>NAME：</i><span></span></p>
                         </div>
                         <div class="item">
-                            <p>起止级：<span></span></p>
-                            <p>DATA OF ISSUE：<span></span></p>
+                            <p class="sex"><i>性别：</i><span></span></p>
+                            <p class="sex"><i>SEX：</i><span></span></p>
                         </div>
                         <div class="item">
-                            <p>发证时间：<span></span></p>
-                            <p>DATA OF ISSUE：<span></span></p>
+                            <p class="born"><i>出生日期：</i><span></span></p>
+                            <p class="born"><i>DATE OF BIRTH：</i><span></span></p>
+                        </div>
+                        <div class="item">
+                            <p class="classificationName"><i>专业项目：</i><span></span></p>
+                            <p class="classificationName"><i>CONTEST：</i><span></span></p>
+                        </div>
+                        <div class="item">
+                            <p class="level"><i>等级：</i><span></span></p>
+                            <p class="level"><i>GRADE：</i><span></span></p>
+                        </div>
+                        <div class="item"><!--todo-->
+                            <p class="level"><i>成绩：</i><span></span></p>
+                            <p class="level"><i>LEVEL：</i><span></span></p>
                         </div>
                     </div>
 			 	</div>
@@ -134,8 +142,7 @@
                         $("." + i).find("span").html(res[i])
                     }
                 }
-//                $("#type_" + res.bookType).show()
-                $("#type_1").show()
+                $("#type_" + params.bookType).show();
         });
 </script>
 </body>

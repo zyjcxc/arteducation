@@ -59,8 +59,8 @@
                     var str1 = '';
                     $.each(res.data, function(i, item) {
 
-                        var m = new Date(item.updatetime).getMonth();
-                        var d = new Date(item.updatetime).getDate();
+                        var m = new Date(item.updatetime.replace(/-/g,'/')).getMonth();
+                        var d = new Date(item.updatetime.replace(/-/g,'/')).getDate();
                         str1 +=
                             '<li>' +
                             '<a href="detail/detail.html?path=artNews&id='+ item.id +'" target="_blank">' +
