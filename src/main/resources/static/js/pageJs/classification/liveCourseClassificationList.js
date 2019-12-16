@@ -122,7 +122,7 @@ classification_list = (function ($, w) {
                                 })
                             });*/
 
-                            return edit + del_op;
+                            return "<div style='min-width:85px;'>"+edit + del_op+"</div>";
                         }, "orderable" : false
                     }
 

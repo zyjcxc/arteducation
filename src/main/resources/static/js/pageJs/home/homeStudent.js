@@ -124,7 +124,7 @@ classification_list = (function ($, w) {
                             var del_fun = "onclick='updateState(\"" + id + "\", \"2\", \"删除\")'";
                             var del_op = "<button title='删除' class='layui-btn layui-btn-mini' " + del_fun +">删除</button>";
 
-                            return edit + del_op;
+                            return "<div style='min-width:85px;'>"+edit + del_op+"</div>";
                         }, "orderable" : false
                     }
 
