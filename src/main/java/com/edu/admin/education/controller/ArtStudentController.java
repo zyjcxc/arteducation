@@ -109,6 +109,13 @@ public class ArtStudentController {
         artStudentService.deleteLogic(artStudent);
     }
 
+    @PostMapping("/batchDel")
+    @ApiOperation(value = "批量删除")
+//    @MethodLog(remark = "删除特长生")
+    public void batchDel(@RequestBody ArtStudent artStudent) {
+        artStudentService.deleteLogicBatch(artStudent.getIds());
+    }
+
 
     @GetMapping("/export")
     @ApiOperation(value = "导出")

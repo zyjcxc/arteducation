@@ -267,5 +267,15 @@ public class ArtStudentServiceImpl implements IArtStudentService{
         return artStudentDao.updateByPrimaryKeySelective(artStudent);
     }
 
+    @Override
+    public void deleteLogicBatch(List<String> ids) {
+        ids.forEach(id -> {
+            ArtStudent artStudent = new ArtStudent();
+            artStudent.setState("2");
+            artStudent.setId(Long.parseLong(id));
+            artStudentDao.updateByPrimaryKeySelective(artStudent);
+        });
+    }
+
 
 }

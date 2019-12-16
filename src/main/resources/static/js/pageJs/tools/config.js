@@ -11,6 +11,7 @@ WEB_CONFIG = {
         ART_STUDENT : "/artStudents",
         // 特长生删除
         ART_STUDENT_LOGIC_DELETE_ACTION : "/artStudents/deleteLogic",
+        ART_STUDENT_LOGIC_BATCH_DELETE_ACTION : "/artStudents/batchDel",
         // 添加
         ART_STUDENT_ACTION : "/artStudents",
         // 导出

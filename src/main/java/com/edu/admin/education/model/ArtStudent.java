@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "art_student")
 @Data
@@ -43,5 +44,6 @@ public class ArtStudent extends BaseModel {
     private String classificationName;
     @Transient
     private String activityName;
-
+    @Transient
+    private List<String> ids;
 }

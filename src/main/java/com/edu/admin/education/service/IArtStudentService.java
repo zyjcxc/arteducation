@@ -14,6 +14,8 @@ public interface IArtStudentService {
 
     int deleteLogic(ArtStudent artStudent);
 
+    void deleteLogicBatch(List<String> ids);
+
     void save(ArtStudent artStudent);
 
     ArtStudent getById(Long id);

@@ -350,16 +350,20 @@ $("#mulDel").click(function () {
                 $(this).prop("checked", false);
             }
         });
+        if (data.length === 0) {
+            layer.msg("没有选择需要删除的学生");
+            return;
+        }
         /*清空*/
         $("#checkAll").prop("checked", false);
         /*入参*/
         var obj = {
-            id: data,
+            ids: data,
             state: "2"
         };
         $.ajax({
             type : 'post',
-            url : WEB_CONFIG._action.ART_STUDENT_LOGIC_DELETE_ACTION,
+            url : WEB_CONFIG._action.ART_STUDENT_LOGIC_BATCH_DELETE_ACTION,
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(obj),
             success : function(data) {
