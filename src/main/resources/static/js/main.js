@@ -9,25 +9,6 @@ function initMenu(){
 	    		 location.href='/login.html';
 	    		 return;
 	    	 }
-			 /*todo 假数据*/
-             data.push({
-                 child: [
-                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/test/qiniu.html",id: 71,name: "七牛测试",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
-                     },
-                     {child: [],createTime: "2019-11-18 13:45:42",css: "",href: "pages/authbook/artAward.html",id: 71,name: "证书",parentId: 37,permission: "",sort: 0,type: 1,updateTime: "2019-11-18 13:45:42"
-                     }
-                 ],
-                 createTime: "2019-11-18 09:12:35",
-                 css: "fa-pencil-square-o",
-                 href: "",
-                 id: 17,
-                 name: "官网管理",
-                 parentId: 0,
-                 permission: "sys:user:password",
-                 sort: 22,
-                 type: 1,
-                 updateTime: "2019-11-18 09:12:35",
-             });
 	    	 var menu = $("#menu");
 	    	 $.each(data, function(i,item){
 	             var a = $("<a href='javascript:;'></a>");
