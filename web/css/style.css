@@ -195,7 +195,7 @@
 @media (min-width:767px) {
 	.column {width:1320px;margin:0 auto;background: #fff;overflow: hidden;}
 	.column .left {float:left;height:630px;padding:10px 50px 50px;width: 65%;}
-	.column .right {float:left;height:630px;padding:10px 50px 50px 0px;width: 35%;}
+	.column .right {float:left;min-height: 630px;padding: 10px 50px 10px 0px;width: 35%;}
 	.column .title {padding:12px 5px;}
 	.column .title h2 {display:inline-block;font-size:18px;font-weight:600;color:#333333;}
 	.column .title p {margin-top:-20px;text-align:right;width:100%;}

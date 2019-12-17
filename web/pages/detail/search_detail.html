@@ -35,9 +35,9 @@
                     <div class="part">
                         <img src="../../images/white2.jpg" alt="">
                         <div class="list">
-                            <div class="left">
+                            <!--<div class="left">
                                 <img class="picurl" src="../../images/QQ.png" alt="">
-                            </div>
+                            </div>-->
                             <div class="right">
                                 <div class="item">
                                     <p class="bookNo"><i>证书编号：</i><span></span></p>
@@ -75,9 +75,9 @@
                     <div class="part">
                         <img src="../../images/red2.jpg" alt="">
                         <div class="list">
-                            <div class="left">
+                           <!-- <div class="left">
                                 <img class="picurl" src="../../images/QQ.png" alt="">
-                            </div>
+                            </div>-->
                             <div class="right">
                                 <div class="item">
                                     <p class="bookNo"><i>证书编号：</i><span></span></p>
@@ -128,11 +128,11 @@
                         if(i === 'picurl') $(".picurl").attr("src",res[i]);
                         $("." + i).find("span").html(res[i])
                     }
-                    $("#type_" + params.bookType).show();
+
                 }else {
                     $("#noData").show();
                 }
-
+            $("#type_" + params.bookType).show();
         });
 </script>
 </body>

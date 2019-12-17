@@ -4,7 +4,7 @@
  * ajax 的 get 方法 --- $.EXTEND.GET（接口地址，参数）
  */
 (function (){
-	// var baseUrl = 'http://188.131.148.168:8081/web/';
+    //var baseUrl = 'http://188.131.148.168:8081/web/';
     //var baseUrl = 'http://localhost:9808/web/';
     var baseUrl = 'http://10.30.50.152:9808/web/';
 
