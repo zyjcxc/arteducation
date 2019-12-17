@@ -232,9 +232,9 @@
 .news .item-list li .item-date p{font-size:14px;padding-left:0px;margin-left:-25px;margin-top:-3px;}
 .news .item-list li .item-date p.down{text-align:right;padding:0 4px 0 0;margin:5px 0 0;}
 .news .item-list li .item-date .xspan{transform: rotate(-45deg);-ms-transform: rotate(-45deg);-webkit-transform: rotate(-45deg);-o-transform: rotate(-45deg);-moz-transform: rotate(-45deg);position:absolute;left:10px;top:55px;width:40px;border:1px solid #E1DCD2;font-size:58px;display:inline-block;}
-.news .item-list li .item-content {max-width: 800px;float: left;height: 60px;overflow: hidden;}
+.news .item-list li .item-content {max-width: 800px;float: left;height: 60px;overflow: hidden;width: calc(100% - 140px);}
 .news .item-list li .item-content h3 { font-size: 14px; line-height: 1.4; padding-top: 5px; color: #333333; transition: color 0.3s; -moz-transition: color 0.3s; -webkit-transition: color 0.3s; }
-.news .item-list li a { display: block; text-decoration:none;}
+.news .item-list li a {display: block;text-decoration:none;overflow: hidden;}
 .news .item-list li a:hover .item-content h3 { color: #d72324; }
 .news .item-list li a:hover .item-date { color: #fff; background-color: #999; }
 

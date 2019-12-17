@@ -427,8 +427,6 @@
         if(validate){
             alert("请填写完整信息后查询！");
         }else {
-//            $("#" + id).find("input").val("");
-//            $("#" + id).find("select").val("");
             var url = "pages/detail/search_detail.html?name="+param.name+"&level="+param.level+"&classificationId="+param.classificationId+"&cardNo="+param.cardNo+"&bookType="+param.bookType;//此处拼接内容
             window.open(url);
         }
@@ -557,7 +555,7 @@
 
     /*历史展示*/
     function showHistory() {
-        $(".timeline .swiper-button-prev,.timeline .swiper-button-next,.timeline .swiper-pagination-history").hide();
+        $(".timeline .swiper-button-prev,.timeline .swiper-button-next").hide();
         $.EXTEND.GET('artBannerInfo/findAllBySite',{site:3})
             .then(function (res) {
                 if(res && res.length>0){
@@ -568,12 +566,12 @@
                             '<div class="swiper-slide" style="background-image: url('+ item.picurl +');" data-year="'+ item.name +'">' +
                             '<div class="swiper-slide-content"><span class="timeline-year">'+ item.name +'</span>' +
                             '<h4 class="timeline-title"><a href="'+ item.url +'" target="_blank">'+ item.title +'</a></h4>' +
-                            '<p class="timeline-text"><a href="'+ item.url +'" target="_blank">'+ item.title +'</a></p>' +
+                            '<div class="timeline-text"><a href="'+ item.url +'" target="_blank">'+ item.url +'</a></div>' +
                             '</div>' +
                             '</div>';
                     });
                     $("#history").html(str1);
-                    $(".timeline .swiper-button-prev,.timeline .swiper-button-next,.timeline .swiper-pagination-history").show();
+                    $(".timeline .swiper-button-prev,.timeline .swiper-button-next").show();
                     var timelineSwiper = new Swiper ('.timeline .swiper-container', {
                         direction: 'vertical',
                         loop: false,

@@ -63,17 +63,17 @@
                         var d = new Date(item.updatetime.replace(/-/g,'/')).getDate();
                         str1 +=
                             '<li>' +
-                            '<a href="detail/detail.html?path=artNews&id='+ item.id +'" target="_blank">' +
-                            '<div class="item-date">' +
-                            '<p>'+ m +'</p>' +
-                            '<span class="xspan"></span>' +
-                            '<p class="down">'+ d +'</p>' +
-                            '</div>' +
-                            '<div class="item-content">' +
-                            '<h3> '+ item.title +'</h3>' +
-                            '<p>'+ item.content +'</p>' +
-                            '</div>' +
-                            '</a>' +
+								'<a href="detail/detail.html?path=artNews&id='+ item.id +'" target="_blank">' +
+									'<div class="item-date">' +
+										'<p>'+ m +'</p>' +
+										'<span class="xspan"></span>' +
+										'<p class="down">'+ d +'</p>' +
+									'</div>' +
+									'<div class="item-content">' +
+										'<h3> '+ item.title +'</h3>' +
+										'<div>'+ item.content +'</div>' +
+									'</div>' +
+								'</a>' +
                             '</li>';
                     });
                     $(".item-list").html(str1);

@@ -160,6 +160,11 @@
 .timeline .swiper-pagination-bullet-active {
     color: #d4a024;
 }
+@media (max-width:767px) {
+    .timeline .swiper-pagination-history{
+        display:none!important;
+    }
+}
 .timeline .swiper-pagination-bullet-active::before {
     -webkit-transform: scale(1);
     transform: scale(1);
