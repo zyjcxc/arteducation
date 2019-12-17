@@ -209,7 +209,7 @@ function changeSelect(v) {
     if(v == 3){
         $("#topic").show();
     }
-    if(v != 1){
+    if(v == 3){
         $("#link").show();
     }
 }
