@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class='form-group'>
-                <label class='col-md-2 control-label'><button class="btn btn-primary" style="margin-bottom: 5px" type="button" id="open">上传图片</button><br>(建议分辨率：1900*440)</label>
+                <label class='col-md-2 control-label'><button class="btn btn-primary" style="margin-bottom: 5px" type="button" id="open">上传图片</button><br>(建议分辨率：<span id="sizeTxt">1900*440</span>)</label>
                 <div class='col-md-5' style="padding: 5px 0;">
                     <img style="width: auto;max-height: 240px;display: none;" class="col-xs-10" src="" id="banner">
                 </div>
@@ -59,7 +59,7 @@
             <div class='form-group' id="link" style="display: none">
                 <label class='col-md-2 control-label'>跳转url</label>
                 <div class='col-md-10'>
-                    <input class='form-control' placeholder='跳转url' type='text' name='url' id='url' data-bv-notempty="true" data-bv-notempty-message="跳转url">
+                    <input class='form-control' placeholder='跳转url' type='text' name='url' id='url'>
                 </div>
             </div>
             <div class="form-actions">

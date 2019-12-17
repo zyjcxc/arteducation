@@ -159,9 +159,23 @@ classification_add = (function ($, w) {
      * 表单前置验证
      */
     function checkFormBefore() {
-        $PAGE_FORM.bootstrapValidator();
-
+        $PAGE_FORM.bootstrapValidator({
+            fields:{
+                url:{
+                    validators:{
+                        notEmpty: {
+                            message: '跳转url不能为空'
+                        },
+                        regexp: { //正则表达式
+                            regexp: /(https|http|ftp|rtsp|mms)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?$/,
+                            message: '请填写正确的跳转url'
+                        },
+                    }
+                }
+            }
+        });
         return $PAGE_FORM.data('bootstrapValidator').validate().isValid();
+
     }
 
     /**
@@ -183,7 +197,7 @@ classification_add = (function ($, w) {
                 _self.getPageDom().title.val(data.title);
                 _self.getPageDom().name.val(data.name);
                 _self.getPageDom().recommend.val(data.recommend);
-                changeSelect(data.name);
+                changeSelect(data.site);
             }
         });
     }
@@ -206,10 +220,13 @@ classification_add = (function ($, w) {
 function changeSelect(v) {
     $("#topic").hide();
     $("#link").hide();
-    if(v == 3){
+    if(v == 1){
+        $("#sizeTxt").text("1900*440");
+    }else if(v == 2){
+        $("#sizeTxt").text("800*400");
+    }else{
+        $("#sizeTxt").text("1900*200");
         $("#topic").show();
-    }
-    if(v == 3){
         $("#link").show();
     }
 }
