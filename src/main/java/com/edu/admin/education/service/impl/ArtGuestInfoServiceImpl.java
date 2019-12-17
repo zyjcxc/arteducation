@@ -4,6 +4,8 @@ import com.edu.admin.education.command.ArtGuestInfoSaveCommand;
 import com.edu.admin.education.convert.ArtGuestInfoConverter;
 import com.edu.admin.education.dao.ArtGuestInfoDao;
 import com.edu.admin.education.dto.ArtGuestInfoDto;
+import com.edu.admin.education.enums.ResultEnum;
+import com.edu.admin.education.exception.HumanResourceException;
 import com.edu.admin.education.model.ArtBannerInfo;
 import com.edu.admin.education.model.ArtGuestInfo;
 import com.edu.admin.education.service.IArtGuestInfoService;
@@ -32,6 +34,14 @@ public class ArtGuestInfoServiceImpl implements IArtGuestInfoService {
     @Override
     public ArtGuestInfoDto save(ArtGuestInfoSaveCommand command) {
         ArtGuestInfo artGuestInfo = ArtGuestInfoConverter.convertToArtGuestInfo(command);
+        Example example = new Example(ArtGuestInfo.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("phone", command.getPhone());
+        int count = artGuestInfoDao.selectCountByExample(example);
+        if (count > 0) {
+            throw new HumanResourceException(ResultEnum.REPEAT_SUBMIT_RECORD);
+        }
+
         artGuestInfoDao.insertSelective(artGuestInfo);
         return ArtGuestInfoConverter.convertToArtGuestInfoDto(artGuestInfo);
     }

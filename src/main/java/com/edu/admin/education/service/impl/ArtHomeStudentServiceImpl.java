@@ -48,6 +48,15 @@ public class ArtHomeStudentServiceImpl implements IArtHomeStudentService {
 
     @Override
     public ArtHomeStudentDto save(ArtHomeStudentSaveCommand command) {
+        if (command.getRecommend() == 1) {
+            Example example = new Example(ArtHomeStudent.class);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andEqualTo("recommend", 1);
+            int count = artHomeStudentDao.selectCountByExample(example);
+            if (count == 9) {
+                throw new HumanResourceException(ResultEnum.STUDENT_SIZE_FULL_RECORD);
+            }
+        }
         ArtHomeStudent artHomeStudent = ArtHomeStudentConverter.convertToArtHomeStudent(command);
         artHomeStudentDao.insertSelective(artHomeStudent);
         return ArtHomeStudentConverter.convertToArtHomeStudentDto(artHomeStudent);
