@@ -427,6 +427,8 @@
         if(validate){
             alert("请填写完整信息后查询！");
         }else {
+//            $("#" + id).find("input").val("");
+//            $("#" + id).find("select").val("");
             var url = "pages/detail/search_detail.html?name="+param.name+"&level="+param.level+"&classificationId="+param.classificationId+"&cardNo="+param.cardNo+"&bookType="+param.bookType;//此处拼接内容
             window.location.href = url;
         }
@@ -523,7 +525,7 @@
     $.EXTEND.GET('artHomeSchool/findRecommendList')
         .then(function (res) {
 
-            if(res && (res.length > 0)){console.log(res);
+            if(res && (res.length > 0)){
                 var str1 = '';
                 $.each(res, function(i, item) {
                     str1 +=
@@ -544,6 +546,8 @@
                     effect : 'fade',
                     autoplay: 3000,//可选选项，自动滑动
                 })
+            }else{
+                $("#schoolSwiper .swiper-button-prev,#schoolSwiper .swiper-button-next").hide();
             }
 
         });
@@ -596,12 +600,18 @@
         var param = $('#fm').serializeObject(true);
         var obj = JSON.parse(param);
         if( !obj.name || obj.name === '' || !obj.phone || obj.phone === '' || !obj.message || obj.message === ''){
-            alert("姓名，电话，留言三者必填！");
+            alert("请您填写姓名、电话及留言后提交！");
         }else{
             $.EXTEND.POST('artGuestInfo',param)
                 .then(function () {
-                    alert("提交成功，我们回尽快回复您哒~");
-                });
+                    alert("提交成功，我们回尽快回复您");
+                    $("#fm").find("input").val("");
+                    $("#fm").find("textarea").val("");
+                })
+                .catch(function (res) {
+                    alert(res.message);
+                })
+            ;
         }
     });
 

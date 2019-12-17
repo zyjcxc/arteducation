@@ -64,7 +64,7 @@
 			'</div>';
 	return str;
   	}
-	/*学生类模板*/
+	/*普通模板*/
   	function getSingle(res){
   	    var TITLE = res.title || res.name;
   		var str = 
@@ -77,13 +77,26 @@
 				'</div>';
 		return str;
   	}
-  	
+
+	/*学生模板*/
+  	function getStudent(res){
+  	    var TITLE = res.name;
+  		var str =
+	    		'<div class="section">' +
+	    			'<h1>' + TITLE + '</h1>' +
+	                '<div class="umEdit">' + res.content + '</div>' +
+				'</div>';
+		return str;
+  	}
+
   	/*获取详情*/
   	function getDetail(){
   		var url=null,template=null;
   		if(params.path) url = '/'+params.path+'/' + params.id;
   		switch (params.path){
 			case 'artNews': template = getNews;
+			break;
+			case 'artHomeStudent': template = getStudent;
 			break;
 			default: template = getSingle;
 		}

@@ -143,18 +143,23 @@
                     search:window.location.search.split('?')[1]
                 };
                 id = path.search ? path.search.split('_')[1] : res[0].id ;
-                for (var i = 0; i < res.length; i++) {
-                    var item = res[i];
+                if(res && res.length>0){
+                    for (var i = 0; i < res.length; i++) {
+                        var item = res[i];
 
-                    var className = (item.id == id) ?'active':'';
-                    li = li + '<li class="' + className + '"><a href="../pages/books.html?book_' + item.id + '">' + item.name + '</a></li>';
-                    li_xs = li_xs +
-                        '<li role="presentation" class="' + className + '"><a href="../pages/books.html?book_' + item.id + '">' + item.name + '</a></li>';
-                }
-                $("#menu_sidebar").html(li);
-                $("#menu_sidebar_xs").html(li_xs);
+                        var className = (item.id == id) ?'active':'';
+                        li = li + '<li class="' + className + '"><a href="../pages/books.html?book_' + item.id + '">' + item.name + '</a></li>';
+                        li_xs = li_xs +
+                            '<li role="presentation" class="' + className + '"><a href="../pages/books.html?book_' + item.id + '">' + item.name + '</a></li>';
+                    }
+                    $("#menu_sidebar").html(li);
+                    $("#menu_sidebar_xs").html(li_xs);
+				}
                 init(res)
-            });
+            }).catch(function () {
+            	init([])
+        	})
+		;
 
 
     }
