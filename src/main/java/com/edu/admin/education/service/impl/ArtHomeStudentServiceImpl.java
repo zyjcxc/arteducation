@@ -68,6 +68,16 @@ public class ArtHomeStudentServiceImpl implements IArtHomeStudentService {
         if (oldData == null) {
             throw new HumanResourceException(ResultEnum.NO_FIND_DATA);
         }
+        if (command.getRecommend() == 1) {
+            Example example = new Example(ArtHomeStudent.class);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andEqualTo("recommend", 1);
+            criteria.andNotEqualTo("id", oldData.getId());
+            int count = artHomeStudentDao.selectCountByExample(example);
+            if (count == 9) {
+                throw new HumanResourceException(ResultEnum.STUDENT_SIZE_FULL_RECORD);
+            }
+        }
         oldData = ArtHomeStudentConverter.convertToArtHomeStudent(command);
         oldData.setId(command.getId());
         artHomeStudentDao.updateByPrimaryKeySelective(oldData);

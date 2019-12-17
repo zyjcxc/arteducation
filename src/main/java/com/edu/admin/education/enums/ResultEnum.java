@@ -49,6 +49,7 @@ public enum ResultEnum {
     REPEAT_STUDENT_RECORD(17, "该学生已经存在该活动中，不能重复录入"),
     STUDENT_SIZE_FULL_RECORD(21, "首页推荐位已达到上限"),
     REPEAT_SUBMIT_RECORD(22, "请勿重复提交，我们会尽快与您联系"),
+    PHONE_SUBMIT_RECORD(23, "手机号非法，请重新填写正确的手机号"),
 
     NO_FIND_DATA(500, "未找到数据"),
 

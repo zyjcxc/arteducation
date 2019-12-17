@@ -3,7 +3,10 @@ package com.edu.admin.education.controller;
 import com.edu.admin.education.command.ArtGuestInfoSaveCommand;
 import com.edu.admin.education.dto.ArtGuestInfoDto;
 import com.edu.admin.education.dto.ArtNewsDto;
+import com.edu.admin.education.enums.ResultEnum;
+import com.edu.admin.education.exception.HumanResourceException;
 import com.edu.admin.education.service.IArtGuestInfoService;
+import com.edu.admin.education.utils.PhoneNumberUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -43,6 +46,9 @@ public class WebArtGuestInfoController extends BaseController {
     public ArtGuestInfoDto save(@RequestBody @Valid ArtGuestInfoSaveCommand command, BindingResult bindingResult) {
         logger.info("=== command ==> {} ", command);
         validFormInfo(bindingResult);
+        if (!PhoneNumberUtil.isPhone(command.getPhone())) {
+            throw new HumanResourceException(ResultEnum.PHONE_SUBMIT_RECORD);
+        }
         return artGuestInfoServiceImpl.save(command);
     }
 
