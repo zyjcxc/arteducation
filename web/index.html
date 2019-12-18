@@ -27,12 +27,12 @@
     <div class="head">
         <div class="swiper-container" id="swiper_head">
             <div class="swiper-wrapper">
-                <div class="swiper-slide swiper-slide-1" style="background-image:url('images/banner-5.jpg')">
+                <div class="swiper-slide swiper-slide-1" style="background-image:url('images/banner-5.jpg');background-position: center;background-size: cover;">
                     <div class="centent">
                     	<div class="wrap">
                             <div class="banner-box banner-box1 pull-right">
-                                <h4>Standard Grade Examination Committee Of The Central Conservatory Of Music</h4>
-                                <h3>中央音乐学院</h3>
+                                <h4>The National Committee For Examination And Assessment Of Art Professionals</h4>
+                                <h3>全国艺术特长生考评委员会</h3>
                                 <h2>考级委员会</h2>
                                 <div class="group enter">
                                     <a class="btn" href="./pages/teacher.html">优秀师资团队</a>
@@ -42,12 +42,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide swiper-slide-2" style="background-image:url('images/banner-7.jpg')">
+                <div class="swiper-slide swiper-slide-2" style="background-image:url('images/banner-7.jpg');background-position: center;background-size: cover;">
                     <div class="centent">
                         <!--<img src="" alt="滚动背景图">-->
                         <div class="wrap">
                             <div class="banner-box banner-box2 slogan">
-                                <h2>中央音乐学院校外音乐水平考级</h2>
+                                <h2>全国艺术特长生考评委员会</h2>
                                 <ul>
                                     <li class="t">权威</li>
                                     <li class="t">规范</li>
@@ -62,13 +62,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide swiper-slide-3" style="background-image:url('images/banner-3.jpg')">
+                <div class="swiper-slide swiper-slide-3" style="background-image:url('images/banner-3.jpg');background-position: center;background-size: cover;">
                     <div class="centent">
                         <div class="wrap">
                             <div class="banner-box center">
-                                <h4>Standard Grade Examination Committee Of The Central Conservatory Of Music</h4>
-                                <h3>中 央 音 乐 学 院</h3>
-                                <h2>考 级 委 员 会</h2>
+                                <h4>The National Committee For Examination And Assessment Of Art Professionals</h4>
+                                <h3>全 国 艺 术 特 长 生</h3>
+                                <h2>考 评 委 员 会</h2>
                                 <div class="group enter">
                                     <a class="btn" href="./pages/teacher.html">优秀师资团队</a>
                                     <a class="btn pull-right" href="./pages/credentials.html">高级荣誉证书</a>
@@ -262,7 +262,7 @@
 
         <div class="item">
             <div class="search-icon express"></div>
-            <p>视频考级</p>
+            <p>扫一扫</p>
             <div class="query-check">
                 <img src="images/query-tap-4.png" alt="" />
             </div>
@@ -442,8 +442,8 @@
         .then(function (res) {
             $.each(res, function(i, item) {
                 if(i>=3) return false;
-                $("#swiper_head").find(".swiper-slide-"+(i+1)).css("background-image","url('"+item.picurl+"')");
-            })
+                $("#swiper_head").find(".swiper-slide-"+(i+1)).css("background-image","url('"+item.picurl+"?imageView2/0/w/1900/h/440')");
+            });
             var mySwiper = new Swiper('#swiper_head', {
 			    pagination : '.swiper-pagination-banner',
 			    paginationClickable :true,
@@ -512,7 +512,7 @@
                 if(i>=9) return false;
                 str1 +=
                     '<a class="col-xs-4" href="./pages/detail/detail.html?path=artHomeStudent&id='+ item.id +'" target="_blank">' +
-                    '<img src="'+ item.picurl +'">' +
+                    '<img src="'+ item.picurl +'?imageView2/0/w/120/h/80">' +
                     '<p>'+ item.name +'</p>' +
                     '</a>';
 
@@ -531,7 +531,7 @@
                         str1 +=
                             '<div class="swiper-slide">' +
                             '<div class="thumb">' +
-                            '<a href="./pages/detail/detail.html?path=artHomeSchool&id='+ item.id +'" target="_blank"><img src="'+ item.picurl +'"><p style="background: #fff">'+ item.name +'</p></a>' +
+                            '<a href="./pages/detail/detail.html?path=artHomeSchool&id='+ item.id +'" target="_blank"><img src="'+ item.picurl +'?imageView2/0/w/410/h/230"><p style="background: #fff">'+ item.name +'</p></a>' +
                             '</div>' +
                             '</div>';
 
@@ -562,8 +562,9 @@
                     var str1 = '';
                     $.each(res, function(i, item) {
                         if(i>=5) return false;
+                        var link = item.picurl +"?imageView2/0/w/800/h/400";
                         str1 +=
-                            '<div class="swiper-slide" style="background-image: url('+ item.picurl +');" data-year="'+ item.name +'">' +
+                            '<div class="swiper-slide" style="background-image: url('+ link +');" data-year="'+ item.name +'">' +
                             '<div class="swiper-slide-content"><span class="timeline-year">'+ item.name +'</span>' +
                             '<h4 class="timeline-title"><a href="'+ item.url +'" target="_blank">'+ item.title +'</a></h4>' +
                             '<div class="timeline-text"><a href="'+ item.url +'" target="_blank">'+ item.url +'</a></div>' +
