@@ -13,7 +13,7 @@ $(function() {
     max_file_size: '10mb',
     flash_swf_url: 'Moxie.swf',
     dragdrop: true,
-    chunk_size: '10mb',
+    chunk_size: '4mb',
     multi_selection: !(moxie.core.utils.Env.OS.toLowerCase() === "ios"),
     uptoken_func: function(){
         var ajax = new XMLHttpRequest();

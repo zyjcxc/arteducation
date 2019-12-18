@@ -570,6 +570,7 @@ $$.extend($$, {
     //页面层-图片
     layer.open({
         type: 1,
+        offset: '100px',
         title: false,
         closeBtn: 0,
         area: "70%",

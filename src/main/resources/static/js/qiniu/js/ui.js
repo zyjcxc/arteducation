@@ -59,6 +59,10 @@ function FileProgress(file, targetID) {
     Wrappeer.append(progressDel);
 
     $('#' + targetID).append(Wrappeer);
+
+    progressDel.on('click',function (e) {
+        e.target.parentNode.remove();
+    })
   }
   else {
     this.reset();
@@ -88,42 +92,41 @@ FileProgress.prototype.setChunkProgess = function(chunk_size) {
   if (chunk_amount === 1) {
     return false;
   }
-
-  var viewProgess = $('<button class="btn btn-default">查看分块上传进度</button>');
-
-  var progressBarChunkTr = $(
-    '<tr class="chunk-status-tr"><td colspan=3></td></tr>');
-  var progressBarChunk = $('<div/>');
-  for (var i = 1; i <= chunk_amount; i++) {
-    var col = $('<div class="col-md-2"/>');
-    var progressBarWrapper = $('<div class="progress progress-striped"></div>');
-
-    var progressBar = $("<div/>");
-    progressBar.addClass("progress-bar progress-bar-info text-left")
-      .attr('role', 'progressbar')
-      .attr('aria-valuemax', 100)
-      .attr('aria-valuenow', 0)
-      .attr('aria-valuein', 0)
-      .width('0%')
-      .attr('id', this.file.id + '_' + i)
-      .text('');
-
-    var progressBarStatus = $('<span/>');
-    progressBarStatus.addClass('chunk-status').text();
-
-    progressBarWrapper.append(progressBar);
-    progressBarWrapper.append(progressBarStatus);
-
-    col.append(progressBarWrapper);
-    progressBarChunk.append(col);
-  }
-
-  if (!this.fileProgressWrapper.find('td:eq(2) .btn-default').length) {
-    this.fileProgressWrapper.find('td>div').append(viewProgess);
-  }
-  progressBarChunkTr.hide().find('td').append(progressBarChunk);
-  progressBarChunkTr.insertAfter(this.fileProgressWrapper);
-
+  //
+  // var viewProgess = $('<button class="btn btn-default">查看分块上传进度</button>');
+  //
+  // var progressBarChunkTr = $(
+  //   '<tr class="chunk-status-tr"><td colspan=3></td></tr>');
+  // var progressBarChunk = $('<div/>');
+  // for (var i = 1; i <= chunk_amount; i++) {
+  //   var col = $('<div class="col-md-2"/>');
+  //   var progressBarWrapper = $('<div class="progress progress-striped"></div>');
+  //
+  //   var progressBar = $("<div/>");
+  //   progressBar.addClass("progress-bar progress-bar-info text-left")
+  //     .attr('role', 'progressbar')
+  //     .attr('aria-valuemax', 100)
+  //     .attr('aria-valuenow', 0)
+  //     .attr('aria-valuein', 0)
+  //     .width('0%')
+  //     .attr('id', this.file.id + '_' + i)
+  //     .text('');
+  //
+  //   var progressBarStatus = $('<span/>');
+  //   progressBarStatus.addClass('chunk-status').text();
+  //
+  //   progressBarWrapper.append(progressBar);
+  //   progressBarWrapper.append(progressBarStatus);
+  //
+  //   col.append(progressBarWrapper);
+  //   progressBarChunk.append(col);
+  // }
+  //
+  // if (!this.fileProgressWrapper.find('td:eq(2) .btn-default').length) {
+  //   this.fileProgressWrapper.find('td>div').append(viewProgess);
+  // }
+  // progressBarChunkTr.hide().find('td').append(progressBarChunk);
+  // progressBarChunkTr.insertAfter(this.fileProgressWrapper);
 };
 
 FileProgress.prototype.setProgress = function(percentage, speed, chunk_size) {
@@ -197,7 +200,6 @@ FileProgress.prototype.setProgress = function(percentage, speed, chunk_size) {
 
 FileProgress.prototype.setComplete = function(up, info) {
 
-  var del = this.fileProgressWrapper.find('.progressDel');
 
   var td = this.fileProgressWrapper.find('td:eq(2)'),
     tdProgress = td.find('.progress');
@@ -280,10 +282,6 @@ FileProgress.prototype.setComplete = function(up, info) {
       Wrapper.addClass('default');
     });
   }
-
-  del.on('click',function (e) {
-     e.target.parentNode.remove();
-  })
 };
 
 FileProgress.prototype.setError = function() {
@@ -291,6 +289,7 @@ FileProgress.prototype.setError = function() {
   this.fileProgressWrapper.find('td:eq(2) .progress').css('width', 0).hide();
   this.fileProgressWrapper.find('button').hide();
   this.fileProgressWrapper.next('.chunk-status-tr').hide();
+  this.fileProgressWrapper.find('td:eq(2) .progressCancel').hide();
 };
 
 FileProgress.prototype.setCancelled = function(manual) {
