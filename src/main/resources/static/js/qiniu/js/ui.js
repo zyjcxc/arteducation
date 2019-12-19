@@ -251,7 +251,7 @@ FileProgress.prototype.setComplete = function(up, info) {
   var Wrapper = $('<div class="Wrapper"/>');
   var imgWrapper = $('<div class="imgWrapper col-md-3"/>');
   var linkWrapper = $('<a class="linkWrapper" target="_blank"/>');
-  var showImg = $('<img src="/js/qiniu/images/loading.gif"/>');
+  var showImg = $('<img style="width: 70px;" src="/js/qiniu/images/loading.gif"/>');
 
   progressNameTd.append(Wrapper);
 
@@ -358,7 +358,11 @@ function GetDocList () {
     var p = $("#fsUploadProgress")[0];
     for(var i = 1;i<p.childNodes.length;i++){
         var item = p.childNodes[i];
-        list.push(JSON.parse(item.attributes.data.value))
+        if(item && item.attributes && item.attributes.data && item.attributes.data.value){
+            list.push(JSON.parse(item.attributes.data.value))
+        }else{
+            list = [];
+        }
     }
     return list;
 }

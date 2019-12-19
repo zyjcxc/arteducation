@@ -126,6 +126,8 @@ WEB_CONFIG = {
         ART_HOME_STUDENT : "/artHomeStudent",
         //学校风采
         ART_HOME_SCHOOL : "/artHomeSchool",
+        //文件下载
+        ART_FILE_LIST : "/artFileList",
     },
     _page : {
         // 特殊长生列表
@@ -285,6 +287,11 @@ WEB_CONFIG = {
         ART_HOME_SCHOOL_PAGE : "/pages/home/addHomeSchool.html",
         ART_HOME_SCHOOL_PAGE_WITH_PARAMS : function(keyValues) {
             return $$.makeWithUrl(WEB_CONFIG._page.ART_HOME_SCHOOL_PAGE, keyValues);
+        },
+        // 文件下载
+        ART_DOWN_LOAD_PAGE : "/pages/download/addArtDownload.html",
+        ART_DOWN_LOAD_PAGE_WITH_PARAMS : function(keyValues) {
+            return $$.makeWithUrl(WEB_CONFIG._page.ART_DOWN_LOAD_PAGE, keyValues);
         },
     },
     _qnConfig : {
