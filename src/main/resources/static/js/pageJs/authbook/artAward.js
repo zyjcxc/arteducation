@@ -93,7 +93,7 @@ classification_list = (function ($, w) {
                 {"data" : "picurl", "defaultContent" : "",
                     "render": function (data) {
                         var fun = "onclick='$$.bigImg(\"" + data + "\")'";
-                        var img = "<img src='" + data +"' style='height:70px;width:auto;max-width:500px;' " + fun +"/ >";
+                        var img = "<img src='" + data +"?imageView2/1/w/80/h/80' style='height:70px;width:auto;max-width:500px;' " + fun +"/ >";
 
                         return img;
                     }, "orderable" : false},
