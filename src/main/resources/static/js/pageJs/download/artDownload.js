@@ -94,7 +94,7 @@ classification_list = (function ($, w) {
                         "data": "url",
                         "defaultContent": "",
                         "render": function (data) {
-                            return "<a href='"+ data +"' download='下载' " + data +" target='_blank'>下载</a>";
+                            return "<a href='"+ data +"' download='下载' target='_blank'>"+ data +"</a>";
                         }, "orderable" : false
                     },
 				{"data" : "createtime", "defaultContent" : ""},
