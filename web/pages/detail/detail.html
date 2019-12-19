@@ -78,6 +78,18 @@
 		return str;
   	}
 
+	/*下载模板*/
+  	function getDownload(res){
+  	    var TITLE = res.title || res.name;
+  		var str =
+	    		'<div class="section">' +
+	    			'<h1>' + TITLE + '</h1>' +
+	                '<div class="umEdit">' + res.content + '</div>' +
+	                '<div class="down">文件下载：<a href="' + res.url + '" download="下载" target="_blank">' + res.url + '</a></div>' +
+				'</div>';
+		return str;
+  	}
+
 	/*学生模板*/
   	function getStudent(res){
   	    var TITLE = res.name;
@@ -97,6 +109,8 @@
 			case 'artNews': template = getNews;
 			break;
 			case 'artHomeStudent': template = getStudent;
+			break;
+			case 'artFileList': template = getDownload;
 			break;
 			default: template = getSingle;
 		}

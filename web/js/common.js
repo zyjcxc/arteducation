@@ -36,6 +36,12 @@
 				isParent:false
 			},
 			{
+				code:'download',
+				url:'download.html',
+				title:'文件下载',
+				isParent:false
+			},
+			{
 				code:'news',
 				url:'news.html?news_1',
 				title:'新闻中心',

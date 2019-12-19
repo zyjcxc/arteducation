@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>全国特长生认证委员会</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="全国特长生认证委员会">
+    <meta name="keywords" content="全国特长生认证委员会">
+    <script type="text/javascript" src="../utils/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+
+
+</head>
+
+<body>
+
+<div class="page-list">
+    <!------------ 注释：顶部 start ----------->
+	<div id="header-page"></div>
+	<!------------ 注释：顶部 end ----------->
+	<!------------ 注释：面包屑 start ----------->
+	<div id="breadcrumb-page"></div>
+	<!------------ 注释：面包屑 end ----------->
+	<div class="contain news">
+		<!------------ 注释：插入 menu start ----------->
+		<div id="menu_list"></div>
+		<!------------ 注释：插入 menu end ----------->
+		<div class="content">
+			 <h2 class="visible-md-block visible-lg-block visible-sm-block">文件下载</h2>
+			 <ul class="item-list">
+				 <p style="text-align: center;line-height: 35px">暂无数据</p>
+			 </ul>
+            <div id="pagination" class="page fl">
+                <div class="ui-pagination-container"></div>
+            </div>
+		</div>
+	</div>
+
+  
+    <!------------ 注释：底部 start ----------->
+	<div id="footer-page"></div>
+	<!------------ 注释：底部 start ----------->
+
+
+</div>
+<!--ajax封装-->
+<script type="text/javascript" src="../js/extend.js"></script>
+<!--通用：包括config，公共头底页面，面包屑及目录 -->
+<script type="text/javascript" src="../js/common.js"></script>
+<script type="text/javascript">
+    var type = window.location.search.split("_")[1];
+    var page_num = 1;
+    var page_size = 10;
+    function getList(num) {
+        /*新闻*/
+        $.EXTEND.GET('artFileList',{type:type,offset:( num - 1 )*page_size})
+            .then(function (res) {
+                if(res && res.data && res.data.length>0){
+                    var str1 = '';
+                    $.each(res.data, function(i, item) {
+
+                        var m = new Date(item.updatetime.replace(/-/g,'/')).getMonth();
+                        var d = new Date(item.updatetime.replace(/-/g,'/')).getDate();
+                        str1 +=
+                            '<li>' +
+								'<a href="detail/detail.html?path=artFileList&id='+ item.id +'" target="_blank">' +
+									'<div class="item-date">' +
+										'<p>'+ m +'</p>' +
+										'<span class="xspan"></span>' +
+										'<p class="down">'+ d +'</p>' +
+									'</div>' +
+									'<div class="item-content">' +
+										'<h3> '+ item.title +'</h3>' +
+										'<div>'+ item.content +'</div>' +
+									'</div>' +
+								'</a>' +
+                            '</li>';
+                    });
+                    $(".item-list").html(str1);
+                    page(Math.ceil(res.recordsTotal / page_size));
+				}
+            });
+    }
+    function page(total) {
+        $("#pagination").pagination({
+            currentPage: page_num,
+            totalPage: total,
+            isShow: true,
+            homePageText: "首页",
+            endPageText: "尾页",
+            prevPageText: "上一页",
+            nextPageText: "下一页",
+            callback: function(current) {
+                $("#current3").text(current);
+                page_num = current;
+                getList(current);
+                window.scroll(0,0);
+            }
+        });
+    }
+
+    function init() {
+        getList(page_num);
+    }
+    init()
+</script>
+</body>
+
+</html>
