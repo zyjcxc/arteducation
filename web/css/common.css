@@ -35,9 +35,9 @@ textarea{
 .web-top .box {width:130px;text-align:center;}
 .web-top .box i {font-size:20px;vertical-align:-3px;}
 .web-top .box i {float:left;margin:-7px 2px 0 0;}
-.web-top .box i img {width:20px;height:20px;}
+.web-top .box i img {width:20px;}
 .web-top .box i img p {float:right;margin-top:4px;}
-.web-top .box .web-top-dorpdown {width:150px;height:200px;}
+.web-top .box .web-top-dorpdown {width: 130px;height: auto;}
 .web-top .box:hover .web-top-dorpdown {display:block;}
 .web-top .web-top-dorpdown {position:absolute;z-index:9998;display:none;}
 /*导航*/
