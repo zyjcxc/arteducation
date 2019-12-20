@@ -81,7 +81,7 @@
                             '</div></a>';
                     });
                     $(".personing_box").html(str1);
-                    page(Math.ceil(res.recordsTotal / page_size));
+                    page(Math.ceil(res.length / page_size));
                 }
             });
     }
@@ -97,7 +97,6 @@
             callback: function(current) {
                 $("#current3").text(current);
                 page_num = current;
-                getList(current);
                 window.scroll(0,0);
             }
         });
