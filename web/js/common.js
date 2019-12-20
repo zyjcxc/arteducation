@@ -42,6 +42,12 @@
 				isParent:false
 			},
 			{
+				code:'students',
+				url:'students.html',
+				title:'特长生',
+				isParent:false
+			},
+			{
 				code:'news',
 				url:'news.html?news_1',
 				title:'新闻中心',
