@@ -167,7 +167,7 @@ classification_add = (function ($, w) {
                             message: '跳转url不能为空'
                         },
                         regexp: { //正则表达式
-                            regexp: /((https)|(http)|(ftp)|(rtsp)|(mms))?:\/\//,
+                            regexp: /https|http|ftp|rtsp|mms?:\/\//,
                             message: '请填写正确的跳转url'
                         },
                     }
