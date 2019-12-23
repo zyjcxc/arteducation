@@ -33,7 +33,10 @@ public class ServerApplication {
 	@Bean
 	MultipartConfigElement multipartConfigElement() {
 		MultipartConfigFactory factory = new MultipartConfigFactory();
+		// TODO 线上
 		factory.setLocation("/data/temp");
+		//
+		// factory.setLocation("D:/data/temp");
 		return factory.createMultipartConfig();
 	}
 }
