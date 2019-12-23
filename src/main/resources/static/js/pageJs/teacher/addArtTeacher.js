@@ -30,7 +30,7 @@ classification_add = (function ($, w) {
                 createtime : $("#createtime"),
                 school : $("#school"),
                 title : $("#title"),
-                phone : $("#phone"),
+                // phone : $("#phone"),
                 updatetime : $("#updatetime"),
             },
             $btn: {
@@ -199,7 +199,7 @@ classification_add = (function ($, w) {
                 _self.getPageDom().photoUrl.val(data.photoUrl);
                 _self.getPageDom().school.val(data.school);
                 _self.getPageDom().title.val(data.title);
-                _self.getPageDom().phone.val(data.phone);
+                // _self.getPageDom().phone.val(data.phone);
                 $("#picture").show().attr('src',data.photoUrl);
                 setContent(data.content);
             }

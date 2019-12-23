@@ -18,7 +18,7 @@ classification_list = (function ($, w) {
             },
             $dom: {
                 id : $("#id"),
-                site : $("#site"),
+                name : $("#name"),
                 recommend : $("#recommend")
 
 
@@ -86,7 +86,7 @@ classification_list = (function ($, w) {
                     "type": "get",
                     "data": function (d) {
                         d.id = page.$dom.id.val();
-                        d.site = page.$dom.site.val();
+                        d.name = page.$dom.name.val();
                         d.recommend = page.$dom.recommend.val();
                     }
                 },
