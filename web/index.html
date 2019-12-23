@@ -439,10 +439,9 @@
     }
 	
     /*banner展示*/
-    $.EXTEND.GET('artBannerInfo/findAllBySite',{site:1})
+    $.EXTEND.GET('artBannerInfo/findAllBySite',{site:1,limit:3})
         .then(function (res) {
             $.each(res, function(i, item) {
-                if(i>=3) return false;
                 $("#swiper_head").find(".swiper-slide-"+(i+1)).css("background-image","url('"+item.picurl+"?imageView2/0/w/1900/h/440')");
             });
             var mySwiper = new Swiper('#swiper_head', {
@@ -468,11 +467,10 @@
             $(".classificationId").append(OPTION);
         });
     /*新闻*/
-    $.EXTEND.GET('artNews',{type:1})
+    $.EXTEND.GET('artNews',{type:1,limit:4})
         .then(function (res) {
             var str1 = '';
             $.each(res.data, function(i, item) {
-                if(i>=4) return false;
                 var m = new Date(item.updatetime.replace(/-/g,'/')).getMonth();
                 var d = new Date(item.updatetime.replace(/-/g,'/')).getDate();
                 str1 +=
@@ -493,24 +491,25 @@
             })
         });
     /*公告*/
-    $.EXTEND.GET('artNews',{type:2})
+    $.EXTEND.GET('artNews',{type:2,limit:3})
         .then(function (res) {
             var str1 = '';
             $.each(res.data, function(i, item) {
-                if(i>=3) return false;
+                var y = new Date(item.updatetime.replace(/-/g,'/')).getFullYear();
+                var m = new Date(item.updatetime.replace(/-/g,'/')).getMonth();
+                var d = new Date(item.updatetime.replace(/-/g,'/')).getDate();
                 str1 +=
-                    '<li><a href="./pages/detail/detail.html?path=artNews&id='+ item.id +'" target="_blank"> 【'+ item.updatetime +'】'+ item.title +'</a></li>';
+                    '<li><a href="./pages/detail/detail.html?path=artNews&id='+ item.id +'" target="_blank"> 【'+ y+ '-'+ m+ '-' +d+'】'+ item.title +'</a></li>';
 
                 $("#new_2").html(str1);
             })
         });
 
     /*学生信息展示*/
-    $.EXTEND.GET('artHomeStudent/findRecommendList')
+    $.EXTEND.GET('artHomeStudent/findRecommendList',{limit:9})
         .then(function (res) {
             var str1 = '';
             $.each(res, function(i, item) {
-                if(i>=9) return false;
                 str1 +=
                     '<a class="col-xs-4" href="./pages/detail/detail.html?path=artHomeStudent&id='+ item.id +'" target="_blank">' +
                     '<img src="'+ item.picurl +'?imageView2/0/w/120/h/80">' +
@@ -557,12 +556,11 @@
     /*历史展示*/
     function showHistory() {
         $(".timeline .swiper-button-prev,.timeline .swiper-button-next").hide();
-        $.EXTEND.GET('artBannerInfo/findAllBySite',{site:3})
+        $.EXTEND.GET('artBannerInfo/findAllBySite',{site:3,limit:5})
             .then(function (res) {
                 if(res && res.length>0){
                     var str1 = '';
                     $.each(res, function(i, item) {
-                        if(i>=5) return false;
                         var link = item.picurl +"?imageView2/0/w/800/h/400";
                         str1 +=
                             '<div class="swiper-slide" style="background-image: url('+ link +');" data-year="'+ item.name +'">' +
