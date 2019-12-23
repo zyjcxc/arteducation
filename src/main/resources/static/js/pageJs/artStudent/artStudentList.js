@@ -32,6 +32,7 @@ art_student_list = (function ($, w) {
                     activityId : $("#activityId"),
                     bookNo : $("#bookNo"),
                     bookType : $("#bookType"),
+                    school : $("#school")
             },
             $btn: {
                 search: $("#searchBt"),
@@ -141,6 +142,7 @@ art_student_list = (function ($, w) {
                         d.activityId  = page.$dom.activityId.val();
                         d.bookNo  = page.$dom.bookNo.val();
                         d.bookType = page.$dom.bookType.val();
+                        d.school = page.$dom.school.val();
                     }
                 },
                 "dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-6 hidden-xs'i><'col-sm-6 col-xs-12' p v>>",
@@ -180,6 +182,8 @@ art_student_list = (function ($, w) {
                     }
                 },
                 {"data" : "bookNo", "defaultContent" : ""},
+                {"data" : "score", "defaultContent" : ""},
+                {"data" : "schoolName", "defaultContent" : ""},
                 {
                     "data": "",
                     "defaultContent": "",
@@ -206,13 +210,13 @@ art_student_list = (function ($, w) {
 
     function exportGrid() {
         /*多选数据*/
-        var ids = moreCheck();
-        if (ids.length === 0) {
-            layer.msg("没有选择需要导出的学生");
-            return;
-        }
+        var ids = moreCheck().join(",");
+        // if (ids.length === 0) {
+        //     layer.msg("没有选择需要导出的学生");
+        //     return;
+        // }
         var _self = this;
-        var link = getLink.call(_self);
+        var link = getLink.call(_self, ids);
         window.open(link);
     }
 
@@ -225,7 +229,7 @@ art_student_list = (function ($, w) {
 
     }
 
-    function getLink() {
+    function getLink(ids) {
         var _self = this;
         var init = WEB_CONFIG._action.EXPORT_ART_STUDENT_ACTION + "?";
         var name = _self.getPageDom().name.val() || '';
@@ -233,10 +237,16 @@ art_student_list = (function ($, w) {
         var cardNo = _self.getPageDom().cardNo.val() || '';
         var classificationId = _self.getPageDom().classificationId.val() || '';
         var sex = _self.getPageDom().sex.val() || '';
+        var schoolName = _self.getPageDom().school.val() || '';
+        var bookType = _self.getPageDom().bookType.val() || '';
+        var bookNo = _self.getPageDom().bookNo.val() || '';
         init += "name=" + name + "&level=" + level
             + "&sex=" + sex
             + "&classificationId=" + classificationId
-            + "&cardNo=" + cardNo;
+            + "&school=" + schoolName
+            + "&bookType=" + bookType
+            + "&bookNo=" + bookNo
+            + "&cardNo=" + cardNo + "&ids=" + ids;
         return init;
     }
 

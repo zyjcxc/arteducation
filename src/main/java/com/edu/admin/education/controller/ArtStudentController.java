@@ -38,9 +38,6 @@ public class ArtStudentController {
     @ApiOperation(value = "保存")
     public ArtStudent save(@RequestBody ArtStudent artStudent) {
         validParams(artStudent);
-        if (StringUtils.isEmpty(artStudent.getBookNo())) {
-            throw new HumanResourceException(ResultEnum.PARAMS_ERROR_BON);
-        }
         artStudentService.save(artStudent);
         return artStudent;
     }
@@ -66,6 +63,12 @@ public class ArtStudentController {
         }
         if (StringUtils.isEmpty(artStudent.getCountry())) {
             throw new HumanResourceException(ResultEnum.PARAMS_ERROR_N);
+        }
+        if (StringUtils.isEmpty(artStudent.getScore())) {
+            throw new HumanResourceException(ResultEnum.PARAMS_ERROR_SCORE);
+        }
+        if (StringUtils.isEmpty(artStudent.getBookNo())) {
+            throw new HumanResourceException(ResultEnum.PARAMS_ERROR_BON);
         }
     }
 
@@ -134,28 +137,45 @@ public class ArtStudentController {
     }
 
     private List<Object[]> beanCopy(List<ArtStudent> list) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy.MM.dd");
         List<Object[]>  dataList = new ArrayList<>();
         Object[] objs;
         for (int i = 0; i < list.size(); i++) {
             ArtStudent source = list.get(i);
             objs = new Object[ArtStudent.class.getDeclaredAnnotation(ExcelTitles.class).value().length];
-            objs[0] = i;
-            objs[1] = source.getId();
+//            objs[0] = i;
+            // 1.白皮 2.红皮
+            if (source.getBookType() != null && source.getBookType() == 1) {
+                objs[0] = "白皮";
+            } else if (source.getBookType() != null && source.getBookType() == 2) {
+                objs[0] = "红皮";
+            } else {
+                objs[0] = "未知";
+            }
+            objs[1] = source.getBookNo();
             objs[2] = source.getName();
-            objs[3] = source.getSex();
-            objs[4] = source.getCountry();
-            objs[5] = source.getNation();
+            objs[3] = source.getNamePy();
             String bornDate = "";
             if (source.getBorn() != null) {
                 bornDate = df.format(source.getBorn());
             }
-            objs[6] = bornDate;
+            objs[4] = bornDate;
+            objs[5] = source.getCardNo();
+            objs[6] = source.getNation();
             objs[7] = source.getClassificationName();
-            objs[8] = source.getLevel();
-            objs[9] = source.getCardNo();
-            objs[10] = source.getBookNo();
-            objs[11] = source.getBookType();
+            if (source.getSex() != null && "g".equals(source.getSex())) {
+                objs[8] = "女";
+            } else if (source.getSex() != null && "g".equals(source.getSex())) {
+                objs[8] = "男";
+            } else {
+                objs[8] = "未知";
+            }
+            // 专业
+            objs[9] = source.getClassificationName();
+            objs[10] = source.getLevel();
+            objs[11] = source.getActivityName();
+            objs[12] = source.getScore();
+            objs[13] = source.getSchoolName();
             dataList.add(objs);
         }
         return dataList;

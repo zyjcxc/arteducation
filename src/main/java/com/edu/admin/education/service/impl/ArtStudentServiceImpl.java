@@ -4,11 +4,9 @@ import com.edu.admin.education.dao.ArtStudentDao;
 import com.edu.admin.education.enums.PublicState;
 import com.edu.admin.education.enums.ResultEnum;
 import com.edu.admin.education.exception.HumanResourceException;
-import com.edu.admin.education.model.ArtActivity;
-import com.edu.admin.education.model.ArtStudent;
-import com.edu.admin.education.model.ArtStudentImportInfoDto;
-import com.edu.admin.education.model.LiveCourseClassification;
+import com.edu.admin.education.model.*;
 import com.edu.admin.education.service.IArtActivityService;
+import com.edu.admin.education.service.IArtSchoolService;
 import com.edu.admin.education.service.IArtStudentService;
 import com.edu.admin.education.service.ILiveCourseClassificationService;
 import com.edu.admin.education.utils.DateUtil;
@@ -40,6 +38,8 @@ public class ArtStudentServiceImpl implements IArtStudentService{
     private ArtStudentDao artStudentDao;
 
     @Autowired
+    private IArtSchoolService artSchoolService;
+    @Autowired
     private ILiveCourseClassificationService liveCourseClassificationService;
 
     @Autowired
@@ -53,6 +53,11 @@ public class ArtStudentServiceImpl implements IArtStudentService{
                     = liveCourseClassificationService.getById((long) obj.getClassificationId());
             if (classObj != null) {
                 obj.setClassificationName(classObj.getName());
+            }
+            ArtSchool schoolObj
+                    = artSchoolService.getById(obj.getSchoolId());
+            if (schoolObj != null) {
+                obj.setSchoolName(schoolObj.getName());
             }
         }
         return obj;
@@ -80,6 +85,8 @@ public class ArtStudentServiceImpl implements IArtStudentService{
             artStudent.setLevel(getChineseLevel(artStudent.getLevel()));
         }
 
+        makeSchoolData(artStudent);
+
         if (artStudent.getBookType() == null || artStudent.getBookType() == 0) {
             // 插入两条数据
             artStudent.setBookType(1);
@@ -100,6 +107,7 @@ public class ArtStudentServiceImpl implements IArtStudentService{
         criteria.andEqualTo("activityId", activityId);
         criteria.andEqualTo("classificationId", classificationId);
         criteria.andEqualTo("level", level);
+        criteria.andEqualTo("state", 1);
         List<ArtStudent> list = artStudentDao.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
             return null;
@@ -109,7 +117,20 @@ public class ArtStudentServiceImpl implements IArtStudentService{
 
     @Override
     public void update(ArtStudent artStudent) {
+        makeSchoolData(artStudent);
         artStudentDao.updateByPrimaryKeySelective(artStudent);
+    }
+
+    private void makeSchoolData(ArtStudent artStudent) {
+        if (!StringUtils.isEmpty(artStudent.getSchoolName())) {
+            ArtSchool school = artSchoolService.getByName(artStudent.getSchoolName());
+            if (school == null) {
+                school = new ArtSchool();
+                school.setName(artStudent.getSchoolName());
+                artSchoolService.save(school);
+            }
+            artStudent.setSchoolId(school.getId());
+        }
     }
 
     @Override
@@ -122,12 +143,26 @@ public class ArtStudentServiceImpl implements IArtStudentService{
             if (dto.getBorn() != null) {
                 artStudent.setBorn(DateUtil.parseDate(dto.getBorn(), "yyyy.MM.dd"));
             }
+//            artStudent.setSchool(dto.getSchool());
+            if (!StringUtils.isEmpty(dto.getSchool())) {
+                ArtSchool school = artSchoolService.getByName(dto.getSchool());
+                if (school == null) {
+                    school = new ArtSchool();
+                    school.setName(dto.getSchool());
+                    artSchoolService.save(school);
+                }
+                artStudent.setSchoolId(school.getId());
+            }
             artStudent.setCardNo(dto.getCardNo());
             artStudent.setCountry(dto.getCountry());
             artStudent.setLevel(getChineseLevel(dto.getLevel()));
             artStudent.setNation(dto.getNation());
             artStudent.setSex("女".equals(dto.getSex()) ? "g" : "m");
             artStudent.setCreatetime(new Date());
+            if (StringUtils.isEmpty(dto.getScore())) {
+                throw new HumanResourceException(ResultEnum.PARAMS_ERROR_SCORE);
+            }
+            artStudent.setScore(dto.getScore());
 
             // 查询活动是否存在
             if (StringUtils.isEmpty(dto.getActivityName())) {
@@ -170,13 +205,18 @@ public class ArtStudentServiceImpl implements IArtStudentService{
             }
             artStudent.setBookNo(dto.getBookNo());
 
-            if (dto.getBookType() == null || dto.getBookType() == 0) {
+            if (dto.getBookType() == null || "全部".equals(dto.getBookType())) {
                 artStudent.setBookType(1);
                 artStudentDao.insertSelective(artStudent);
                 artStudent.setBookType(2);
+                artStudent.setId(null);
                 artStudentDao.insertSelective(artStudent);
             } else {
-                artStudent.setBookType(dto.getBookType());
+                if ("红皮".equals(dto.getBookType())) {
+                    artStudent.setBookType(2);
+                } else if ("白皮".equals(dto.getBookType())) {
+                    artStudent.setBookType(1);
+                }
                 artStudentDao.insertSelective(artStudent);
             }
 
@@ -192,6 +232,7 @@ public class ArtStudentServiceImpl implements IArtStudentService{
         criteria.andEqualTo("classificationId", params.get("classificationId"));
         criteria.andEqualTo("level", params.get("level"));
         criteria.andEqualTo("bookType", params.get("bookType"));
+//        criteria.andEqualTo("school", params.get("school"));
         List<ArtStudent> list = artStudentDao.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
             return null;

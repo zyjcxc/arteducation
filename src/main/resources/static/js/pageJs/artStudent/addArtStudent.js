@@ -132,7 +132,9 @@ pubAccount_add = (function ($, w) {
                 born : $("#born"),
                 state : $("#state"),
                 bookNo : $("#bookNo"),
-                bookType : $("#bookType")
+                bookType : $("#bookType"),
+                schoolName : $("#schoolName"),
+                score : $("#score")
             },
             $btn: {
                 back: $("#backBtn"),
@@ -361,6 +363,8 @@ pubAccount_add = (function ($, w) {
                 _self.getPageDom().state.val(data.state);
                 _self.getPageDom().bookType.val(data.bookType);
                 _self.getPageDom().bookNo.val(data.bookNo);
+                _self.getPageDom().score.val(data.score);
+                _self.getPageDom().schoolName.val(data.schoolName);
 
             }
         });

@@ -17,32 +17,42 @@
         <!--<result column="wenping_level" property="wenpingLevel" jdbcType="VARCHAR"/>-->
         <result column="card_no" property="cardNo" jdbcType="VARCHAR"/>
         <result column="state" property="state" jdbcType="VARCHAR"/>
+        <result column="score" property="score" jdbcType="VARCHAR"/>
         <result column="createtime" property="createtime" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <resultMap id="selectByCustomSqlMap" extends="BaseResultMap" type="com.edu.admin.education.model.ArtStudent">
         <result column="classificationName" property="classificationName" jdbcType="VARCHAR"/>
         <result column="activityName" property="activityName" jdbcType="VARCHAR"/>
+        <result column="schoolName" property="schoolName" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="joinColumns">
-        classificationObj.NAME  classificationName,
-        activityObj.name activityName
+        classificationObj.NAME classificationName,
+        activityObj.name activityName,
+        schoolObj.name schoolName
     </sql>
 
     <sql id="joins">
         LEFT JOIN live_course_classification classificationObj On artStudentObj.classification_id = classificationObj.id
         LEFT JOIN art_activity activityObj ON activityObj.id = artStudentObj.activity_id
+        LEFT JOIN art_school schoolObj ON schoolObj.id = artStudentObj.school_id
     </sql>
 
     <sql id="joinWhere">
         <where>
             artStudentObj.state != '2'
+            <if test="school != null and school != ''">
+                AND schoolObj.name = #{school, jdbcType=VARCHAR}
+            </if>
             <if test="name != null and name != ''">
                 AND artStudentObj.name = #{name, jdbcType=VARCHAR}
             </if>
             <if test="id != null and id != ''">
                 AND artStudentObj.id = #{id, jdbcType=VARCHAR}
+            </if>
+            <if test="ids != null and ids != ''">
+                AND artStudentObj.id in ( ${ids} )
             </if>
             <if test="level != null and level != ''">
                 AND artStudentObj.level = #{level, jdbcType=VARCHAR}

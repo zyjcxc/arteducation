@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ExcelTitles({"序号", "ID" ,"姓名", "性别", "国籍", "民族", "出生日期", "专业项目", "级别", "身份证号", "证书编号", "证书类型"})
+@ExcelTitles({"证书类型","证书编号","姓名","拼音", "出生日期","身份证号" ,"民族","国籍", "性别", "专业项目", "级别", "考试时间", "成绩", "学校"})
 public class ArtStudent extends BaseModel {
 
     private Integer classificationId;
@@ -33,6 +33,9 @@ public class ArtStudent extends BaseModel {
     private String cardNo;
     private String state;
     private Integer activityId;
+    private String score;
+
+    private Long schoolId;
 
     private String bookNo;
 
@@ -44,6 +47,10 @@ public class ArtStudent extends BaseModel {
     private String classificationName;
     @Transient
     private String activityName;
+    @Transient
+    private String schoolName;
+
+
     @Transient
     private List<String> ids;
 }
