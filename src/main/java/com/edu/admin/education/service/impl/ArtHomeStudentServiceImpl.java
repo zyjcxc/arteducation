@@ -37,11 +37,11 @@ public class ArtHomeStudentServiceImpl implements IArtHomeStudentService {
         Map<String, Object> params = new HashMap<>();
         
         params.put("recommend", 1);
-        params.put("orderBy", "sort asc");
+        params.put("orderBy", "order by sort asc");
 
-        Example example = getQueryExample(params);
+//        Example example = getQueryExample(params);
 
-        List<ArtHomeStudent> list = artHomeStudentDao.selectByExample(example);
+        List<ArtHomeStudent> list = artHomeStudentDao.selectByCustomSql(params);
 
         return ArtHomeStudentConverter.convertToListArtHomeStudentDto(list);
     }
@@ -88,9 +88,9 @@ public class ArtHomeStudentServiceImpl implements IArtHomeStudentService {
     public List<ArtHomeStudentDto> list(Map<String, Object> params, Integer offset, Integer limit) {
         PageHelper.offsetPage(offset, limit);
 
-        Example example = getQueryExample(params);
+//        Example example = getQueryExample(params);
 
-        List<ArtHomeStudent> list = artHomeStudentDao.selectByExample(example);
+        List<ArtHomeStudent> list = artHomeStudentDao.selectByCustomSql(params);
 
         return ArtHomeStudentConverter.convertToListArtHomeStudentDto(list);
     }
@@ -98,9 +98,9 @@ public class ArtHomeStudentServiceImpl implements IArtHomeStudentService {
     @Override
     public int count(Map<String, Object> params) {
         // 直等查询
-        ArtHomeStudent queryObject = BeanUtil.getQueryObject(params, ArtHomeStudent.class);
-        queryObject.setOrderBy(null);
-        return artHomeStudentDao.selectCount(queryObject);
+//        ArtHomeStudent queryObject = BeanUtil.getQueryObject(params, ArtHomeStudent.class);
+//        queryObject.setOrderBy(null);
+        return artHomeStudentDao.countByCustomSql(params);
     }
 
     @Override

@@ -57,9 +57,9 @@ public class ArtNewsServiceImpl implements IArtNewsService {
     public List<ArtNewsDto> list(Map<String, Object> params, Integer offset, Integer limit) {
         PageHelper.offsetPage(offset, limit);
 
-        Example example = getQueryExample(params);
+//        Example example = getQueryExample(params);
 
-        List<ArtNews> list = artNewsDao.selectByExample(example);
+        List<ArtNews> list = artNewsDao.selectByCustomSql(params);
 
         return ArtNewsConverter.convertToListArtNewsDto(list);
     }
@@ -67,9 +67,9 @@ public class ArtNewsServiceImpl implements IArtNewsService {
     @Override
     public int count(Map<String, Object> params) {
         // 直等查询
-        ArtNews queryObject = BeanUtil.getQueryObject(params, ArtNews.class);
-        queryObject.setOrderBy(null);
-        return artNewsDao.selectCount(queryObject);
+//        ArtNews queryObject = BeanUtil.getQueryObject(params, ArtNews.class);
+//        queryObject.setOrderBy(null);
+        return artNewsDao.countByCustomSql(params);
     }
 
     @Override

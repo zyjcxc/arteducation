@@ -17,4 +17,40 @@
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
     <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
   </resultMap>
+
+  <resultMap id="selectByCustomSqlMap" extends="BaseResultMap" type="com.edu.admin.education.model.ArtNews">
+
+  </resultMap>
+
+  <select id="selectByCustomSql" resultMap="selectByCustomSqlMap" parameterType="Map">
+    SELECT
+    id, title, author, source, state, create_user_id , createtime, updatetime, type
+    FROM
+    art_news
+    <include refid="whereSql"/>
+    ${orderBy}
+  </select>
+
+  <select id="countByCustomSql" resultType="java.lang.Integer">
+    SELECT count(*) FROM
+    (
+    SELECT
+    id
+    FROM
+    art_news
+    <include refid="whereSql"/>
+    ) t
+  </select>
+
+  <sql id="whereSql">
+    <where>
+      state = '1'
+      <if test="type != null and type != ''">
+        AND type = #{type}
+      </if>
+      <if test="id != null and id != ''">
+        AND id = #{id}
+      </if>
+    </where>
+  </sql>
 </mapper>

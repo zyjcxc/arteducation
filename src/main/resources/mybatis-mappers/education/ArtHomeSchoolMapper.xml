@@ -8,11 +8,50 @@
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="pic_url" jdbcType="VARCHAR" property="picUrl" />
+    <result column="picurl" jdbcType="VARCHAR" property="picurl" />
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="sort" jdbcType="INTEGER" property="sort" />
     <result column="recommend" jdbcType="INTEGER" property="recommend" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
   </resultMap>
+
+  <resultMap id="selectByCustomSqlMap" extends="BaseResultMap" type="com.edu.admin.education.model.ArtHomeSchool">
+
+  </resultMap>
+
+  <select id="selectByCustomSql" resultMap="selectByCustomSqlMap" parameterType="Map">
+    SELECT
+    id, name, picurl, sort, recommend, createtime, updatetime
+    FROM
+    art_home_school
+    <include refid="whereSql"/>
+    ${orderBy}
+  </select>
+
+  <select id="countByCustomSql" resultType="java.lang.Integer">
+    SELECT count(*) FROM
+    (
+    SELECT
+    id
+    FROM
+    art_home_school
+    <include refid="whereSql"/>
+    ) t
+  </select>
+
+  <sql id="whereSql">
+    <where>
+      1 = 1
+      <if test="recommend != null and recommend != ''">
+        AND recommend = #{recommend}
+      </if>
+      <if test="id != null and id != ''">
+        AND id = #{id}
+      </if>
+      <if test="name != null and name != ''">
+        AND name = #{name}
+      </if>
+    </where>
+  </sql>
 </mapper>

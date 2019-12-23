@@ -37,11 +37,11 @@ public class ArtHomeSchoolServiceImpl implements IArtHomeSchoolService {
         Map<String, Object> params = new HashMap<>();
         
         params.put("recommend", 1);
-        params.put("orderBy", "sort asc");
+        params.put("orderBy", "order by sort asc");
 
-        Example example = getQueryExample(params);
+//        Example example = getQueryExample(params);
 
-        List<ArtHomeSchool> list = artHomeSchoolDao.selectByExample(example);
+        List<ArtHomeSchool> list = artHomeSchoolDao.selectByCustomSql(params);
 
         return ArtHomeSchoolConverter.convertToListArtHomeSchoolDto(list);
     }
@@ -69,9 +69,9 @@ public class ArtHomeSchoolServiceImpl implements IArtHomeSchoolService {
     public List<ArtHomeSchoolDto> list(Map<String, Object> params, Integer offset, Integer limit) {
         PageHelper.offsetPage(offset, limit);
 
-        Example example = getQueryExample(params);
+//        Example example = getQueryExample(params);
 
-        List<ArtHomeSchool> list = artHomeSchoolDao.selectByExample(example);
+        List<ArtHomeSchool> list = artHomeSchoolDao.selectByCustomSql(params);
 
         return ArtHomeSchoolConverter.convertToListArtHomeSchoolDto(list);
     }
@@ -79,9 +79,9 @@ public class ArtHomeSchoolServiceImpl implements IArtHomeSchoolService {
     @Override
     public int count(Map<String, Object> params) {
         // 直等查询
-        ArtHomeSchool queryObject = BeanUtil.getQueryObject(params, ArtHomeSchool.class);
-        queryObject.setOrderBy(null);
-        return artHomeSchoolDao.selectCount(queryObject);
+//        ArtHomeSchool queryObject = BeanUtil.getQueryObject(params, ArtHomeSchool.class);
+//        queryObject.setOrderBy(null);
+        return artHomeSchoolDao.countByCustomSql(params);
     }
 
     @Override
