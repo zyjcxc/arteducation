@@ -91,7 +91,7 @@
     <div class="list-search visible-xs-block">
         <div class="item area">
             <div class="search-icon area"><span class="title">特长生认证查询系统</span></div>
-            <form  id="student"  onsubmit="return false" class="group">
+            <form id="student"  onsubmit="return false" class="group">
                 <input type="hidden" autocomplete="off" class="form" name="bookType" value="1">
                 <input type="text" autocomplete="off" class="form" name="name" placeholder="请输入学生姓名">
                 <input type="text" autocomplete="off" class="form" name="cardNo" placeholder="请输入身份证号">
@@ -110,7 +110,7 @@
                     <option value ="十级">十级</option>
                     <option value ="文凭级">文凭级</option>
                 </select>
-                <img class="cx" onclick='targetexam("student");' src="images/sreach_icon1.png">
+                <img class="cx" onclick='targetexam("student");' src="images/sreach_icon4.png">
             </form>
         </div>
         <div class="item field">
@@ -134,25 +134,25 @@
                     <option value ="十级">十级</option>
                     <option value ="文凭级">文凭级</option>
                 </select>
-                <img class="cx" src="images/sreach_icon2.png" onclick="targetexam('artForm');">
+                <img class="cx" src="images/sreach_icon4.png" onclick="targetexam('artForm');">
             </form>
         </div>
         <div class="item score">
             <div class="search-icon score"><span class="title">考官查询系统</span></div>
-            <form  id="teacherForm"  onsubmit="return false" class="group">
+            <form id="madom"  onsubmit="return false" class="group">
                 <input type="hidden" autocomplete="off" class="form" name="bookType" value="1">
                 <input type="text" autocomplete="off" class="form" name="name" placeholder="请输入学生姓名">
                 <input type="text" autocomplete="off" class="form" name="cardNo" placeholder="请输入身份证号">
-                <img id="kc1" class="cx" src="images/sreach_icon2.png" onclick="targetexam_no('teacherForm');">
+                <img id="kc1" class="cx" src="images/sreach_icon4.png" onclick="targetexam_no('madom');">
             </form>
         </div>
         <div class="item express">
             <div class="search-icon video"><span class="title">师资认证查询系统</span></div>
-            <form  id="szuser"  onsubmit="return false" class="group">
+            <form id="tcher"  onsubmit="return false" class="group">
                 <input type="hidden" autocomplete="off" class="form" name="bookType" value="1">
                 <input type="text" autocomplete="off" class="form" name="name" placeholder="请输入学生姓名">
                 <input type="text" autocomplete="off" class="form" name="cardNo" placeholder="请输入身份证号">
-                <img id="cj1" class="cx" src="images/sreach_icon4.png" onclick="targetexam_no('szuser');">
+                <img id="cj1" class="cx" src="images/sreach_icon4.png" onclick="targetexam_no('tcher');">
             </form>
         </div>
     </div>
@@ -190,12 +190,11 @@
             </div>
         </div>
 
-
         <div class="item">
             <div class="search-icon field"></div>
             <p>艺术能力测评查询系统</p>
             <div class="query-check">
-                <form  id="artForm_o" onsubmit="return false">
+                <form id="artForm_o" onsubmit="return false">
                     <div class="search-icon field">
                         <span>艺术能力测评查询系统</span>
                     </div>
@@ -218,7 +217,7 @@
                     </select>
                     <input type="hidden" autocomplete="off" class="form" name="bookType" value="2">
                     <div class="group">
-                        <input id="kc" type="button" onclick="targetexam('artForm_o');" class="btn lg field" value="查 询">
+                        <input type="button" onclick="targetexam('artForm_o');" class="btn lg field" value="查 询">
                     </div>
                 </form>
             </div>
@@ -228,14 +227,14 @@
             <div class="search-icon score"></div>
             <p>考官查询系统</p>
             <div class="query-check">
-                <form>
+                <form id="madom_o" onsubmit="return false">
                     <div class="search-icon score">
                         <span>考官查询系统</span>
                     </div>
-                    <input type="text" autocomplete="off" name="useranme" id="username" class="kq form" placeholder="请输入姓名">
+                    <input type="text" autocomplete="off" name="username" id="username" class="form" placeholder="请输入姓名">
                     <input type="text" autocomplete="off" name="examnum" id="examnum" class="form" placeholder="请输入准考证号">
                     <div class="group">
-                        <input id="cj" type="button" class="btn lg score" value="查 询" onclick="targetexam_no();">
+                        <input type="button" class="btn score" value="查 询" onclick="targetexam_no('madom_o');">
                     </div>
                 </form>
 
@@ -246,14 +245,14 @@
             <div class="search-icon video"></div>
             <p>师资认证查询系统</p>
             <div class="query-check">
-                <form>
+                <form id="tcher_o" onsubmit="return false">
                     <div class="search-icon video">
                         <span>师资认证查询系统</span>
                     </div>
-                    <input type="text" autocomplete="off" name="useranme" class="kq form" placeholder="请输入姓名">
+                    <input type="text" autocomplete="off" name="useranme" class="form" placeholder="请输入姓名">
                     <input type="text" autocomplete="off" name="examnum" class="form" placeholder="请输入证书号">
                     <div class="group">
-                        <input id="cj" type="button" class="btn lg score" value="查 询" onclick="targetexam_no();">
+                        <input type="button" class="btn lg video" value="查 询" onclick="targetexam_no('tcher_o');">
                     </div>
                 </form>
 
@@ -420,15 +419,19 @@
         var serialize = $("#" + id).serializeObject(true);
         var param = JSON.parse(serialize);
         var validate = false;
+        var paramArray = [];
         for  (a in param){
             if(!param[a] || param[a] === ''){
                 validate = true;
+            }else {
+                paramArray.push(a + "=" + param[a]);
+
             }
         }
         if(validate){
             alert("请填写完整信息后查询！");
         }else {
-            var url = "pages/detail/search_detail.html?name="+param.name+"&level="+param.level+"&classificationId="+param.classificationId+"&cardNo="+param.cardNo+"&bookType="+param.bookType;//此处拼接内容
+            var url = "pages/detail/search_detail.html?"+paramArray.join("&");//此处拼接内容
             window.open(url);
         }
 
