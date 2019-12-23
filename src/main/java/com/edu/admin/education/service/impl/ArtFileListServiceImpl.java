@@ -9,7 +9,6 @@ import com.edu.admin.education.enums.ResultEnum;
 import com.edu.admin.education.exception.HumanResourceException;
 import com.edu.admin.education.model.ArtFileList;
 import com.edu.admin.education.service.IArtFileListService;
-import com.edu.admin.server.utils.BeanUtil;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,9 +53,9 @@ public class ArtFileListServiceImpl implements IArtFileListService {
     public List<ArtFileListDto> list(Map<String, Object> params, Integer offset, Integer limit) {
         PageHelper.offsetPage(offset, limit);
 
-        Example example = getQueryExample(params);
+//        Example example = getQueryExample(params);
 
-        List<ArtFileList> list = artFileListDao.selectByExample(example);
+        List<ArtFileList> list = artFileListDao.selectByCustomSql(params);
 
         return ArtFileListConverter.convertToListArtFileListDto(list);
     }
@@ -85,9 +84,9 @@ public class ArtFileListServiceImpl implements IArtFileListService {
     @Override
     public int count(Map<String, Object> params) {
         // 直等查询
-        ArtFileList queryObject = BeanUtil.getQueryObject(params, ArtFileList.class);
-        queryObject.setOrderBy(null);
-        return artFileListDao.selectCount(queryObject);
+//        ArtFileList queryObject = BeanUtil.getQueryObject(params, ArtFileList.class);
+//        queryObject.setOrderBy(null);
+        return artFileListDao.countByCustomSql(params);
     }
 
     @Override

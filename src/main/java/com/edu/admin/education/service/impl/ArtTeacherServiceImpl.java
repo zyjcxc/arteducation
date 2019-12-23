@@ -55,9 +55,9 @@ public class ArtTeacherServiceImpl implements IArtTeacherService {
     public List<ArtTeacherDto> list(Map<String, Object> params, Integer offset, Integer limit) {
         PageHelper.offsetPage(offset, limit);
 
-        Example example = getQueryExample(params);
-
-        List<ArtTeacher> list = artTeacherDao.selectByExample(example);
+//        Example example = getQueryExample(params);
+        params.put("state", 1);
+        List<ArtTeacher> list = artTeacherDao.selectByCustomSql(params);
 
         return ArtTeacherConverter.convertToListArtTeacherDto(list);
     }
@@ -65,9 +65,9 @@ public class ArtTeacherServiceImpl implements IArtTeacherService {
     @Override
     public int count(Map<String, Object> params) {
         // 直等查询
-        ArtTeacher queryObject = BeanUtil.getQueryObject(params, ArtTeacher.class);
-        queryObject.setOrderBy(null);
-        return artTeacherDao.selectCount(queryObject);
+//        ArtTeacher queryObject = BeanUtil.getQueryObject(params, ArtTeacher.class);
+//        queryObject.setOrderBy(null);
+        return artTeacherDao.countByCustomSql(params);
     }
 
     @Override
