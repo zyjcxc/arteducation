@@ -205,6 +205,12 @@ art_student_list = (function ($, w) {
     }
 
     function exportGrid() {
+        /*多选数据*/
+        var ids = moreCheck();
+        if (ids.length === 0) {
+            layer.msg("没有选择需要导出的学生");
+            return;
+        }
         var _self = this;
         var link = getLink.call(_self);
         window.open(link);
@@ -309,7 +315,6 @@ function importData() {
 }
 /*多选*/
 function childclick(){
-    console.log(this);
     if ($(this).is(":checked") == false) {
         $("#checkAll").prop("checked", false);
     }
@@ -344,30 +349,36 @@ $("input[name='single-check']").on("click", function () {
             }
         });
     }
-
-
 });
+
+function moreCheck(){
+    var data = [];
+    $("input[name='single-check']").each(function () {
+        if (this.checked == true) {
+            data.push($(this)[0].dataset.id);
+            /*清空*/
+            $(this).prop("checked", false);
+        }
+    });
+
+    /*清空*/
+    $("#checkAll").prop("checked", false);
+    return data;
+}
+
 $("#mulDel").click(function () {
     layer.confirm('确定要批量删除吗？', {
         btn : [ '确定', '取消' ]
     }, function() {
-        var data = [];
-        $("input[name='single-check']").each(function () {
-            if (this.checked == true) {
-                data.push($(this)[0].dataset.id);
-                /*清空*/
-                $(this).prop("checked", false);
-            }
-        });
-        if (data.length === 0) {
+
+        var ids = moreCheck();
+        if (ids.length === 0) {
             layer.msg("没有选择需要删除的学生");
             return;
         }
-        /*清空*/
-        $("#checkAll").prop("checked", false);
         /*入参*/
         var obj = {
-            ids: data,
+            ids: ids,
             state: "2"
         };
         $.ajax({
