@@ -129,6 +129,11 @@ textarea{
 .date-sign a:hover .item-content h3 { color: #d72324; }
 .date-sign a:hover .item-date { color: #fff; background-color: #999; }
 
+/*日期图标二*/
+.date-bgm{width:60px;height:60px;border: 4px solid #ffffff;background: #840e35;position: relative;float: left;color: #fff;text-align:center;margin-right: 10px;}
+.date-bgm p{font-size:20px;padding-left:0px;line-height:30px;color: #fff;}
+.date-bgm p.down{font-size:14px;line-height:20px;}
+
 /*查询详情*/
 .search-detail #noData{text-align: center;display: none;}
 .search-detail .content{min-height: 300px;}
@@ -136,7 +141,7 @@ textarea{
 .search-detail .section .infor img{width:100%;position: relative;}
 .search-detail .section .list-group-item{background: rgba(255, 255, 255,0.7);;}
 .search-detail .section .infor .list{color:#653a29;font-size: 12px;position: absolute;z-index: 1000;top: 10%;left: 15%;}
-.search-detail .section .infor .list .item{margin-bottom: 15px;}
+.search-detail .section .infor .list .item{margin-bottom: 12px;}
 .search-detail .section .infor .list .item i{
 	display: inline-block;
 	max-width: 110px;

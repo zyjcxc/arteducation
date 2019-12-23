@@ -475,14 +475,13 @@
                 var d = new Date(item.updatetime.replace(/-/g,'/')).getDate();
                 str1 +=
                     '<li>' +
-                        '<div class="thumb date-sign">' +
-                       		'<p>'+ m +'</p>' +
-                       		'<span class="xspan"></span>' +
-                       		'<p class="down">'+ d +'</p>' +
+                        '<div class="thumb date-bgm">' +
+                       		'<p>'+ d +'</p>' +
+                       		'<p class="down">'+ m +'月</p>' +
                         '</div>' +
                         '<div class="content">' +
                             '<h6><img src="images/sticky.png" alt="置顶"><a href="./pages/detail/detail.html?path=artNews&id='+ item.id +'"  target="_blank"> '+ item.title +'</a></h6>' +
-                            '<div class="info"><p>'+ item.content +'</p>' +
+//                            '<div class="info"><p>'+ item.content +'</p>' +
                             '</div>' +
                         '</div>' +
                     '</li>';
