@@ -135,14 +135,14 @@ public class ArtStudentServiceImpl implements IArtStudentService{
 
     @Override
     public void saveDatas(List<ArtStudentImportInfoDto> dtoList) {
+        int i = 1;
         for (ArtStudentImportInfoDto dto : dtoList) {
+            valid(dto, i);
             ArtStudent artStudent = new ArtStudent();
             artStudent.setName(dto.getName());
             artStudent.setNamePy(dto.getNamePy());
             artStudent.setState(String.valueOf(PublicState.NORMAL.getCode()));
-            if (dto.getBorn() != null) {
-                artStudent.setBorn(DateUtil.parseDate(dto.getBorn(), "yyyy.MM.dd"));
-            }
+            artStudent.setBorn(DateUtil.parseDate(dto.getBorn(), "yyyy.MM.dd"));
 //            artStudent.setSchool(dto.getSchool());
             if (!StringUtils.isEmpty(dto.getSchool())) {
                 ArtSchool school = artSchoolService.getByName(dto.getSchool());
@@ -159,15 +159,9 @@ public class ArtStudentServiceImpl implements IArtStudentService{
             artStudent.setNation(dto.getNation());
             artStudent.setSex("女".equals(dto.getSex()) ? "g" : "m");
             artStudent.setCreatetime(new Date());
-            if (StringUtils.isEmpty(dto.getScore())) {
-                throw new HumanResourceException(ResultEnum.PARAMS_ERROR_SCORE);
-            }
             artStudent.setScore(dto.getScore());
+            artStudent.setBookNo(dto.getBookNo());
 
-            // 查询活动是否存在
-            if (StringUtils.isEmpty(dto.getActivityName())) {
-                throw new HumanResourceException(ResultEnum.NO_ACTIVITY_RECORD);
-            }
             ArtActivity activity = artActivityService.getByActivityName(dto.getActivityName());
             if (activity == null) {
                 // 活动不存在，新建活动
@@ -179,9 +173,6 @@ public class ArtStudentServiceImpl implements IArtStudentService{
                 artActivityService.save(activity);
             }
             artStudent.setActivityId(activity.getId().intValue());
-            if (StringUtils.isEmpty(dto.getProjectName())) {
-                throw new HumanResourceException(ResultEnum.NO_TYPE_RECORD);
-            }
             // 查询项目是否存在
             LiveCourseClassification project = liveCourseClassificationService.getByName(dto.getProjectName());
             if (project == null) {
@@ -193,17 +184,12 @@ public class ArtStudentServiceImpl implements IArtStudentService{
                 liveCourseClassificationService.save(project);
             }
             artStudent.setClassificationId(project.getId().intValue());
-
             // 查询学生是否重复导入
             ArtStudent oldStudent = getByActivityAndCarNo(artStudent.getActivityId(), artStudent.getCardNo(), artStudent.getClassificationId(), artStudent.getLevel());
             if (oldStudent != null) {
+                i++;
                 continue;
             }
-
-            if (StringUtils.isEmpty(dto.getBookNo())) {
-                throw new HumanResourceException(ResultEnum.NO_BOOK_NO_RECORD);
-            }
-            artStudent.setBookNo(dto.getBookNo());
 
             if (dto.getBookType() == null || "全部".equals(dto.getBookType())) {
                 artStudent.setBookType(1);
@@ -219,7 +205,48 @@ public class ArtStudentServiceImpl implements IArtStudentService{
                 }
                 artStudentDao.insertSelective(artStudent);
             }
+            i++;
+        }
+    }
 
+    private void valid(ArtStudentImportInfoDto dto, int i) {
+        String line = "第" + i + "行";
+        // 查询活动是否存在
+        if (StringUtils.isEmpty(dto.getActivityName())) {
+            throw new HumanResourceException(ResultEnum.NO_ACTIVITY_RECORD.getCode(),
+                    line + ResultEnum.NO_ACTIVITY_RECORD.getMessage());
+        }
+        if (StringUtils.isEmpty(dto.getName())) {
+            throw new HumanResourceException(ResultEnum.NO_STUDENT_NAME_RECORD.getCode(),
+                    line + ResultEnum.NO_STUDENT_NAME_RECORD.getMessage());
+        }
+        if (StringUtils.isEmpty(dto.getLevel())) {
+            throw new HumanResourceException(ResultEnum.NO_LEVEL_RECORD.getCode(),
+                    line + ResultEnum.NO_LEVEL_RECORD.getMessage());
+        }
+        if (StringUtils.isEmpty(dto.getBookNo())) {
+            throw new HumanResourceException(ResultEnum.NO_BOOK_NO_RECORD.getCode(),
+                    line + ResultEnum.NO_BOOK_NO_RECORD.getMessage());
+        }
+        if (StringUtils.isEmpty(dto.getCardNo())) {
+            throw new HumanResourceException(ResultEnum.NO_CARDNO_RECORD.getCode(),
+                    line + ResultEnum.NO_CARDNO_RECORD.getMessage());
+        }
+        if (StringUtils.isEmpty(dto.getSex())) {
+            throw new HumanResourceException(ResultEnum.NO_SEX_RECORD.getCode(),
+                    line + ResultEnum.NO_SEX_RECORD.getMessage());
+        }
+        if (StringUtils.isEmpty(dto.getProjectName())) {
+            throw new HumanResourceException(ResultEnum.NO_TYPE_RECORD.getCode(),
+                    line + ResultEnum.NO_TYPE_RECORD.getMessage());
+        }
+        if (StringUtils.isEmpty(dto.getBorn())) {
+            throw new HumanResourceException(ResultEnum.NO_BORN_RECORD.getCode(),
+                    line + ResultEnum.NO_BORN_RECORD.getMessage());
+        }
+        if (StringUtils.isEmpty(dto.getScore())) {
+            throw new HumanResourceException(ResultEnum.NO_SCORE_RECORD.getCode(),
+                    line + ResultEnum.NO_SCORE_RECORD.getMessage());
         }
     }
 

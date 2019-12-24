@@ -26,9 +26,9 @@ public enum ResultEnum {
 
     REPEAT_RECORD(6, "重复记录"),
 
-    NO_ACTIVITY_RECORD(7, "导入失败, 记录中存在活动名称为空的记录"),
+    NO_ACTIVITY_RECORD(7, "导入失败, 存在活动名称为空的记录"),
 
-    NO_TYPE_RECORD(8, "导入失败, 记录中存在专业项目为空的记录"),
+    NO_TYPE_RECORD(8, "导入失败, 存在专业项目为空的记录"),
 
     IMPORT_ERROR(9, "导入失败"),
 
@@ -52,6 +52,15 @@ public enum ResultEnum {
     REPEAT_SUBMIT_RECORD(22, "请勿重复提交，我们会尽快与您联系"),
     PHONE_SUBMIT_RECORD(23, "手机号非法，请重新填写正确的手机号"),
 
+    NO_STUDENT_NAME_RECORD(7, "导入失败, 存在姓名为空的记录"),
+    NO_LEVEL_RECORD(7, "导入失败, 存在考试级别为空的记录"),
+    NO_CARDNO_RECORD(7, "导入失败, 存在身份证为空的记录"),
+    NO_SEX_RECORD(7, "导入失败, 存在性别为空的记录"),
+    NO_SCORE_RECORD(7, "导入失败, 存在成绩为空的记录"),
+    NO_BORN_RECORD(7, "导入失败, 存在出生日期为空的记录"),
+
+
+    REPEAT_BOOKNO_RECORD(26, "该证书已经存在，不能重复录入"),
     NO_FIND_DATA(500, "未找到数据"),
 
 

@@ -314,11 +314,17 @@ function importData() {
             // console.log(arg);
             // console.log(a1);
             if (a1 == "success") {
-                layer.msg("导入成功", {shift: -1, time: 1000}, function() {
+                layer.msg("导入成功", {shift: -1, time: 3000}, function() {
                     window.location.reload();
                 });
 
             }
+        },
+        error: function (res) {
+            var message = res.responseJSON.message;
+            layer.msg(message, {shift: -1, time: 1000}, function() {
+                window.location.reload();
+            });
         }
 
     })
