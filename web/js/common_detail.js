@@ -75,7 +75,7 @@
         /*banner展示*/
         $.EXTEND.GET('artBannerInfo/findAllBySite',{site:2,limit:1})
             .then(function (res) {
-                if(res){
+                if(res && res[0]){
                     $(".detail-top").css("background","url('"+res[0].picurl+"') center");
                 }
             });
