@@ -140,19 +140,19 @@
         <div class="item score">
             <div class="search-icon score"><span class="title">考官查询系统</span></div>
             <form id="madom"  onsubmit="return false" class="group">
-                <input type="hidden" autocomplete="off" class="form" name="bookType" value="1">
+                <input type="hidden" autocomplete="off" class="form" name="bookType" value="3">
                 <input type="text" autocomplete="off" class="form" name="name" placeholder="请输入学生姓名">
                 <input type="text" autocomplete="off" class="form" name="cardNo" placeholder="请输入身份证号">
-                <img id="kc1" class="cx" src="images/sreach_icon4.png" onclick="targetexam_no('madom');">
+                <img id="kc1" class="cx" src="images/sreach_icon4.png" onclick="targetexam('madom');">
             </form>
         </div>
         <div class="item express">
             <div class="search-icon video"><span class="title">师资认证查询系统</span></div>
             <form id="tcher"  onsubmit="return false" class="group">
-                <input type="hidden" autocomplete="off" class="form" name="bookType" value="1">
+                <input type="hidden" autocomplete="off" class="form" name="bookType" value="4">
                 <input type="text" autocomplete="off" class="form" name="name" placeholder="请输入学生姓名">
                 <input type="text" autocomplete="off" class="form" name="cardNo" placeholder="请输入身份证号">
-                <img id="cj1" class="cx" src="images/sreach_icon4.png" onclick="targetexam_no('tcher');">
+                <img id="cj1" class="cx" src="images/sreach_icon4.png" onclick="targetexam('tcher');">
             </form>
         </div>
     </div>
@@ -231,10 +231,11 @@
                     <div class="search-icon score">
                         <span>考官查询系统</span>
                     </div>
+                    <input type="hidden" autocomplete="off" class="form" name="bookType" value="3">
                     <input type="text" autocomplete="off" name="username" id="username" class="form" placeholder="请输入姓名">
                     <input type="text" autocomplete="off" name="examnum" id="examnum" class="form" placeholder="请输入准考证号">
                     <div class="group">
-                        <input type="button" class="btn score" value="查 询" onclick="targetexam_no('madom_o');">
+                        <input type="button" class="btn score" value="查 询" onclick="targetexam('madom_o');">
                     </div>
                 </form>
 
@@ -249,10 +250,11 @@
                     <div class="search-icon video">
                         <span>师资认证查询系统</span>
                     </div>
+                    <input type="hidden" autocomplete="off" class="form" name="bookType" value="4">
                     <input type="text" autocomplete="off" name="useranme" class="form" placeholder="请输入姓名">
                     <input type="text" autocomplete="off" name="examnum" class="form" placeholder="请输入证书号">
                     <div class="group">
-                        <input type="button" class="btn lg video" value="查 询" onclick="targetexam_no('tcher_o');">
+                        <input type="button" class="btn lg video" value="查 询" onclick="targetexam('tcher_o');">
                     </div>
                 </form>
 
