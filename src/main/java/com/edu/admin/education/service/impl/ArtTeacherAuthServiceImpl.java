@@ -219,10 +219,8 @@ public class ArtTeacherAuthServiceImpl implements IArtTeacherAuthService{
     public ArtTeacherAuth getByCondition(Map<String, Object> params) {
         Example example = new Example(ArtTeacherAuth.class);
         Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo("cardNo", params.get("cardNo"));
+        criteria.andEqualTo("bookNo", params.get("bookNo"));
         criteria.andEqualTo("name", params.get("name"));
-        criteria.andEqualTo("classificationId", params.get("classificationId"));
-        criteria.andEqualTo("level", params.get("level"));
         criteria.andEqualTo("bookType", params.get("bookType"));
 //        criteria.andEqualTo("school", params.get("school"));
         List<ArtTeacherAuth> list = artTeachAuthDao.selectByExample(example);
@@ -230,8 +228,7 @@ public class ArtTeacherAuthServiceImpl implements IArtTeacherAuthService{
             return null;
         }
         ArtTeacherAuth artTeacherAuth = list.get(0);
-        LiveCourseClassification byId = liveCourseClassificationService.getById(artTeacherAuth.getClassificationId()
-                .longValue());
+        LiveCourseClassification byId = liveCourseClassificationService.getById(artTeacherAuth.getClassificationId());
         artTeacherAuth.setClassificationName(byId.getName());
         return artTeacherAuth;
     }

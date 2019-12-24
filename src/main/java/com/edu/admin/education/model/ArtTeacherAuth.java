@@ -1,5 +1,6 @@
 package com.edu.admin.education.model;
 
+import com.edu.admin.education.excel.ExcelTitles;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,11 +9,13 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "art_teacher_auth")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ExcelTitles({"证书类型","证书编号","姓名","拼音", "出生日期", "性别", "专业项目", "职位", "有效期","学校"})
 public class ArtTeacherAuth extends BaseModel{
 
     /**
@@ -65,6 +68,8 @@ public class ArtTeacherAuth extends BaseModel{
     @Transient
     private String schoolName;
 
+    @Transient
+    private List<String> ids;
 
 
 }
