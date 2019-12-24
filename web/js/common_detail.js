@@ -73,9 +73,11 @@
         	document.write('<script type="text/javascript" src="'+ baseURL + pi +'"></script>');
     	}
         /*banner展示*/
-        $.EXTEND.GET('artBannerInfo/findAllBySite',{site:2})
+        $.EXTEND.GET('artBannerInfo/findAllBySite',{site:2,limit:1})
             .then(function (res) {
-                $(".detail-top").css("background","url('"+res[0].picurl+"') center");
+                if(res){
+                    $(".detail-top").css("background","url('"+res[0].picurl+"') center");
+                }
             });
     }
     //页面模板，注意navbar_child.html里有脚本代码
