@@ -6,10 +6,12 @@ import com.edu.admin.education.enums.ResultEnum;
 import com.edu.admin.education.exception.HumanResourceException;
 import com.edu.admin.education.model.ArtSchool;
 import com.edu.admin.education.model.ArtTeacherAuth;
+import com.edu.admin.education.model.ArtTeacherAuthImportInfoDto;
 import com.edu.admin.education.model.LiveCourseClassification;
 import com.edu.admin.education.service.IArtSchoolService;
 import com.edu.admin.education.service.IArtTeacherAuthService;
 import com.edu.admin.education.service.ILiveCourseClassificationService;
+import com.edu.admin.education.utils.DateUtil;
 import com.edu.admin.education.utils.PinyinTool;
 import com.github.pagehelper.PageHelper;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
@@ -20,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -125,16 +128,16 @@ public class ArtTeacherAuthServiceImpl implements IArtTeacherAuthService{
         }
     }
 
-    /*@Override
+    @Override
     public void saveDatas(List<ArtTeacherAuthImportInfoDto> dtoList) {
+        int i = 1;
         for (ArtTeacherAuthImportInfoDto dto : dtoList) {
+            valid(dto, i);
             ArtTeacherAuth artTeacherAuth = new ArtTeacherAuth();
             artTeacherAuth.setName(dto.getName());
             artTeacherAuth.setNamePy(dto.getNamePy());
             artTeacherAuth.setState(String.valueOf(PublicState.NORMAL.getCode()));
-            if (dto.getBorn() != null) {
-                artTeacherAuth.setBorn(DateUtil.parseDate(dto.getBorn(), "yyyy.MM.dd"));
-            }
+            artTeacherAuth.setBorn(DateUtil.parseDate(dto.getBorn(), "yyyy.MM.dd"));
 //            artTeacherAuth.setSchool(dto.getSchool());
             if (!StringUtils.isEmpty(dto.getSchool())) {
                 ArtSchool school = artSchoolService.getByName(dto.getSchool());
@@ -145,35 +148,12 @@ public class ArtTeacherAuthServiceImpl implements IArtTeacherAuthService{
                 }
                 artTeacherAuth.setSchoolId(school.getId());
             }
-            artTeacherAuth.setCardNo(dto.getCardNo());
-            artTeacherAuth.setCountry(dto.getCountry());
-            artTeacherAuth.setLevel(getChineseLevel(dto.getLevel()));
-            artTeacherAuth.setNation(dto.getNation());
+            artTeacherAuth.setPosition(dto.getPosition());
+            artTeacherAuth.setVatime(dto.getVatime());
             artTeacherAuth.setSex("女".equals(dto.getSex()) ? "g" : "m");
             artTeacherAuth.setCreatetime(new Date());
-            if (StringUtils.isEmpty(dto.getScore())) {
-                throw new HumanResourceException(ResultEnum.PARAMS_ERROR_SCORE);
-            }
-            artTeacherAuth.setScore(dto.getScore());
+            artTeacherAuth.setBookNo(dto.getBookNo());
 
-            // 查询活动是否存在
-            *//*if (StringUtils.isEmpty(dto.getActivityName())) {
-                throw new HumanResourceException(ResultEnum.NO_ACTIVITY_RECORD);
-            }*//*
-            *//*ArtActivity activity = artActivityService.getByActivityName(dto.getActivityName());
-            if (activity == null) {
-                // 活动不存在，新建活动
-                activity = new ArtActivity();
-                activity.setName(dto.getActivityName());
-                activity.setCreatetime(new Date());
-                activity.setUpdatetime(new Date());
-                activity.setState("1");
-                artActivityService.save(activity);
-            }
-            artTeacherAuth.setActivityId(activity.getId().intValue());*//*
-            if (StringUtils.isEmpty(dto.getProjectName())) {
-                throw new HumanResourceException(ResultEnum.NO_TYPE_RECORD);
-            }
             // 查询项目是否存在
             LiveCourseClassification project = liveCourseClassificationService.getByName(dto.getProjectName());
             if (project == null) {
@@ -184,19 +164,13 @@ public class ArtTeacherAuthServiceImpl implements IArtTeacherAuthService{
                 project.setState("1");
                 liveCourseClassificationService.save(project);
             }
-            artTeacherAuth.setClassificationId(project.getId().intValue());
-
-            // 查询学生是否重复导入
-            ArtTeacherAuth oldStudent = getByActivityAndCarNo(artTeacherAuth.getActivityId(), artTeacherAuth.getCardNo(), artTeacherAuth.getClassificationId(), artTeacherAuth.getLevel());
+            artTeacherAuth.setClassificationId(project.getId());
+            // 查询是否重复导入
+            ArtTeacherAuth oldStudent = getByBookNo(artTeacherAuth.getBookNo());
             if (oldStudent != null) {
+                i++;
                 continue;
             }
-
-            if (StringUtils.isEmpty(dto.getBookNo())) {
-                throw new HumanResourceException(ResultEnum.NO_BOOK_NO_RECORD);
-            }
-            artTeacherAuth.setBookNo(dto.getBookNo());
-
             if (dto.getBookType() == null || "全部".equals(dto.getBookType())) {
                 artTeacherAuth.setBookType(1);
                 artTeachAuthDao.insertSelective(artTeacherAuth);
@@ -205,15 +179,15 @@ public class ArtTeacherAuthServiceImpl implements IArtTeacherAuthService{
                 artTeachAuthDao.insertSelective(artTeacherAuth);
             } else {
                 if ("红皮".equals(dto.getBookType())) {
-                    artTeacherAuth.setBookType(2);
-                } else if ("白皮".equals(dto.getBookType())) {
                     artTeacherAuth.setBookType(1);
+                } else if ("绿皮".equals(dto.getBookType())) {
+                    artTeacherAuth.setBookType(2);
                 }
                 artTeachAuthDao.insertSelective(artTeacherAuth);
             }
-
+            i++;
         }
-    }*/
+    }
 
     @Override
     public ArtTeacherAuth getByCondition(Map<String, Object> params) {
@@ -285,6 +259,38 @@ public class ArtTeacherAuthServiceImpl implements IArtTeacherAuthService{
             artTeacherAuth.setId(Long.parseLong(id));
             artTeachAuthDao.updateByPrimaryKeySelective(artTeacherAuth);
         });
+    }
+
+    private void valid(ArtTeacherAuthImportInfoDto dto, int i) {
+        String line = "第" + i + "行";
+        if (StringUtils.isEmpty(dto.getName())) {
+            throw new HumanResourceException(ResultEnum.NO_STUDENT_NAME_RECORD.getCode(),
+                    line + ResultEnum.NO_STUDENT_NAME_RECORD.getMessage());
+        }
+        if (StringUtils.isEmpty(dto.getBookNo())) {
+            throw new HumanResourceException(ResultEnum.NO_BOOK_NO_RECORD.getCode(),
+                    line + ResultEnum.NO_BOOK_NO_RECORD.getMessage());
+        }
+        if (StringUtils.isEmpty(dto.getSex())) {
+            throw new HumanResourceException(ResultEnum.NO_SEX_RECORD.getCode(),
+                    line + ResultEnum.NO_SEX_RECORD.getMessage());
+        }
+        if (StringUtils.isEmpty(dto.getProjectName())) {
+            throw new HumanResourceException(ResultEnum.NO_TYPE_RECORD.getCode(),
+                    line + ResultEnum.NO_TYPE_RECORD.getMessage());
+        }
+        if (StringUtils.isEmpty(dto.getBorn())) {
+            throw new HumanResourceException(ResultEnum.NO_BORN_RECORD.getCode(),
+                    line + ResultEnum.NO_BORN_RECORD.getMessage());
+        }
+        if (StringUtils.isEmpty(dto.getPosition())) {
+            throw new HumanResourceException(ResultEnum.NO_POS_RECORD.getCode(),
+                    line + ResultEnum.NO_POS_RECORD.getMessage());
+        }
+        if (StringUtils.isEmpty(dto.getVatime())) {
+            throw new HumanResourceException(ResultEnum.NO_VATIME_RECORD.getCode(),
+                    line + ResultEnum.NO_VATIME_RECORD.getMessage());
+        }
     }
 
 }

@@ -60,6 +60,8 @@ public enum ResultEnum {
     NO_SEX_RECORD(7, "导入失败, 存在性别为空的记录"),
     NO_SCORE_RECORD(7, "导入失败, 存在成绩为空的记录"),
     NO_BORN_RECORD(7, "导入失败, 存在出生日期为空的记录"),
+    NO_POS_RECORD(7, "导入失败, 存在职位为空的记录"),
+    NO_VATIME_RECORD(7, "导入失败, 存在有效期为空的记录"),
 
 
     REPEAT_BOOKNO_RECORD(26, "该证书已经存在，不能重复录入"),

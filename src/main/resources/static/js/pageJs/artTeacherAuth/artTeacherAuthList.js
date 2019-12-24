@@ -147,7 +147,7 @@ art_student_list = (function ($, w) {
                 {"data" : "vatime", "defaultContent" : ""},
                 {"data" : "bookType", "defaultContent" : "",
                     "render": function (data) {
-                        return $$.BookTypeChinese(data);
+                        return $$.BookTypeChinese2(data);
                     }
                 },
                 {"data" : "bookNo", "defaultContent" : ""},
@@ -270,7 +270,7 @@ function importData() {
     var fd = new FormData();
     fd.append('excelFile', file_obj);
     $.ajax({
-        url:'/api/upload/uploadExcel',
+        url:'/api/upload/uploadExcel2',
         type:'POST',
         data:fd,
         processData:false,  //tell jQuery not to process the data

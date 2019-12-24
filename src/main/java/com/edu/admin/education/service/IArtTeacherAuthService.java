@@ -1,6 +1,7 @@
 package com.edu.admin.education.service;
 
 import com.edu.admin.education.model.ArtTeacherAuth;
+import com.edu.admin.education.model.ArtTeacherAuthImportInfoDto;
 
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,7 @@ public interface IArtTeacherAuthService {
 
     void update(ArtTeacherAuth artStudent);
 
-//    void saveDatas(List<ArtStudentImportInfoDto> dtoList);
+    void saveDatas(List<ArtTeacherAuthImportInfoDto> dtoList);
 
     ArtTeacherAuth getByCondition(Map<String, Object> params);
 

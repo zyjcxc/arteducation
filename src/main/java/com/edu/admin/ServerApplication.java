@@ -36,7 +36,7 @@ public class ServerApplication {
 		// TODO 线上
 		factory.setLocation("/data/temp");
 		//
-		// factory.setLocation("D:/data/temp");
+//		 factory.setLocation("D:/data/temp");
 		return factory.createMultipartConfig();
 	}
 }
