@@ -9,13 +9,18 @@ WEB_CONFIG = {
     _action: {
         // 特长生
         ART_STUDENT : "/artStudents",
+        ART_TEACHER_AUTH : "/artTeacherAuth",
         // 特长生删除
         ART_STUDENT_LOGIC_DELETE_ACTION : "/artStudents/deleteLogic",
+        ART_TEACHER_AUTH_LOGIC_DELETE_ACTION : "/artTeacherAuth/deleteLogic",
         ART_STUDENT_LOGIC_BATCH_DELETE_ACTION : "/artStudents/batchDel",
+        ART_TEACHER_AUTH_BATCH_DELETE_ACTION : "/artTeacherAuth/batchDel",
         // 添加
         ART_STUDENT_ACTION : "/artStudents",
+        ART_TEACHER_AUTH_ACTION : "/artTeacherAuth",
         // 导出
         EXPORT_ART_STUDENT_ACTION : "/artStudents/export",
+        EXPORT_ART_TEACHER_AUTH_ACTION : "/artTeacherAuth/export",
 
         // 活动管理
         ART_ACTIVITY_ACTION : "/artActivitys",
@@ -135,6 +140,12 @@ WEB_CONFIG = {
         ART_STUDENT_ADD_PAGE : "/pages/artStudent/addArtStudent.html",
         ART_STUDENT_ADD_PAGE_WITH_PARAMS : function(keyValues) {
             return $$.makeWithUrl(WEB_CONFIG._page.ART_STUDENT_ADD_PAGE, keyValues);
+        },
+
+        ART_TEACHER_AUTH_LIST_PAGE : "/pages/artTeacherAuth/artTeacherAuthList.html",
+        ART_TEACHER_AUTH_ADD_PAGE : "/pages/artTeacherAuth/addArtTeacherAuth.html",
+        ART_TEACHER_AUTH_ADD_PAGE_WITH_PARAMS : function(keyValues) {
+            return $$.makeWithUrl(WEB_CONFIG._page.ART_TEACHER_AUTH_ADD_PAGE, keyValues);
         },
 
         ACTIVITY_INFO_LIST_PAGE : "/pages/activityInfo/artAcitivtyList.html",

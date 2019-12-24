@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	  content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>特长生列表</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+</head>
+<body>
+    <div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div>
+                <header style="height: 100%">
+                    <div align="left">
+	                    <table style="width: 100%">
+	                   		<tr>
+	                   			<td>
+		                   			<form class="form-inline" onsubmit="return false">
+										<div class="form-group">
+											姓名：
+											<input id="name" type="text" class="form-control" placeholder="姓名">
+										</div>
+										<div class="form-group">
+											性别 :
+
+												<select class="form-control input-sm" name="sex" id="sex">
+													<option value="">全部</option>
+													<option value="m">男</option>
+													<option value="g">女</option>
+												</select>
+										</div>
+										<div class="form-group">
+											专业 :
+												<select class="form-control input-sm" name="classificationId" id="classificationId">
+													<option value="">全部</option>
+												</select>
+										</div>
+										<div class="form-group">
+											证书类型 :
+
+												<select class="form-control input-sm" name="bookType" id="bookType">
+													<option value="">全部</option>
+													<option value="1">红</option>
+													<option value="2">绿</option>
+												</select>
+										</div>
+										<div class="form-group">
+											证书编号：
+											<input id="bookNo" type="text" class="form-control" placeholder="证书编号">
+										</div>
+										<div class="form-group">
+											学校：
+											<input id="school" type="text" class="form-control" placeholder="学校名">
+										</div>
+									</form>
+	                   			</td>
+	                   			<td align="right">
+									<button id="searchBt" class="layui-btn layui-btn-small"><i class="layui-icon">&#xe615;</i>搜索</button>
+									<button id="export" class="layui-btn layui-btn-small"><i class="layui-icon">&#xe62d;</i>导出</button>
+									<div class="layui-btn layui-btn-small" style="position:relative;display: inline-block;overflow:  hidden;padding: 0;">
+										<button id="import"  class="layui-btn layui-btn-small"><i class="layui-icon">&#xe62d;</i>导入</button>
+										<input style="opacity: 0;position: absolute;z-index: 100;right:0;top:0;width: 63px;height: 30px;
+    cursor: pointer;" class="file" type="file" id="fafafa" name="fileupload" onchange="importData();"/>
+									</div>
+									<button id="restBt" class="layui-btn layui-btn-small"><i class="layui-icon">&#x1002;</i>刷新</button>
+									<button id="mulDel" class="layui-btn layui-btn-small"><i class="layui-icon">&#x1002;</i>批量删除</button>
+	                   			</td>
+	                   		</tr> 
+	                    </table>
+					</div>
+                </header>
+                
+                <div>
+                    <div class="widget-body no-padding">
+                        <table id="dt-table" class="table table-striped table-bordered table-hover" style="width:100%">
+                            <thead>
+                                <tr>
+                                </tr>                       
+                                <tr>
+									<th><input type='checkbox' id='checkAll'></th>
+									<th>id</th>
+									<th>姓名</th>
+									<th>出生日期</th>
+									<th>性别</th>
+									<th>专业</th>
+									<th>职位</th>
+									<th>有效期</th>
+									<th>证书类型</th>
+									<th>证书编号</th>
+									<th>学校</th>
+									<th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../js/jq.js"></script>
+<script type="text/javascript" src="../../js/plugin/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../../js/plugin/datatables/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" src="../../js/my/permission.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/tools/config.js"></script>
+<!--&lt;!&ndash;七牛&ndash;&gt;-->
+<!--<script type="text/javascript" src="../../js/qiniu/qiniuutil.js" charset="utf-8"></script>-->
+<!--<script type="text/javascript" src="../../js/qiniu/plupload.full.min.js"></script>-->
+<!--<script type="text/javascript" src="../../js/qiniu/qiniu.js" charset="utf-8"></script>-->
+
+<!-- 框架-->
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/tools/frames.js"></script>
+<!-- 本页面js, 其他页面忽引用此js -->
+<script type="text/javascript" charset="utf-8" src="../../js/pageJs/artTeacherAuth/artTeacherAuthList.js"></script>
+

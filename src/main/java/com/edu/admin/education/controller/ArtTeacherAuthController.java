@@ -28,7 +28,7 @@ import java.util.List;
  * @date 2018-04-01
  */
 @RestController
-@RequestMapping("/artTeachAuth")
+@RequestMapping("/artTeacherAuth")
 public class ArtTeacherAuthController {
 
     @Autowired
