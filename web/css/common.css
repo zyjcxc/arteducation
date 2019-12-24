@@ -117,7 +117,7 @@ textarea{
 .umEdit {padding:0 10px 20px;min-height: 200px;overflow: auto;}
 .umEdit img{width:100%!important}
 @media (min-width:767px) {
-	.umEdit img{width:auto!important}
+	.umEdit img{width:auto!important;max-width: 100%;}
 }
 
 /*日期图标*/

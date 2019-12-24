@@ -157,7 +157,7 @@
 .column .list .content .rightinfo {font-size:12px;padding-top:25px;color:#666666;}
 .column .list .content {overflow:hidden;padding:0 0;float: left;width: calc(100% - 100px);margin: 0;}
 .column .list .content img{width:auto;display: inline;}
-.column .list .content h6 {margin-top:5px;font-size: 14px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
+.column .list .content h6 {margin-top: 13px;font-size: 14px;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
 .column .list .content h6 a{display:inline;line-height:30px;}
 .column .list .content h2 {font-size:14px;line-height:2.0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
 .column .list .content p {line-height:2.0;font-size: 14px;padding-top:10px;text-align:justify;word-wrap:break-word;color:#666666;}
@@ -205,7 +205,7 @@
 	.column .title p a {color:#d72324;margin-right:15px;font-size:14px;}
 	.column .list {overflow:hidden;background:#EFEFEF;padding:10px;}
 	.column .list li {*zoom:1;padding-bottom:28px;font-size:14px;height:26px;}
-	.column .papers .list li {height: 70px;margin:15px 0;padding:0 0;clear:both;background:#EFEFEF;}
+	.column .papers .list li {height: 70px;margin: 15px 0;padding:0 0;clear:both;background:#EFEFEF;}
 	.column .list li:before,.column .list li:after {content:" ";display:table;}
 	.column .list li:after {clear:both;}
 	.column .list li:last-child {padding-bottom:0;}
@@ -213,7 +213,6 @@
 	.column .list .thumb {float:left;}
 	.column .list .thumb img {width:100%;height:100%;}
 	.column .list .content {overflow:hidden;padding:0 0;width: 640px;}
-	.column .list .content h6 {margin-top:5px;}
 	.column .list .content h2 {font-size:14px;line-height:2.0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
 	.column .list .content p {line-height:2.0;font-size:12px;padding-top:10px;text-align:justify;word-wrap:break-word;color:#666666;}
 	.column .list .content .info {font-size:12px;color:#A38EA3;padding:0px 0px;margin:0px 0px;}
@@ -228,14 +227,14 @@
 	.column .right-zt-thumb img {height:inherit;width: 120px;height: 80px;}
 }
 /*考级动态*/
-.news .item-list li {position: relative;padding: 23px 0;border-bottom: 1px dashed #dddddd;min-height: 1px;text-underline: none;overflow: hidden;}
+.news .item-list li {position: relative;padding: 10px 0;border-bottom: 1px dashed #dddddd;min-height: 1px;text-underline: none;overflow: hidden;}
 .news .item-list li img{display: none!important;}
 .news .item-list li:only-child, .item-list li:last-child { border: none; }
 .news .item-list li .item-content {max-width: 800px;float: left;height: 60px;overflow: hidden;width: calc(100% - 75px);}
 .news .item-list li .item-content .infor{height: 24px;overflow:hidden;line-height:24px!important;font-size:14px!important}
 .news .item-list li .item-content .infor table{display: none}
 .news .item-list li .item-content .infor p,.news .item-list li .item-content .infor h1,.news .item-list li .item-content .infor h2,.news .item-list li .item-content .infor h3,.news .item-list li .item-content .infor h4,.news .item-list li .item-content .infor h5{line-height: 22px!important;font-size:14px!important;}
-.news .item-list li .item-content h3 { font-size: 14px; line-height: 1.4; padding-top: 5px; color: #333333; transition: color 0.3s; -moz-transition: color 0.3s; -webkit-transition: color 0.3s; }
+.news .item-list li .item-content h3 {font-size: 14px;line-height: 1.4;padding-top: 20px;color: #333333;transition: color 0.3s;-moz-transition: color 0.3s;-webkit-transition: color 0.3s;}
 .news .item-list li a {display: block;text-decoration:none;overflow: hidden;}
 .news .item-list li a:hover .item-content h3 { color: #d72324; }
 
