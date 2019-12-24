@@ -109,7 +109,7 @@
                     </div>
 
 			 	</div>
-			 	<div id="type_3" class="infor_2">
+			 	<div id="type2_1" class="infor_2">
                     <div class="part">
                         <img src="../../images/search3.jpg" alt="">
                         <div class="list">
@@ -141,7 +141,7 @@
                     </div>
 
 			 	</div>
-			 	<div id="type_4" class="infor_2">
+			 	<div id="type2_2" class="infor_2">
                     <div class="part">
                         <img src="../../images/search4.jpg" alt="">
                         <div class="list">
@@ -191,8 +191,17 @@
 <script type="text/javascript" src="../../js/common_detail.js"></script>
 <script>
     var params = $.EXTEND.GETREQUEST();
-    $.EXTEND.GET('/artStudents/getByCondition',params)
-        .then(function (res) {
+    var requestUrl = "";
+    if(params.bookNo){
+        requestUrl = 'artTeacherAuth/getByCondition';
+        $("#type2_" + params.bookType).show();
+    }else{
+        requestUrl = 'artStudents/getByCondition';
+        $("#type_" + params.bookType).show();
+    }
+    if(requestUrl){
+        $.EXTEND.GET(requestUrl,params)
+            .then(function (res) {
                 if(res){
                     for(i in res){
                         if(i === 'sex') res[i] = res[i]==="m"?"女":res[i]==="g"?"男":"";
@@ -200,12 +209,15 @@
                         if(i === 'score' && res[i]) res[i] = res[i] + "分";
                         $("." + i).find("span").html(res[i])
                     }
-
-                }else {
+                    $("#noData").hide();
+                }else{
                     $("#noData").show();
                 }
-        });
-    $("#type_" + params.bookType).show();
+            })
+            .catch(function (err) {
+                $("#noData").show();
+            })
+    }
 </script>
 </body>
 
