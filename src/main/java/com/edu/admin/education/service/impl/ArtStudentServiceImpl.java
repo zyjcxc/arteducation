@@ -100,7 +100,13 @@ public class ArtStudentServiceImpl implements IArtStudentService{
         }
     }
 
-    private ArtStudent getByActivityAndCarNo(Integer activityId, String cardNo, Integer classificationId, String level) {
+    private ArtStudent getByActivityAndCarNo(Integer activityId, String cardNo,
+                                             Integer classificationId, String level) {
+        return this.getByActivityAndCarNo(activityId, cardNo, classificationId, level, null);
+    }
+
+    private ArtStudent getByActivityAndCarNo(Integer activityId, String cardNo,
+                                             Integer classificationId, String level, Integer bookType) {
         Example example = new Example(ArtStudent.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("cardNo", cardNo);
@@ -108,6 +114,9 @@ public class ArtStudentServiceImpl implements IArtStudentService{
         criteria.andEqualTo("classificationId", classificationId);
         criteria.andEqualTo("level", level);
         criteria.andEqualTo("state", 1);
+        if (bookType != null) {
+            criteria.andEqualTo("bookType", bookType);
+        }
         List<ArtStudent> list = artStudentDao.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
             return null;
@@ -184,8 +193,17 @@ public class ArtStudentServiceImpl implements IArtStudentService{
                 liveCourseClassificationService.save(project);
             }
             artStudent.setClassificationId(project.getId().intValue());
+            if (dto.getBookType() == null || "全部".equals(dto.getBookType())) {
+                artStudent.setBookType(null);
+            } else {
+                if ("红皮".equals(dto.getBookType())) {
+                    artStudent.setBookType(2);
+                } else if ("白皮".equals(dto.getBookType())) {
+                    artStudent.setBookType(1);
+                }
+            }
             // 查询学生是否重复导入
-            ArtStudent oldStudent = getByActivityAndCarNo(artStudent.getActivityId(), artStudent.getCardNo(), artStudent.getClassificationId(), artStudent.getLevel());
+            ArtStudent oldStudent = getByActivityAndCarNo(artStudent.getActivityId(), artStudent.getCardNo(), artStudent.getClassificationId(), artStudent.getLevel(), artStudent.getBookType());
             if (oldStudent != null) {
                 i++;
                 continue;
