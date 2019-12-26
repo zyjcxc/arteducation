@@ -99,10 +99,17 @@ public class ArtTeacherAuthServiceImpl implements IArtTeacherAuthService{
     }
 
     private ArtTeacherAuth getByBookNo(String bookNo) {
+       return this.getByBookNo(bookNo, null);
+    }
+
+    private ArtTeacherAuth getByBookNo(String bookNo, Integer bookType) {
         Example example = new Example(ArtTeacherAuth.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("bookNo", bookNo);
         criteria.andEqualTo("state", 1);
+        if (bookType != null) {
+            criteria.andEqualTo("bookType", bookType);
+        }
         List<ArtTeacherAuth> list = artTeachAuthDao.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
             return null;
@@ -165,8 +172,17 @@ public class ArtTeacherAuthServiceImpl implements IArtTeacherAuthService{
                 liveCourseClassificationService.save(project);
             }
             artTeacherAuth.setClassificationId(project.getId());
+            if (dto.getBookType() == null || "全部".equals(dto.getBookType())) {
+                artTeacherAuth.setBookType(null);
+            } else {
+                if ("绿皮".equals(dto.getBookType())) {
+                    artTeacherAuth.setBookType(2);
+                } else if ("红皮".equals(dto.getBookType())) {
+                    artTeacherAuth.setBookType(1);
+                }
+            }
             // 查询是否重复导入
-            ArtTeacherAuth oldStudent = getByBookNo(artTeacherAuth.getBookNo());
+            ArtTeacherAuth oldStudent = getByBookNo(artTeacherAuth.getBookNo(), artTeacherAuth.getBookType());
             if (oldStudent != null) {
                 i++;
                 continue;
