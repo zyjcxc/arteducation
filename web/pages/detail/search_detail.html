@@ -204,7 +204,7 @@
             .then(function (res) {
                 if(res){
                     for(i in res){
-                        if(i === 'sex') res[i] = res[i]==="m"?"女":res[i]==="g"?"男":"";
+                        if(i === 'sex') res[i] = res[i]==="g"?"女":res[i]==="m"?"男":"";
                         if(i === 'picurl') $(".picurl").attr("src",res[i]);
                         if(i === 'score' && res[i]) res[i] = res[i] + "分";
                         $("." + i).find("span").html(res[i])
