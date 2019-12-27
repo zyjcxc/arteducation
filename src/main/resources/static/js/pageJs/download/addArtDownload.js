@@ -117,7 +117,7 @@ classification_add = (function ($, w) {
         }
         var params = $PAGE_FORM.serializeObject();
         console.log(params)
-        if(!params.url || params.params === ''){
+        if(!params.url || params.url === ''){
             layer.msg("请上传图片！", {shift: -1, time: 3000});
             return;
         }

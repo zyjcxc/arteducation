@@ -119,7 +119,7 @@ classification_add = (function ($, w) {
             return;
         }
         var params = $PAGE_FORM.serializeObject();
-        if(!params.picurl || params.params === ''){
+        if(!params.picurl || params.picurl === ''){
             layer.msg("请上传图片！", {shift: -1, time: 3000});
             return;
         }
@@ -146,7 +146,7 @@ classification_add = (function ($, w) {
         }
         _self.getPageBtn().save.attr("disabled", true);
         var params = $PAGE_FORM.serializeObject();
-        if(!params.picurl || params.params === ''){
+        if(!params.picurl || params.picurl === ''){
             layer.msg("请上传图片！", {shift: -1, time: 3000});
             return;
         }

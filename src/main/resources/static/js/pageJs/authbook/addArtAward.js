@@ -22,7 +22,8 @@ classification_add = (function ($, w) {
             $dom: {
 					id : $("#id"),
                 title : $("#title"),
-                content : $("#content")
+                content : $("#content"),
+                picurl : $("#picurl")
             },
             $btn: {
                 back: $("#backBtn"),
@@ -183,6 +184,7 @@ classification_add = (function ($, w) {
             success : function(data) {
                 _self.getPageDom().id.val(data.id);
                 _self.getPageDom().title.val(data.title);
+                _self.getPageDom().picurl.val(data.picurl);
                 $("#banner").show().attr('src',data.picurl);
                 setContent(data.content);
             }

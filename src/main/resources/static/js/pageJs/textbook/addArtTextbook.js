@@ -123,7 +123,7 @@ classification_add = (function ($, w) {
             return;
         }
         var params = $PAGE_FORM.serializeObject();
-        if(!params.picurl || params.params === ''){
+        if(!params.picurl || params.picurl === ''){
             layer.msg("请上传图片！", {shift: -1, time: 3000});
             return;
         }
@@ -150,7 +150,7 @@ classification_add = (function ($, w) {
         }
         _self.getPageBtn().save.attr("disabled", true);
         var params = $PAGE_FORM.serializeObject();
-        if(!params.picurl || params.params === ''){
+        if(!params.picurl || params.picurl === ''){
             layer.msg("请上传图片！", {shift: -1, time: 3000});
             return;
         }
@@ -195,7 +195,7 @@ classification_add = (function ($, w) {
                 _self.getPageDom().author.val(data.author);
                 _self.getPageDom().content.val(data.content);
                 _self.get$Scope().textbookTypeId = data.textbookTypeId;
-                _self.get$Scope().picurl = data.picurl;
+                _self.getPageDom().picurl = data.picurl;
                 $("#picture").show().attr('src',data.picurl);
                 setContent(data.content);
             }
