@@ -110,10 +110,10 @@ classification_add = (function ($, w) {
         if (!b) {
             return;
         }
-        if(hasContent() === 'false'){
+        /*if(hasContent() === 'false'){
             layer.msg("请填写内容！", {shift: -1, time: 3000});
             return;
-        }
+        }*/
         var params = $PAGE_FORM.serializeObject();
         if(!params.picurl || params.params === ''){
             layer.msg("请上传图片！", {shift: -1, time: 3000});
