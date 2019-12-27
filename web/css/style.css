@@ -296,11 +296,11 @@
 	-o-transition: 0.2s all;
 	-ms-transition: 0.2s all;
 }
-.credentials .item-list img{height: 180px;width: auto;max-width: 100%;}
+.credentials .item-list img{height: 170px;width: auto;max-width: 100%;}
 .credentials .item-list p{margin-top: 10px;width: 100%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size:14px;}
 @media (min-width:767px) {
-	.credentials .item-list li{width: 25.33%;margin: 20px 4%;padding: 20px;}
-	.credentials .item-list img{height: 254px;}
+	.credentials .item-list li{width: 16.33%;margin: 20px 4%;padding: 20px;}
+	.credentials .item-list img{height: 146px;}
 }
 
 /*教材详情*/
