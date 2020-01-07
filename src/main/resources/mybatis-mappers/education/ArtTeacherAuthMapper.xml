@@ -15,6 +15,7 @@
     <result column="name_py" jdbcType="VARCHAR" property="namePy" />
     <result column="position" jdbcType="VARCHAR" property="position" />
     <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="born" property="born" jdbcType="TIMESTAMP"/>
     <result column="vatime" jdbcType="VARCHAR" property="vatime" />
     <result column="state" jdbcType="VARCHAR" property="state" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
