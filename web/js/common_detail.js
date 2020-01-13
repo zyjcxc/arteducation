@@ -62,7 +62,7 @@
                 ]
             }
         ],
-		script:['utils/bootstrap.js','utils/jquery.pagination.min.js']
+		script:['utils/bootstrap.min.js','utils/jquery.pagination.min.js']
 	}
 	
 	window.localStorage.setItem('config', JSON.stringify(config));
