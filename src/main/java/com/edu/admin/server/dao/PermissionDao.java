@@ -8,8 +8,8 @@ import java.util.List;
 @Mapper
 public interface PermissionDao {
 
-	@Select("select * from sys_permission t order by t.sort")
-	List<Permission> listAll();
+//	@Select("select * from sys_permission t order by t.sort")
+//	List<Permission> listAll();
 
 	@Select("select * from sys_permission t where t.type = 1 order by t.sort")
 	List<Permission> listParents();

@@ -1,7 +1,8 @@
 package com.edu.admin.education.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.edu.admin.education.model.ArtActivity;
-import tk.mybatis.mapper.common.Mapper;
+//import tk.mybatis.mapper.common.Mapper;
 
-public interface ArtAcitivtyMapper extends Mapper<ArtActivity> {
+public interface ArtAcitivtyMapper extends BaseMapper<ArtActivity> {
 }

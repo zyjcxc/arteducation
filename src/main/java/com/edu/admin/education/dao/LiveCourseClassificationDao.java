@@ -1,7 +1,7 @@
 package com.edu.admin.education.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.edu.admin.education.model.LiveCourseClassification;
-import com.edu.admin.mymapper.MyMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2018-04-05
  */
 @Mapper
-public interface LiveCourseClassificationDao extends MyMapper<LiveCourseClassification> {
+public interface LiveCourseClassificationDao extends BaseMapper<LiveCourseClassification> {
 
 
 }

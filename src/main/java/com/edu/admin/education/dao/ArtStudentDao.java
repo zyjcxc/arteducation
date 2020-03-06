@@ -1,7 +1,7 @@
 package com.edu.admin.education.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.edu.admin.education.model.ArtStudent;
-import com.edu.admin.mymapper.MyMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Map;
  * @date 2018-04-03
  */
 @Mapper
-public interface ArtStudentDao extends MyMapper<ArtStudent> {
+public interface ArtStudentDao extends BaseMapper<ArtStudent> {
 
     List<ArtStudent> selectByCustomSql(Map<String, Object> params);
 

@@ -1,18 +1,20 @@
 package com.edu.admin.education.model;
 
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.edu.admin.education.excel.ExcelTitles;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.util.Date;
 import java.util.List;
 
-@Table(name = "art_student")
+//import javax.persistence.Transient;
+
+@TableName("art_student")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -43,14 +45,17 @@ public class ArtStudent extends BaseModel {
 
     private Date createtime;
 
-    @Transient
+//    @Transient
+    @TableField(exist = false)
     private String classificationName;
-    @Transient
+//    @Transient
+    @TableField(exist = false)
     private String activityName;
-    @Transient
+//    @Transient
+    @TableField(exist = false)
     private String schoolName;
 
 
-    @Transient
+//    @Transient
     private List<String> ids;
 }

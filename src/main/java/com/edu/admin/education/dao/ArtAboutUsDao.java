@@ -1,10 +1,10 @@
 package com.edu.admin.education.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.edu.admin.education.model.ArtAboutUs;
-import com.edu.admin.mymapper.MyMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface ArtAboutUsDao extends MyMapper<ArtAboutUs> {
+public interface ArtAboutUsDao extends BaseMapper<ArtAboutUs> {
 
 }

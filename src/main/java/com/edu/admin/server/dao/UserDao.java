@@ -27,8 +27,8 @@ public interface UserDao {
 	List<User> list(@Param("params") Map<String, Object> params, @Param("offset") Integer offset,
 			@Param("limit") Integer limit);
 
-	@Delete("delete from sys_role_user where userId = #{userId}")
-	int deleteUserRole(Long userId);
+//	@Delete("delete from sys_role_user where userId = #{userId}")
+//	int deleteUserRole(Long userId);
 
 	int saveUserRoles(@Param("userId") Long userId, @Param("roleIds") List<Long> roleIds);
 

@@ -1,14 +1,16 @@
 package com.edu.admin.education.model;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.util.Date;
 
-@Table(name = "art_textbook")
+//import javax.persistence.Transient;
+
+@TableName("art_textbook")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -50,7 +52,8 @@ public class ArtTextbook extends BaseModel {
 
     private Date updatetime;
 
-    @Transient
+//    @Transient
+    @TableField(exist = false)
     private String textBookName;
 
     /**

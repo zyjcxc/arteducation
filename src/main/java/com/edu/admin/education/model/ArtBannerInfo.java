@@ -1,12 +1,12 @@
 package com.edu.admin.education.model;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Table;
 import java.util.Date;
-@Table(name = "art_banner_info")
+@TableName("art_banner_info")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

@@ -1,5 +1,7 @@
 package com.edu.admin.server.model;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,7 +10,9 @@ public abstract class BaseEntity<ID extends Serializable> implements Serializabl
 	private static final long serialVersionUID = 2054813493011812469L;
 
 	private ID id;
+	@TableField("createTime")
 	private Date createTime = new Date();
+	@TableField("updateTime")
 	private Date updateTime = new Date();
 
 	public ID getId() {

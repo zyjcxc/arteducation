@@ -1,10 +1,15 @@
 package com.edu.admin.server.service.impl;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.edu.admin.server.constants.UserConstants;
 import com.edu.admin.server.dao.UserDao;
+import com.edu.admin.server.dao.UserMapper;
 import com.edu.admin.server.dto.UserDto;
+import com.edu.admin.server.model.SysRoleUser;
 import com.edu.admin.server.model.User;
 import com.edu.admin.server.model.User.Status;
+import com.edu.admin.server.service.SysRoleUserService;
 import com.edu.admin.server.service.UserService;
 import com.edu.admin.server.utils.UserUtil;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -18,14 +23,21 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
 	private static final Logger log = LoggerFactory.getLogger("adminLogger");
 
 	@Autowired
 	private UserDao userDao;
+
+	@Autowired
+	private UserMapper userMapper;
+
+	@Autowired
+	private SysRoleUserService sysRoleUserService;
 
 	@Override
 	@Transactional
@@ -35,7 +47,9 @@ public class UserServiceImpl implements UserService {
 				.md5Hex(UUID.randomUUID().toString() + System.currentTimeMillis() + UUID.randomUUID().toString()));
 		user.setPassword(passwordEncoder(user.getPassword(), user.getSalt()));
 		user.setStatus(Status.VALID);
-		userDao.save(user);
+//		userDao.save(user);
+		// mplus 改版
+		userMapper.insert(user);
 		saveUserRoles(user.getId(), userDto.getRoleIds());
 
 		log.debug("新增用户{}", user.getUsername());
@@ -44,9 +58,19 @@ public class UserServiceImpl implements UserService {
 
 	private void saveUserRoles(Long userId, List<Long> roleIds) {
 		if (roleIds != null) {
-			userDao.deleteUserRole(userId);
+//			userDao.deleteUserRole(userId);
+			// mplus 改版 delete from sys_role_user where userId = #{userId}
+			sysRoleUserService.remove(Wrappers.<SysRoleUser>lambdaQuery().eq(SysRoleUser::getUserId, userId));
+//			sysRoleUserMapper.delete(Wrappers.<SysRoleUser>lambdaQuery().eq(SysRoleUser::getUserId, userId));
 			if (!CollectionUtils.isEmpty(roleIds)) {
-				userDao.saveUserRoles(userId, roleIds);
+//				userDao.saveUserRoles(userId, roleIds);
+				// mplus 改版
+				// insert into sys_role_user(roleId, userId) values ids.....
+				sysRoleUserService.saveBatch(
+						roleIds.stream().map(roleId -> new SysRoleUser(userId, roleId))
+								.collect(Collectors.toList())
+				);
+
 			}
 		}
 	}
@@ -57,10 +81,10 @@ public class UserServiceImpl implements UserService {
 		return object.toString();
 	}
 
-	@Override
+	/*@Override
 	public User getUser(String username) {
 		return userDao.getUser(username);
-	}
+	}*/
 
 	@Override
 	public void changePassword(String username, String oldPassword, String newPassword) {

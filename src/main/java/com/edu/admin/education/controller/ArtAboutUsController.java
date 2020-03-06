@@ -7,13 +7,11 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Date;
-import java.util.List;
 
 /**
  * 关于我们 info 模块控制器s
@@ -33,10 +31,10 @@ public class ArtAboutUsController extends BaseController {
     @GetMapping
     @ApiOperation(value = "查询关于我们数据")
     public ArtAboutUs findOne() {
-        List<ArtAboutUs> artAboutUses = artAboutUsDao.selectAll();
-        if (!CollectionUtils.isEmpty(artAboutUses)) {
-            return artAboutUses.get(0);
-        }
+//        List<ArtAboutUs> artAboutUses = artAboutUsDao.selectAll();
+//        if (!CollectionUtils.isEmpty(artAboutUses)) {
+//            return artAboutUses.get(0);
+//        }
         return null;
     }
 
@@ -46,7 +44,7 @@ public class ArtAboutUsController extends BaseController {
         validFormInfo(bindingResult);
         artAboutUs.setCreatetime(new Date());
         artAboutUs.setUpdatetime(new Date());
-        artAboutUsDao.updateByPrimaryKey(artAboutUs);
+//        artAboutUsDao.updateByPrimaryKey(artAboutUs);
 
         return null;
     }

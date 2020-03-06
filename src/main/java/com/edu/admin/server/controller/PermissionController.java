@@ -36,8 +36,11 @@ public class PermissionController {
 
 	@Autowired
 	private PermissionDao permissionDao;
+
 	@Autowired
 	private PermissionService permissionService;
+//	@Autowired
+//	private PermissionMapper permissionMapper;
 
 	@ApiOperation(value = "当前登录用户拥有的权限")
 	@GetMapping("/current")
@@ -45,7 +48,13 @@ public class PermissionController {
 		List<Permission> list = UserUtil.getCurrentPermissions();
 		if (list == null) {
 			User user = UserUtil.getCurrentUser();
-			list = permissionDao.listByUserId(user.getId());
+//			list = permissionDao.listByUserId(user.getId());
+
+			// mplus 改版
+			// select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId
+			// inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = #{userId} order by p.sort"
+			list = permissionService.listByUserId(user.getId(), true, true);
+
 			UserUtil.setPermissionSession(list);
 		}
 		final List<Permission> permissions = list.stream().filter(l -> l.getType().equals(1))
@@ -86,10 +95,10 @@ public class PermissionController {
 	@ApiOperation(value = "菜单列表")
 	@RequiresPermissions("sys:menu:query")
 	public List<Permission> permissionsList() {
-		List<Permission> permissionsAll = permissionDao.listAll();
+//		List<Permission> permissionsAll = permissionDao.listAll();
 
 		List<Permission> list = Lists.newArrayList();
-		setPermissionsList(0L, permissionsAll, list);
+		setPermissionsList(0L, permissionService.listAll(), list);
 
 		return list;
 	}
@@ -98,7 +107,7 @@ public class PermissionController {
 	@ApiOperation(value = "所有菜单")
 	@RequiresPermissions("sys:menu:query")
 	public JSONArray permissionsAll() {
-		List<Permission> permissionsAll = permissionDao.listAll();
+		List<Permission> permissionsAll = permissionService.listAll();
 		JSONArray array = new JSONArray();
 		setPermissionsTree(0L, permissionsAll, array);
 

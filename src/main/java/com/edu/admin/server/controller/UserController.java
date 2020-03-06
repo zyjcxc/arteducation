@@ -46,7 +46,10 @@ public class UserController {
 	@ApiOperation(value = "保存用户")
 	@RequiresPermissions("sys:user:add")
 	public User saveUser(@RequestBody UserDto userDto) {
-		User u = userService.getUser(userDto.getUsername());
+//		User u = userService.getUser(userDto.getUsername());
+		// mplus 改版
+		User u = userService.lambdaQuery().select(User::getId).
+				eq(User::getUsername, userDto.getUsername()).one();
 		if (u != null) {
 			throw new IllegalArgumentException(userDto.getUsername() + "已存在");
 		}
