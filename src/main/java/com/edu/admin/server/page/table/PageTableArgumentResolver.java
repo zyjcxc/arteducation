@@ -43,12 +43,18 @@ public class PageTableArgumentResolver implements HandlerMethodArgumentResolver 
 
 		StringBuilder kv = new StringBuilder();
 
+		int start = 0;
+		int limit = 10;
 		if (param.containsKey("start")) {
-			tableRequest.setOffset(Integer.parseInt(request.getParameter("start")));
+			start = Integer.parseInt(request.getParameter("start"));
+			tableRequest.setOffset(start);
 		}
 
 		if (param.containsKey("length")) {
 			tableRequest.setLimit(Integer.parseInt(request.getParameter("length")));
+			// 1 0  2 10 3 20
+			int currentPage = (start / limit) + 1;
+			tableRequest.setCurrentPage(currentPage);
 		}
 
 		Map<String, Object> map = Maps.newHashMap();
@@ -119,16 +125,25 @@ public class PageTableArgumentResolver implements HandlerMethodArgumentResolver 
 	private void setOrderBy(PageTableRequest tableRequest, Map<String, Object> map, boolean isNameHandler) {
 		StringBuilder orderBy = new StringBuilder();
 		int size = map.size();
+		OrderByObject order = new OrderByObject();
 		for (int i = 0; i < size; i++) {
+			// 排序的columns[?]是哪个
 			String index = (String) map.get("order[" + i + "][column]");
 			if (StringUtils.isEmpty(index)) {
+				// 如果不排序的话
 				break;
 			}
+			// 排序的字段名
 			String column = (String) map.get("columns[" + index + "][data]");
 			if (StringUtils.isBlank(column)) {
 				continue;
 			}
+			order.setColumn(column);
+			// 排序是asc 还是 desc
 			String sort = (String) map.get("order[" + i + "][dir]");
+			if (sort.equals("asc")) {
+				order.setAsc(true);
+			}
 
 			if (isNameHandler) {
 				// 表名转换
@@ -141,6 +156,8 @@ public class PageTableArgumentResolver implements HandlerMethodArgumentResolver 
 		if (orderBy.length() > 0) {
 			tableRequest.getParams().put("orderBy",
 					" order by " + StringUtils.substringBeforeLast(orderBy.toString(), ","));
+			order.setOrderBy(true);
+			tableRequest.setOrderByObject(order);
 		}
 	}
 

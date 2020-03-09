@@ -1,12 +1,15 @@
 package com.edu.admin.server.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.edu.admin.server.dao.RoleDao;
 import com.edu.admin.server.dao.RoleMapper;
 import com.edu.admin.server.dto.RoleDto;
 import com.edu.admin.server.model.Permission;
 import com.edu.admin.server.model.Role;
+import com.edu.admin.server.page.table.PageTableRequest;
+import com.edu.admin.server.page.table.PageTableResponse;
 import com.edu.admin.server.service.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,6 +80,14 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 		return roleMapper.listByUserId(
 				Wrappers.<Permission>query()
 						.eq("ru.userId", userId));
+	}
+
+
+	@Override
+	public PageTableResponse queryList(PageTableRequest request) {
+		Page<Role> page = new Page<>(request.getOffset(),request.getLimit());
+		Page<Role> rolePage = roleMapper.selectPage(page, null);
+		return new PageTableResponse((int)rolePage.getTotal(), (int)rolePage.getTotal(), rolePage.getRecords());
 	}
 
 }

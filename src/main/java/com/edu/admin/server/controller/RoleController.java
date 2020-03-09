@@ -1,16 +1,11 @@
 package com.edu.admin.server.controller;
 
 import com.edu.admin.server.annotation.LogAnnotation;
-import com.edu.admin.server.dao.RoleDao;
 import com.edu.admin.server.dto.RoleDto;
 import com.edu.admin.server.model.Role;
-import com.edu.admin.server.page.table.PageTableHandler;
-import com.edu.admin.server.page.table.PageTableHandler.CountHandler;
-import com.edu.admin.server.page.table.PageTableHandler.ListHandler;
 import com.edu.admin.server.page.table.PageTableRequest;
 import com.edu.admin.server.page.table.PageTableResponse;
 import com.edu.admin.server.service.RoleService;
-import com.google.common.collect.Maps;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.Logical;
@@ -33,8 +28,6 @@ public class RoleController {
 
 	@Autowired
 	private RoleService roleService;
-	@Autowired
-	private RoleDao roleDao;
 
 	@LogAnnotation
 	@PostMapping
@@ -48,7 +41,7 @@ public class RoleController {
 	@ApiOperation(value = "角色列表")
 	@RequiresPermissions("sys:role:query")
 	public PageTableResponse listRoles(PageTableRequest request) {
-		return new PageTableHandler(new CountHandler() {
+		/*return new PageTableHandler(new CountHandler() {
 
 			@Override
 			public int count(PageTableRequest request) {
@@ -61,28 +54,33 @@ public class RoleController {
 				List<Role> list = roleDao.list(request.getParams(), request.getOffset(), request.getLimit());
 				return list;
 			}
-		}).handle(request);
+		}).handle(request);*/
+
+		return roleService.queryList(request);
 	}
 
 	@GetMapping("/{id}")
 	@ApiOperation(value = "根据id获取角色")
 	@RequiresPermissions("sys:role:query")
 	public Role get(@PathVariable Long id) {
-		return roleDao.getById(id);
+//		roleDao.getById(id)
+		return roleService.getById(id);
 	}
 
 	@GetMapping("/all")
 	@ApiOperation(value = "所有角色")
 	@RequiresPermissions(value = { "sys:user:query", "sys:role:query" }, logical = Logical.OR)
 	public List<Role> roles() {
-		return roleDao.list(Maps.newHashMap(), null, null);
+//		List<Role> list = roleDao.list(Maps.newHashMap(), null, null);
+		return roleService.list();
 	}
 
 	@GetMapping(params = "userId")
 	@ApiOperation(value = "根据用户id获取拥有的角色")
 	@RequiresPermissions(value = { "sys:user:query", "sys:role:query" }, logical = Logical.OR)
 	public List<Role> roles(Long userId) {
-		return roleDao.listByUserId(userId);
+//		return roleDao.listByUserId(userId);
+		return roleService.listByUserId(userId);
 	}
 
 	@LogAnnotation

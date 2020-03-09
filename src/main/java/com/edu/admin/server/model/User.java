@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 import java.util.Date;
 
@@ -14,11 +15,13 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Accessors(chain = true)
 public class User extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = -6525908145032868837L;
 
 	private String username;
+
 	private String password;
 
 	@JsonIgnore
@@ -38,6 +41,22 @@ public class User extends BaseEntity<Long> {
 		int DISABLED = 0;
 		int VALID = 1;
 		int LOCKED = 2;
+	}
+
+	public enum Column {
+
+		USERNAME("username"),
+		NICKNAME("nickname"),
+		STATUS("status"),
+
+		;
+		private String key;
+		Column(String name) {
+			this.key = name;
+		}
+		public String key() {
+			return key;
+		}
 	}
 
 }

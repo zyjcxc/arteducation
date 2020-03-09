@@ -15,7 +15,10 @@ public class PageTableRequest implements Serializable {
 
 	private Integer offset;
 	private Integer limit;
+	private Integer currentPage;
 	private Map<String, Object> params;
+
+	private OrderByObject orderByObject;
 
 	private String orderBy;
 
@@ -49,5 +52,21 @@ public class PageTableRequest implements Serializable {
 
 	public void setParams(Map<String, Object> params) {
 		this.params = params;
+	}
+
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public OrderByObject getOrderByObject() {
+		return orderByObject;
+	}
+
+	public void setOrderByObject(OrderByObject orderByObject) {
+		this.orderByObject = orderByObject;
 	}
 }

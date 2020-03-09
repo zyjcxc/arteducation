@@ -1,12 +1,8 @@
 package com.edu.admin.server.controller;
 
 import com.edu.admin.server.annotation.LogAnnotation;
-import com.edu.admin.server.dao.UserDao;
 import com.edu.admin.server.dto.UserDto;
 import com.edu.admin.server.model.User;
-import com.edu.admin.server.page.table.PageTableHandler;
-import com.edu.admin.server.page.table.PageTableHandler.CountHandler;
-import com.edu.admin.server.page.table.PageTableHandler.ListHandler;
 import com.edu.admin.server.page.table.PageTableRequest;
 import com.edu.admin.server.page.table.PageTableResponse;
 import com.edu.admin.server.service.UserService;
@@ -20,7 +16,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 /**
  * 用户相关接口
@@ -38,8 +33,6 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private UserDao userDao;
 
 	@LogAnnotation
 	@PostMapping
@@ -90,20 +83,18 @@ public class UserController {
 	@ApiOperation(value = "用户列表")
 	@RequiresPermissions("sys:user:query")
 	public PageTableResponse listUsers(PageTableRequest request) {
-		return new PageTableHandler(new CountHandler() {
 
-			@Override
-			public int count(PageTableRequest request) {
-				return userDao.count(request.getParams());
-			}
-		}, new ListHandler() {
-
+		/*return new PageTableHandler(new ListHandler() {
 			@Override
 			public List<User> list(PageTableRequest request) {
+				IPage<User> page = userService.queryList(new Page<>(1,2));
+
 				List<User> list = userDao.list(request.getParams(), request.getOffset(), request.getLimit());
 				return list;
 			}
-		}).handle(request);
+		}).handleMplus(request);*/
+
+		return userService.queryList(request);
 	}
 
 	@ApiOperation(value = "当前登录用户")
@@ -116,7 +107,7 @@ public class UserController {
 	@GetMapping("/{id}")
 	@RequiresPermissions("sys:user:query")
 	public User user(@PathVariable Long id) {
-		return userDao.getById(id);
+		return userService.getById(id);
 	}
 
 }

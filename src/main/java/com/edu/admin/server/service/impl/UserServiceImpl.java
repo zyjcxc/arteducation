@@ -1,14 +1,19 @@
 package com.edu.admin.server.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.edu.admin.server.constants.UserConstants;
-import com.edu.admin.server.dao.UserDao;
 import com.edu.admin.server.dao.UserMapper;
 import com.edu.admin.server.dto.UserDto;
 import com.edu.admin.server.model.SysRoleUser;
 import com.edu.admin.server.model.User;
 import com.edu.admin.server.model.User.Status;
+import com.edu.admin.server.page.table.OrderByObject;
+import com.edu.admin.server.page.table.PageTableRequest;
+import com.edu.admin.server.page.table.PageTableResponse;
 import com.edu.admin.server.service.SysRoleUserService;
 import com.edu.admin.server.service.UserService;
 import com.edu.admin.server.utils.UserUtil;
@@ -22,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -29,9 +35,6 @@ import java.util.stream.Collectors;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
 	private static final Logger log = LoggerFactory.getLogger("adminLogger");
-
-	@Autowired
-	private UserDao userDao;
 
 	@Autowired
 	private UserMapper userMapper;
@@ -88,7 +91,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 	@Override
 	public void changePassword(String username, String oldPassword, String newPassword) {
-		User u = userDao.getUser(username);
+//		User u = userDao.getUser(username);
+		User u = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getUsername, username));
 		if (u == null) {
 			throw new IllegalArgumentException("用户不存在");
 		}
@@ -97,15 +101,25 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 			throw new IllegalArgumentException("密码错误");
 		}
 
-		userDao.changePassword(u.getId(), passwordEncoder(newPassword, u.getSalt()));
+//		update sys_user t set t.password = #{password} where t.id = #{id}
+//		userDao.changePassword(u.getId(), passwordEncoder(newPassword, u.getSalt()));
+
+		userMapper.update(
+				new User().setPassword(passwordEncoder(newPassword, u.getSalt())),
+				Wrappers.<User>lambdaUpdate()
+						.eq(User::getId, u.getId())
+
+		);
 
 		log.debug("修改{}的密码", username);
 	}
 
+
 	@Override
 	@Transactional
 	public User updateUser(UserDto userDto) {
-		userDao.update(userDto);
+//		userDao.update(userDto);
+		userMapper.updateById(userDto);
 		saveUserRoles(userDto.getId(), userDto.getRoleIds());
 		updateUserSession(userDto.getId());
 
@@ -115,8 +129,32 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	private void updateUserSession(Long id) {
 		User current = UserUtil.getCurrentUser();
 		if (current.getId().equals(id)) {
-			User user = userDao.getById(id);
+//			User user = userDao.getById(id);
+			User user = userMapper.selectById(id);
 			UserUtil.setUserSession(user);
 		}
+	}
+
+	@Override
+	public PageTableResponse queryList(PageTableRequest request) {
+		Page<User> page = new Page<>(request.getCurrentPage(),request.getLimit());
+
+		Page<User> userPage = userMapper.selectPage(page, makeQueryConditionWrapper(request));
+		return new PageTableResponse((int)userPage.getTotal(), (int)userPage.getTotal(), userPage.getRecords());
+	}
+
+
+	private QueryWrapper<User> makeQueryConditionWrapper(PageTableRequest request) {
+		OrderByObject orderByObject = request.getOrderByObject();
+//		LambdaQueryWrapper<User> lambdaQueryWrapper = Wrappers.lambdaQuery();
+//		lambdaQueryWrapper.orderBy(orderByObject.isOrderBy(), orderByObject.isAsc(), User::getUsername);
+		QueryWrapper<User> query = Wrappers.query();
+		Map<String, Object> params = request.getParams();
+		query.like(params.containsKey(User.Column.USERNAME.key()), User.Column.USERNAME.key(), params.get(User.Column.USERNAME.key()));
+		query.like(params.containsKey(User.Column.NICKNAME.key()), User.Column.NICKNAME.key(), params.get(User.Column.NICKNAME.key()));
+		query.eq(params.containsKey(User.Column.STATUS.key()), User.Column.STATUS.key(), params.get(User.Column.STATUS.key()));
+		query.orderBy(orderByObject.isOrderBy(), orderByObject.isAsc(), orderByObject.getColumn());
+		return query;
+
 	}
 }
