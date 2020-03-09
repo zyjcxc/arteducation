@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 @TableName("sys_permission")
@@ -24,6 +25,11 @@ public class Permission extends BaseEntity<Long> {
 	private Integer type;
 	private String permission;
 	private Integer sort;
+
+	@TableField(exist = false)
+	private Date createTime = new Date();
+	@TableField(exist = false)
+	private Date updateTime = new Date();
 
 	@TableField(exist = false)
 	private List<Permission> child;

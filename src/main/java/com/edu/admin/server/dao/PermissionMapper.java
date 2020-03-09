@@ -18,4 +18,10 @@ public interface PermissionMapper extends BaseMapper<Permission> {
 //            "where ru.userid = 5 " +
 //            "order by p.sort")
     List<Permission> listByUserId(@Param(Constants.WRAPPER)Wrapper<Permission> wrapper);
+
+    @Select("select p.* from sys_permission p " +
+            "inner join sys_role_permission rp on p.id = rp.permissionId " +
+            " ${ew.customSqlSegment} ")
+//            "where rp.roleId = #{roleId} order by p.sort")
+    List<Permission> listByRoleId(@Param(Constants.WRAPPER)Wrapper<Permission> wrapper);
 }

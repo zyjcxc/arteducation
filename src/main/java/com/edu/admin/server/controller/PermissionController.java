@@ -3,7 +3,6 @@ package com.edu.admin.server.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.edu.admin.server.annotation.LogAnnotation;
-import com.edu.admin.server.dao.PermissionDao;
 import com.edu.admin.server.model.Permission;
 import com.edu.admin.server.model.User;
 import com.edu.admin.server.service.PermissionService;
@@ -35,12 +34,7 @@ import java.util.stream.Collectors;
 public class PermissionController {
 
 	@Autowired
-	private PermissionDao permissionDao;
-
-	@Autowired
 	private PermissionService permissionService;
-//	@Autowired
-//	private PermissionMapper permissionMapper;
 
 	@ApiOperation(value = "当前登录用户拥有的权限")
 	@GetMapping("/current")
@@ -118,9 +112,10 @@ public class PermissionController {
 	@ApiOperation(value = "一级菜单")
 	@RequiresPermissions("sys:menu:query")
 	public List<Permission> parentMenu() {
-		List<Permission> parents = permissionDao.listParents();
-
-		return parents;
+//		List<Permission> parents = permissionDao.listParents();
+		// select * from sys_permission t where t.type = 1 order by t.sort
+		// mplus 改版
+		return permissionService.lambdaQuery().eq(Permission::getType, 1).orderByAsc(Permission::getSort).list();
 	}
 
 	/**
@@ -150,7 +145,10 @@ public class PermissionController {
 	@ApiOperation(value = "根据角色id删除权限")
 	@RequiresPermissions(value = { "sys:menu:query", "sys:role:query" }, logical = Logical.OR)
 	public List<Permission> listByRoleId(Long roleId) {
-		return permissionDao.listByRoleId(roleId);
+		// permissionDao.listByRoleId(roleId)
+		// where rp.roleId = #{roleId} order by p.sort
+		// mplus 改版
+		return permissionService.listByRoleId(roleId, true, true);
 	}
 
 	@LogAnnotation
@@ -158,14 +156,21 @@ public class PermissionController {
 	@ApiOperation(value = "保存菜单")
 	@RequiresPermissions("sys:menu:add")
 	public void save(@RequestBody Permission permission) {
-		permissionDao.save(permission);
+//		permissionDao.save(permission);
+		// mplus 改版
+		permissionService.save(permission);
 	}
 
 	@GetMapping("/{id}")
 	@ApiOperation(value = "根据菜单id获取菜单")
 	@RequiresPermissions("sys:menu:query")
 	public Permission get(@PathVariable Long id) {
-		return permissionDao.getById(id);
+		// permissionDao.getById(id)
+		// mplus 改版
+		return permissionService.lambdaQuery()
+				.select(Permission.class, col -> !col.getColumn().equals("createTime") && !col.getColumn().equals("updateTime"))
+				.eq(Permission::getId, id)
+				.one();
 	}
 
 	@LogAnnotation
@@ -173,7 +178,9 @@ public class PermissionController {
 	@ApiOperation(value = "修改菜单")
 	@RequiresPermissions("sys:menu:add")
 	public void update(@RequestBody Permission permission) {
-		permissionDao.update(permission);
+		// permissionDao.update(permission);
+		// mplus 改版
+		permissionService.updateById(permission);
 	}
 
 	/**
@@ -198,6 +205,6 @@ public class PermissionController {
 	@ApiOperation(value = "删除菜单")
 	@RequiresPermissions(value = { "sys:menu:del" })
 	public void delete(@PathVariable Long id) {
-		permissionService.delete(id);
+		permissionService.removeById(id);
 	}
 }

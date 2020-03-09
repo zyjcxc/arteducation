@@ -7,16 +7,16 @@ import java.util.List;
 
 public interface PermissionService extends IService<Permission> {
 
-	boolean save(Permission permission);
-
-	void update(Permission permission);
-
-	void delete(Long id);
+//	boolean save(Permission permission);
+//
+//	void update(Permission permission);
+//
+//	void delete(Long id);
 
 	/**
 	 * mplus 改版
 	 * 根据用户id查询权限
-	 * @param eq
+	 * @param
 	 * @return
 	 * @author mengqa
 	 */
@@ -27,4 +27,6 @@ public interface PermissionService extends IService<Permission> {
 	List<Permission> listByUserId(Long userId, boolean orderByCondition, boolean isAsc);
 
 	List<Permission> listAll();
+
+	List<Permission> listByRoleId(Long roleId, boolean orderByCondition, boolean isAsc);
 }
