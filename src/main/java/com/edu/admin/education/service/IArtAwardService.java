@@ -1,17 +1,20 @@
 package com.edu.admin.education.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.edu.admin.education.command.ArtAwardSaveCommand;
 import com.edu.admin.education.command.ArtAwardUpdateCommand;
 import com.edu.admin.education.dto.ArtAwardDto;
+import com.edu.admin.education.model.ArtAward;
+import com.edu.admin.server.page.table.PageTableRequest;
+import com.edu.admin.server.page.table.PageTableResponse;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author mengqa
  * @date 2019-11-6
  **/
-public interface IArtAwardService {
+public interface IArtAwardService extends IService<ArtAward> {
 
     ArtAwardDto getById(Long id);
 
@@ -19,13 +22,11 @@ public interface IArtAwardService {
 
     ArtAwardDto update(ArtAwardUpdateCommand command);
 
-    List<ArtAwardDto> list(Map<String, Object> params, Integer offset, Integer limit);
-
-    int count(Map<String, Object> params);
-
     int delete(Long id);
 
     List<ArtAwardDto> findAll();
+
+    PageTableResponse queryList(PageTableRequest request);
 
 }
 

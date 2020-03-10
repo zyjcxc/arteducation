@@ -50,6 +50,7 @@ public class ArtAwardConverter {
         artAwardDto.setUpdatetime(artAward.getUpdatetime());
         artAwardDto.setId(artAward.getId());
         artAwardDto.setPicurl(artAward.getPicurl());
+        artAwardDto.setCreateUserId(artAward.getCreateUserId());
 
         return artAwardDto;
     }

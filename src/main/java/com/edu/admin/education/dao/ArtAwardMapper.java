@@ -5,6 +5,6 @@ import com.edu.admin.education.model.ArtAward;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface ArtAwardDao extends BaseMapper<ArtAward> {
+public interface ArtAwardMapper extends BaseMapper<ArtAward> {
 
 }
