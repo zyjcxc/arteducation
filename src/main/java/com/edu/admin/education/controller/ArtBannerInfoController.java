@@ -4,9 +4,6 @@ import com.edu.admin.education.command.ArtBannerInfoSaveCommand;
 import com.edu.admin.education.command.ArtBannerInfoUpdateCommand;
 import com.edu.admin.education.dto.ArtBannerInfoDto;
 import com.edu.admin.education.service.IArtBannerInfoService;
-import com.edu.admin.server.page.table.PageTableHandler;
-import com.edu.admin.server.page.table.PageTableHandler.CountHandler;
-import com.edu.admin.server.page.table.PageTableHandler.ListHandler;
 import com.edu.admin.server.page.table.PageTableRequest;
 import com.edu.admin.server.page.table.PageTableResponse;
 import io.swagger.annotations.*;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 /**
  * banner info 模块控制器s
@@ -74,20 +70,7 @@ public class ArtBannerInfoController extends BaseController {
             @ApiResponse(code = 200, message = "请求成功", response = ArtBannerInfoDto.class),
             @ApiResponse(code = 500, message = "参数异常")})
     public PageTableResponse list(PageTableRequest request) {
-        return new PageTableHandler(new CountHandler() {
-
-            @Override
-            public int count(PageTableRequest request) {
-                return artBannerInfoServiceImpl.count(request.getParams());
-            }
-        }, new ListHandler() {
-
-            @Override
-            public List<ArtBannerInfoDto> list(PageTableRequest request) {
-                Map<String, Integer> page = getPageOffsetAndLimit(request);
-                return artBannerInfoServiceImpl.list(request.getParams(), page.get("offset"), page.get("limit"));
-            }
-        }).handle(request);
+        return artBannerInfoServiceImpl.queryList(request);
     }
 
     @GetMapping("/findAll")

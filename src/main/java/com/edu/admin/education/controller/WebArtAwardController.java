@@ -4,7 +4,10 @@ import com.edu.admin.education.dto.ArtAwardDto;
 import com.edu.admin.education.service.IArtAwardService;
 import com.edu.admin.server.page.table.PageTableRequest;
 import com.edu.admin.server.page.table.PageTableResponse;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,28 +45,10 @@ public class WebArtAwardController extends BaseController {
 
     @GetMapping
     @ApiOperation(value = "列表")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "textbookTypeId", value = "教材分类id", paramType = "query", dataType="int"),
-            @ApiImplicitParam(name = "title", value = "教材名", paramType = "query", dataType="string")
-    })
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "请求成功", response = ArtAwardDto.class),
             @ApiResponse(code = 500, message = "参数异常")})
     public PageTableResponse list(PageTableRequest request) {
-//        return new PageTableHandler(new CountHandler() {
-//
-//            @Override
-//            public int count(PageTableRequest request) {
-//                return artAwardServiceImpl.count(request.getParams());
-//            }
-//        }, new ListHandler() {
-//
-//            @Override
-//            public List<ArtAwardDto> list(PageTableRequest request) {
-//                Map<String, Integer> page = getPageOffsetAndLimit(request);
-//                return artAwardServiceImpl.list(request.getParams(), page.get("offset"), page.get("limit"));
-//            }
-//        }).handle(request);
         return artAwardServiceImpl.queryList(request);
     }
 

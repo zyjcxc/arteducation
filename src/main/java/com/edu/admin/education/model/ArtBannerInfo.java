@@ -1,5 +1,8 @@
 package com.edu.admin.education.model;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,20 +35,38 @@ public class ArtBannerInfo extends BaseModel {
 	*/
     private Integer sort;
 
-    /**
-	* 状态 0.草稿 1 正常 2删除
-	*/
-    private String state;
-
     private String title;
 
     private Integer recommend;
 
-    private Date createtime;
+    /**
+     * 状态 0.草稿 1 正常 2删除
+     */
+    @TableLogic(delval = "2", value = "1")
+    private String state;
 
+    @TableField(fill = FieldFill.INSERT)
+    private Date createtime;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updatetime;
 
     private String name;
 
+    public enum Column {
+
+        SITE("site"),
+        SORT("sort"),
+        RECOMMEND("recommend"),
+        ID("id"),
+
+        ;
+        private String key;
+        Column(String name) {
+            this.key = name;
+        }
+        public String key() {
+            return key;
+        }
+    }
 
 }

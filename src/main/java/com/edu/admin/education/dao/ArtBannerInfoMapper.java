@@ -5,6 +5,6 @@ import com.edu.admin.education.model.ArtBannerInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface ArtBannerInfoDao extends BaseMapper<ArtBannerInfo> {
+public interface ArtBannerInfoMapper extends BaseMapper<ArtBannerInfo> {
 
 }
