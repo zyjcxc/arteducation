@@ -1,157 +1,100 @@
 package com.edu.admin.education.service.impl;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.edu.admin.education.command.ArtAuthbookSaveCommand;
 import com.edu.admin.education.command.ArtAuthbookUpdateCommand;
+import com.edu.admin.education.convert.ArtAuthbookConverter;
+import com.edu.admin.education.dao.ArtAuthbookMapper;
 import com.edu.admin.education.dto.ArtAuthbookDto;
+import com.edu.admin.education.enums.PublicState;
+import com.edu.admin.education.enums.ResultEnum;
+import com.edu.admin.education.exception.HumanResourceException;
+import com.edu.admin.education.model.ArtAuthbook;
 import com.edu.admin.education.service.IArtAuthbookService;
+import com.edu.admin.server.page.table.OrderByObject;
+import com.edu.admin.server.page.table.PageTableRequest;
+import com.edu.admin.server.page.table.PageTableResponse;
+import com.edu.admin.server.utils.UserUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 
-//import com.edu.admin.education.command.ArtAuthbookSaveCommand;
-//import com.edu.admin.education.command.ArtAuthbookUpdateCommand;
-//import com.edu.admin.education.convert.ArtAuthbookConverter;
-//import com.edu.admin.education.dao.ArtAuthbookDao;
-//import com.edu.admin.education.dto.ArtAuthbookDto;
-//import com.edu.admin.education.enums.ResultEnum;
-//import com.edu.admin.education.exception.HumanResourceException;
-//import com.edu.admin.education.model.ArtAuthbook;
-//import com.edu.admin.education.service.IArtAuthbookService;
-//import com.edu.admin.server.utils.BeanUtil;
-//import com.edu.admin.server.utils.UserUtil;
-//import com.github.pagehelper.PageHelper;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//import org.springframework.transaction.annotation.Transactional;
-//import tk.mybatis.mapper.entity.Example;
-//
-//import java.util.List;
-//import java.util.Map;
-//
 @Service
 @Transactional
-public class ArtAuthbookServiceImpl implements IArtAuthbookService {
+public class ArtAuthbookServiceImpl extends ServiceImpl<ArtAuthbookMapper, ArtAuthbook> implements IArtAuthbookService {
+
+    @Autowired
+    private ArtAuthbookMapper artAuthbookMapper;
+
     @Override
     public ArtAuthbookDto getById(Long id) {
-        return null;
+        return ArtAuthbookConverter.convertToArtAuthbookDto(artAuthbookMapper.selectById(id));
     }
 
     @Override
     public ArtAuthbookDto save(ArtAuthbookSaveCommand command) {
-        return null;
+        ArtAuthbook artAuthbook = ArtAuthbookConverter.convertToArtAuthbook(command);
+        artAuthbook.setState(PublicState.NORMAL.getDataBase());
+        artAuthbook.setCreateUserId(UserUtil.getCurrentUser().getId());
+        artAuthbookMapper.insert(artAuthbook);
+//        artAuthbookDao.insertSelective(artAuthbook);
+        return ArtAuthbookConverter.convertToArtAuthbookDto(artAuthbook);
     }
 
     @Override
     public ArtAuthbookDto update(ArtAuthbookUpdateCommand command) {
-        return null;
+//        ArtAuthbook oldData = artAuthbookDao.selectByPrimaryKey(command.getId());
+        ArtAuthbook oldData = artAuthbookMapper.selectById(command.getId());
+        if (oldData == null) {
+            throw new HumanResourceException(ResultEnum.NO_FIND_DATA);
+        }
+        oldData = ArtAuthbookConverter.convertToArtAuthbook(command);
+        oldData.setId(command.getId());
+        artAuthbookMapper.updateById(oldData);
+//        artAuthbookDao.updateByPrimaryKeySelective(oldData);
+        return ArtAuthbookConverter.convertToArtAuthbookDto(oldData);
     }
 
     @Override
-    public List<ArtAuthbookDto> list(Map<String, Object> params, Integer offset, Integer limit) {
-        return null;
-    }
-
-    @Override
-    public int count(Map<String, Object> params) {
-        return 0;
-    }
-
-    @Override
-    public int delete(Long id) {
-        return 0;
+    public void delete(Long id) {
+        artAuthbookMapper.deleteById(id);
     }
 
     @Override
     public List<ArtAuthbookDto> findAll() {
-        return null;
+        return ArtAuthbookConverter.convertToListArtAuthbookDto(artAuthbookMapper.selectList(null));
     }
-//
-//    @Autowired
-//    private ArtAuthbookDao artAuthbookDao;
-//
-//    @Override
-//    public ArtAuthbookDto getById(Long id) {
-//        return ArtAuthbookConverter.convertToArtAuthbookDto(artAuthbookDao.selectByPrimaryKey(id));
-//    }
-//
-//    @Override
-//    public ArtAuthbookDto save(ArtAuthbookSaveCommand command) {
-//        ArtAuthbook artAuthbook = ArtAuthbookConverter.convertToArtAuthbook(command);
-//        artAuthbook.setState("1");
-//        artAuthbook.setCreateUserId(UserUtil.getCurrentUser().getId());
-//        artAuthbookDao.insertSelective(artAuthbook);
-//        return ArtAuthbookConverter.convertToArtAuthbookDto(artAuthbook);
-//    }
-//
-//    @Override
-//    public ArtAuthbookDto update(ArtAuthbookUpdateCommand command) {
-//        ArtAuthbook oldData = artAuthbookDao.selectByPrimaryKey(command.getId());
-//        if (oldData == null) {
-//            throw new HumanResourceException(ResultEnum.NO_FIND_DATA);
-//        }
-//        oldData = ArtAuthbookConverter.convertToArtAuthbook(command);
-//        oldData.setId(command.getId());
-//        artAuthbookDao.updateByPrimaryKeySelective(oldData);
-//        return ArtAuthbookConverter.convertToArtAuthbookDto(oldData);
-//    }
-//
-//    @Override
-//    public List<ArtAuthbookDto> list(Map<String, Object> params, Integer offset, Integer limit) {
-//        PageHelper.offsetPage(offset, limit);
-//
-//        Example example = getQueryExample(params);
-//
-//        List<ArtAuthbook> list = artAuthbookDao.selectByExample(example);
-//
-//        return ArtAuthbookConverter.convertToListArtAuthbookDto(list);
-//    }
-//
-//    @Override
-//    public int count(Map<String, Object> params) {
-//        // 直等查询
-//        ArtAuthbook queryObject = BeanUtil.getQueryObject(params, ArtAuthbook.class);
-//        queryObject.setOrderBy(null);
-//        return artAuthbookDao.selectCount(queryObject);
-//    }
-//
-//    @Override
-//    public int delete(Long id) {
-//        return artAuthbookDao.deleteByPrimaryKey(id);
-//    }
-//
-//    @Override
-//    public List<ArtAuthbookDto> findAll() {
-//        List<ArtAuthbook> ArtAuthbook = artAuthbookDao.selectAll();
-//        return ArtAuthbookConverter.convertToListArtAuthbookDto(ArtAuthbook);
-//    }
-//
-//    /**
-//     * 单表QBC查询
-//     * @param params 查询参数
-//     */
-//    private Example getQueryExample(Map<String, Object> params) {
-//        // criteria.andEqualTo("title", params.get("title"));
-//        // criteria.andEqualTo("status", params.get("status"));
-//        // 直等查询
-//        ArtAuthbook queryObject = BeanUtil.getQueryObject(params, ArtAuthbook.class);
-//        if (params.get("orderBy") != null) {
-//            queryObject.setOrderBy((String)params.get("orderBy"));
-//        }
-//        Example example = new Example(ArtAuthbook.class);
-//        Example.Criteria criteria = example.createCriteria();
-//        if (params.get("orderBy") != null) {
-//            String orderBy = (String) params.get("orderBy");
-//            example.setOrderByClause(orderBy.replace("order by", ""));
-//        }
-//        if (params.containsKey("id")) {
-//            criteria.andEqualTo("id", params.get("id"));
-//        }
-//        if (params.containsKey("title")) {
-//            criteria.andEqualTo("title", params.get("title"));
-//        }
-//        criteria.andEqualTo("state", 1);
-//        return example;
-//    }
-//
+
+    @Override
+    public PageTableResponse queryList(PageTableRequest request) {
+        Page<ArtAuthbook> page = new Page<>(request.getCurrentPage(),request.getLimit());
+        Page<ArtAuthbook> result = artAuthbookMapper.selectPage(page, makeQueryConditionWrapper(request));
+        List<ArtAuthbookDto> artAuthbookDtos = ArtAuthbookConverter.convertToListArtAuthbookDto(result.getRecords());
+        return new PageTableResponse((int)result.getTotal(), (int)result.getTotal(), artAuthbookDtos);
+    }
+
+    private QueryWrapper<ArtAuthbook> makeQueryConditionWrapper(PageTableRequest request) {
+        OrderByObject orderByObject = request.getOrderByObject();
+        QueryWrapper<ArtAuthbook> query = Wrappers.query();
+        Map<String, Object> params = request.getParams();
+        query.like(params.containsKey(ArtAuthbook.Column.TITLE.key()),
+                ArtAuthbook.Column.TITLE.key(),
+                params.get(ArtAuthbook.Column.TITLE.key()));
+        query.eq(params.containsKey(ArtAuthbook.Column.ID.key()),
+                ArtAuthbook.Column.ID.key(),
+                params.get(ArtAuthbook.Column.ID.key()));
+        if (orderByObject != null) {
+            query.orderBy(orderByObject.isOrderBy(), orderByObject.isAsc(), orderByObject.getColumn(true));
+        } else {
+            query.orderBy(true, true, ArtAuthbook.Column.ID.key());
+        }
+        return query;
+    }
+
 }

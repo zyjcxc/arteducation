@@ -50,6 +50,7 @@ public class ArtAuthbookConverter {
         artAuthbookDto.setUpdatetime(artAuthbook.getUpdatetime());
         artAuthbookDto.setId(artAuthbook.getId());
         artAuthbookDto.setPicurl(artAuthbook.getPicurl());
+        artAuthbookDto.setCreateUserId(artAuthbook.getCreateUserId());
 
         return artAuthbookDto;
     }

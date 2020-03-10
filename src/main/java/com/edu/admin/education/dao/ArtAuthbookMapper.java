@@ -5,6 +5,6 @@ import com.edu.admin.education.model.ArtAuthbook;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface ArtAuthbookDao extends BaseMapper<ArtAuthbook> {
+public interface ArtAuthbookMapper extends BaseMapper<ArtAuthbook> {
 
 }

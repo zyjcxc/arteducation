@@ -1,5 +1,7 @@
 package com.edu.admin.server.page.table;
 
+import com.edu.admin.server.utils.StrUtil;
+
 public class OrderByObject {
 
     private boolean isAsc = false;
@@ -25,7 +27,15 @@ public class OrderByObject {
     }
 
     public String getColumn() {
-        return column;
+        return getColumn(false);
+    }
+
+    public String getColumn(boolean transUp) {
+        if (transUp) {
+           return StrUtil.humpToUnderline(column);
+        } else {
+            return column;
+        }
     }
 
     public void setColumn(String column) {

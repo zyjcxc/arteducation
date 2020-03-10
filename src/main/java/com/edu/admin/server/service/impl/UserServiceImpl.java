@@ -138,7 +138,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 	@Override
 	public PageTableResponse queryList(PageTableRequest request) {
 		Page<User> page = new Page<>(request.getCurrentPage(),request.getLimit());
-
 		Page<User> userPage = userMapper.selectPage(page, makeQueryConditionWrapper(request));
 		return new PageTableResponse((int)userPage.getTotal(), (int)userPage.getTotal(), userPage.getRecords());
 	}
