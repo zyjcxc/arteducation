@@ -15,4 +15,5 @@ public interface RoleMapper extends BaseMapper<Role> {
     @Select("select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId ${ew.customSqlSegment}")
     // where ru.userId = #{userId}
     List<Role> listByUserId(@Param(Constants.WRAPPER)Wrapper<Permission> wrapper);
+
 }

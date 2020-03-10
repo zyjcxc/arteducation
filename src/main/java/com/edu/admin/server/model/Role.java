@@ -19,4 +19,18 @@ public class Role extends BaseEntity<Long> {
 
 	private String description;
 
+	public enum Column {
+
+		NAME("name"),
+
+		;
+		private String key;
+		Column(String name) {
+			this.key = name;
+		}
+		public String key() {
+			return key;
+		}
+	}
+
 }
