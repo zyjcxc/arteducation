@@ -4,9 +4,6 @@ import com.edu.admin.education.command.ArtFileListSaveCommand;
 import com.edu.admin.education.command.ArtFileListUpdateCommand;
 import com.edu.admin.education.dto.ArtFileListDto;
 import com.edu.admin.education.service.IArtFileListService;
-import com.edu.admin.server.page.table.PageTableHandler;
-import com.edu.admin.server.page.table.PageTableHandler.CountHandler;
-import com.edu.admin.server.page.table.PageTableHandler.ListHandler;
 import com.edu.admin.server.page.table.PageTableRequest;
 import com.edu.admin.server.page.table.PageTableResponse;
 import io.swagger.annotations.Api;
@@ -21,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 /**
  * file list 模块控制器s
@@ -76,20 +72,21 @@ public class ArtFileListController extends BaseController {
             @ApiResponse(code = 200, message = "请求成功", response = ArtFileListDto.class),
             @ApiResponse(code = 500, message = "参数异常")})
     public PageTableResponse list(PageTableRequest request) {
-        return new PageTableHandler(new CountHandler() {
-
-            @Override
-            public int count(PageTableRequest request) {
-                return artFileListServiceImpl.count(request.getParams());
-            }
-        }, new ListHandler() {
-
-            @Override
-            public List<ArtFileListDto> list(PageTableRequest request) {
-                Map<String, Integer> page = getPageOffsetAndLimit(request);
-                return artFileListServiceImpl.list(request.getParams(), page.get("offset"), page.get("limit"));
-            }
-        }).handle(request);
+//        return new PageTableHandler(new CountHandler() {
+//
+//            @Override
+//            public int count(PageTableRequest request) {
+//                return artFileListServiceImpl.count(request.getParams());
+//            }
+//        }, new ListHandler() {
+//
+//            @Override
+//            public List<ArtFileListDto> list(PageTableRequest request) {
+//                Map<String, Integer> page = getPageOffsetAndLimit(request);
+//                return artFileListServiceImpl.list(request.getParams(), page.get("offset"), page.get("limit"));
+//            }
+//        }).handle(request);
+        return artFileListServiceImpl.queryList(request);
     }
 
     @GetMapping("/findAll")

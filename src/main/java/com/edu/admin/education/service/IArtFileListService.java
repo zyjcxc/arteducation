@@ -1,17 +1,20 @@
 package com.edu.admin.education.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.edu.admin.education.command.ArtFileListSaveCommand;
 import com.edu.admin.education.command.ArtFileListUpdateCommand;
 import com.edu.admin.education.dto.ArtFileListDto;
+import com.edu.admin.education.model.ArtFileList;
+import com.edu.admin.server.page.table.PageTableRequest;
+import com.edu.admin.server.page.table.PageTableResponse;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author mengqa
  * @date 2019-11-6
  **/
-public interface IArtFileListService {
+public interface IArtFileListService extends IService<ArtFileList> {
 
     ArtFileListDto getById(Long id);
 
@@ -19,13 +22,15 @@ public interface IArtFileListService {
 
     ArtFileListDto update(ArtFileListUpdateCommand command);
 
-    List<ArtFileListDto> list(Map<String, Object> params, Integer offset, Integer limit);
+//    List<ArtFileListDto> list(Map<String, Object> params, Integer offset, Integer limit);
 
-    int count(Map<String, Object> params);
+//    int count(Map<String, Object> params);
 
     int delete(Long id);
 
     List<ArtFileListDto> findAll();
+
+    PageTableResponse queryList(PageTableRequest request);
 
 }
 

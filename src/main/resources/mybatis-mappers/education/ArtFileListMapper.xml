@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.edu.admin.education.dao.ArtFileListDao">
+<mapper namespace="com.edu.admin.education.dao.ArtFileListMapper">
   <resultMap id="BaseResultMap" type="com.edu.admin.education.model.ArtFileList">
     <!--
       WARNING - @mbg.generated
@@ -13,41 +13,5 @@
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
   </resultMap>
-
-  <resultMap id="selectByCustomSqlMap" extends="BaseResultMap" type="com.edu.admin.education.model.ArtFileList">
-
-  </resultMap>
-
-  <select id="selectByCustomSql" resultMap="selectByCustomSqlMap" parameterType="Map">
-    SELECT
-    id, title, url, createtime, updatetime
-    FROM
-    art_file_list
-    <include refid="whereSql"/>
-    ${orderBy}
-  </select>
-
-  <select id="countByCustomSql" resultType="java.lang.Integer">
-    SELECT count(*) FROM
-    (
-    SELECT
-    id
-    FROM
-    art_file_list
-    <include refid="whereSql"/>
-    ) t
-  </select>
-
-  <sql id="whereSql">
-    <where>
-      1 = 1
-      <if test="title != null and title != ''">
-        AND title = #{title}
-      </if>
-      <if test="id != null and id != ''">
-        AND id = #{id}
-      </if>
-    </where>
-  </sql>
 
 </mapper>
