@@ -1,119 +1,69 @@
 package com.edu.admin.education.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.edu.admin.education.command.ArtGuestInfoSaveCommand;
+import com.edu.admin.education.convert.ArtGuestInfoConverter;
+import com.edu.admin.education.dao.ArtGuestInfoMapper;
 import com.edu.admin.education.dto.ArtGuestInfoDto;
+import com.edu.admin.education.enums.ResultEnum;
+import com.edu.admin.education.exception.HumanResourceException;
+import com.edu.admin.education.model.ArtGuestInfo;
 import com.edu.admin.education.service.IArtGuestInfoService;
+import com.edu.admin.server.page.table.OrderByObject;
+import com.edu.admin.server.page.table.PageTableRequest;
+import com.edu.admin.server.page.table.PageTableResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 
-//
-//import com.edu.admin.education.command.ArtGuestInfoSaveCommand;
-//import com.edu.admin.education.convert.ArtGuestInfoConverter;
-//import com.edu.admin.education.dao.ArtGuestInfoDao;
-//import com.edu.admin.education.dto.ArtGuestInfoDto;
-//import com.edu.admin.education.enums.ResultEnum;
-//import com.edu.admin.education.exception.HumanResourceException;
-//import com.edu.admin.education.model.ArtBannerInfo;
-//import com.edu.admin.education.model.ArtGuestInfo;
-//import com.edu.admin.education.service.IArtGuestInfoService;
-//import com.edu.admin.server.utils.BeanUtil;
-//import com.github.pagehelper.PageHelper;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//import org.springframework.transaction.annotation.Transactional;
-//import tk.mybatis.mapper.entity.Example;
-//
-//import java.util.List;
-//import java.util.Map;
-//
-///**
-// * @author mengqa
-// * @create 2019-12-02 21:57
-// **/
-//
 @Service
 @Transactional
-public class ArtGuestInfoServiceImpl implements IArtGuestInfoService {
+public class ArtGuestInfoServiceImpl extends ServiceImpl<ArtGuestInfoMapper, ArtGuestInfo> implements IArtGuestInfoService {
+   
+    @Autowired
+    private ArtGuestInfoMapper artGuestInfoMapper;
+    
     @Override
     public ArtGuestInfoDto save(ArtGuestInfoSaveCommand command) {
-        return null;
+        ArtGuestInfo artGuestInfo = ArtGuestInfoConverter.convertToArtGuestInfo(command);
+        ArtGuestInfo oldData
+                = artGuestInfoMapper.selectOne(Wrappers.<ArtGuestInfo>lambdaQuery().eq(ArtGuestInfo::getPhone, command.getPhone()));
+        if (oldData != null) {
+            throw new HumanResourceException(ResultEnum.REPEAT_SUBMIT_RECORD);
+        }
+        artGuestInfoMapper.insert(artGuestInfo);
+        return ArtGuestInfoConverter.convertToArtGuestInfoDto(artGuestInfo);
     }
 
     @Override
-    public int count(Map<String, Object> params) {
-        return 0;
+    public PageTableResponse queryList(PageTableRequest request) {
+        Page<ArtGuestInfo> page = new Page<>(request.getCurrentPage(),request.getLimit());
+        Page<ArtGuestInfo> result = artGuestInfoMapper.selectPage(page, makeQueryConditionWrapper(request));
+        List<ArtGuestInfoDto> artGuestInfoDtos = ArtGuestInfoConverter.convertToListArtGuestInfoDto(result.getRecords());
+        return new PageTableResponse((int)result.getTotal(), (int)result.getTotal(), artGuestInfoDtos);
     }
 
-    @Override
-    public List<ArtGuestInfoDto> list(Map<String, Object> params, Integer offset, Integer limit) {
-        return null;
+    private QueryWrapper<ArtGuestInfo> makeQueryConditionWrapper(PageTableRequest request) {
+        OrderByObject orderByObject = request.getOrderByObject();
+        QueryWrapper<ArtGuestInfo> query = Wrappers.query();
+        Map<String, Object> params = request.getParams();
+        query.like(params.containsKey(ArtGuestInfo.Column.NAME.key()),
+                ArtGuestInfo.Column.NAME.key(),
+                params.get(ArtGuestInfo.Column.NAME.key()));
+        query.eq(params.containsKey(ArtGuestInfo.Column.ID.key()),
+                ArtGuestInfo.Column.ID.key(),
+                params.get(ArtGuestInfo.Column.ID.key()));
+        if (orderByObject != null) {
+            query.orderBy(orderByObject.isOrderBy(), orderByObject.isAsc(), orderByObject.getColumn(true));
+        } else {
+            query.orderBy(true, true, ArtGuestInfo.Column.ID.key());
+        }
+        return query;
     }
-//
-//    @Autowired
-//    private ArtGuestInfoDao artGuestInfoDao;
-//
-//    @Override
-//    public ArtGuestInfoDto save(ArtGuestInfoSaveCommand command) {
-//        ArtGuestInfo artGuestInfo = ArtGuestInfoConverter.convertToArtGuestInfo(command);
-//        Example example = new Example(ArtGuestInfo.class);
-//        Example.Criteria criteria = example.createCriteria();
-//        criteria.andEqualTo("phone", command.getPhone());
-//        int count = artGuestInfoDao.selectCountByExample(example);
-//        if (count > 0) {
-//            throw new HumanResourceException(ResultEnum.REPEAT_SUBMIT_RECORD);
-//        }
-//
-//        artGuestInfoDao.insertSelective(artGuestInfo);
-//        return ArtGuestInfoConverter.convertToArtGuestInfoDto(artGuestInfo);
-//    }
-//
-//    @Override
-//    public int count(Map<String, Object> params) {
-//        // 直等查询
-//        ArtGuestInfo queryObject = BeanUtil.getQueryObject(params, ArtGuestInfo.class);
-//        queryObject.setOrderBy(null);
-//        return artGuestInfoDao.selectCount(queryObject);
-//    }
-//
-//    @Override
-//    public List<ArtGuestInfoDto> list(Map<String, Object> params, Integer offset, Integer limit) {
-//        PageHelper.offsetPage(offset, limit);
-//
-//        Example example = getQueryExample(params);
-//
-//        List<ArtGuestInfo> list = artGuestInfoDao.selectByExample(example);
-//
-//        return ArtGuestInfoConverter.convertToListArtGuestInfoDto(list);
-//    }
-//
-//    /**
-//     * 单表QBC查询
-//     * @param params 查询参数
-//     */
-//    private Example getQueryExample(Map<String, Object> params) {
-//        // criteria.andEqualTo("title", params.get("title"));
-//        // criteria.andEqualTo("status", params.get("status"));
-//        // 直等查询
-//        ArtBannerInfo queryObject = BeanUtil.getQueryObject(params, ArtBannerInfo.class);
-//        if (params.get("orderBy") != null) {
-//            queryObject.setOrderBy((String)params.get("orderBy"));
-//        }
-//        Example example = new Example(ArtBannerInfo.class);
-//        Example.Criteria criteria = example.createCriteria();
-//        if (params.containsKey("id")) {
-//            criteria.andEqualTo("id", params.get("id"));
-//        }
-//        if (params.containsKey("name")) {
-//            criteria.andEqualTo("name", params.get("name"));
-//        }
-//        if (params.get("orderBy") != null) {
-//            String orderBy = (String) params.get("orderBy");
-//            example.setOrderByClause(orderBy.replace("order by", ""));
-//        }
-//
-//        return example;
-//    }
 }

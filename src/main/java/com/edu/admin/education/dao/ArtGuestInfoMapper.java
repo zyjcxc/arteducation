@@ -5,6 +5,6 @@ import com.edu.admin.education.model.ArtGuestInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface ArtGuestInfoDao extends BaseMapper<ArtGuestInfo> {
+public interface ArtGuestInfoMapper extends BaseMapper<ArtGuestInfo> {
 
 }

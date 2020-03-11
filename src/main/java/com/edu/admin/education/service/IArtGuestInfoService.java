@@ -1,16 +1,15 @@
 package com.edu.admin.education.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.edu.admin.education.command.ArtGuestInfoSaveCommand;
 import com.edu.admin.education.dto.ArtGuestInfoDto;
+import com.edu.admin.education.model.ArtGuestInfo;
+import com.edu.admin.server.page.table.PageTableRequest;
+import com.edu.admin.server.page.table.PageTableResponse;
 
-import java.util.List;
-import java.util.Map;
-
-public interface IArtGuestInfoService {
+public interface IArtGuestInfoService extends IService<ArtGuestInfo>  {
 
     ArtGuestInfoDto save(ArtGuestInfoSaveCommand command);
 
-    int count(Map<String, Object> params);
-
-    List<ArtGuestInfoDto> list(Map<String, Object> params, Integer offset, Integer limit);
+    PageTableResponse queryList(PageTableRequest request);
 }
