@@ -3,9 +3,10 @@ package com.edu.admin.education.service;
 import com.edu.admin.education.command.ArtHomeStudentSaveCommand;
 import com.edu.admin.education.command.ArtHomeStudentUpdateCommand;
 import com.edu.admin.education.dto.ArtHomeStudentDto;
+import com.edu.admin.server.page.table.PageTableRequest;
+import com.edu.admin.server.page.table.PageTableResponse;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author mengqa
@@ -19,15 +20,12 @@ public interface IArtHomeStudentService {
 
     ArtHomeStudentDto update(ArtHomeStudentUpdateCommand command);
 
-    List<ArtHomeStudentDto> list(Map<String, Object> params, Integer offset, Integer limit);
-
-    int count(Map<String, Object> params);
-
     int delete(Long id);
 
     List<ArtHomeStudentDto> findAll();
 
     List<ArtHomeStudentDto> findRecommendList();
 
+    PageTableResponse queryList(PageTableRequest request);
 }
 
