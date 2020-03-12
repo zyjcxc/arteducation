@@ -1,177 +1,105 @@
 package com.edu.admin.education.service.impl;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.edu.admin.education.command.ArtHomeSchoolSaveCommand;
 import com.edu.admin.education.command.ArtHomeSchoolUpdateCommand;
+import com.edu.admin.education.convert.ArtHomeSchoolConverter;
+import com.edu.admin.education.dao.ArtHomeSchoolMapper;
 import com.edu.admin.education.dto.ArtHomeSchoolDto;
+import com.edu.admin.education.enums.ResultEnum;
+import com.edu.admin.education.exception.HumanResourceException;
+import com.edu.admin.education.model.ArtHomeSchool;
 import com.edu.admin.education.service.IArtHomeSchoolService;
+import com.edu.admin.server.page.table.OrderByObject;
+import com.edu.admin.server.page.table.PageTableRequest;
+import com.edu.admin.server.page.table.PageTableResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 
-//
-//import com.edu.admin.education.command.ArtHomeSchoolSaveCommand;
-//import com.edu.admin.education.command.ArtHomeSchoolUpdateCommand;
-//import com.edu.admin.education.convert.ArtHomeSchoolConverter;
-//import com.edu.admin.education.dao.ArtHomeSchoolDao;
-//import com.edu.admin.education.dto.ArtHomeSchoolDto;
-//import com.edu.admin.education.enums.ResultEnum;
-//import com.edu.admin.education.exception.HumanResourceException;
-//import com.edu.admin.education.model.ArtHomeSchool;
-//import com.edu.admin.education.service.IArtHomeSchoolService;
-//import com.edu.admin.server.utils.BeanUtil;
-//import com.github.pagehelper.PageHelper;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//import org.springframework.transaction.annotation.Transactional;
-//import tk.mybatis.mapper.entity.Example;
-//
-//import java.util.HashMap;
-//import java.util.List;
-//import java.util.Map;
-//
 @Service
 @Transactional
-public class ArtHomeSchoolServiceImpl implements IArtHomeSchoolService {
+public class ArtHomeSchoolServiceImpl extends ServiceImpl<ArtHomeSchoolMapper, ArtHomeSchool> implements IArtHomeSchoolService {
+
+    @Autowired
+    private ArtHomeSchoolMapper artHomeSchoolMapper;
+
     @Override
     public ArtHomeSchoolDto getById(Long id) {
-        return null;
+        return ArtHomeSchoolConverter.convertToArtHomeSchoolDto(artHomeSchoolMapper.selectById(id));
     }
 
     @Override
     public ArtHomeSchoolDto save(ArtHomeSchoolSaveCommand command) {
-        return null;
+        ArtHomeSchool artHomeSchool = ArtHomeSchoolConverter.convertToArtHomeSchool(command);
+        artHomeSchoolMapper.insert(artHomeSchool);
+        return ArtHomeSchoolConverter.convertToArtHomeSchoolDto(artHomeSchool);
     }
 
     @Override
     public ArtHomeSchoolDto update(ArtHomeSchoolUpdateCommand command) {
-        return null;
-    }
-
-    @Override
-    public List<ArtHomeSchoolDto> list(Map<String, Object> params, Integer offset, Integer limit) {
-        return null;
-    }
-
-    @Override
-    public int count(Map<String, Object> params) {
-        return 0;
+        ArtHomeSchool oldData = artHomeSchoolMapper.selectById(command.getId());
+        if (oldData == null) {
+            throw new HumanResourceException(ResultEnum.NO_FIND_DATA);
+        }
+        oldData = ArtHomeSchoolConverter.convertToArtHomeSchool(command);
+        oldData.setId(command.getId());
+        artHomeSchoolMapper.updateById(oldData);
+        return ArtHomeSchoolConverter.convertToArtHomeSchoolDto(oldData);
     }
 
     @Override
     public int delete(Long id) {
-        return 0;
+        return artHomeSchoolMapper.deleteById(id);
     }
 
     @Override
     public List<ArtHomeSchoolDto> findAll() {
-        return null;
+        return ArtHomeSchoolConverter.convertToListArtHomeSchoolDto(artHomeSchoolMapper.selectList(null));
     }
 
     @Override
     public List<ArtHomeSchoolDto> findRecommendList() {
-        return null;
+        List<ArtHomeSchool> artHomeSchools =
+                artHomeSchoolMapper.selectList(Wrappers.<ArtHomeSchool>lambdaQuery()
+                        .eq(ArtHomeSchool::getRecommend, "1").orderByAsc(ArtHomeSchool::getSort));
+        return ArtHomeSchoolConverter.convertToListArtHomeSchoolDto(artHomeSchools);
     }
-//
-//    @Autowired
-//    private ArtHomeSchoolDao artHomeSchoolDao;
-//
-//    @Override
-//    public ArtHomeSchoolDto getById(Long id) {
-//        return ArtHomeSchoolConverter.convertToArtHomeSchoolDto(artHomeSchoolDao.selectByPrimaryKey(id));
-//    }
-//
-//    @Override
-//    public List<ArtHomeSchoolDto> findRecommendList() {
-//        Map<String, Object> params = new HashMap<>();
-//
-//        params.put("recommend", 1);
-//        params.put("orderBy", "order by sort asc");
-//
-////        Example example = getQueryExample(params);
-//
-//        List<ArtHomeSchool> list = artHomeSchoolDao.selectByCustomSql(params);
-//
-//        return ArtHomeSchoolConverter.convertToListArtHomeSchoolDto(list);
-//    }
-//
-//    @Override
-//    public ArtHomeSchoolDto save(ArtHomeSchoolSaveCommand command) {
-//        ArtHomeSchool artHomeSchool = ArtHomeSchoolConverter.convertToArtHomeSchool(command);
-//        artHomeSchoolDao.insertSelective(artHomeSchool);
-//        return ArtHomeSchoolConverter.convertToArtHomeSchoolDto(artHomeSchool);
-//    }
-//
-//    @Override
-//    public ArtHomeSchoolDto update(ArtHomeSchoolUpdateCommand command) {
-//        ArtHomeSchool oldData = artHomeSchoolDao.selectByPrimaryKey(command.getId());
-//        if (oldData == null) {
-//            throw new HumanResourceException(ResultEnum.NO_FIND_DATA);
-//        }
-//        oldData = ArtHomeSchoolConverter.convertToArtHomeSchool(command);
-//        oldData.setId(command.getId());
-//        artHomeSchoolDao.updateByPrimaryKeySelective(oldData);
-//        return ArtHomeSchoolConverter.convertToArtHomeSchoolDto(oldData);
-//    }
-//
-//    @Override
-//    public List<ArtHomeSchoolDto> list(Map<String, Object> params, Integer offset, Integer limit) {
-//        PageHelper.offsetPage(offset, limit);
-//
-////        Example example = getQueryExample(params);
-//
-//        List<ArtHomeSchool> list = artHomeSchoolDao.selectByCustomSql(params);
-//
-//        return ArtHomeSchoolConverter.convertToListArtHomeSchoolDto(list);
-//    }
-//
-//    @Override
-//    public int count(Map<String, Object> params) {
-//        // 直等查询
-////        ArtHomeSchool queryObject = BeanUtil.getQueryObject(params, ArtHomeSchool.class);
-////        queryObject.setOrderBy(null);
-//        return artHomeSchoolDao.countByCustomSql(params);
-//    }
-//
-//    @Override
-//    public int delete(Long id) {
-//        return artHomeSchoolDao.deleteByPrimaryKey(id);
-//    }
-//
-//    @Override
-//    public List<ArtHomeSchoolDto> findAll() {
-//        List<ArtHomeSchool> ArtHomeSchool = artHomeSchoolDao.selectAll();
-//        return ArtHomeSchoolConverter.convertToListArtHomeSchoolDto(ArtHomeSchool);
-//    }
-//
-//    /**
-//     * 单表QBC查询
-//     * @param params 查询参数
-//     */
-//    private Example getQueryExample(Map<String, Object> params) {
-//        // criteria.andEqualTo("title", params.get("title"));
-//        // criteria.andEqualTo("status", params.get("status"));
-//        // 直等查询
-//        ArtHomeSchool queryObject = BeanUtil.getQueryObject(params, ArtHomeSchool.class);
-//        if (params.get("orderBy") != null) {
-//            queryObject.setOrderBy((String)params.get("orderBy"));
-//        }
-//        Example example = new Example(ArtHomeSchool.class);
-//        Example.Criteria criteria = example.createCriteria();
-//        if (params.get("orderBy") != null) {
-//            String orderBy = (String) params.get("orderBy");
-//            example.setOrderByClause(orderBy.replace("order by", ""));
-//        }
-//
-//        if (params.containsKey("recommend")) {
-//            criteria.andEqualTo("recommend", params.get("recommend"));
-//        }
-//
-//        if (params.get("orderBy") != null) {
-//            String orderBy = (String) params.get("orderBy");
-//            example.setOrderByClause(orderBy.replace("order by", ""));
-//        }
-//
-//        return example;
-//    }
+
+    @Override
+    public PageTableResponse queryList(PageTableRequest request) {
+        Page<ArtHomeSchool> page = new Page<>(request.getCurrentPage(),request.getLimit());
+        Page<ArtHomeSchool> result = artHomeSchoolMapper.selectPage(page, makeQueryConditionWrapper(request));
+        List<ArtHomeSchoolDto> artHomeSchoolDtos = ArtHomeSchoolConverter.convertToListArtHomeSchoolDto(result.getRecords());
+        return new PageTableResponse((int)result.getTotal(), (int)result.getTotal(), artHomeSchoolDtos);
+    }
+
+    private QueryWrapper<ArtHomeSchool> makeQueryConditionWrapper(PageTableRequest request) {
+        OrderByObject orderByObject = request.getOrderByObject();
+        QueryWrapper<ArtHomeSchool> query = Wrappers.query();
+        Map<String, Object> params = request.getParams();
+        query.eq(params.containsKey(ArtHomeSchool.Column.RECOMMEND.key()),
+                ArtHomeSchool.Column.RECOMMEND.key(),
+                params.get(ArtHomeSchool.Column.RECOMMEND.key()));
+        query.like(params.containsKey(ArtHomeSchool.Column.NAME.key()),
+                ArtHomeSchool.Column.NAME.key(),
+                params.get(ArtHomeSchool.Column.NAME.key()));
+        query.eq(params.containsKey(ArtHomeSchool.Column.ID.key()),
+                ArtHomeSchool.Column.ID.key(),
+                params.get(ArtHomeSchool.Column.ID.key()));
+        if (orderByObject != null) {
+            query.orderBy(orderByObject.isOrderBy(), orderByObject.isAsc(), orderByObject.getColumn(true));
+        } else {
+            query.orderBy(true, true, ArtHomeSchool.Column.ID.key());
+        }
+        return query;
+    }
+
+
 }

@@ -1,17 +1,20 @@
 package com.edu.admin.education.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.edu.admin.education.command.ArtHomeSchoolSaveCommand;
 import com.edu.admin.education.command.ArtHomeSchoolUpdateCommand;
 import com.edu.admin.education.dto.ArtHomeSchoolDto;
+import com.edu.admin.education.model.ArtHomeSchool;
+import com.edu.admin.server.page.table.PageTableRequest;
+import com.edu.admin.server.page.table.PageTableResponse;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author mengqa
  * @date 2019-11-6
  **/
-public interface IArtHomeSchoolService {
+public interface IArtHomeSchoolService extends IService<ArtHomeSchool> {
 
     ArtHomeSchoolDto getById(Long id);
 
@@ -19,15 +22,13 @@ public interface IArtHomeSchoolService {
 
     ArtHomeSchoolDto update(ArtHomeSchoolUpdateCommand command);
 
-    List<ArtHomeSchoolDto> list(Map<String, Object> params, Integer offset, Integer limit);
-
-    int count(Map<String, Object> params);
-
     int delete(Long id);
 
     List<ArtHomeSchoolDto> findAll();
 
     List<ArtHomeSchoolDto> findRecommendList();
+
+    PageTableResponse queryList(PageTableRequest request);
 
 }
 

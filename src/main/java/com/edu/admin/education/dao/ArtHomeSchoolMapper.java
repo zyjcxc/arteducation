@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 @Mapper
-public interface ArtHomeSchoolDao extends BaseMapper<ArtHomeSchool> {
+public interface ArtHomeSchoolMapper extends BaseMapper<ArtHomeSchool> {
 
     List<ArtHomeSchool> selectByCustomSql(Map<String, Object> params);
 
