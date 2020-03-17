@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.edu.admin.education.dao.ArtNewsDao" >
+<mapper namespace="com.edu.admin.education.dao.ArtNewsMapper" >
   <resultMap id="BaseResultMap" type="com.edu.admin.education.model.ArtNews" >
     <!--
       WARNING - @mbg.generated
@@ -18,11 +18,7 @@
     <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
   </resultMap>
 
-  <resultMap id="selectByCustomSqlMap" extends="BaseResultMap" type="com.edu.admin.education.model.ArtNews">
-
-  </resultMap>
-
-  <select id="selectByCustomSql" resultMap="selectByCustomSqlMap" parameterType="Map">
+  <!--<select id="selectByCustomSql" resultMap="selectByCustomSqlMap" parameterType="Map">
     SELECT
     id, title, author, source, state, create_user_id , createtime, updatetime, type
     FROM
@@ -52,5 +48,5 @@
         AND id = #{id}
       </if>
     </where>
-  </sql>
+  </sql>-->
 </mapper>

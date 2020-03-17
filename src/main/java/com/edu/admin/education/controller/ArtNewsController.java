@@ -4,9 +4,6 @@ import com.edu.admin.education.command.ArtNewsSaveCommand;
 import com.edu.admin.education.command.ArtNewsUpdateCommand;
 import com.edu.admin.education.dto.ArtNewsDto;
 import com.edu.admin.education.service.IArtNewsService;
-import com.edu.admin.server.page.table.PageTableHandler;
-import com.edu.admin.server.page.table.PageTableHandler.CountHandler;
-import com.edu.admin.server.page.table.PageTableHandler.ListHandler;
 import com.edu.admin.server.page.table.PageTableRequest;
 import com.edu.admin.server.page.table.PageTableResponse;
 import io.swagger.annotations.*;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 新闻中心 模块控制器s
@@ -75,20 +71,7 @@ public class ArtNewsController extends BaseController {
             @ApiResponse(code = 200, message = "请求成功", response = ArtNewsDto.class),
             @ApiResponse(code = 500, message = "参数异常")})
     public PageTableResponse list(PageTableRequest request) {
-        return new PageTableHandler(new CountHandler() {
-
-            @Override
-            public int count(PageTableRequest request) {
-                return artNewsServiceImpl.count(request.getParams());
-            }
-        }, new ListHandler() {
-
-            @Override
-            public List<ArtNewsDto> list(PageTableRequest request) {
-                Map<String, Integer> page = getPageOffsetAndLimit(request);
-                return artNewsServiceImpl.list(request.getParams(), page.get("offset"), page.get("limit"));
-            }
-        }).handle(request);
+        return artNewsServiceImpl.queryList(request);
     }
 
     @GetMapping("/findAll")
