@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
  * @date 2018-04-05
  */
 @Mapper
-public interface LiveCourseClassificationDao extends BaseMapper<LiveCourseClassification> {
+public interface LiveCourseClassificationMapper extends BaseMapper<LiveCourseClassification> {
 
 
 }

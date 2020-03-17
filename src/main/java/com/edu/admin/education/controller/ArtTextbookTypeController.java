@@ -4,9 +4,6 @@ import com.edu.admin.education.command.ArtTextbookTypeSaveCommand;
 import com.edu.admin.education.command.ArtTextbookTypeUpdateCommand;
 import com.edu.admin.education.dto.ArtTextbookTypeDto;
 import com.edu.admin.education.service.IArtTextbookTypeService;
-import com.edu.admin.server.page.table.PageTableHandler;
-import com.edu.admin.server.page.table.PageTableHandler.CountHandler;
-import com.edu.admin.server.page.table.PageTableHandler.ListHandler;
 import com.edu.admin.server.page.table.PageTableRequest;
 import com.edu.admin.server.page.table.PageTableResponse;
 import io.swagger.annotations.Api;
@@ -21,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 /**
  * textbookType 模块控制器s
@@ -76,20 +72,21 @@ public class ArtTextbookTypeController extends BaseController {
             @ApiResponse(code = 200, message = "请求成功", response = ArtTextbookTypeDto.class),
             @ApiResponse(code = 500, message = "参数异常")})
     public PageTableResponse list(PageTableRequest request) {
-        return new PageTableHandler(new CountHandler() {
-
-            @Override
-            public int count(PageTableRequest request) {
-                return artTextbookTypeServiceImpl.count(request.getParams());
-            }
-        }, new ListHandler() {
-
-            @Override
-            public List<ArtTextbookTypeDto> list(PageTableRequest request) {
-                Map<String, Integer> page = getPageOffsetAndLimit(request);
-                return artTextbookTypeServiceImpl.list(request.getParams(), page.get("offset"), page.get("limit"));
-            }
-        }).handle(request);
+//        return new PageTableHandler(new CountHandler() {
+//
+//            @Override
+//            public int count(PageTableRequest request) {
+//                return artTextbookTypeServiceImpl.count(request.getParams());
+//            }
+//        }, new ListHandler() {
+//
+//            @Override
+//            public List<ArtTextbookTypeDto> list(PageTableRequest request) {
+//                Map<String, Integer> page = getPageOffsetAndLimit(request);
+//                return artTextbookTypeServiceImpl.list(request.getParams(), page.get("offset"), page.get("limit"));
+//            }
+//        }).handle(request);
+        return artTextbookTypeServiceImpl.queryList(request);
     }
 
     @GetMapping("/findAll")

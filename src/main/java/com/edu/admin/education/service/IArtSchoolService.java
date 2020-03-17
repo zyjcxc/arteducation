@@ -1,26 +1,24 @@
 package com.edu.admin.education.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.edu.admin.education.model.ArtSchool;
+import com.edu.admin.server.page.table.PageTableRequest;
+import com.edu.admin.server.page.table.PageTableResponse;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 模块业务接口
  * @author mengqa
  * @date 2018-04-05
  **/
-public interface IArtSchoolService {
+public interface IArtSchoolService extends IService<ArtSchool>  {
 
     ArtSchool getById(Long id);
 
-    int save(ArtSchool liveCourseClassification);
+    boolean save(ArtSchool artSchool);
 
-    int update(ArtSchool liveCourseClassification);
-
-    List<ArtSchool> list(Map<String, Object> params, Integer offset, Integer limit);
-
-    int count(Map<String, Object> params);
+    int update(ArtSchool artSchool);
 
     int delete(Long id);
 
@@ -28,5 +26,6 @@ public interface IArtSchoolService {
 
     ArtSchool getByName(String name);
 
+    PageTableResponse queryList(PageTableRequest request);
 }
 

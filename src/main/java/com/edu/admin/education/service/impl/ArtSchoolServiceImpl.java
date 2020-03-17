@@ -1,7 +1,16 @@
 package com.edu.admin.education.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.edu.admin.education.dao.ArtSchoolMapper;
 import com.edu.admin.education.model.ArtSchool;
 import com.edu.admin.education.service.IArtSchoolService;
+import com.edu.admin.server.page.table.OrderByObject;
+import com.edu.admin.server.page.table.PageTableRequest;
+import com.edu.admin.server.page.table.PageTableResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,134 +41,72 @@ import java.util.Map;
 // * @date 2018-04-05
 // **/
 @Service
-public class ArtSchoolServiceImpl implements IArtSchoolService {
+public class ArtSchoolServiceImpl extends ServiceImpl<ArtSchoolMapper, ArtSchool> implements IArtSchoolService {
+
+    @Autowired
+    private ArtSchoolMapper artSchoolMapper;
+
     @Override
     public ArtSchool getById(Long id) {
-        return null;
+        return artSchoolMapper.selectById(id);
     }
 
     @Override
-    public int save(ArtSchool liveCourseClassification) {
-        return 0;
+    public boolean save(ArtSchool artSchool) {
+        ArtSchool oldData = getByName(artSchool.getName());
+        if (oldData != null) {
+            return false;
+        }
+        artSchoolMapper.insert(artSchool);
+        return true;
     }
 
     @Override
-    public int update(ArtSchool liveCourseClassification) {
-        return 0;
-    }
-
-    @Override
-    public List<ArtSchool> list(Map<String, Object> params, Integer offset, Integer limit) {
-        return null;
-    }
-
-    @Override
-    public int count(Map<String, Object> params) {
+    public int update(ArtSchool artSchool) {
+        artSchoolMapper.updateById(artSchool);
         return 0;
     }
 
     @Override
     public int delete(Long id) {
-        return 0;
+        return artSchoolMapper.deleteById(id);
     }
 
     @Override
     public List<ArtSchool> findAll() {
-        return null;
+        return artSchoolMapper.selectList(null);
     }
 
     @Override
     public ArtSchool getByName(String name) {
-        return null;
+        return artSchoolMapper.selectOne(Wrappers.<ArtSchool>lambdaQuery().eq(ArtSchool::getName, name));
     }
-//
-//    @Autowired
-//    private ArtSchoolDao artSchoolDao;
-//
-//    @Override
-//    public ArtSchool getById(Long id) {
-//        return artSchoolDao.selectByPrimaryKey(id);
-//    }
-//
-//    @Override
-//    public int save(ArtSchool artSchool) {
-////        ArtSchool oldData = getByName(artSchool.getName());
-////        if (oldData != null) {
-////            return 0;
-////        }
-//        return artSchoolDao.insertSelective(artSchool);
-//    }
-//
-//    @Override
-//    public int update(ArtSchool artSchool) {
-//        return artSchoolDao.updateByPrimaryKeySelective(artSchool);
-//    }
-//
-//    @Override
-//    public List<ArtSchool> list(Map<String, Object> params, Integer offset, Integer limit) {
-//        PageHelper.offsetPage(offset, limit);
-//       /* // 直等查询
-//        LiveCourseClassification queryObject = BeanUtil.getQueryObject(params, LiveCourseClassification.class);
-//        if (params.get("orderBy") != null) {
-//            queryObject.setOrderBy((String)params.get("orderBy"));
-//        }
-//        List<LiveCourseClassification> list = liveCourseClassificationDao.selectByCustom(queryObject);*/
-//        // QBC查询
-//        Example example = getQueryExample(params);
-//        List<ArtSchool> list = artSchoolDao.selectByExample(example);
-//        return list;
-//    }
-//
-//    @Override
-//    public int count(Map<String, Object> params) {
-//        // 直等查询
-//        /*LiveCourseClassification queryObject = BeanUtil.getQueryObject(params, LiveCourseClassification.class);
-//        queryObject.setOrderBy(null);
-//        int count = liveCourseClassificationDao.selectCount(queryObject);*/
-//        // QBC查询
-//        Example example = getQueryExample(params);
-//        int count = artSchoolDao.selectCountByExample(example);
-//
-//        return count;
-//    }
-//
-//    @Override
-//    public int delete(Long id) {
-//        return artSchoolDao.deleteByPrimaryKey(id);
-//    }
-//
-//    @Override
-//    public List<ArtSchool> findAll() {
-//        Example example = getQueryExample(new HashMap<>(1));
-//        return artSchoolDao.selectByExample(example);
-//    }
-//
-//    @Override
-//    public ArtSchool getByName(String name) {
-//        Example example = new Example(ArtActivity.class);
-//        Example.Criteria criteria = example.createCriteria();
-//        criteria.andEqualTo("name", name);
-//        List<ArtSchool> list = artSchoolDao.selectByExample(example);
-//        if (CollectionUtils.isEmpty(list)) {
-//            return null;
-//        }
-//        return list.get(0);
-//    }
-//
-//    /**
-//     * 单表QBC查询
-//     * @param params 查询参数
-//     */
-//    private Example getQueryExample(Map<String, Object> params) {
-//        Example example = new Example(LiveCourseClassification.class);
-//        Example.Criteria criteria = example.createCriteria();
-//        criteria.andNotEqualTo("state", PublicState.DELETE.getCode());
-//        criteria.andEqualTo("id", params.get("id"));
-//        criteria.andEqualTo("name", params.get("name"));
-//        if (params.get("orderBy") != null) {
-//            String orderBy = (String) params.get("orderBy");
-//            example.setOrderByClause(orderBy.replace("order by", ""));
-//        }
-//        return example;
-//    }
+
+
+    @Override
+    public PageTableResponse queryList(PageTableRequest request) {
+        Page<ArtSchool> page = new Page<>(request.getCurrentPage(),request.getLimit());
+        Page<ArtSchool> result = artSchoolMapper.selectPage(page, makeQueryConditionWrapper(request));
+//        List<ArtSchoolDto> artSchoolDtos = ArtSchoolConverter.convertToListArtSchoolDto(result.getRecords());
+        return new PageTableResponse((int)result.getTotal(), (int)result.getTotal(), result.getRecords());
+    }
+
+    private QueryWrapper<ArtSchool> makeQueryConditionWrapper(PageTableRequest request) {
+        OrderByObject orderByObject = request.getOrderByObject();
+        QueryWrapper<ArtSchool> query = Wrappers.query();
+        Map<String, Object> params = request.getParams();
+        query.eq(params.containsKey(ArtSchool.Column.NAME.key()),
+                ArtSchool.Column.NAME.key(),
+                params.get(ArtSchool.Column.NAME.key()));
+        query.eq(params.containsKey(ArtSchool.Column.ID.key()),
+                ArtSchool.Column.ID.key(),
+                params.get(ArtSchool.Column.ID.key()));
+        if (orderByObject != null) {
+            query.orderBy(orderByObject.isOrderBy(), orderByObject.isAsc(), orderByObject.getColumn(true));
+        } else {
+            query.orderBy(true, true, ArtSchool.Column.ID.key());
+        }
+        return query;
+    }
+
 }

@@ -1,9 +1,23 @@
 package com.edu.admin.education.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.edu.admin.education.command.ArtTextbookTypeSaveCommand;
 import com.edu.admin.education.command.ArtTextbookTypeUpdateCommand;
+import com.edu.admin.education.convert.ArtTextbookTypeConverter;
+import com.edu.admin.education.dao.ArtTextbookTypeMapper;
 import com.edu.admin.education.dto.ArtTextbookTypeDto;
+import com.edu.admin.education.enums.PublicState;
+import com.edu.admin.education.enums.ResultEnum;
+import com.edu.admin.education.exception.HumanResourceException;
+import com.edu.admin.education.model.ArtTextbookType;
 import com.edu.admin.education.service.IArtTextbookTypeService;
+import com.edu.admin.server.page.table.OrderByObject;
+import com.edu.admin.server.page.table.PageTableRequest;
+import com.edu.admin.server.page.table.PageTableResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,50 +46,74 @@ import java.util.Map;
 //
 @Service
 @Transactional
-public class ArtTextbookTypeServiceImpl implements IArtTextbookTypeService {
+public class ArtTextbookTypeServiceImpl extends ServiceImpl<ArtTextbookTypeMapper, ArtTextbookType> implements IArtTextbookTypeService {
+
+    @Autowired
+    private ArtTextbookTypeMapper artTextbookTypeMapper;
+    
     @Override
     public ArtTextbookTypeDto getById(Long id) {
-        return null;
+        return ArtTextbookTypeConverter.convertToArtTextbookTypeDto(artTextbookTypeMapper.selectById(id));
     }
 
     @Override
     public ArtTextbookTypeDto save(ArtTextbookTypeSaveCommand command) {
-        return null;
+        ArtTextbookType artTextbookType = ArtTextbookTypeConverter.convertToArtTextbookType(command);
+        artTextbookType.setState(PublicState.NORMAL.getDataBase());
+//        artTextbookType.setCreateUserId(UserUtil.getCurrentUser().getId());
+        artTextbookTypeMapper.insert(artTextbookType);
+        return ArtTextbookTypeConverter.convertToArtTextbookTypeDto(artTextbookType);
     }
 
     @Override
     public ArtTextbookTypeDto update(ArtTextbookTypeUpdateCommand command) {
-        return null;
-    }
-
-    @Override
-    public List<ArtTextbookTypeDto> list(Map<String, Object> params, Integer offset, Integer limit) {
-        return null;
-    }
-
-    @Override
-    public int count(Map<String, Object> params) {
-        return 0;
+        ArtTextbookType oldData = artTextbookTypeMapper.selectById(command.getId());
+        if (oldData == null) {
+            throw new HumanResourceException(ResultEnum.NO_FIND_DATA);
+        }
+        oldData = ArtTextbookTypeConverter.convertToArtTextbookType(command);
+        oldData.setId(command.getId());
+        artTextbookTypeMapper.updateById(oldData);
+        return ArtTextbookTypeConverter.convertToArtTextbookTypeDto(oldData);
     }
 
     @Override
     public int delete(Long id) {
-        return 0;
+        return artTextbookTypeMapper.deleteById(id);
     }
 
     @Override
     public List<ArtTextbookTypeDto> findAll() {
-        return null;
+        return ArtTextbookTypeConverter.convertToListArtTextbookTypeDto(artTextbookTypeMapper.selectList(null));
     }
-//
-//    @Autowired
-//    private ArtTextbookTypeDao artTextbookTypeDao;
-//
-//    @Override
-//    public ArtTextbookTypeDto getById(Long id) {
-//        return ArtTextbookTypeConverter.convertToArtTextbookTypeDto(artTextbookTypeDao.selectByPrimaryKey(id));
-//    }
-//
+
+    @Override
+    public PageTableResponse queryList(PageTableRequest request) {
+        Page<ArtTextbookType> page = new Page<>(request.getCurrentPage(),request.getLimit());
+        Page<ArtTextbookType> result = artTextbookTypeMapper.selectPage(page, makeQueryConditionWrapper(request));
+        List<ArtTextbookTypeDto> dtos = ArtTextbookTypeConverter.convertToListArtTextbookTypeDto(result.getRecords());
+        return new PageTableResponse((int)result.getTotal(), (int)result.getTotal(), dtos);
+    }
+    
+    private QueryWrapper<ArtTextbookType> makeQueryConditionWrapper(PageTableRequest request) {
+        OrderByObject orderByObject = request.getOrderByObject();
+        QueryWrapper<ArtTextbookType> query = Wrappers.query();
+        Map<String, Object> params = request.getParams();
+        query.eq(params.containsKey(ArtTextbookType.Column.NAME.key()),
+                ArtTextbookType.Column.NAME.key(),
+                params.get(ArtTextbookType.Column.NAME.key()));
+        query.eq(params.containsKey(ArtTextbookType.Column.ID.key()),
+                ArtTextbookType.Column.ID.key(),
+                params.get(ArtTextbookType.Column.ID.key()));
+        if (orderByObject != null) {
+            query.orderBy(orderByObject.isOrderBy(), orderByObject.isAsc(), orderByObject.getColumn(true));
+        } else {
+            query.orderBy(true, true, ArtTextbookType.Column.ID.key());
+        }
+        return query;
+    }
+
+
 //    @Override
 //    public ArtTextbookTypeDto save(ArtTextbookTypeSaveCommand command) {
 //        ArtTextbookType artTextbookType = ArtTextbookTypeConverter.convertToArtTextbookType(command);
