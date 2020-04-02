@@ -277,6 +277,7 @@ public class ArtStudentServiceImpl implements IArtStudentService{
         criteria.andEqualTo("classificationId", params.get("classificationId"));
         criteria.andEqualTo("level", params.get("level"));
         criteria.andEqualTo("bookType", params.get("bookType"));
+        criteria.andEqualTo("state", 1);
 //        criteria.andEqualTo("school", params.get("school"));
         List<ArtStudent> list = artStudentDao.selectByExample(example);
         if (CollectionUtils.isEmpty(list)) {
