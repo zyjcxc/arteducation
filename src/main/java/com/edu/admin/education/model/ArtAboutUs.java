@@ -1,5 +1,7 @@
 package com.edu.admin.education.model;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,9 +19,9 @@ public class ArtAboutUs extends BaseModel {
 	* 联系人 必填
 	*/
     private String content;
-
+    @TableField(fill = FieldFill.INSERT)
     private Date createtime;
-
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updatetime;
 
 }

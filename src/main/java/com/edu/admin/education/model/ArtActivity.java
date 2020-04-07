@@ -1,5 +1,8 @@
 package com.edu.admin.education.model;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,91 +29,28 @@ public class ArtActivity extends BaseModel {
     /**
      * 状态 1 正常  2 删除
      */
+    @TableLogic(delval = "2", value = "1")
     private String state;
-
+    @TableField(fill = FieldFill.INSERT)
     private Date createtime;
-
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updatetime;
 
-    /**
-     * 获取名称
-     *
-     * @return name - 名称
-     */
-    public String getName() {
-        return name;
+    public enum Column {
+
+        STATE("state"),
+        ID("id"),
+        STATUS("status"),
+        TITLE("title"),
+
+        ;
+        private String key;
+        Column(String name) {
+            this.key = name;
+        }
+        public String key() {
+            return key;
+        }
     }
 
-    /**
-     * 设置名称
-     *
-     * @param name 名称
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * 获取图标地址
-     *
-     * @return icon - 图标地址
-     */
-    public String getIcon() {
-        return icon;
-    }
-
-    /**
-     * 设置图标地址
-     *
-     * @param icon 图标地址
-     */
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    /**
-     * 获取状态 1 正常  2 删除
-     *
-     * @return state - 状态 1 正常  2 删除
-     */
-    public String getState() {
-        return state;
-    }
-
-    /**
-     * 设置状态 1 正常  2 删除
-     *
-     * @param state 状态 1 正常  2 删除
-     */
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    /**
-     * @return createtime
-     */
-    public Date getCreatetime() {
-        return createtime;
-    }
-
-    /**
-     * @param createtime
-     */
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
-
-    /**
-     * @return updatetime
-     */
-    public Date getUpdatetime() {
-        return updatetime;
-    }
-
-    /**
-     * @param updatetime
-     */
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
-    }
 }

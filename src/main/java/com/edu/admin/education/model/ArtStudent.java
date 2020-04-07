@@ -1,7 +1,9 @@
 package com.edu.admin.education.model;
 
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.edu.admin.education.excel.ExcelTitles;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -33,6 +35,7 @@ public class ArtStudent extends BaseModel {
     private Date born;
     private String level;
     private String cardNo;
+    @TableLogic(delval = "2", value = "1")
     private String state;
     private Integer activityId;
     private String score;
@@ -43,6 +46,7 @@ public class ArtStudent extends BaseModel {
 
     private Integer bookType;
 
+    @TableField(fill = FieldFill.INSERT)
     private Date createtime;
 
 //    @Transient
@@ -57,5 +61,31 @@ public class ArtStudent extends BaseModel {
 
 
 //    @Transient
+    @TableField(exist = false)
     private List<String> ids;
+
+    public enum Column {
+
+        CARD_NO("cardNo"),
+        NAME("name"),
+        ACTIVITY_ID("activityId"),
+        CLASSIFICATION_ID("classificationId"),
+        LEVEL("level"),
+        STATE("state"),
+        ID("id"),
+        BOOK_TYPE("bookType"),
+        BOOK_NO("bookNo"),
+        SEX("sex"),
+        SCHOOL("school"),
+
+        ;
+        private String key;
+        Column(String name) {
+            this.key = name;
+        }
+        public String key() {
+            return key;
+        }
+    }
+
 }

@@ -6,9 +6,6 @@ import com.edu.admin.education.excel.ExportExcel;
 import com.edu.admin.education.exception.HumanResourceException;
 import com.edu.admin.education.model.ArtStudent;
 import com.edu.admin.education.service.IArtStudentService;
-import com.edu.admin.server.page.table.PageTableHandler;
-import com.edu.admin.server.page.table.PageTableHandler.CountHandler;
-import com.edu.admin.server.page.table.PageTableHandler.ListHandler;
 import com.edu.admin.server.page.table.PageTableRequest;
 import com.edu.admin.server.page.table.PageTableResponse;
 import io.swagger.annotations.ApiOperation;
@@ -90,19 +87,7 @@ public class ArtStudentController {
     @GetMapping
     @ApiOperation(value = "列表")
     public PageTableResponse list(PageTableRequest request) {
-        return new PageTableHandler(new CountHandler() {
-
-            @Override
-            public int count(PageTableRequest request) {
-                return artStudentService.count(request.getParams());
-            }
-        }, new ListHandler() {
-
-            @Override
-            public List<ArtStudent> list(PageTableRequest request) {
-                return artStudentService.list(request.getParams(), request.getOffset(), request.getLimit());
-            }
-        }).handle(request);
+        return artStudentService.queryList(request);
     }
 
     @PostMapping("/deleteLogic")
@@ -123,7 +108,10 @@ public class ArtStudentController {
     @GetMapping("/export")
     @ApiOperation(value = "导出")
     public void export(PageTableRequest request, HttpServletResponse response) {
-        List<ArtStudent> list = artStudentService.list(request.getParams(), request.getOffset(), request.getLimit());
+//        List<ArtStudent> list = artStudentService.list(request.getParams(), request.getOffset(), request.getLimit());
+        List<ArtStudent> list = artStudentService.list(request);
+
+
         if (!CollectionUtils.isEmpty(list)) {
             ExportExcel ex = new ExportExcel("特长生列表", beanCopy(list), ArtStudent.class, response);
             try {

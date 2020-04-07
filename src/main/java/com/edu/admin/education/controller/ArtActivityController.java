@@ -2,9 +2,6 @@ package com.edu.admin.education.controller;
 
 import com.edu.admin.education.model.ArtActivity;
 import com.edu.admin.education.service.IArtActivityService;
-import com.edu.admin.server.page.table.PageTableHandler;
-import com.edu.admin.server.page.table.PageTableHandler.CountHandler;
-import com.edu.admin.server.page.table.PageTableHandler.ListHandler;
 import com.edu.admin.server.page.table.PageTableRequest;
 import com.edu.admin.server.page.table.PageTableResponse;
 import io.swagger.annotations.ApiOperation;
@@ -58,19 +55,20 @@ public class ArtActivityController extends BaseController {
     @GetMapping
     @ApiOperation(value = "列表")
     public PageTableResponse list(PageTableRequest request) {
-        return new PageTableHandler(new CountHandler() {
-
-            @Override
-            public int count(PageTableRequest request) {
-                return artActivityServiceImpl.count(request.getParams());
-            }
-        }, new ListHandler() {
-
-            @Override
-            public List<ArtActivity> list(PageTableRequest request) {
-                return artActivityServiceImpl.list(request.getParams(), request.getOffset(), request.getLimit());
-            }
-        }).handle(request);
+//        return new PageTableHandler(new CountHandler() {
+//
+//            @Override
+//            public int count(PageTableRequest request) {
+//                return artActivityServiceImpl.count(request.getParams());
+//            }
+//        }, new ListHandler() {
+//
+//            @Override
+//            public List<ArtActivity> list(PageTableRequest request) {
+//                return artActivityServiceImpl.list(request.getParams(), request.getOffset(), request.getLimit());
+//            }
+//        }).handle(request);
+        return artActivityServiceImpl.queryList(request);
     }
 
     @GetMapping("/findAll")

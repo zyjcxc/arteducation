@@ -49,6 +49,7 @@ public enum ResultEnum {
 
     NO_BOOK_NO_RECORD(19, "导入失败, 证书编号不能有空的记录"),
 
+    BOOK_TYPE_NULL_RECORD(28, "证书编辑时证书类型不能选择全部"),
     REPEAT_STUDENT_RECORD(17, "该学生已经存在该活动中，不能重复录入"),
     STUDENT_SIZE_FULL_RECORD(21, "首页推荐位已达到上限"),
     REPEAT_SUBMIT_RECORD(22, "请勿重复提交，我们会尽快与您联系"),

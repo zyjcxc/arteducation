@@ -4,5 +4,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.edu.admin.education.model.ArtActivity;
 //import tk.mybatis.mapper.common.Mapper;
 
-public interface ArtAcitivtyMapper extends BaseMapper<ArtActivity> {
+public interface ArtActivityMapper extends BaseMapper<ArtActivity> {
 }
